@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Avenir Next", "Segoe UI", sans-serif;
+  --color-ink-950: #07131f;
+  --color-ink-900: #0a1b2a;
+  --color-ink-800: #10283a;
+  --color-panel-900: #0e2132;
+  --color-panel-800: #132a3f;
+  --color-panel-700: #193751;
+  --color-warm-50: #f7f1e7;
+  --color-warm-100: #efe7d9;
+  --color-warm-200: #e4dac8;
+  --color-accent-amber: #f0b95d;
+  --color-accent-coral: #f39a4a;
+  --color-accent-blue: #62c0ff;
+  --color-accent-green: #4de4a7;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-[#07131f] font-sans text-slate-100 antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(98, 192, 255, 0.16), transparent 24%),
+      radial-gradient(circle at top right, rgba(240, 185, 93, 0.14), transparent 22%),
+      linear-gradient(180deg, #07131f 0%, #0d2335 38%, #f7f1e7 38%, #f7f1e7 100%);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-[min(1180px,92vw)];
+  }
+
+  .glass-nav {
+    @apply border border-white/8 bg-slate-950/55 shadow-[0_20px_60px_rgba(2,12,20,0.28)] backdrop-blur-2xl;
+  }
+
+  .glass-card {
+    @apply border border-white/10 bg-white/8 shadow-[0_20px_60px_rgba(7,19,31,0.22)] backdrop-blur-xl;
+  }
+
+  .dark-card {
+    @apply rounded-[28px] border border-white/8 bg-slate-950/45 shadow-[0_24px_80px_rgba(2,12,20,0.3)];
+  }
+
+  .light-card {
+    @apply rounded-[28px] border border-slate-200/70 bg-white/80 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur-sm;
+  }
+
+  .section-title {
+    @apply text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl;
+  }
+
+  .section-copy {
+    @apply text-base leading-8 text-slate-600 md:text-lg;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.28em] text-amber-400;
+  }
+
+  .input-surface {
+    @apply w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3.5 text-slate-900 outline-none transition focus:border-sky-300 focus:ring-4 focus:ring-sky-100;
+  }
+
+  .primary-cta {
+    @apply inline-flex items-center justify-center rounded-full bg-gradient-to-r from-amber-400 to-orange-400 px-6 py-3.5 text-sm font-semibold text-slate-950 shadow-[0_14px_34px_rgba(243,154,74,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(243,154,74,0.35)];
+  }
+
+  .secondary-cta {
+    @apply inline-flex items-center justify-center rounded-full border border-white/14 bg-white/8 px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/12;
+  }
+
+  .panel-line {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(77, 228, 167, 0.9), rgba(98, 192, 255, 0.95), rgba(240, 185, 93, 0.85));
+    transform-origin: left center;
+    animation: sweep 4.8s ease-in-out infinite;
+  }
+
+  .chart-grid {
+    background-image:
+      linear-gradient(rgba(110, 162, 208, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(110, 162, 208, 0.08) 1px, transparent 1px);
+    background-size: 100% 38px, 42px 100%;
+  }
+
+  .trend-path {
+    clip-path: polygon(0 86%, 9% 74%, 17% 76%, 27% 42%, 38% 58%, 48% 30%, 60% 44%, 71% 18%, 83% 36%, 92% 8%, 100% 16%, 100% 28%, 92% 44%, 83% 54%, 71% 34%, 60% 56%, 48% 64%, 38% 84%, 27% 60%, 17% 90%, 9% 84%, 0 98%);
+    animation: drift 6s ease-in-out infinite;
+  }
+
+  .fade-rise {
+    animation: rise 0.8s ease both;
+  }
+
+  .fade-rise-delay-1 {
+    animation: rise 0.8s ease 0.08s both;
+  }
+
+  .fade-rise-delay-2 {
+    animation: rise 0.8s ease 0.16s both;
+  }
+
+  .fade-rise-delay-3 {
+    animation: rise 0.8s ease 0.24s both;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sweep {
+  0%,
+  100% {
+    transform: scaleX(0.48);
+    opacity: 0.78;
+  }
+
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.84;
+  }
+
+  50% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
