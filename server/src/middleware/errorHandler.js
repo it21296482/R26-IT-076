@@ -20,8 +20,8 @@ const errorHandler = (error, req, res, next) => {
     return res.status(400).json({
       message:
         error.code === "LIMIT_FILE_SIZE"
-          ? "CSV upload must be 5MB or smaller."
-          : "Please upload a valid CSV file.",
+          ? "File upload must be 10MB or smaller."
+          : "Please upload a valid file.",
     });
   }
 

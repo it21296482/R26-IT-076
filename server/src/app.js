@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const reportRoutes = require("./routes/reportRoutes");
 const stockRoutes = require("./routes/stockRoutes");
 const errorHandler = require("./middleware/errorHandler");
 
@@ -53,6 +54,7 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/reports", reportRoutes);
 app.use("/api/stocks", stockRoutes);
 app.use(errorHandler);
 

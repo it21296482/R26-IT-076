@@ -62,17 +62,17 @@ function UserDashboardPage() {
   };
 
   return (
-    <div className="min-h-screen pb-16">
+    <div className="page-with-sticky-header min-h-screen pb-16">
       <SiteHeader compact />
 
       <main className="shell space-y-10">
         <section className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="space-y-6 fade-rise">
-            <p className="eyebrow">Welcome back</p>
-            <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
-              A clearer path to understanding the market, {user?.name}.
+            <p className="eyebrow">Investor workspace</p>
+            <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+              A clearer path to understanding the CSE, {user?.name}.
             </h1>
-            <p className="max-w-2xl text-lg leading-8 text-slate-300">
+            <p className="max-w-2xl text-lg leading-8 text-slate-600">
               Select a stock, optionally upload a report, and let the system turn complex financial inputs into clear
               decision-support insights.
             </p>
@@ -81,17 +81,17 @@ function UserDashboardPage() {
             </button>
           </div>
 
-          <div className="dark-card chart-grid relative overflow-hidden p-6 fade-rise-delay-1">
-            <div className="trend-path absolute left-6 right-6 top-12 h-28 bg-gradient-to-r from-emerald-300/90 via-sky-300/90 to-amber-300/85" />
+          <div className="market-hero relative overflow-hidden p-6 fade-rise-delay-1">
+            <div className="market-orb absolute -right-12 top-2 h-40 w-40 opacity-80" />
             <div className="relative z-10 space-y-4">
-              <img alt="Investor insight workspace" className="h-56 w-full rounded-[24px] object-cover" src="/assets/Blogs_Paytm_Bond-Market-vs.-Stock-Market_-Whats-the-Difference_-1.jpg" />
+              <img alt="Investor insight workspace" className="h-56 w-full rounded-[24px] object-cover" src="/assets/cse-trading-floor.jpg" />
               <div className="grid gap-3 sm:grid-cols-2">
-                <div className="rounded-2xl border border-white/10 bg-white/6 p-4">
-                  <p className="text-xs uppercase tracking-[0.24em] text-slate-400">What you get</p>
+                <div className="rounded-2xl border border-white/10 bg-white/8 p-4">
+                  <p className="text-xs uppercase tracking-[0.24em] text-blue-100/75">What you get</p>
                   <p className="mt-2 text-sm leading-7 text-slate-200">Insights first, raw complexity second.</p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/6 p-4">
-                  <p className="text-xs uppercase tracking-[0.24em] text-slate-400">Why it matters</p>
+                <div className="rounded-2xl border border-white/10 bg-white/8 p-4">
+                  <p className="text-xs uppercase tracking-[0.24em] text-blue-100/75">Why it matters</p>
                   <p className="mt-2 text-sm leading-7 text-slate-200">Clearer understanding leads to better decisions.</p>
                 </div>
               </div>
@@ -100,7 +100,7 @@ function UserDashboardPage() {
         </section>
 
         <section className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr]" ref={formRef}>
-          <div className="light-card p-8 fade-rise">
+          <div className="surface-panel fade-rise">
             <div className="space-y-4">
               <p className="eyebrow !text-slate-500">Start analysis</p>
               <h2 className="text-3xl font-semibold tracking-tight text-slate-900">Simple flow, clear direction</h2>
@@ -137,15 +137,15 @@ function UserDashboardPage() {
 
               {selectedStock && (
                 <div className="grid gap-3 sm:grid-cols-3">
-                  <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                  <div className="metric-card p-4">
                     <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Listing</p>
                     <p className="mt-2 text-sm font-semibold text-slate-900">{selectedStock.symbol}</p>
                   </div>
-                  <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                  <div className="metric-card p-4">
                     <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Rows</p>
                     <p className="mt-2 text-sm font-semibold text-slate-900">{selectedStock.recordCount}</p>
                   </div>
-                  <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                  <div className="metric-card p-4">
                     <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Latest date</p>
                     <p className="mt-2 text-sm font-semibold text-slate-900">{new Date(selectedStock.latestTradeDate).toLocaleDateString()}</p>
                   </div>
@@ -158,12 +158,12 @@ function UserDashboardPage() {
             </form>
           </div>
 
-          <div className="dark-card chart-grid relative overflow-hidden p-8 fade-rise-delay-1">
-            <div className="trend-path absolute left-6 right-6 top-16 h-28 bg-gradient-to-r from-emerald-300/90 via-sky-300/90 to-amber-300/85" />
+          <div className="market-hero relative overflow-hidden p-8 fade-rise-delay-1">
+            <div className="market-orb absolute -right-16 bottom-0 h-44 w-44 opacity-75" />
             <div className="relative z-10 space-y-6">
               <div className="grid gap-4 sm:grid-cols-2">
                 {previewCards.map((card) => (
-                  <div className="rounded-[24px] border border-white/10 bg-white/6 p-5" key={card.title}>
+                  <div className="rounded-[24px] border border-white/10 bg-white/8 p-5" key={card.title}>
                     <p className="text-sm font-semibold text-white">{card.title}</p>
                     <p className="mt-3 text-sm leading-7 text-slate-300">{card.text}</p>
                   </div>
@@ -171,17 +171,17 @@ function UserDashboardPage() {
               </div>
 
               {workspaceReady && (
-                <div className="rounded-[24px] border border-emerald-300/18 bg-emerald-300/10 p-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-200">Insight preview</p>
+                <div className="rounded-[24px] border border-white/12 bg-white/10 p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100/80">Insight preview</p>
                   <div className="mt-4 grid gap-4 md:grid-cols-[1.2fr_0.8fr]">
-                    <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                    <div className="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
                       <p className="text-sm font-semibold text-white">Trend summary</p>
                       <p className="mt-2 text-sm leading-7 text-slate-300">
                         The selected stock is showing a meaningful shift in direction, and the platform will highlight
                         what changed in clear language.
                       </p>
                     </div>
-                    <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                    <div className="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
                       <p className="text-sm font-semibold text-white">Risk signal</p>
                       <p className="mt-2 text-sm leading-7 text-slate-300">Short-term uncertainty elevated</p>
                     </div>
