@@ -2,19 +2,18 @@
 
 @theme {
   --font-sans: "Avenir Next", "Segoe UI", sans-serif;
-  --color-ink-950: #07131f;
-  --color-ink-900: #0a1b2a;
-  --color-ink-800: #10283a;
-  --color-panel-900: #0e2132;
-  --color-panel-800: #132a3f;
-  --color-panel-700: #193751;
-  --color-warm-50: #f7f1e7;
-  --color-warm-100: #efe7d9;
-  --color-warm-200: #e4dac8;
-  --color-accent-amber: #f0b95d;
-  --color-accent-coral: #f39a4a;
-  --color-accent-blue: #62c0ff;
-  --color-accent-green: #4de4a7;
+  --color-brand-950: #081b49;
+  --color-brand-900: #0e2b70;
+  --color-brand-700: #1d4aa8;
+  --color-brand-600: #3565d9;
+  --color-brand-100: #e9f1ff;
+  --color-panel-100: #f8fbff;
+  --color-panel-200: #edf4ff;
+  --color-panel-300: #dbe7fb;
+  --color-ink-950: #0f172a;
+  --color-ink-700: #334155;
+  --color-accent-amber: #f6bf4f;
+  --color-accent-green: #3ecf8e;
 }
 
 @layer base {
@@ -23,11 +22,11 @@
   }
 
   body {
-    @apply min-h-screen bg-[#07131f] font-sans text-slate-100 antialiased;
+    @apply min-h-screen bg-white font-sans text-slate-900 antialiased;
     background-image:
-      radial-gradient(circle at top left, rgba(98, 192, 255, 0.16), transparent 24%),
-      radial-gradient(circle at top right, rgba(240, 185, 93, 0.14), transparent 22%),
-      linear-gradient(180deg, #07131f 0%, #0d2335 38%, #f7f1e7 38%, #f7f1e7 100%);
+      radial-gradient(circle at top left, rgba(53, 101, 217, 0.16), transparent 28%),
+      radial-gradient(circle at top right, rgba(29, 74, 168, 0.10), transparent 20%),
+      linear-gradient(180deg, #f9fbff 0%, #f4f8ff 35%, #ffffff 100%);
   }
 
   * {
@@ -48,23 +47,47 @@
   }
 
   .glass-nav {
-    @apply border border-white/8 bg-slate-950/55 shadow-[0_20px_60px_rgba(2,12,20,0.28)] backdrop-blur-2xl;
+    @apply border border-[#dbe7fb] bg-white/92 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-2xl;
   }
 
   .glass-card {
-    @apply border border-white/10 bg-white/8 shadow-[0_20px_60px_rgba(7,19,31,0.22)] backdrop-blur-xl;
+    @apply border border-white/12 bg-white/8 shadow-[0_20px_60px_rgba(7,19,31,0.18)] backdrop-blur-xl;
   }
 
   .dark-card {
-    @apply rounded-[28px] border border-white/8 bg-slate-950/45 shadow-[0_24px_80px_rgba(2,12,20,0.3)];
+    @apply rounded-[28px] border border-[#193b87] bg-[#081b49] shadow-[0_24px_80px_rgba(8,27,73,0.24)];
   }
 
   .light-card {
-    @apply rounded-[28px] border border-slate-200/70 bg-white/80 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur-sm;
+    @apply rounded-[28px] border border-[#dbe7fb] bg-white/92 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur-sm;
+  }
+
+  .surface-panel {
+    @apply rounded-[30px] border border-[#dbe7fb] bg-white p-8 shadow-[0_24px_60px_rgba(15,23,42,0.06)];
+  }
+
+  .metric-card {
+    @apply rounded-[24px] border border-[#dbe7fb] bg-[#f8fbff] shadow-[0_10px_24px_rgba(15,23,42,0.04)];
+  }
+
+  .hero-shell {
+    @apply rounded-[34px] border border-[#dbe7fb] bg-[linear-gradient(180deg,#ffffff_0%,#f5f9ff_100%)] shadow-[0_30px_70px_rgba(15,23,42,0.08)];
+  }
+
+  .market-hero {
+    @apply rounded-[30px] border border-[#193b87] bg-[linear-gradient(180deg,#0a2259_0%,#081b49_100%)] shadow-[0_28px_80px_rgba(8,27,73,0.24)];
+  }
+
+  .cta-band {
+    @apply flex flex-col gap-6 rounded-[30px] border border-[#193b87] bg-[linear-gradient(135deg,#081b49_0%,#123687_100%)] p-8 shadow-[0_24px_70px_rgba(8,27,73,0.22)] md:flex-row md:items-center md:justify-between;
+  }
+
+  .footer-shell {
+    background: linear-gradient(180deg, #1f2d67 0%, #222d63 100%);
   }
 
   .section-title {
-    @apply text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl;
+    @apply text-4xl font-semibold tracking-tight text-slate-950 md:text-5xl;
   }
 
   .section-copy {
@@ -72,19 +95,41 @@
   }
 
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.28em] text-amber-400;
+    @apply text-xs font-semibold uppercase tracking-[0.28em] text-[#1d4aa8];
+  }
+
+  .brand-badge {
+    @apply inline-flex rounded-full border border-[#d7e6ff] bg-[#eff5ff] px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#1d4aa8];
+  }
+
+  .page-with-sticky-header {
+    padding-top: 1rem;
   }
 
   .input-surface {
-    @apply w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3.5 text-slate-900 outline-none transition focus:border-sky-300 focus:ring-4 focus:ring-sky-100;
+    @apply w-full rounded-2xl border border-[#dbe7fb] bg-[#fbfdff] px-4 py-3.5 text-slate-900 outline-none transition focus:border-[#9ebeff] focus:ring-4 focus:ring-[#dfeaff];
   }
 
   .primary-cta {
-    @apply inline-flex items-center justify-center rounded-full bg-gradient-to-r from-amber-400 to-orange-400 px-6 py-3.5 text-sm font-semibold text-slate-950 shadow-[0_14px_34px_rgba(243,154,74,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(243,154,74,0.35)];
+    @apply inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#1d4aa8_0%,#3565d9_100%)] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(29,74,168,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(29,74,168,0.34)];
   }
 
   .secondary-cta {
-    @apply inline-flex items-center justify-center rounded-full border border-white/14 bg-white/8 px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/12;
+    @apply inline-flex items-center justify-center rounded-full border border-[#dbe7fb] bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:bg-[#f8fbff];
+  }
+
+  .logo-frame {
+    @apply overflow-hidden rounded-2xl border border-[#dbe7fb] bg-white p-1 shadow-[0_10px_24px_rgba(15,23,42,0.07)];
+  }
+
+  .logo-frame-light {
+    @apply border-white/12 bg-white/8 shadow-none;
+  }
+
+  .market-orb {
+    border-radius: 9999px;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(126, 185, 255, 0.8), rgba(53, 101, 217, 0.35) 45%, rgba(8, 27, 73, 0) 70%);
   }
 
   .panel-line {
@@ -98,8 +143,8 @@
 
   .chart-grid {
     background-image:
-      linear-gradient(rgba(110, 162, 208, 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(110, 162, 208, 0.08) 1px, transparent 1px);
+      linear-gradient(rgba(138, 170, 221, 0.14) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(138, 170, 221, 0.14) 1px, transparent 1px);
     background-size: 100% 38px, 42px 100%;
   }
 
@@ -173,5 +218,11 @@
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-with-sticky-header {
+    padding-top: 1.75rem;
   }
 }

@@ -1,6 +1,7 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { ADMIN_DASHBOARD_PATH } from "../lib/routes";
+import BrandLogo from "./BrandLogo";
 
 function SiteHeader({ compact = false }) {
   const { user, logout } = useAuth();
@@ -13,18 +14,15 @@ function SiteHeader({ compact = false }) {
 
   const navLinkClass = ({ isActive }) =>
     `rounded-full px-4 py-2 text-sm font-medium transition ${
-      isActive ? "bg-white/10 text-white" : "text-slate-300 hover:bg-white/6 hover:text-white"
+      isActive ? "bg-[#1d4aa8] text-white shadow-[0_12px_24px_rgba(29,74,168,0.24)]" : "text-slate-600 hover:bg-[#eff5ff] hover:text-slate-900"
     }`;
 
   return (
     <header className="shell sticky top-4 z-30 mb-6">
-      <div className={`glass-nav flex items-center justify-between gap-6 rounded-[26px] px-5 py-4 ${compact ? "" : ""}`}>
-        <Link className="min-w-0" to="/">
-          <p className="eyebrow !mb-1">AI Powered Market Intelligence</p>
-          <p className="truncate text-base font-semibold text-white md:text-lg">CSE Insight Generator</p>
-        </Link>
+      <div className={`glass-nav flex flex-wrap items-center justify-between gap-4 rounded-[26px] px-5 py-4 ${compact ? "" : ""}`}>
+        <BrandLogo compact={compact} />
 
-        <nav className="flex items-center gap-2">
+        <nav className="flex flex-wrap items-center gap-2">
           <NavLink className={navLinkClass} to="/">
             Home
           </NavLink>
@@ -50,7 +48,7 @@ function SiteHeader({ compact = false }) {
           )}
           {user && (
             <button
-              className="rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+              className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
               onClick={handleLogout}
               type="button"
             >

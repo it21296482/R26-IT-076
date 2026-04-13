@@ -10,6 +10,57 @@ const listUsers = async (req, res) => {
   return res.status(200).json({ users });
 };
 
+const createUser = async (req, res) => {
+  const { name, email, password, role } = req.body;
+  const normalizedEmail = email.toLowerCase().trim();
+
+  const existingUser = await User.findOne({ email: normalizedEmail });
+
+  if (existingUser) {
+    return res.status(409).json({ message: "An account already exists for this email." });
+  }
+
+  const user = await User.create({
+    name: name.trim(),
+    email: normalizedEmail,
+    password,
+    role,
+  });
+
+  return res.status(201).json({
+    message: `User created successfully for ${user.email}.`,
+    user,
+  });
+};
+
+const updateUser = async (req, res) => {
+  const { userId } = req.params;
+  const { name, email, role } = req.body;
+  const normalizedEmail = email.toLowerCase().trim();
+
+  const user = await User.findById(userId);
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found." });
+  }
+
+  const emailOwner = await User.findOne({ email: normalizedEmail });
+
+  if (emailOwner && emailOwner._id.toString() !== userId) {
+    return res.status(409).json({ message: "Another account already uses this email." });
+  }
+
+  user.name = name.trim();
+  user.email = normalizedEmail;
+  user.role = role;
+  await user.save();
+
+  return res.status(200).json({
+    message: `User updated successfully for ${user.email}.`,
+    user,
+  });
+};
+
 const resetUserPassword = async (req, res) => {
   const { userId } = req.params;
   const { newPassword } = req.body;
@@ -25,6 +76,80 @@ const resetUserPassword = async (req, res) => {
 
   return res.status(200).json({
     message: `Password reset completed for ${user.email}.`,
+  });
+};
+
+const deleteUser = async (req, res) => {
+  const { userId } = req.params;
+
+  if (req.user._id.toString() === userId) {
+    return res.status(400).json({ message: "You cannot delete the currently signed-in admin account." });
+  }
+
+  const user = await User.findById(userId);
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found." });
+  }
+
+  await user.deleteOne();
+
+  return res.status(200).json({
+    message: `User deleted successfully for ${user.email}.`,
+  });
+};
+
+const updateStockRecord = async (req, res) => {
+  const { stockId } = req.params;
+  const {
+    symbol,
+    companyName,
+    tradeDate,
+    open,
+    high,
+    low,
+    close,
+    adjustedClose,
+    volume,
+    notes,
+  } = req.body;
+
+  const stock = await Stock.findById(stockId);
+
+  if (!stock) {
+    return res.status(404).json({ message: "Stock record not found." });
+  }
+
+  stock.symbol = symbol.trim().toUpperCase();
+  stock.companyName = companyName.trim();
+  stock.tradeDate = new Date(tradeDate);
+  stock.open = Number(open);
+  stock.high = Number(high);
+  stock.low = Number(low);
+  stock.close = Number(close);
+  stock.adjustedClose = adjustedClose === "" || adjustedClose === null ? null : Number(adjustedClose);
+  stock.volume = Number(volume);
+  stock.notes = notes?.trim() || "";
+  await stock.save();
+
+  return res.status(200).json({
+    message: `Stock record updated for ${stock.symbol}.`,
+    stock,
+  });
+};
+
+const deleteStockRecord = async (req, res) => {
+  const { stockId } = req.params;
+  const stock = await Stock.findById(stockId);
+
+  if (!stock) {
+    return res.status(404).json({ message: "Stock record not found." });
+  }
+
+  await stock.deleteOne();
+
+  return res.status(200).json({
+    message: `Stock record deleted for ${stock.symbol}.`,
   });
 };
 
@@ -95,6 +220,11 @@ const getAdminOverview = async (req, res) => {
 module.exports = {
   getAdminOverview,
   listUsers,
+  createUser,
+  updateUser,
   resetUserPassword,
+  deleteUser,
+  updateStockRecord,
+  deleteStockRecord,
   uploadStockCsv,
 };
