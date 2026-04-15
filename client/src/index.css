@@ -70,6 +70,43 @@
     @apply rounded-[24px] border border-[#dbe7fb] bg-[#f8fbff] shadow-[0_10px_24px_rgba(15,23,42,0.04)];
   }
 
+  .research-card {
+    @apply rounded-[26px] border border-[#dbe7fb] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbff_100%)] p-6 shadow-[0_14px_34px_rgba(15,23,42,0.04)];
+  }
+
+  .pipeline-step {
+    @apply rounded-[24px] border border-[#dbe7fb] bg-[#f8fbff] p-5 shadow-[0_10px_24px_rgba(15,23,42,0.04)];
+  }
+
+  .pipeline-step span {
+    @apply text-xs font-semibold uppercase tracking-[0.24em] text-[#1d4aa8];
+  }
+
+  .pipeline-step p {
+    @apply mt-4 text-sm font-semibold leading-6 text-slate-800;
+  }
+
+  .interactive-card {
+    transform: translateY(0);
+    transition:
+      transform 0.28s ease,
+      border-color 0.28s ease,
+      box-shadow 0.28s ease,
+      background 0.28s ease;
+  }
+
+  .interactive-card:hover {
+    transform: translateY(-6px);
+    border-color: #bcd2fb;
+    box-shadow: 0 22px 44px rgba(29, 74, 168, 0.12);
+  }
+
+  .surface-panel {
+    animation: sectionFloatIn 0.78s ease both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 24%;
+  }
+
   .hero-shell {
     @apply rounded-[34px] border border-[#dbe7fb] bg-[linear-gradient(180deg,#ffffff_0%,#f5f9ff_100%)] shadow-[0_30px_70px_rgba(15,23,42,0.08)];
   }
@@ -103,7 +140,7 @@
   }
 
   .page-with-sticky-header {
-    padding-top: 1rem;
+    padding-top: 1.5rem;
   }
 
   .input-surface {
@@ -130,6 +167,7 @@
     border-radius: 9999px;
     background:
       radial-gradient(circle at 30% 30%, rgba(126, 185, 255, 0.8), rgba(53, 101, 217, 0.35) 45%, rgba(8, 27, 73, 0) 70%);
+    animation: orbPulse 7s ease-in-out infinite;
   }
 
   .panel-line {
@@ -208,6 +246,31 @@
   }
 }
 
+@keyframes sectionFloatIn {
+  from {
+    opacity: 0;
+    transform: translateY(34px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes orbPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.72;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 0.95;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -223,6 +286,10 @@
 
 @media (min-width: 1024px) {
   .page-with-sticky-header {
-    padding-top: 1.75rem;
+    padding-top: 2.25rem;
+  }
+
+  main.shell > section {
+    scroll-margin-top: 8.5rem;
   }
 }

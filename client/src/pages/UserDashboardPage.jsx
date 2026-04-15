@@ -3,24 +3,21 @@ import SiteHeader from "../components/SiteHeader";
 import { useAuth } from "../hooks/useAuth";
 import api from "../lib/api";
 
-const previewCards = [
-  {
-    title: "Trend chart",
-    text: "Highlights meaningful direction changes instead of exposing noisy raw data.",
-  },
-  {
-    title: "Anomaly highlight",
-    text: "Flags unusual market behavior that deserves investor attention.",
-  },
-  {
-    title: "Explanation panel",
-    text: "Explains what likely influenced the change in plain language.",
-  },
-  {
-    title: "Risk indicator",
-    text: "Summarizes confidence and uncertainty clearly for decision support.",
-  },
+const pipelineStatus = [
+  ["Stock data", "Ready"],
+  ["Report intake", "Optional"],
+  ["Sentiment", "Queued"],
+  ["XAI insight", "Preparing"],
 ];
+
+const insightCards = [
+  ["Trend signal", "Positive momentum pattern ready for analysis."],
+  ["Anomaly check", "Volume and price behavior scanned for unusual movement."],
+  ["Sentiment pulse", "Market context prepared for news and event interpretation."],
+  ["Risk indicator", "Confidence and uncertainty summarized for decision support."],
+];
+
+const factorChips = ["Price momentum", "Report context", "Sentiment signal"];
 
 function UserDashboardPage() {
   const { user } = useAuth();
@@ -65,47 +62,60 @@ function UserDashboardPage() {
     <div className="page-with-sticky-header min-h-screen pb-16">
       <SiteHeader compact />
 
-      <main className="shell space-y-10">
-        <section className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="space-y-6 fade-rise">
-            <p className="eyebrow">Investor workspace</p>
-            <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
-              A clearer path to understanding the CSE, {user?.name}.
-            </h1>
-            <p className="max-w-2xl text-lg leading-8 text-slate-600">
-              Select a stock, optionally upload a report, and let the system turn complex financial inputs into clear
-              decision-support insights.
-            </p>
-            <button className="primary-cta" onClick={() => formRef.current?.scrollIntoView({ behavior: "smooth" })} type="button">
-              Start Analysis
-            </button>
-          </div>
+      <main className="shell space-y-8">
+        <section className="surface-panel fade-rise">
+          <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div className="space-y-6">
+              <p className="eyebrow">Investor workspace</p>
+              <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+                Investor insight console for CSE market decisions.
+              </h1>
+              <p className="max-w-2xl text-lg leading-8 text-slate-600">
+                Welcome {user?.name}. Build one focused analysis by selecting a CSE-listed company, adding report context,
+                and reviewing explainable signals before making a decision.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <button className="primary-cta" onClick={() => formRef.current?.scrollIntoView({ behavior: "smooth" })} type="button">
+                  Start Analysis
+                </button>
+                <div className="rounded-full border border-[#dbe7fb] bg-[#f8fbff] px-5 py-3 text-sm font-semibold text-slate-600">
+                  {stockUniverse.length} companies available
+                </div>
+              </div>
+            </div>
 
-          <div className="market-hero relative overflow-hidden p-6 fade-rise-delay-1">
-            <div className="market-orb absolute -right-12 top-2 h-40 w-40 opacity-80" />
-            <div className="relative z-10 space-y-4">
-              <img alt="Investor insight workspace" className="h-56 w-full rounded-[24px] object-cover" src="/assets/cse-trading-floor.jpg" />
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div className="rounded-2xl border border-white/10 bg-white/8 p-4">
-                  <p className="text-xs uppercase tracking-[0.24em] text-blue-100/75">What you get</p>
-                  <p className="mt-2 text-sm leading-7 text-slate-200">Insights first, raw complexity second.</p>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-white/8 p-4">
-                  <p className="text-xs uppercase tracking-[0.24em] text-blue-100/75">Why it matters</p>
-                  <p className="mt-2 text-sm leading-7 text-slate-200">Clearer understanding leads to better decisions.</p>
-                </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="metric-card p-5">
+                <p className="eyebrow !text-slate-500">Selected stock</p>
+                <p className="mt-5 text-3xl font-semibold text-slate-950">{selectedSymbol || "Pending"}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-500">
+                  Choose a company to activate trend, anomaly, and explanation preview panels.
+                </p>
+              </div>
+              <div className="metric-card p-5">
+                <p className="eyebrow !text-slate-500">Analysis mode</p>
+                <p className="mt-5 text-3xl font-semibold text-slate-950">{workspaceReady ? "Ready" : "Setup"}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-500">
+                  {workspaceReady ? "Preview generated with current inputs." : "Inputs are waiting for review."}
+                </p>
+              </div>
+              <div className="metric-card p-5 sm:col-span-2">
+                <p className="eyebrow !text-slate-500">Workspace focus</p>
+                <p className="mt-4 text-base leading-7 text-slate-600">
+                  Turn raw market records, optional report evidence, and sentiment cues into a single decision-support view.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr]" ref={formRef}>
-          <div className="surface-panel fade-rise">
+        <section className="grid gap-8 xl:grid-cols-[390px_1fr]" ref={formRef}>
+          <aside className="surface-panel fade-rise xl:sticky xl:top-32 xl:self-start">
             <div className="space-y-4">
-              <p className="eyebrow !text-slate-500">Start analysis</p>
-              <h2 className="text-3xl font-semibold tracking-tight text-slate-900">Simple flow, clear direction</h2>
+              <p className="eyebrow !text-slate-500">Analysis controls</p>
+              <h2 className="text-3xl font-semibold tracking-tight text-slate-900">Prepare insight preview</h2>
               <p className="text-base leading-8 text-slate-600">
-                Choose a listed company, upload the latest report if available, and move into a guided insight view.
+                Choose a company and optionally attach the latest financial report to enrich the generated explanation.
               </p>
             </div>
 
@@ -135,61 +145,140 @@ function UserDashboardPage() {
               {loading && <p className="text-sm text-slate-500">Loading available stocks...</p>}
               {selectedFile && <p className="text-sm text-slate-500">Attached report: {selectedFile.name}</p>}
 
-              {selectedStock && (
-                <div className="grid gap-3 sm:grid-cols-3">
-                  <div className="metric-card p-4">
-                    <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Listing</p>
-                    <p className="mt-2 text-sm font-semibold text-slate-900">{selectedStock.symbol}</p>
+              <div className="rounded-[24px] border border-[#dbe7fb] bg-[#f8fbff] p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Input summary</p>
+                <div className="mt-4 grid gap-3">
+                  <div className="flex items-center justify-between gap-4 rounded-2xl bg-white px-4 py-3 text-sm">
+                    <span className="text-slate-500">Company</span>
+                    <span className="font-semibold text-slate-900">{selectedStock?.symbol || "Not selected"}</span>
                   </div>
-                  <div className="metric-card p-4">
-                    <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Rows</p>
-                    <p className="mt-2 text-sm font-semibold text-slate-900">{selectedStock.recordCount}</p>
-                  </div>
-                  <div className="metric-card p-4">
-                    <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Latest date</p>
-                    <p className="mt-2 text-sm font-semibold text-slate-900">{new Date(selectedStock.latestTradeDate).toLocaleDateString()}</p>
+                  <div className="flex items-center justify-between gap-4 rounded-2xl bg-white px-4 py-3 text-sm">
+                    <span className="text-slate-500">Report</span>
+                    <span className="max-w-36 truncate font-semibold text-slate-900">{selectedFile?.name || "Optional"}</span>
                   </div>
                 </div>
-              )}
+              </div>
 
               <button className="primary-cta w-full" disabled={!stockUniverse.length} type="submit">
-                View Insights
+                Generate Insight Preview
               </button>
             </form>
-          </div>
+          </aside>
 
-          <div className="market-hero relative overflow-hidden p-8 fade-rise-delay-1">
+          <section className="market-hero relative overflow-hidden p-6 fade-rise-delay-1 md:p-8">
             <div className="market-orb absolute -right-16 bottom-0 h-44 w-44 opacity-75" />
             <div className="relative z-10 space-y-6">
-              <div className="grid gap-4 sm:grid-cols-2">
-                {previewCards.map((card) => (
-                  <div className="rounded-[24px] border border-white/10 bg-white/8 p-5" key={card.title}>
-                    <p className="text-sm font-semibold text-white">{card.title}</p>
-                    <p className="mt-3 text-sm leading-7 text-slate-300">{card.text}</p>
+              <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
+                <div className="rounded-[28px] border border-white/10 bg-white/8 p-5">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <p className="eyebrow !text-blue-100">Live insight board</p>
+                      <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
+                        {selectedStock?.companyName || "Select a company to begin"}
+                      </h2>
+                    </div>
+                    <div className="rounded-full border border-white/10 bg-emerald-300/15 px-4 py-2 text-sm font-semibold text-emerald-100">
+                      {workspaceReady ? "Confidence 82%" : "Preview mode"}
+                    </div>
+                  </div>
+                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                    {selectedStock && (
+                      <>
+                        <div className="rounded-2xl border border-white/10 bg-slate-950/20 p-4">
+                          <p className="text-[10px] uppercase tracking-[0.2em] text-blue-100/60">Ticker</p>
+                          <p className="mt-2 text-lg font-semibold text-white">{selectedStock.symbol}</p>
+                        </div>
+                        <div className="rounded-2xl border border-white/10 bg-slate-950/20 p-4">
+                          <p className="text-[10px] uppercase tracking-[0.2em] text-blue-100/60">Records</p>
+                          <p className="mt-2 text-lg font-semibold text-white">{selectedStock.recordCount}</p>
+                        </div>
+                      </>
+                    )}
+                    <div className="rounded-2xl border border-white/10 bg-slate-950/20 p-4">
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-blue-100/60">Risk watch</p>
+                      <p className="mt-2 text-lg font-semibold text-white">{workspaceReady ? "Moderate" : "Pending"}</p>
+                    </div>
+                    <div className="rounded-2xl border border-white/10 bg-slate-950/20 p-4">
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-blue-100/60">Report context</p>
+                      <p className="mt-2 text-lg font-semibold text-white">{selectedFile ? "Attached" : "Optional"}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="overflow-hidden rounded-[28px] border border-white/10 bg-white/8 p-3">
+                  <img
+                    alt="Bull and bear market analysis"
+                    className="h-64 w-full rounded-[22px] object-cover lg:h-full"
+                    src="/assets/360_F_754695855_hkDMu3QQ8Yu1kQZbyHHwgokSpmkXqqff.jpg"
+                  />
+                </div>
+              </div>
+
+              <div className="grid gap-3 md:grid-cols-4">
+                {pipelineStatus.map(([label, status], index) => (
+                  <div className="pipeline-step border-white/10 bg-white/8 p-4" key={label}>
+                    <p className="text-xs font-semibold text-blue-100/70">0{index + 1}</p>
+                    <p className="mt-3 text-[10px] uppercase tracking-[0.2em] text-blue-100/50">{label}</p>
+                    <p className="mt-1 text-sm font-semibold text-white">{status}</p>
                   </div>
                 ))}
               </div>
 
-              {workspaceReady && (
-                <div className="rounded-[24px] border border-white/12 bg-white/10 p-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100/80">Insight preview</p>
-                  <div className="mt-4 grid gap-4 md:grid-cols-[1.2fr_0.8fr]">
+              <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                  {insightCards.map(([title, text]) => (
+                    <div className="interactive-card rounded-[24px] border border-white/10 bg-white/8 p-5" key={title}>
+                      <p className="text-sm font-semibold text-white">{title}</p>
+                      <p className="mt-3 text-sm leading-7 text-slate-300">{text}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="rounded-[28px] border border-white/12 bg-white/10 p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100/80">Generated preview</p>
+                  <h3 className="mt-4 text-2xl font-semibold tracking-tight text-white">
+                    {workspaceReady ? "Decision support snapshot is ready." : "Your preview will appear here."}
+                  </h3>
+                  <p className="mt-4 text-sm leading-7 text-slate-300">
+                    {workspaceReady
+                      ? `${selectedStock?.companyName || "The selected company"} is ready for trend, volume, risk, and report-aware interpretation using available CSE records.`
+                      : "Select a stock and generate the preview to see trend movement, uncertainty, contributing factors, and explanation notes in one place."}
+                  </p>
+
+                  <div className="mt-6 rounded-[22px] border border-white/10 bg-slate-950/30 p-5">
+                    <div className="flex items-center justify-between gap-4">
+                      <p className="text-sm font-semibold text-white">Insight confidence</p>
+                      <p className="text-sm font-semibold text-emerald-100">{workspaceReady ? "82%" : "34%"}</p>
+                    </div>
+                    <div className="mt-4 h-3 overflow-hidden rounded-full bg-white/10">
+                      <div className={`h-full rounded-full bg-gradient-to-r from-emerald-300 to-sky-300 ${workspaceReady ? "w-[82%]" : "w-[34%]"}`} />
+                    </div>
+                  </div>
+
+                  <div className="mt-6 grid gap-4 sm:grid-cols-2">
                     <div className="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
-                      <p className="text-sm font-semibold text-white">Trend summary</p>
+                      <p className="text-sm font-semibold text-white">Why it moved</p>
                       <p className="mt-2 text-sm leading-7 text-slate-300">
-                        The selected stock is showing a meaningful shift in direction, and the platform will highlight
-                        what changed in clear language.
+                        {workspaceReady
+                          ? "Market records, momentum behavior, and optional document context are combined into a plain-language explanation."
+                          : "Waiting for analysis input."}
                       </p>
                     </div>
                     <div className="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
-                      <p className="text-sm font-semibold text-white">Risk signal</p>
-                      <p className="mt-2 text-sm leading-7 text-slate-300">Short-term uncertainty elevated</p>
+                      <p className="text-sm font-semibold text-white">Key contributing factors</p>
+                      <div className="mt-3 grid gap-3">
+                        {factorChips.map((factor) => (
+                          <div className="rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-sm text-slate-200" key={factor}>
+                            {factor}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
-          </div>
+          </section>
         </section>
       </main>
     </div>
