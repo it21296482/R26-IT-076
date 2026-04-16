@@ -3,13 +3,6 @@ import SiteHeader from "../components/SiteHeader";
 import { useAuth } from "../hooks/useAuth";
 import api from "../lib/api";
 
-const pipelineStatus = [
-  ["Stock data", "Ready"],
-  ["Report intake", "Optional"],
-  ["Sentiment", "Queued"],
-  ["XAI insight", "Preparing"],
-];
-
 const insightCards = [
   ["Trend signal", "Positive momentum pattern ready for analysis."],
   ["Anomaly check", "Volume and price behavior scanned for unusual movement."],
@@ -23,39 +16,99 @@ function UserDashboardPage() {
   const { user } = useAuth();
   const formRef = useRef(null);
   const [stockUniverse, setStockUniverse] = useState([]);
+  const [recentReports, setRecentReports] = useState([]);
   const [selectedSymbol, setSelectedSymbol] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [reportsLoading, setReportsLoading] = useState(true);
+  const [uploadingReport, setUploadingReport] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [workspaceReady, setWorkspaceReady] = useState(false);
 
   useEffect(() => {
-    const fetchUniverse = async () => {
+    const loadWorkspace = async () => {
       try {
-        const { data } = await api.get("/stocks/universe");
-        setStockUniverse(data.stocks);
+        // Load both market options and report-intake history so the dashboard reflects the full analysis setup state.
+        const [{ data: stockData }, { data: reportData }] = await Promise.all([api.get("/stocks/universe"), api.get("/reports")]);
+        setStockUniverse(stockData.stocks);
+        setRecentReports(reportData.reports);
       } catch (err) {
-        setError(err.response?.data?.message || "Unable to load stock records.");
+        setError(err.response?.data?.message || "Unable to load the investor workspace.");
       } finally {
         setLoading(false);
+        setReportsLoading(false);
       }
     };
 
-    fetchUniverse();
+    loadWorkspace();
   }, []);
 
   const selectedStock = stockUniverse.find((stock) => stock.symbol === selectedSymbol);
+  const latestReport = recentReports[0] || null;
+  const pipelineStatus = [
+    ["Stock data", selectedStock ? "Ready" : "Waiting"],
+    ["Report intake", latestReport?.processingStatus || (selectedFile ? "Selected" : "Optional")],
+    ["Sentiment", workspaceReady ? "Queued" : "Pending"],
+    ["XAI insight", workspaceReady ? "Preparing" : "Waiting"],
+  ];
 
-  const handlePrepareWorkspace = (event) => {
+  const refreshReports = async () => {
+    const { data } = await api.get("/reports");
+    setRecentReports(data.reports);
+  };
+
+  const handlePrepareWorkspace = async (event) => {
     event.preventDefault();
 
-    if (!selectedSymbol) {
+    if (!selectedSymbol || !selectedStock) {
       setError("Please select a stock.");
       return;
     }
 
     setError("");
+    setSuccess("");
+
+    if (selectedFile) {
+      setUploadingReport(true);
+
+      try {
+        // Send the selected company plus PDF together so the backend can create a report intake record for this analysis.
+        const formData = new FormData();
+        formData.append("symbol", selectedStock.symbol);
+        formData.append("companyName", selectedStock.companyName);
+        formData.append("file", selectedFile);
+
+        const { data } = await api.post("/reports/upload", formData);
+        setSuccess(data.message);
+        await refreshReports();
+        setSelectedFile(null);
+      } catch (err) {
+        setError(err.response?.data?.message || "Unable to upload the financial report.");
+        setUploadingReport(false);
+        return;
+      }
+
+      setUploadingReport(false);
+    } else {
+      setSuccess("Workspace prepared with stock data only. You can attach a financial report later for richer document insights.");
+    }
+
     setWorkspaceReady(true);
+  };
+
+  const formatBytes = (sizeBytes) => {
+    if (!sizeBytes) {
+      return "0 KB";
+    }
+
+    const sizeInMb = sizeBytes / (1024 * 1024);
+
+    if (sizeInMb >= 1) {
+      return `${sizeInMb.toFixed(1)} MB`;
+    }
+
+    return `${Math.max(1, Math.round(sizeBytes / 1024))} KB`;
   };
 
   return (
@@ -133,8 +186,9 @@ function UserDashboardPage() {
               </label>
 
               <label className="block space-y-2">
-                <span className="text-sm font-medium text-slate-700">Upload report (optional)</span>
+                <span className="text-sm font-medium text-slate-700">Upload financial report (optional)</span>
                 <input
+                  accept=".pdf,application/pdf"
                   className="input-surface file:mr-4 file:rounded-full file:border-0 file:bg-slate-900 file:px-4 file:py-2 file:text-sm file:font-medium file:text-white"
                   onChange={(event) => setSelectedFile(event.target.files?.[0] || null)}
                   type="file"
@@ -142,6 +196,7 @@ function UserDashboardPage() {
               </label>
 
               {error && <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{error}</div>}
+              {success && <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">{success}</div>}
               {loading && <p className="text-sm text-slate-500">Loading available stocks...</p>}
               {selectedFile && <p className="text-sm text-slate-500">Attached report: {selectedFile.name}</p>}
 
@@ -159,8 +214,8 @@ function UserDashboardPage() {
                 </div>
               </div>
 
-              <button className="primary-cta w-full" disabled={!stockUniverse.length} type="submit">
-                Generate Insight Preview
+              <button className="primary-cta w-full" disabled={!stockUniverse.length || uploadingReport} type="submit">
+                {uploadingReport ? "Uploading report..." : "Generate Insight Preview"}
               </button>
             </form>
           </aside>
@@ -200,7 +255,9 @@ function UserDashboardPage() {
                     </div>
                     <div className="rounded-2xl border border-white/10 bg-slate-950/20 p-4">
                       <p className="text-[10px] uppercase tracking-[0.2em] text-blue-100/60">Report context</p>
-                      <p className="mt-2 text-lg font-semibold text-white">{selectedFile ? "Attached" : "Optional"}</p>
+                      <p className="mt-2 text-lg font-semibold text-white">
+                        {latestReport?.processingStatus || (selectedFile ? "Selected" : "Optional")}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -275,6 +332,60 @@ function UserDashboardPage() {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <div className="rounded-[28px] border border-white/12 bg-white/8 p-6">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100/80">Financial report intake</p>
+                    <h3 className="mt-3 text-2xl font-semibold tracking-tight text-white">Recent document uploads</h3>
+                  </div>
+                  <div className="rounded-full border border-white/10 bg-slate-950/20 px-4 py-2 text-sm font-semibold text-white">
+                    {recentReports.length} tracked
+                  </div>
+                </div>
+
+                <div className="mt-6 space-y-4">
+                  {reportsLoading && <p className="text-sm text-slate-300">Loading recent uploads...</p>}
+
+                  {!reportsLoading && !recentReports.length && (
+                    <div className="rounded-2xl border border-dashed border-white/15 bg-slate-950/20 px-5 py-4 text-sm leading-7 text-slate-300">
+                      No financial reports uploaded yet. Attach a CSE company report to start your document-understanding pipeline.
+                    </div>
+                  )}
+
+                  {/* This queue gives the user a visible audit trail for the first stage of the research pipeline. */}
+                  {recentReports.map((report) => (
+                    <div className="rounded-[24px] border border-white/10 bg-slate-950/25 p-5" key={report._id}>
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                          <p className="text-lg font-semibold text-white">{report.companyName}</p>
+                          <p className="mt-1 text-sm text-slate-300">
+                            {report.stockSymbol} • {report.originalFilename}
+                          </p>
+                        </div>
+                        <div className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100">
+                          {report.processingStatus}
+                        </div>
+                      </div>
+
+                      <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                        <div className="rounded-2xl border border-white/10 bg-white/8 px-4 py-3">
+                          <p className="text-[10px] uppercase tracking-[0.2em] text-blue-100/60">Uploaded</p>
+                          <p className="mt-2 text-sm font-semibold text-white">{new Date(report.uploadedAt).toLocaleString()}</p>
+                        </div>
+                        <div className="rounded-2xl border border-white/10 bg-white/8 px-4 py-3">
+                          <p className="text-[10px] uppercase tracking-[0.2em] text-blue-100/60">File size</p>
+                          <p className="mt-2 text-sm font-semibold text-white">{formatBytes(report.sizeBytes)}</p>
+                        </div>
+                        <div className="rounded-2xl border border-white/10 bg-white/8 px-4 py-3">
+                          <p className="text-[10px] uppercase tracking-[0.2em] text-blue-100/60">Pipeline note</p>
+                          <p className="mt-2 text-sm font-semibold text-white">{report.summary || "Awaiting processing"}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
