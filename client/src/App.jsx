@@ -3,6 +3,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import HomePage from "./pages/HomePage";
+import InsightPreviewPage from "./pages/InsightPreviewPage";
 import RegisterPage from "./pages/RegisterPage";
 import UserDashboardPage from "./pages/UserDashboardPage";
 import UserLoginPage from "./pages/UserLoginPage";
@@ -20,6 +21,14 @@ function App() {
         element={
           <ProtectedRoute role="user">
             <UserDashboardPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard/insight-preview"
+        element={
+          <ProtectedRoute role="user">
+            <InsightPreviewPage />
           </ProtectedRoute>
         }
       />
