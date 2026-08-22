@@ -28,7 +28,7 @@ function UserLoginPage() {
   return (
     <AuthShell
       title="Sign in and continue with confidence"
-      subtitle="Access one place for stock selection, optional report upload, and clear investor-focused insight preparation."
+      subtitle="Access one place for stock selection, report upload, and clear investor-focused insight preparation."
       footer={
         <p>
           Need an account?{" "}

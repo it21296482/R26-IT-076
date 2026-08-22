@@ -12,6 +12,8 @@ function UserDashboardPage() {
   const [stockUniverse, setStockUniverse] = useState([]);
   const [recentReports, setRecentReports] = useState([]);
   const [selectedSymbol, setSelectedSymbol] = useState("");
+  const [manualCompanyName, setManualCompanyName] = useState("");
+  const [manualSymbol, setManualSymbol] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [uploadingReport, setUploadingReport] = useState(false);
@@ -34,8 +36,16 @@ function UserDashboardPage() {
     loadWorkspace();
   }, []);
 
-  const selectedStock = stockUniverse.find((stock) => stock.symbol === selectedSymbol);
-  const latestReport = recentReports.find((report) => report.stockSymbol === selectedSymbol) || null;
+  const selectedStock =
+    stockUniverse.find((stock) => stock.symbol === selectedSymbol) ||
+    (manualCompanyName.trim() && manualSymbol.trim()
+      ? {
+          companyName: manualCompanyName.trim(),
+          symbol: manualSymbol.trim().toUpperCase(),
+          recordCount: 0,
+        }
+      : null);
+  const latestReport = recentReports.find((report) => report.stockSymbol === selectedStock?.symbol) || null;
 
   const openInsightPreview = (report) => {
     const previewPayload = {
@@ -57,8 +67,8 @@ function UserDashboardPage() {
   const handlePrepareWorkspace = async (event) => {
     event.preventDefault();
 
-    if (!selectedSymbol || !selectedStock) {
-      setError("Please select a stock.");
+    if (!selectedStock) {
+      setError(stockUniverse.length ? "Please select a stock." : "Please enter the company name and stock symbol.");
       return;
     }
 
@@ -105,7 +115,7 @@ function UserDashboardPage() {
                 Prepare your CSE insight preview.
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-slate-600">
-                Welcome {user?.name}. Select a CSE-listed company and optionally attach a financial report. After the
+                Welcome {user?.name}. Select a CSE-listed company and attach a financial report if available. After the
                 analysis starts, the module outputs open in a dedicated visualization dashboard.
               </p>
             </div>
@@ -161,26 +171,42 @@ function UserDashboardPage() {
               <p className="eyebrow !text-slate-500">Analysis controls</p>
               <h2 className="text-3xl font-semibold tracking-tight text-slate-900">Prepare insight preview</h2>
               <p className="text-base leading-8 text-slate-600">
-                Choose a company and optionally attach the latest financial report. The analysis output will open as a
+                Choose a company and attach the latest financial report if available. The analysis output will open as a
                 module-wise visualization dashboard.
               </p>
             </div>
 
             <form className="mt-8 space-y-5" onSubmit={handlePrepareWorkspace}>
-              <label className="block space-y-2">
-                <span className="text-sm font-medium text-slate-700">Select stock</span>
-                <select className="input-surface" onChange={(event) => setSelectedSymbol(event.target.value)} value={selectedSymbol}>
-                  <option value="">Choose a listed company</option>
-                  {stockUniverse.map((stock) => (
-                    <option key={stock.symbol} value={stock.symbol}>
-                      {stock.companyName} ({stock.symbol})
-                    </option>
-                  ))}
-                </select>
-              </label>
+              {stockUniverse.length ? (
+                <label className="block space-y-2">
+                  <span className="text-sm font-medium text-slate-700">Select stock</span>
+                  <select className="input-surface" onChange={(event) => setSelectedSymbol(event.target.value)} value={selectedSymbol}>
+                    <option value="">Choose a listed company</option>
+                    {stockUniverse.map((stock) => (
+                      <option key={stock.symbol} value={stock.symbol}>
+                        {stock.companyName} ({stock.symbol})
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ) : (
+                <div className="space-y-4">
+                  <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-800">
+                    No market records have been imported yet. Enter the report company manually to run the financial-document analysis.
+                  </div>
+                  <label className="block space-y-2">
+                    <span className="text-sm font-medium text-slate-700">Company name</span>
+                    <input className="input-surface" onChange={(event) => setManualCompanyName(event.target.value)} placeholder="John Keells PLC" value={manualCompanyName} />
+                  </label>
+                  <label className="block space-y-2">
+                    <span className="text-sm font-medium text-slate-700">Stock symbol</span>
+                    <input className="input-surface uppercase" maxLength={20} onChange={(event) => setManualSymbol(event.target.value)} placeholder="JKH" value={manualSymbol} />
+                  </label>
+                </div>
+              )}
 
               <label className="block space-y-2">
-                <span className="text-sm font-medium text-slate-700">Upload financial report (optional)</span>
+                <span className="text-sm font-medium text-slate-700">Upload financial report</span>
                 <input
                   accept=".pdf,application/pdf"
                   className="input-surface file:mr-4 file:rounded-full file:border-0 file:bg-slate-900 file:px-4 file:py-2 file:text-sm file:font-medium file:text-white"
@@ -204,14 +230,14 @@ function UserDashboardPage() {
                   <div className="flex items-center justify-between gap-4 rounded-2xl bg-white px-4 py-3 text-sm">
                     <span className="text-slate-500">Report</span>
                     <span className="max-w-36 truncate font-semibold text-slate-900">
-                      {selectedFile?.name || latestReport?.originalFilename || "Optional"}
+                      {selectedFile?.name || latestReport?.originalFilename || "Not uploaded"}
                     </span>
                   </div>
                 </div>
               </div>
 
-              <button className="primary-cta w-full" disabled={!stockUniverse.length || uploadingReport} type="submit">
-                {uploadingReport ? "Uploading report..." : "Start Analysis"}
+              <button className="primary-cta w-full disabled:cursor-not-allowed disabled:opacity-50" disabled={!selectedStock || uploadingReport} type="submit">
+                {uploadingReport ? "Uploading and extracting report..." : "Start Analysis"}
               </button>
             </form>
           </aside>
