@@ -10,6 +10,15 @@ const buildReportResponse = (report) => ({
   sizeBytes: report.sizeBytes,
   processingStatus: report.processingStatus,
   summary: report.summary,
+  extractionPrompt: report.extractionPrompt,
+  selectedPromptId: report.selectedPromptId,
+  selectedPromptName: report.selectedPromptName,
+  ragSources: report.ragSources,
+  ragChunkCount: report.ragChunkCount,
+  ragSelectedCount: report.ragSelectedCount,
+  parsedExtraction: report.parsedExtraction,
+  extractionError: report.extractionError,
+  processedAt: report.processedAt,
   uploadedAt: report.createdAt,
 });
 
@@ -47,15 +56,44 @@ const uploadFinancialReport = async (req, res) => {
     mimeType: req.file.mimetype,
     sizeBytes: req.file.size,
     storagePath: req.file.path,
-    processingStatus: "queued",
-    // This placeholder summary mirrors the first stage of the research pipeline until parsing is implemented.
-    summary:
-      "Report received and queued for document parsing, indicator extraction, and explainable insight generation.",
+    processingStatus: "uploaded",
+    summary: "Report uploaded and awaiting extraction.",
     uploadedBy: req.user._id,
   });
 
+  try {
+    const { extractAnnualReport } = require("../services/reportExtractionService");
+    // Processing is synchronous so the API returns either a complete insight or a clear failure state.
+    const extractionResult = await extractAnnualReport({
+      pdfPath: report.storagePath,
+      pdfName: report.originalFilename,
+    });
+
+    // Store research metadata with the output so the selected method remains auditable.
+    report.processingStatus = "processed";
+    report.summary = extractionResult.summary;
+    report.extractionPrompt = extractionResult.promptFileName;
+    report.selectedPromptId = extractionResult.promptId;
+    report.selectedPromptName = extractionResult.promptName;
+    report.ragSources = extractionResult.ragSources;
+    report.ragChunkCount = extractionResult.ragChunkCount;
+    report.ragSelectedCount = extractionResult.ragSelectedCount;
+    report.parsedExtraction = extractionResult.parsedOutput;
+    report.rawExtractionOutput = extractionResult.rawOutput;
+    report.extractionError = "";
+    report.processedAt = new Date();
+    await report.save();
+  } catch (error) {
+    report.processingStatus = "failed";
+    report.summary = "Annual report extraction failed.";
+    report.extractionError = error.message;
+    report.processedAt = new Date();
+    await report.save();
+    throw error;
+  }
+
   return res.status(201).json({
-    message: `Financial report uploaded for ${companyName}.`,
+    message: `Financial report uploaded and extracted for ${companyName}.`,
     report: buildReportResponse(report),
   });
 };

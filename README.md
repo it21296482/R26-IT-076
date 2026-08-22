@@ -19,6 +19,7 @@ This repository contains the current MERN base platform for the product experien
   - understanding the product value
   - selecting a listed company using full name and ticker
   - uploading the latest annual report
+  - extracting structured annual-report fields with the configured investor prompt
   - preparing the insight workflow
 - admin console for:
   - viewing current users and account activity
@@ -62,6 +63,13 @@ npm run dev -- --host 127.0.0.1
 - backend env file: `server/.env`
 - frontend env file: `client/.env`
 - default backend port in the current local setup: `5001`
+- annual report extraction accepts `OPENAI_API_KEY` in `server/.env` or the Azure OpenAI settings already used by `component_2/.env`
+- the web workflow always uses the research-selected `prompt_08` from `component_2/data/evaluation_results/best_prompt_to_use.txt`
+- optional backend overrides:
+  - `OPENAI_MODEL`
+  - `OPENAI_TEMPERATURE`
+  - `REPORT_MAX_INPUT_CHARS`
+  - `REPORT_RAG_TOP_K`
 
 ## Hidden admin entry
 

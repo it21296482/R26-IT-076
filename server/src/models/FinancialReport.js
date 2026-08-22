@@ -51,6 +51,51 @@ const financialReportSchema = new mongoose.Schema(
       trim: true,
       default: "",
     },
+    extractionPrompt: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    selectedPromptId: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    selectedPromptName: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    ragSources: {
+      type: [mongoose.Schema.Types.Mixed],
+      default: [],
+    },
+    ragChunkCount: {
+      type: Number,
+      default: 0,
+    },
+    ragSelectedCount: {
+      type: Number,
+      default: 0,
+    },
+    parsedExtraction: {
+      type: mongoose.Schema.Types.Mixed,
+      default: null,
+    },
+    rawExtractionOutput: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    extractionError: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    processedAt: {
+      type: Date,
+      default: null,
+    },
     uploadedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
