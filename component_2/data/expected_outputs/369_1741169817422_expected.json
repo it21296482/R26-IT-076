@@ -1,0 +1,1189 @@
+{
+  "pdf_name": "369_1741169817422.pdf",
+  "discovery_summary": {
+    "company_overview": [
+      {
+        "field": "company_name",
+        "found": true,
+        "candidate_pages": [
+          360,
+          361
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 360",
+          "369_1741169817422 page 361"
+        ]
+      },
+      {
+        "field": "reporting_year",
+        "found": true,
+        "candidate_pages": [
+          516,
+          11
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 516",
+          "369_1741169817422 page 11"
+        ]
+      },
+      {
+        "field": "business_segments",
+        "found": true,
+        "candidate_pages": [
+          18,
+          422
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 18",
+          "369_1741169817422 page 422"
+        ]
+      },
+      {
+        "field": "principal_activities",
+        "found": true,
+        "candidate_pages": [
+          533,
+          312
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 533",
+          "369_1741169817422 page 312"
+        ]
+      },
+      {
+        "field": "sector_industry",
+        "found": true,
+        "candidate_pages": [
+          160,
+          25
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 160",
+          "369_1741169817422 page 25"
+        ]
+      },
+      {
+        "field": "subsidiaries_associates",
+        "found": true,
+        "candidate_pages": [
+          371,
+          373
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 371",
+          "369_1741169817422 page 373"
+        ]
+      }
+    ],
+    "financial_performance": [
+      {
+        "field": "revenue_turnover",
+        "found": true,
+        "candidate_pages": [
+          60,
+          399
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 60",
+          "369_1741169817422 page 399"
+        ]
+      },
+      {
+        "field": "gross_profit",
+        "found": true,
+        "candidate_pages": [
+          166,
+          170
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 166",
+          "369_1741169817422 page 170"
+        ]
+      },
+      {
+        "field": "operating_profit",
+        "found": true,
+        "candidate_pages": [
+          163,
+          170
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 163",
+          "369_1741169817422 page 170"
+        ]
+      },
+      {
+        "field": "profit_before_tax",
+        "found": true,
+        "candidate_pages": [
+          163,
+          534
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 163",
+          "369_1741169817422 page 534"
+        ]
+      },
+      {
+        "field": "profit_after_tax",
+        "found": true,
+        "candidate_pages": [
+          171,
+          170
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 171",
+          "369_1741169817422 page 170"
+        ]
+      },
+      {
+        "field": "eps",
+        "found": true,
+        "candidate_pages": [
+          349,
+          332
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 349",
+          "369_1741169817422 page 332"
+        ]
+      },
+      {
+        "field": "ebitda",
+        "found": false,
+        "candidate_pages": [],
+        "sample_source_refs": []
+      },
+      {
+        "field": "net_finance_cost",
+        "found": true,
+        "candidate_pages": [
+          429,
+          338
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 429",
+          "369_1741169817422 page 338"
+        ]
+      },
+      {
+        "field": "tax_expense",
+        "found": true,
+        "candidate_pages": [
+          348,
+          347
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 348",
+          "369_1741169817422 page 347"
+        ]
+      }
+    ],
+    "financial_position": [
+      {
+        "field": "total_assets",
+        "found": true,
+        "candidate_pages": [
+          20,
+          160
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 20",
+          "369_1741169817422 page 160"
+        ]
+      },
+      {
+        "field": "total_liabilities",
+        "found": true,
+        "candidate_pages": [
+          421,
+          451
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 421",
+          "369_1741169817422 page 451"
+        ]
+      },
+      {
+        "field": "total_equity",
+        "found": true,
+        "candidate_pages": [
+          175,
+          172
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 175",
+          "369_1741169817422 page 172"
+        ]
+      },
+      {
+        "field": "borrowings_debt",
+        "found": true,
+        "candidate_pages": [
+          393,
+          324
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 393",
+          "369_1741169817422 page 324"
+        ]
+      },
+      {
+        "field": "cash_and_cash_equivalents",
+        "found": true,
+        "candidate_pages": [
+          356,
+          310
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 356",
+          "369_1741169817422 page 310"
+        ]
+      },
+      {
+        "field": "inventory",
+        "found": true,
+        "candidate_pages": [
+          445,
+          343
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 445",
+          "369_1741169817422 page 343"
+        ]
+      },
+      {
+        "field": "trade_receivables",
+        "found": true,
+        "candidate_pages": [
+          322,
+          176
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 322",
+          "369_1741169817422 page 176"
+        ]
+      },
+      {
+        "field": "trade_payables",
+        "found": true,
+        "candidate_pages": [
+          396,
+          152
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 396",
+          "369_1741169817422 page 152"
+        ]
+      }
+    ],
+    "cash_flow": [
+      {
+        "field": "operating_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          310,
+          422
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 310",
+          "369_1741169817422 page 422"
+        ]
+      },
+      {
+        "field": "investing_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          310,
+          356
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 310",
+          "369_1741169817422 page 356"
+        ]
+      },
+      {
+        "field": "financing_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          310,
+          356
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 310",
+          "369_1741169817422 page 356"
+        ]
+      },
+      {
+        "field": "free_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          356,
+          310
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 356",
+          "369_1741169817422 page 310"
+        ]
+      },
+      {
+        "field": "capital_expenditure",
+        "found": true,
+        "candidate_pages": [
+          241,
+          240
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 241",
+          "369_1741169817422 page 240"
+        ]
+      }
+    ],
+    "investor_ratios": [
+      {
+        "field": "gross_profit_margin",
+        "found": true,
+        "candidate_pages": [
+          170,
+          171
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 170",
+          "369_1741169817422 page 171"
+        ]
+      },
+      {
+        "field": "net_profit_margin",
+        "found": true,
+        "candidate_pages": [
+          170,
+          171
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 170",
+          "369_1741169817422 page 171"
+        ]
+      },
+      {
+        "field": "current_ratio",
+        "found": true,
+        "candidate_pages": [
+          162,
+          65
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 162",
+          "369_1741169817422 page 65"
+        ]
+      },
+      {
+        "field": "debt_to_equity_ratio",
+        "found": true,
+        "candidate_pages": [
+          460,
+          85
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 460",
+          "369_1741169817422 page 85"
+        ]
+      },
+      {
+        "field": "return_on_equity",
+        "found": true,
+        "candidate_pages": [
+          159,
+          267
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 159",
+          "369_1741169817422 page 267"
+        ]
+      },
+      {
+        "field": "return_on_assets",
+        "found": true,
+        "candidate_pages": [
+          379,
+          380
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 379",
+          "369_1741169817422 page 380"
+        ]
+      },
+      {
+        "field": "eps_ratio_reference",
+        "found": true,
+        "candidate_pages": [
+          349,
+          332
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 349",
+          "369_1741169817422 page 332"
+        ]
+      },
+      {
+        "field": "dividend_payout_ratio",
+        "found": true,
+        "candidate_pages": [
+          188,
+          178
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 188",
+          "369_1741169817422 page 178"
+        ]
+      }
+    ],
+    "shareholder_information": [
+      {
+        "field": "stated_capital",
+        "found": true,
+        "candidate_pages": [
+          496,
+          461
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 496",
+          "369_1741169817422 page 461"
+        ]
+      },
+      {
+        "field": "number_of_shares",
+        "found": true,
+        "candidate_pages": [
+          349,
+          372
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 349",
+          "369_1741169817422 page 372"
+        ]
+      },
+      {
+        "field": "major_shareholders",
+        "found": true,
+        "candidate_pages": [
+          188,
+          213
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 188",
+          "369_1741169817422 page 213"
+        ]
+      },
+      {
+        "field": "public_holding_percentage",
+        "found": true,
+        "candidate_pages": [
+          181,
+          190
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 181",
+          "369_1741169817422 page 190"
+        ]
+      },
+      {
+        "field": "dividends",
+        "found": true,
+        "candidate_pages": [
+          194,
+          350
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 194",
+          "369_1741169817422 page 350"
+        ]
+      },
+      {
+        "field": "market_price_per_share",
+        "found": true,
+        "candidate_pages": [
+          410,
+          185
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 410",
+          "369_1741169817422 page 185"
+        ]
+      }
+    ],
+    "risk_factors": [
+      {
+        "field": "liquidity_risk",
+        "found": true,
+        "candidate_pages": [
+          318,
+          274
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 318",
+          "369_1741169817422 page 274"
+        ]
+      },
+      {
+        "field": "credit_risk",
+        "found": true,
+        "candidate_pages": [
+          342,
+          431
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 342",
+          "369_1741169817422 page 431"
+        ]
+      },
+      {
+        "field": "market_risk",
+        "found": true,
+        "candidate_pages": [
+          272,
+          319
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 272",
+          "369_1741169817422 page 319"
+        ]
+      },
+      {
+        "field": "interest_rate_risk",
+        "found": true,
+        "candidate_pages": [
+          457,
+          502
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 457",
+          "369_1741169817422 page 502"
+        ]
+      },
+      {
+        "field": "foreign_exchange_risk",
+        "found": true,
+        "candidate_pages": [
+          319,
+          274
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 319",
+          "369_1741169817422 page 274"
+        ]
+      },
+      {
+        "field": "operational_risk",
+        "found": true,
+        "candidate_pages": [
+          276,
+          460
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 276",
+          "369_1741169817422 page 460"
+        ]
+      },
+      {
+        "field": "regulatory_risk",
+        "found": true,
+        "candidate_pages": [
+          283,
+          260
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 283",
+          "369_1741169817422 page 260"
+        ]
+      },
+      {
+        "field": "going_concern_concerns",
+        "found": true,
+        "candidate_pages": [
+          313,
+          296
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 313",
+          "369_1741169817422 page 296"
+        ]
+      },
+      {
+        "field": "litigation_contingencies",
+        "found": true,
+        "candidate_pages": [
+          452,
+          418
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 452",
+          "369_1741169817422 page 418"
+        ]
+      }
+    ],
+    "management_governance": [
+      {
+        "field": "board_changes",
+        "found": true,
+        "candidate_pages": [
+          210,
+          225
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 210",
+          "369_1741169817422 page 225"
+        ]
+      },
+      {
+        "field": "auditor_opinion",
+        "found": true,
+        "candidate_pages": [
+          292,
+          295
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 292",
+          "369_1741169817422 page 295"
+        ]
+      },
+      {
+        "field": "related_party_transactions",
+        "found": true,
+        "candidate_pages": [
+          428,
+          473
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 428",
+          "369_1741169817422 page 473"
+        ]
+      },
+      {
+        "field": "corporate_governance_statements",
+        "found": true,
+        "candidate_pages": [
+          209,
+          199
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 209",
+          "369_1741169817422 page 199"
+        ]
+      },
+      {
+        "field": "director_responsibility_statement",
+        "found": true,
+        "candidate_pages": [
+          247,
+          474
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 247",
+          "369_1741169817422 page 474"
+        ]
+      }
+    ],
+    "future_outlook": [
+      {
+        "field": "chairman_ceo_outlook",
+        "found": true,
+        "candidate_pages": [
+          118,
+          112
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 118",
+          "369_1741169817422 page 112"
+        ]
+      },
+      {
+        "field": "expansion_plans",
+        "found": true,
+        "candidate_pages": [
+          84,
+          500
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 84",
+          "369_1741169817422 page 500"
+        ]
+      },
+      {
+        "field": "expected_challenges",
+        "found": true,
+        "candidate_pages": [
+          36,
+          59
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 36",
+          "369_1741169817422 page 59"
+        ]
+      },
+      {
+        "field": "strategy",
+        "found": true,
+        "candidate_pages": [
+          82,
+          77
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 82",
+          "369_1741169817422 page 77"
+        ]
+      },
+      {
+        "field": "forward_looking_statements",
+        "found": true,
+        "candidate_pages": [
+          293,
+          59
+        ],
+        "sample_source_refs": [
+          "369_1741169817422 page 293",
+          "369_1741169817422 page 59"
+        ]
+      }
+    ]
+  },
+  "expected_outputs": {
+    "company_name": {
+      "category": "company_overview",
+      "expected_value": "Commercial Bank of Ceylon PLC       Annual Report 2024",
+      "source_text": "Commercial Bank of Ceylon PLC Annual Report 2024",
+      "page_number": 360,
+      "confidence": 0.85
+    },
+    "reporting_year": {
+      "category": "company_overview",
+      "expected_value": "2024",
+      "source_text": "512 Commercial Bank of Ceylon PLC Annual Report 2024 Annex 6: Independent Assurance Reports Annex 6.1: Independent Practitioner’s Assurance Report to the Board of Directors of Commercial Ban",
+      "page_number": 516,
+      "confidence": 0.85
+    },
+    "business_segments": {
+      "category": "company_overview",
+      "expected_value": "guarding sustainable growth. Diversified for resilience Diversification is at the heart of our strategy, ensuring balanced growth across business segments and geographies and enabling resilience amidst economic volatility. Our diversified operations mitigates concentration risk and enhance",
+      "source_text": "guarding sustainable growth. Diversified for resilience Diversification is at the heart of our strategy, ensuring balanced growth across business segments and geographies and enabling resilience amidst economic volatility. Our diversified operations mitigates concentration risk and enhance",
+      "page_number": 18,
+      "confidence": 0.85
+    },
+    "principal_activities": {
+      "category": "company_overview",
+      "expected_value": "on CAR at minor, moderate and severe stress levels 283 63 Staff strength of the Group and the Bank 307 64 Principal business activities and nature of business operations of the Group 308 65 Basis of measurement 309 66 Index of Material Accounting Policy Information 317",
+      "source_text": "on CAR at minor, moderate and severe stress levels 283 63 Staff strength of the Group and the Bank 307 64 Principal business activities and nature of business operations of the Group 308 65 Basis of measurement 309 66 Index of Material Accounting Policy Information 317",
+      "page_number": 533,
+      "confidence": 0.85
+    },
+    "sector_industry": {
+      "category": "company_overview",
+      "expected_value": "ommercial Bank of Ceylon PLC Annual Report 2024 Performance Analysis Financial review In 2023, the Bank became the first private sector Bank in the country to surpass Rs. 2.5 Tn., in assets and Rs. 2 Tn. in deposits, solidifying its status as the benchmark private sector",
+      "source_text": "ommercial Bank of Ceylon PLC Annual Report 2024 Performance Analysis Financial review In 2023, the Bank became the first private sector Bank in the country to surpass Rs. 2.5 Tn., in assets and Rs. 2 Tn. in deposits, solidifying its status as the benchmark private sector",
+      "page_number": 160,
+      "confidence": 0.85
+    },
+    "subsidiaries_associates": {
+      "category": "company_overview",
+      "expected_value": "1 Total – unquoted shares 59,265 59,265 59,141 59,141 Total equity securities 196,351 266,152 196,227 266,028 36 Investments in subsidiaries ACCOUNTING POLICY Subsidiaries are investees controlled by the Group. The Group “controls” an investee if it is exposed to, or has righ",
+      "source_text": "1 Total – unquoted shares 59,265 59,265 59,141 59,141 Total equity securities 196,351 266,152 196,227 266,028 36 Investments in subsidiaries ACCOUNTING POLICY Subsidiaries are investees controlled by the Group. The Group “controls” an investee if it is exposed to, or has righ",
+      "page_number": 371,
+      "confidence": 0.85
+    },
+    "revenue_turnover": {
+      "category": "financial_performance",
+      "expected_value": "2025,",
+      "source_text": "(Outlook: Stable) on December 23, 2024. Encouraging fiscal performance: On the fiscal front, tax reforms led to a growth in government revenue. According to provisional figures released in the Government Budget 2025, revenue is expected to grow by 32%. Meanwhile, government exp",
+      "page_number": 60,
+      "confidence": 0.85
+    },
+    "gross_profit": {
+      "category": "financial_performance",
+      "expected_value": "10.31%",
+      "source_text": ". (2023 – Rs. 687.511 Mn.), while the cost of sales declined slightly by 1.61% to Rs. 413.999 Mn. (2023 – Rs. 420.758 Mn.). As a result, gross profit rose by 10.31% to Rs. 294.261 Mn. (2023 – Rs. 266.753 Mn.). However, net finance income dropped by 16.30% to Rs. 104.071 Mn. in 2024 (",
+      "page_number": 166,
+      "confidence": 0.85
+    },
+    "operating_profit": {
+      "category": "financial_performance",
+      "expected_value": "17.14%",
+      "source_text": "alysis – Group Personal Banking Highest contributor of the Group in terms of net interest income, net fee and commission income and net operating income. Total operating income increased by 17.14% to Rs. 62.846 Bn., contributing 58.7% to the Group. Profit before tax increased by 5.20%",
+      "page_number": 163,
+      "confidence": 0.85
+    },
+    "profit_before_tax": {
+      "category": "financial_performance",
+      "expected_value": "5.20%",
+      "source_text": "sion income and net operating income. Total operating income increased by 17.14% to Rs. 62.846 Bn., contributing 58.7% to the Group. Profit before tax increased by 5.20% to Rs. 23.497 Bn. Increase in impairment charges by 8.511 Bn. (1,212.39%) was driven mainly by increase in impairm",
+      "page_number": 163,
+      "confidence": 0.85
+    },
+    "profit_after_tax": {
+      "category": "financial_performance",
+      "expected_value": "195",
+      "source_text": "1,296,765 19,706,675 4,961,392 Less: Taxes on financial services 21,222,508 10,936,982 47,468,448 8,896,444 97,808,817 33,923,506 Operating profit after Taxes on financial services (195) 1,546 282 (403) (460) 3,495 Add/(less): Share of profit/(loss) of associate, net of tax 21,222,313 10,938,528",
+      "page_number": 171,
+      "confidence": 0.85
+    },
+    "eps": {
+      "category": "financial_performance",
+      "expected_value": "2024 24 24",
+      "source_text": "Notes to the Financial Statements 345 Commercial Bank of Ceylon PLC Annual Report 2024 24 24 Earnings Per Share (EPS) ACCOUNTING POLICY The Group computes basic and diluted EPS for its ordinary shares. Basic EPS is calculated by dividing the profit o",
+      "page_number": 349,
+      "confidence": 0.85
+    },
+    "ebitda": {
+      "category": "financial_performance",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "net_finance_cost": {
+      "category": "financial_performance",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "tax_expense": {
+      "category": "financial_performance",
+      "expected_value": "31,",
+      "source_text": "Notes to the Financial Statements 344 Commercial Bank of Ceylon PLC Annual Report 2024 23 Entity-wise breakup of income tax expense in the Income Statement is as follows: Applicable tax rate GROUP BANK For the year ended December 31, Note Page No. 2024 % 2023 % 2024 Rs.",
+      "page_number": 348,
+      "confidence": 0.85
+    },
+    "total_assets": {
+      "category": "financial_position",
+      "expected_value": "80.17",
+      "source_text": "y Graph – 04 C E D A B 2024 E A B 2023 D C UTILISATION OF FUNDS Funding structure Graph – 01 As at December 31, 2024 % 2023 % Deposits to total assets 80.17 80.81 Capital to total assets 9.87 8.33 Subordinated Liabilities to total assets 2.07 1.41 Other Borrowings to total assets 0.51 0.",
+      "page_number": 20,
+      "confidence": 0.85
+    },
+    "total_liabilities": {
+      "category": "financial_position",
+      "expected_value": "31.12",
+      "source_text": ",243 584,944,395 Total non-interest bearing liabilities as at 31.12.2023 308,937,019 14,022,772 4,008,196 2,101,470 232,638,543 561,708,000 Total liabilities and equity – as at 31.12.2024 1,736,259,062 674,506,415 111,216,350 54,279,949 299,731,091 2,875,992,867 Total liabilities and equity – as",
+      "page_number": 421,
+      "confidence": 0.85
+    },
+    "total_equity": {
+      "category": "financial_position",
+      "expected_value": "250,793,234 208,327,427 275,261,746 214,931,002",
+      "source_text": "8,558,385 Retained earnings 119,995,103 120,650,938 156,834,161 131,048,708 Other reserves 250,793,234 208,327,427 275,261,746 214,931,002 Total equity attributable to equity holders of the Bank – – – – Non-controlling interest 250,793,234 208,327,427 275,261,746 214,931,002 Total equity 2,",
+      "page_number": 175,
+      "confidence": 0.85
+    },
+    "borrowings_debt": {
+      "category": "financial_position",
+      "expected_value": "43",
+      "source_text": "maturity analysis of other assets is given in Note 60 on pages 416 and 417. 43 Due to banks ACCOUNTING POLICY These represent call money borrowings, credit balances in Nostro Accounts and borrowings from banks. Subsequent to initial recognition, these are measured at amortised cost usi",
+      "page_number": 393,
+      "confidence": 0.85
+    },
+    "cash_and_cash_equivalents": {
+      "category": "financial_position",
+      "expected_value": "28",
+      "source_text": "z Spot exchange rate Derivative financial liabilities 837,497 z Interest rate differentials between currencies under consideration 28 Cash and cash equivalents ACCOUNTING POLICY Cash and cash equivalents include cash in hand, demand placements with banks and money at call/short notice and highl",
+      "page_number": 356,
+      "confidence": 0.85
+    },
+    "inventory": {
+      "category": "financial_position",
+      "expected_value": "66.1",
+      "source_text": "it risk, including cash and cash equivalents, treasury guarantees, gold, motor vehicles, immovable properties, quoted and unquoted shares, inventories etc. 66.1.4 (b) Loan to value ratio of residential mortgage lending The table below stratifies eligible credit exposures by ranges of loan",
+      "page_number": 445,
+      "confidence": 0.75
+    },
+    "trade_receivables": {
+      "category": "financial_position",
+      "expected_value": "RS 15",
+      "source_text": "ition or issue, except in the case of financial assets and financial liabilities at fair value through profit or loss as per SLFRS 9 and trade receivables that do not have a significant financing component as defined in Sri Lanka Accounting Standard – SLFRS 15 on “Revenue from contracts wit",
+      "page_number": 322,
+      "confidence": 0.85
+    },
+    "trade_payables": {
+      "category": "financial_position",
+      "expected_value": "31,685,429 27,336,131 31,177,729 26,609,320",
+      "source_text": "airment provision in respect of off-balance sheet credit exposures 57.3 (a) & 57.3 (b) 414 4,527,472 6,086,765 4,519,693 6,082,760 Other payables 31,685,429 27,336,131 31,177,729 26,609,320 Total 59,423,992 56,266,302 58,064,777 55,050,477 The maturity analysis of other liabilities is",
+      "page_number": 396,
+      "confidence": 0.85
+    },
+    "operating_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": "97,808,357 33,927,001 95,534,611 31,880,160",
+      "source_text": "4 Statement of Cash Flows GROUP BANK For the year ended December 31, Note Page No. 2024 Rs. ’000 2023 Rs. ’000 2024 Rs. ’000 2023 Rs. ’000 Cash flows from operating activities Profit before income tax 97,808,357 33,927,001 95,534,611 31,880,160 Adjustments for: Non-cash items included in profit or Loss and",
+      "page_number": 310,
+      "confidence": 0.85
+    },
+    "investing_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "financing_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "free_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "capital_expenditure": {
+      "category": "cash_flow",
+      "expected_value": "e-related proposals to ascertain whether such expenditure can be considered non-essential or non-urgent. It also discusses the Company's capital expenditure, objectives, and plans with the Management. The Committee periodically reviews the performance of major capital expenditure projects aga",
+      "source_text": "e-related proposals to ascertain whether such expenditure can be considered non-essential or non-urgent. It also discusses the Company's capital expenditure, objectives, and plans with the Management. The Committee periodically reviews the performance of major capital expenditure projects aga",
+      "page_number": 241,
+      "confidence": 0.85
+    },
+    "gross_profit_margin": {
+      "category": "investor_ratios",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "net_profit_margin": {
+      "category": "investor_ratios",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "current_ratio": {
+      "category": "investor_ratios",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "debt_to_equity_ratio": {
+      "category": "investor_ratios",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "return_on_equity": {
+      "category": "investor_ratios",
+      "expected_value": "2.01%",
+      "source_text": "0 * Reported **Normalised Profitability Reflecting the significant growth in profit after tax, both the Return on Assets (ROA) and Return on Equity (ROE) increased to 2.01% (0.82% in 2023) and 22.06 % (9.78% in 2023) respectively, despite the growth in total assets and equity during",
+      "page_number": 159,
+      "confidence": 0.85
+    },
+    "return_on_assets": {
+      "category": "investor_ratios",
+      "expected_value": "1 423 5,649 98,700 18,800 116,560 106,974",
+      "source_text": "value/ revalued amounts Rs. ’000 Net book value before revaluation Rs. ’000 Holiday Bungalow – Bandarawela, Ambatenne Estate, Diyatalawa Road, Bandarawela 1 423 5,649 98,700 18,800 116,560 106,974 Holiday Bungalow – Haputale, No. 23, Lily Avenue, Welimada Road, Haputale 1 258 5",
+      "page_number": 379,
+      "confidence": 0.85
+    },
+    "eps_ratio_reference": {
+      "category": "investor_ratios",
+      "expected_value": "2024 24 24",
+      "source_text": "Notes to the Financial Statements 345 Commercial Bank of Ceylon PLC Annual Report 2024 24 24 Earnings Per Share (EPS) ACCOUNTING POLICY The Group computes basic and diluted EPS for its ordinary shares. Basic EPS is calculated by dividing the profit o",
+      "page_number": 349,
+      "confidence": 0.85
+    },
+    "dividend_payout_ratio": {
+      "category": "investor_ratios",
+      "expected_value": "22.33",
+      "source_text": ".50 4.50 7.50 6.50 Gross dividend paid (Rs. Bn.) Cash 12.08 5.91 – 5.37 5.25 Scrip 3.22 2.63 5.58 3.58 2.34 Total 15.30 8.54 5.58 8.95 7.59 Dividend payout ratio (%) Cash 22.33 28.90 – 22.77 32.07 Cash and shares 28.29 41.75 24.29 37.94 46.33 Dividend per share Graph – 45 Rs. 2024 2020 2021 2022 202",
+      "page_number": 188,
+      "confidence": 0.85
+    },
+    "stated_capital": {
+      "category": "shareholder_information",
+      "expected_value": "3,269,615 3,563,126",
+      "source_text": "ipment – – – – Significant investments in the capital of financial institutions where the bank owns more than 10% of the issued ordinary share capital of the entity – – 3,269,615 3,563,126 Deferred tax assets (net) 12,052,217 33,997,203 12,085,843 34,076,524 Additional Tier 1 (AT1) capital",
+      "page_number": 496,
+      "confidence": 0.85
+    },
+    "number_of_shares": {
+      "category": "shareholder_information",
+      "expected_value": "2024 2023 2024 2023",
+      "source_text": "15.36 37.69 14.88 24.2 Weighted average number of ordinary shares for basic and diluted Earnings Per Share Note Page No. Outstanding number of shares Weighted average number of shares 2024 2023 2024 2023 Number of shares in issue as at January 01, 1,314,121,128 1,239,778,047 1,314,121,",
+      "page_number": 349,
+      "confidence": 0.85
+    },
+    "major_shareholders": {
+      "category": "shareholder_information",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "public_holding_percentage": {
+      "category": "shareholder_information",
+      "expected_value": "99.79%",
+      "source_text": "the banking sector, reinforcing investor confidence in its financial strength and market leadership. As of December 31, 2024, the Bank’s public holding (free float) remained high, with ordinary voting shares at 99.79% (99.81% in 2023) and ordinary non-voting shares at 99.88%, unchanged f",
+      "page_number": 181,
+      "confidence": 0.85
+    },
+    "dividends": {
+      "category": "shareholder_information",
+      "expected_value": "2012",
+      "source_text": "Number of shares issued/(redeemed) Number of shares Ordinary shares – voting Ordinary shares non-voting 2013 Scrip issue for final dividend 2012 Voting Rs. 2.00 per share 13,076,189 793,090,421 53,473,748 Scrip issue for final dividend 2012 Non-voting 1,069,474 793,090,421 54",
+      "page_number": 194,
+      "confidence": 0.85
+    },
+    "market_price_per_share": {
+      "category": "shareholder_information",
+      "expected_value": "55.00",
+      "source_text": "t/ Tranches Tranche I Tranche II Tranche III Expected dividend rate (%) 4.31 4.31 4.31 Risk free rate (%) 8.22 8.22 8.22 Probability of share price increase/(decrease) (%) 55.00/(45.00) 55.00/(45.00) 55.00/(45.00) Size of annual increase/(reduction) of share price (%) 19.00/(12.00) 1",
+      "page_number": 410,
+      "confidence": 0.85
+    },
+    "liquidity_risk": {
+      "category": "risk_factors",
+      "expected_value": "rescheduled credit facilities shall only be carried out by the IRMD and shall be independent from the credit facility review mechanism. Liquidity risk The risk that the Bank will encounter difficulty in meeting obligations associated with the financial liabilities that are settled by de",
+      "source_text": "rescheduled credit facilities shall only be carried out by the IRMD and shall be independent from the credit facility review mechanism. Liquidity risk The risk that the Bank will encounter difficulty in meeting obligations associated with the financial liabilities that are settled by de",
+      "page_number": 318,
+      "confidence": 0.85
+    },
+    "credit_risk": {
+      "category": "risk_factors",
+      "expected_value": "r liabilities”. Forward-looking information The Group incorporates forward-looking information into both its assessment as to whether the credit risk of an instrument has increased significantly since its initial recognition and its measurement of ECL. The Group also obtained experienc",
+      "source_text": "r liabilities”. Forward-looking information The Group incorporates forward-looking information into both its assessment as to whether the credit risk of an instrument has increased significantly since its initial recognition and its measurement of ECL. The Group also obtained experienc",
+      "page_number": 342,
+      "confidence": 0.85
+    },
+    "market_risk": {
+      "category": "risk_factors",
+      "expected_value": "268 Commercial Bank of Ceylon PLC Annual Report 2024 Market risk Market risk refers to the potential adverse effects on a bank’s financial position arising from fluctuations in financial market conditions",
+      "source_text": "268 Commercial Bank of Ceylon PLC Annual Report 2024 Market risk Market risk refers to the potential adverse effects on a bank’s financial position arising from fluctuations in financial market conditions",
+      "page_number": 272,
+      "confidence": 0.85
+    },
+    "interest_rate_risk": {
+      "category": "risk_factors",
+      "expected_value": "453 Commercial Bank of Ceylon PLC Annual Report 2024 Notes to the Financial Statements 66 66.3.2 Exposure to interest rate risk – Sensitivity analysis 66.3.2 (a) Exposure to interest rate risk – Non-trading portfolio The possibility that changes in interest rates",
+      "source_text": "453 Commercial Bank of Ceylon PLC Annual Report 2024 Notes to the Financial Statements 66 66.3.2 Exposure to interest rate risk – Sensitivity analysis 66.3.2 (a) Exposure to interest rate risk – Non-trading portfolio The possibility that changes in interest rates",
+      "page_number": 457,
+      "confidence": 0.85
+    },
+    "foreign_exchange_risk": {
+      "category": "risk_factors",
+      "expected_value": "ly having paid attention to the changes on the prices of market. Management of market risk Market Risk Management Policy, ALM Policy and Foreign Exchange Risk Policy are the three main policies that constitute the framework governing the Market Risk Management function of the Bank. Due to busi",
+      "source_text": "ly having paid attention to the changes on the prices of market. Management of market risk Market Risk Management Policy, ALM Policy and Foreign Exchange Risk Policy are the three main policies that constitute the framework governing the Market Risk Management function of the Bank. Due to busi",
+      "page_number": 319,
+      "confidence": 0.85
+    },
+    "operational_risk": {
+      "category": "risk_factors",
+      "expected_value": "272 Commercial Bank of Ceylon PLC Annual Report 2024 Operational risk Operational risk refers to the potential for losses resulting from inadequate or failed internal processes, human errors, system malfunc",
+      "source_text": "272 Commercial Bank of Ceylon PLC Annual Report 2024 Operational risk Operational risk refers to the potential for losses resulting from inadequate or failed internal processes, human errors, system malfunc",
+      "page_number": 276,
+      "confidence": 0.85
+    },
+    "regulatory_risk": {
+      "category": "risk_factors",
+      "expected_value": "tations, the Bank reinforces its commitment to maintaining operational resilience and safeguarding stakeholder interests. Compliance and regulatory risk Compliance and regulatory risk encompass the potential exposure of the Bank to adverse outcomes resulting from non-compliance with appli",
+      "source_text": "tations, the Bank reinforces its commitment to maintaining operational resilience and safeguarding stakeholder interests. Compliance and regulatory risk Compliance and regulatory risk encompass the potential exposure of the Bank to adverse outcomes resulting from non-compliance with appli",
+      "page_number": 283,
+      "confidence": 0.85
+    },
+    "going_concern_concerns": {
+      "category": "risk_factors",
+      "expected_value": "otherwise indicated as permitted by the Sri Lanka Accounting Standard – LKAS 1 on “Presentation of Financial Statements” (LKAS 1). 2.5 Going concern basis of accounting These financial statements have been prepared on a going concern basis, which assume that the Group will be able to",
+      "source_text": "otherwise indicated as permitted by the Sri Lanka Accounting Standard – LKAS 1 on “Presentation of Financial Statements” (LKAS 1). 2.5 Going concern basis of accounting These financial statements have been prepared on a going concern basis, which assume that the Group will be able to",
+      "page_number": 313,
+      "confidence": 0.85
+    },
+    "litigation_contingencies": {
+      "category": "risk_factors",
+      "expected_value": "Commercial Bank of Ceylon PLC Annual Report 2024 Notes to the Financial Statements 66 66.2.2 (b) Remaining contractual maturities of contingencies and commitments The tables below illustrate the remaining maturity of the contingencies and commitments based on the contractual expiry dat",
+      "source_text": "Commercial Bank of Ceylon PLC Annual Report 2024 Notes to the Financial Statements 66 66.2.2 (b) Remaining contractual maturities of contingencies and commitments The tables below illustrate the remaining maturity of the contingencies and commitments based on the contractual expiry dat",
+      "page_number": 452,
+      "confidence": 0.85
+    },
+    "board_changes": {
+      "category": "management_governance",
+      "expected_value": "206 Commercial Bank of Ceylon PLC Annual Report 2024 Governance Reports Annual corporate governance report Appointments and retirements/ resignations of Directors (Principle A.7) The process for appointing and retiring/resigning Directors at the Bank is",
+      "source_text": "206 Commercial Bank of Ceylon PLC Annual Report 2024 Governance Reports Annual corporate governance report Appointments and retirements/ resignations of Directors (Principle A.7) The process for appointing and retiring/resigning Directors at the Bank is",
+      "page_number": 210,
+      "confidence": 0.85
+    },
+    "auditor_opinion": {
+      "category": "management_governance",
+      "expected_value": "et out on pages 295 to 458 of this Annual Report. In our opinion, the accompanying financial statements of the Bank and the Group give a true and fair view of the financial position of the Bank and the Group as at December 31, 2024, and of its financial performance and its cash flows for the",
+      "source_text": "et out on pages 295 to 458 of this Annual Report. In our opinion, the accompanying financial statements of the Bank and the Group give a true and fair view of the financial position of the Bank and the Group as at December 31, 2024, and of its financial performance and its cash flows for the",
+      "page_number": 292,
+      "confidence": 0.85
+    },
+    "related_party_transactions": {
+      "category": "management_governance",
+      "expected_value": "Rs. ’000 2023 Rs. ’000 Interest income – – Interest expense 1,356 1,499 Contribution made by the Bank 200,000 100,000 62.5 Recurrent related party transactions There are no recurrent related party transactions which in aggregate exceeds more than 10% of the gross revenue of the Bank. 62.6 Non-recu",
+      "source_text": "Rs. ’000 2023 Rs. ’000 Interest income – – Interest expense 1,356 1,499 Contribution made by the Bank 200,000 100,000 62.5 Recurrent related party transactions There are no recurrent related party transactions which in aggregate exceeds more than 10% of the gross revenue of the Bank. 62.6 Non-recu",
+      "page_number": 428,
+      "confidence": 0.85
+    },
+    "corporate_governance_statements": {
+      "category": "management_governance",
+      "expected_value": "205 Commercial Bank of Ceylon PLC Annual Report 2024 Governance Reports Annual corporate governance report Segregation of roles of Chairman and Chief Executive Officer (Principles A.2 and A.3) The roles of Chairman and Chief Executive Of",
+      "source_text": "205 Commercial Bank of Ceylon PLC Annual Report 2024 Governance Reports Annual corporate governance report Segregation of roles of Chairman and Chief Executive Officer (Principles A.2 and A.3) The roles of Chairman and Chief Executive Of",
+      "page_number": 209,
+      "confidence": 0.85
+    },
+    "director_responsibility_statement": {
+      "category": "management_governance",
+      "expected_value": "to protect the environment are disclosed in the section on “Environment Engagement” 142 to 144 28. Declaration on Statutory Payments RBP Statement of Directors’ Responsibility for Financial Reporting – item (h) 246 29. Events after the reporting period RBP Note 68 to the Financial Statements: Eve",
+      "source_text": "to protect the environment are disclosed in the section on “Environment Engagement” 142 to 144 28. Declaration on Statutory Payments RBP Statement of Directors’ Responsibility for Financial Reporting – item (h) 246 29. Events after the reporting period RBP Note 68 to the Financial Statements: Eve",
+      "page_number": 247,
+      "confidence": 0.85
+    },
+    "chairman_ceo_outlook": {
+      "category": "future_outlook",
+      "expected_value": "ational Capital Market Association’s (ICMA) Green Bond Principles, reinforcing responsible investment and sustainable impact. Impact and future outlook In 2024, the Bank’s sustainable building and infrastructure financing initiatives delivered tangible results, reinforcing its commitmen",
+      "source_text": "ational Capital Market Association’s (ICMA) Green Bond Principles, reinforcing responsible investment and sustainable impact. Impact and future outlook In 2024, the Bank’s sustainable building and infrastructure financing initiatives delivered tangible results, reinforcing its commitmen",
+      "page_number": 118,
+      "confidence": 0.85
+    },
+    "expansion_plans": {
+      "category": "future_outlook",
+      "expected_value": "ure to support future growth 11. Strategic partnerships and alliances Strategic partnerships and alliances drive innovation and market expansion. Key focus areas include: Collaborating with fintechs and technology providers Establishing bancassurance partnerships Partnerships",
+      "source_text": "ure to support future growth 11. Strategic partnerships and alliances Strategic partnerships and alliances drive innovation and market expansion. Key focus areas include: Collaborating with fintechs and technology providers Establishing bancassurance partnerships Partnerships",
+      "page_number": 84,
+      "confidence": 0.85
+    },
+    "expected_challenges": {
+      "category": "future_outlook",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "strategy": {
+      "category": "future_outlook",
+      "expected_value": "78 Commercial Bank of Ceylon PLC Annual Report 2024 Integrated strategy for long-term value creation At Commercial Bank of Ceylon PLC, our strategy is not just a roadmap for growth; it is a dynamic framework",
+      "source_text": "78 Commercial Bank of Ceylon PLC Annual Report 2024 Integrated strategy for long-term value creation At Commercial Bank of Ceylon PLC, our strategy is not just a roadmap for growth; it is a dynamic framework",
+      "page_number": 82,
+      "confidence": 0.85
+    },
+    "forward_looking_statements": {
+      "category": "future_outlook",
+      "expected_value": "t Increase in Credit Risk (SICR). SICR identification is a key judgement within the ECL methodology, as this criterion determines if a forward-looking 12 month or lifetime allowance is recorded. SLFRS 9 – Financial Instruments requires the Group to measure ECLs on a forward-looking bas",
+      "source_text": "t Increase in Credit Risk (SICR). SICR identification is a key judgement within the ECL methodology, as this criterion determines if a forward-looking 12 month or lifetime allowance is recorded. SLFRS 9 – Financial Instruments requires the Group to measure ECLs on a forward-looking bas",
+      "page_number": 293,
+      "confidence": 0.85
+    }
+  }
+}

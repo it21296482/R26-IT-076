@@ -1,0 +1,163 @@
+{
+  "pdf_name": "JKH_2024.pdf",
+  "prompt_id": "prompt_02",
+  "prompt_name": "Role-Based Financial Analyst Prompt",
+  "model": "gpt-5.2-chat",
+  "full_model_output": "```json\n{\n  \"metadata\": {\n    \"pdf_name\": \"JKH_2024.pdf\",\n    \"company_name\": \"John Keells PLC\",\n    \"reporting_year\": \"FY2024/25 (year ended 31 March 2025)\",\n    \"prompt_id\": \"INV_EDU_JKPLC_2025\",\n    \"model\": \"GPT-5.2\",\n    \"generated_at\": \"2026-05-08\"\n  },\n  \"extracted_facts\": {\n    \"company_overview\": {\n      \"company_name\": \"John Keells PLC\",\n      \"reporting_year\": \"FY2024/25\",\n      \"business_segments\": [\n        \"Produce broking\",\n        \"Warehousing\",\n        \"Share broking\"\n      ],\n      \"principal_activities\": \"Commodity/produce broking as the holding company; subsidiaries provide stock broking and warehousing services.\",\n      \"sector_industry\": \"Financial services / commodity broking and logistics\",\n      \"subsidiaries_associates\": [\n        \"John Keells Stockbrokers (Private) Limited\",\n        \"John Keells Warehousing (Private) Limited\",\n        \"Equity-accounted associate (unnamed in extract)\"\n      ]\n    },\n    \"financial_performance\": {\n      \"revenue_turnover\": \"Rs. 1,009.38 million (Group)\",\n      \"gross_profit\": \"Rs. 535.77 million (Group)\",\n      \"operating_profit\": \"Rs. 142.36 million (Group results from operating activities)\",\n      \"profit_before_tax\": \"Rs. 256.64 million (Group)\",\n      \"profit_after_tax\": \"Rs. 173.49 million (Group)\",\n      \"eps\": \"Rs. 2.80 (Group basic EPS)\",\n      \"ebitda\": \"Not explicitly stated in the provided extracts\",\n      \"net_finance_cost\": \"Net finance income of Rs. 51.21 million (Group)\",\n      \"tax_expense\": \"Rs. 83.16 million (Group)\"\n    },\n    \"financial_position\": {\n      \"total_assets\": \"Rs. 6,537.39 million (Group)\",\n      \"total_liabilities\": \"Rs. 1,753.69 million (derived from total assets less total equity; Group)\",\n      \"total_equity\": \"Rs. 4,783.71 million (Group)\",\n      \"borrowings_debt\": \"Rs. 69.12 million total debt (Group)\",\n      \"cash_and_cash_equivalents\": \"Rs. 748.27 million (Group)\",\n      \"inventory\": \"Rs. 0.99 million (Group)\",\n      \"trade_receivables\": \"Rs. 1,118.78 million (Group)\",\n      \"trade_payables\": \"Rs. 1,285.28 million (Group)\"\n    },\n    \"cash_flow\": {\n      \"operating_cash_flow\": \"Positive net increase in cash; detailed operating cash flow not separately stated in summary tables\",\n      \"investing_cash_flow\": \"Not explicitly stated in summary extracts\",\n      \"financing_cash_flow\": \"Net cash inflow of Rs. 5.6 million (Group)\",\n      \"free_cash_flow\": \"Not explicitly stated\",\n      \"capital_expenditure\": \"Rs. 38.03 million purchase and construction of property, plant and equipment (Group)\"\n    },\n    \"investor_ratios\": {\n      \"gross_profit_margin\": \"Approximately 53% (gross profit Rs. 535.77m on revenue Rs. 1,009.38m)\",\n      \"net_profit_margin\": \"Approximately 17.2% (Group)\",\n      \"current_ratio\": \"1.39 times (Group)\",\n      \"debt_to_equity_ratio\": \"1.45% (Group)\",\n      \"return_on_equity\": \"3.62% (Group)\",\n      \"return_on_assets\": \"Not explicitly stated\",\n      \"eps_ratio_reference\": \"Basic EPS as per Note 15\",\n      \"dividend_payout_ratio\": \"35.71% (Group)\"\n    },\n    \"shareholder_information\": {\n      \"stated_capital\": \"Rs. 152.00 million\",\n      \"number_of_shares\": \"60.8 million ordinary shares\",\n      \"major_shareholders\": \"John Keells Holdings PLC holds approximately 86.9% of issued shares\",\n      \"public_holding_percentage\": \"13.10%\",\n      \"dividends\": \"Rs. 1.00 per share interim dividend paid for FY2024/25; final dividend of Rs. 1.60 per share approved after year end\",\n      \"market_price_per_share\": \"Rs. 74.00 as at 31 March 2025\"\n    },\n    \"risk_factors\": {\n      \"liquidity_risk\": \"Managed through cash flow matching and liquid assets approach\",\n      \"credit_risk\": \"Exposure mainly from trade receivables and loans to tea sellers; ECL model applied\",\n      \"market_risk\": \"Exposure to equity price risk from quoted and unquoted investments\",\n      \"interest_rate_risk\": \"Present but reduced due to low borrowings and net cash position\",\n      \"foreign_exchange_risk\": \"Implicit exposure through commodity markets; not quantified in extracts\",\n      \"operational_risk\": \"Linked to auction volumes, market share, and operational efficiency\",\n      \"regulatory_risk\": \"Subject to Sri Lankan Companies Act, SEC regulations, and CSE Listing Rules\",\n      \"going_concern_concerns\": \"No going concern issues reported\",\n      \"litigation_contingencies\": \"No significant contingent liabilities reported\"\n    },\n    \"management_governance\": {\n      \"board_changes\": \"New appointments of Mr. N. W. R. Wijewantha and Mr. P. D. Samarasinghe as Non-Executive Directors during the year\",\n      \"auditor_opinion\": \"Unqualified audit opinion stating true and fair view\",\n      \"related_party_transactions\": \"No material related party transactions exceeding disclosure thresholds\",\n      \"corporate_governance_statements\": \"Company reports full compliance with mandatory CSE corporate governance provisions\",\n      \"director_responsibility_statement\": \"Directors confirmed responsibility for preparation of compliant financial statements\"\n    },\n    \"future_outlook\": {\n      \"chairman_ceo_outlook\": \"Positive outlook supported by macroeconomic recovery in Sri Lanka and stable operating environment\",\n      \"expansion_plans\": \"Focus on strengthening broking segments and improving operational efficiency\",\n      \"expected_challenges\": \"Market volatility, climate impacts on tea and rubber supply, and price competition\",\n      \"strategy\": \"Enhancing stakeholder engagement, diversifying revenue streams, disciplined capital management\",\n      \"forward_looking_statements\": \"Report contains forward-looking statements subject to risks and uncertainties\"\n    }\n  },\n  \"investor_friendly_insight\": {\n    \"summary\": \"John Keells PLC reported higher revenue and profit growth in FY2024/25, supported by improved brokerage income, lower finance costs, and fair value gains on investment property. The Group maintains a strong net cash position and low leverage, with diversified income from produce broking, share broking, and warehousing.\",\n    \"key_strengths\": [\n      \"Strong balance sheet with net cash position\",\n      \"Low debt-to-equity ratio\",\n      \"Diversified service-based revenue streams\",\n      \"Consistent dividend payments\"\n    ],\n    \"key_concerns\": [\n      \"Moderate return on equity\",\n      \"Exposure to commodity market volumes and prices\",\n      \"Climate and sustainability risks affecting tea and rubber sectors\"\n    ],\n    \"risk_level_explanation\": \"The Group exhibits relatively low financial risk due to low leverage and high liquidity, while operational and market risks remain linked to commodity cycles and regulatory conditions.\",\n    \"non_advisory_note\": \"This is an informational summary only and not financial advice.\"\n  },\n  \"source_evidence\": [\n    \"Annual Report of John Keells PLC 2024/25, pages 10–12 (Performance Highlights)\",\n    \"Income Statement and Notes, pages 114–116\",\n    \"Statement of Financial Position, page 116\",\n    \"Key Ratios & Information, page 170\",\n    \"Information to Shareholders and Investors, page 166\"\n  ],\n  \"missing_fields\": [\n    \"Explicit EBITDA figure\",\n    \"Explicit free cash flow figure\",\n    \"Detailed foreign exchange risk quantification\"\n  ],\n  \"confidence_score\": 0.78\n}\n```",
+  "parsed_json": {
+    "metadata": {
+      "pdf_name": "JKH_2024.pdf",
+      "company_name": "John Keells PLC",
+      "reporting_year": "FY2024/25",
+      "prompt_id": "prompt_02",
+      "model": "gpt-5.2-chat",
+      "generated_at": "2026-05-08T15:08:56.595440+00:00"
+    },
+    "extracted_facts": {
+      "company_overview": {
+        "company_name": "John Keells PLC",
+        "reporting_year": "FY2024/25",
+        "business_segments": [
+          "Produce broking",
+          "Warehousing",
+          "Share broking"
+        ],
+        "principal_activities": "Commodity/produce broking as the holding company; subsidiaries provide stock broking and warehousing services.",
+        "sector_industry": "Financial services / commodity broking and logistics",
+        "subsidiaries_associates": [
+          "John Keells Stockbrokers (Private) Limited",
+          "John Keells Warehousing (Private) Limited",
+          "Equity-accounted associate (unnamed in extract)"
+        ]
+      },
+      "financial_performance": {
+        "revenue_turnover": "Rs. 1,009.38 million (Group)",
+        "gross_profit": "Rs. 535.77 million (Group)",
+        "operating_profit": "Rs. 142.36 million (Group results from operating activities)",
+        "profit_before_tax": "Rs. 256.64 million (Group)",
+        "profit_after_tax": "Rs. 173.49 million (Group)",
+        "eps": "Rs. 2.80 (Group basic EPS)",
+        "ebitda": "Not explicitly stated in the provided extracts",
+        "net_finance_cost": "Net finance income of Rs. 51.21 million (Group)",
+        "tax_expense": "Rs. 83.16 million (Group)"
+      },
+      "financial_position": {
+        "total_assets": "Rs. 6,537.39 million (Group)",
+        "total_liabilities": "Rs. 1,753.69 million (derived from total assets less total equity; Group)",
+        "total_equity": "Rs. 4,783.71 million (Group)",
+        "borrowings_debt": "Rs. 69.12 million total debt (Group)",
+        "cash_and_cash_equivalents": "Rs. 748.27 million (Group)",
+        "inventory": "Rs. 0.99 million (Group)",
+        "trade_receivables": "Rs. 1,118.78 million (Group)",
+        "trade_payables": "Rs. 1,285.28 million (Group)"
+      },
+      "cash_flow": {
+        "operating_cash_flow": "Positive net increase in cash; detailed operating cash flow not separately stated in summary tables",
+        "investing_cash_flow": "Not explicitly stated in summary extracts",
+        "financing_cash_flow": "Net cash inflow of Rs. 5.6 million (Group)",
+        "free_cash_flow": "Not explicitly stated",
+        "capital_expenditure": "Rs. 38.03 million purchase and construction of property, plant and equipment (Group)"
+      },
+      "investor_ratios": {
+        "gross_profit_margin": "Approximately 53% (gross profit Rs. 535.77m on revenue Rs. 1,009.38m)",
+        "net_profit_margin": "Approximately 17.2% (Group)",
+        "current_ratio": "1.39 times (Group)",
+        "debt_to_equity_ratio": "1.45% (Group)",
+        "return_on_equity": "3.62% (Group)",
+        "return_on_assets": "Not explicitly stated",
+        "eps_ratio_reference": "Basic EPS as per Note 15",
+        "dividend_payout_ratio": "35.71% (Group)"
+      },
+      "shareholder_information": {
+        "stated_capital": "Rs. 152.00 million",
+        "number_of_shares": "60.8 million ordinary shares",
+        "major_shareholders": "John Keells Holdings PLC holds approximately 86.9% of issued shares",
+        "public_holding_percentage": "13.10%",
+        "dividends": "Rs. 1.00 per share interim dividend paid for FY2024/25; final dividend of Rs. 1.60 per share approved after year end",
+        "market_price_per_share": "Rs. 74.00 as at 31 March 2025"
+      },
+      "risk_factors": {
+        "liquidity_risk": "Managed through cash flow matching and liquid assets approach",
+        "credit_risk": "Exposure mainly from trade receivables and loans to tea sellers; ECL model applied",
+        "market_risk": "Exposure to equity price risk from quoted and unquoted investments",
+        "interest_rate_risk": "Present but reduced due to low borrowings and net cash position",
+        "foreign_exchange_risk": "Implicit exposure through commodity markets; not quantified in extracts",
+        "operational_risk": "Linked to auction volumes, market share, and operational efficiency",
+        "regulatory_risk": "Subject to Sri Lankan Companies Act, SEC regulations, and CSE Listing Rules",
+        "going_concern_concerns": "No going concern issues reported",
+        "litigation_contingencies": "No significant contingent liabilities reported"
+      },
+      "management_governance": {
+        "board_changes": "New appointments of Mr. N. W. R. Wijewantha and Mr. P. D. Samarasinghe as Non-Executive Directors during the year",
+        "auditor_opinion": "Unqualified audit opinion stating true and fair view",
+        "related_party_transactions": "No material related party transactions exceeding disclosure thresholds",
+        "corporate_governance_statements": "Company reports full compliance with mandatory CSE corporate governance provisions",
+        "director_responsibility_statement": "Directors confirmed responsibility for preparation of compliant financial statements"
+      },
+      "future_outlook": {
+        "chairman_ceo_outlook": "Positive outlook supported by macroeconomic recovery in Sri Lanka and stable operating environment",
+        "expansion_plans": "Focus on strengthening broking segments and improving operational efficiency",
+        "expected_challenges": "Market volatility, climate impacts on tea and rubber supply, and price competition",
+        "strategy": "Enhancing stakeholder engagement, diversifying revenue streams, disciplined capital management",
+        "forward_looking_statements": "Report contains forward-looking statements subject to risks and uncertainties"
+      }
+    },
+    "investor_friendly_insight": {
+      "summary": "John Keells PLC reported higher revenue and profit growth in FY2024/25, supported by improved brokerage income, lower finance costs, and fair value gains on investment property. The Group maintains a strong net cash position and low leverage, with diversified income from produce broking, share broking, and warehousing.",
+      "key_strengths": [
+        "Strong balance sheet with net cash position",
+        "Low debt-to-equity ratio",
+        "Diversified service-based revenue streams",
+        "Consistent dividend payments"
+      ],
+      "key_concerns": [
+        "Moderate return on equity",
+        "Exposure to commodity market volumes and prices",
+        "Climate and sustainability risks affecting tea and rubber sectors"
+      ],
+      "risk_level_explanation": "The Group exhibits relatively low financial risk due to low leverage and high liquidity, while operational and market risks remain linked to commodity cycles and regulatory conditions.",
+      "non_advisory_note": "This is an informational summary only and not financial advice."
+    },
+    "source_evidence": [
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Annual Report of John Keells PLC 2024/25, pages 10–12 (Performance Highlights)"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Income Statement and Notes, pages 114–116"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Statement of Financial Position, page 116"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Key Ratios & Information, page 170"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Information to Shareholders and Investors, page 166"
+      }
+    ],
+    "missing_fields": [],
+    "confidence_score": 0.78
+  },
+  "token_usage": {
+    "input_tokens": 43463,
+    "output_tokens": 1775,
+    "total_tokens": 45238
+  },
+  "runtime_seconds": 17.456,
+  "errors": null
+}

@@ -1,0 +1,155 @@
+{
+  "pdf_name": "JKH_2022.pdf",
+  "prompt_id": "prompt_09",
+  "prompt_name": "Few-Shot Prompt",
+  "model": "gpt-5.2-chat",
+  "full_model_output": "```json\n{\n  \"metadata\": {\n    \"pdf_name\": \"JKH_2022.pdf\",\n    \"company_name\": \"John Keells Holdings PLC\",\n    \"reporting_year\": \"Year ended 31 March 2022\",\n    \"prompt_id\": \"JKH_AR_2022_EXTRACTION\",\n    \"model\": \"GPT-5.2\",\n    \"generated_at\": \"2026-05-08\"\n  },\n  \"extracted_facts\": {\n    \"company_overview\": {\n      \"company_name\": \"John Keells Holdings PLC\",\n      \"reporting_year\": \"Year ended 31 March 2022\",\n      \"business_segments\": \"Transportation, Consumer Foods, Retail, Leisure, Property, Financial Services, Other including Information Technology and Plantation Services\",\n      \"principal_activities\": \"Holding company managing a diversified portfolio of investments and providing function-based services to subsidiaries, jointly controlled entities and associates\",\n      \"sector_industry\": \"Diversified conglomerate\",\n      \"subsidiaries_associates\": \"Group comprises subsidiaries, associates and joint ventures; examples include Waterfront Properties (Private) Limited and Vauxhall Land Developments (Private) Limited\"\n    },\n    \"financial_performance\": {\n      \"revenue_turnover\": \"Rs. 218,074,746 thousand\",\n      \"gross_profit\": \"Rs. 37,644,738 thousand\",\n      \"operating_profit\": \"Rs. 7,308,186 thousand\",\n      \"profit_before_tax\": \"Rs. 27,324,493 thousand\",\n      \"profit_after_tax\": \"Rs. 20,442,907 thousand\",\n      \"eps\": \"Rs. 15.13\",\n      \"ebitda\": \"Rs. 29,262 million\",\n      \"net_finance_cost\": \"Net finance income of Rs. 23,771,422 thousand\",\n      \"tax_expense\": \"Rs. 6,881,586 thousand\"\n    },\n    \"financial_position\": {\n      \"total_assets\": \"Rs. 717,795,693 thousand\",\n      \"total_liabilities\": \"Rs. 387,704,220 thousand\",\n      \"total_equity\": \"Rs. 330,091,473 thousand\",\n      \"borrowings_debt\": \"Group debt (excluding lease liabilities) Rs. 234.70 billion\",\n      \"cash_and_cash_equivalents\": \"Rs. 163.10 billion\",\n      \"inventory\": \"Rs. 36,224,887 thousand\",\n      \"trade_receivables\": \"Rs. 25,550,066 thousand\",\n      \"trade_payables\": null\n    },\n    \"cash_flow\": {\n      \"operating_cash_flow\": \"Rs. 30,439,794 thousand\",\n      \"investing_cash_flow\": null,\n      \"financing_cash_flow\": null,\n      \"free_cash_flow\": null,\n      \"capital_expenditure\": \"Rs. 6,627 million\"\n    },\n    \"investor_ratios\": {\n      \"gross_profit_margin\": null,\n      \"net_profit_margin\": null,\n      \"current_ratio\": null,\n      \"debt_to_equity_ratio\": null,\n      \"return_on_equity\": null,\n      \"return_on_assets\": null,\n      \"eps_ratio_reference\": \"Basic EPS Rs.15.13; Diluted EPS Rs.15.12\",\n      \"dividend_payout_ratio\": null\n    },\n    \"shareholder_information\": {\n      \"stated_capital\": \"Rs. 73,187,861 thousand\",\n      \"number_of_shares\": \"1,384,916,632 shares\",\n      \"major_shareholders\": \"Non-resident institutions held 36% of shares as at 31 March 2022\",\n      \"public_holding_percentage\": \"64%\",\n      \"dividends\": \"Dividend per share Rs. 1.50\",\n      \"market_price_per_share\": \"Rs. 145.00 as at 31 March 2022\"\n    },\n    \"risk_factors\": {\n      \"liquidity_risk\": \"Group manages liquidity through cash flow matching and maintaining sufficient liquid assets and committed facilities\",\n      \"credit_risk\": \"Exposure primarily from trade receivables; allowance for expected credit losses recognised\",\n      \"market_risk\": \"Exposure to interest rate, foreign exchange, equity price and commodity price risks\",\n      \"interest_rate_risk\": \"Sensitivity analysis disclosed for rupee and foreign currency borrowings\",\n      \"foreign_exchange_risk\": \"Significant exposure due to foreign currency borrowings and depreciation of Sri Lankan Rupee\",\n      \"operational_risk\": \"Operational disruptions from macroeconomic conditions and supply chain constraints\",\n      \"regulatory_risk\": null,\n      \"going_concern_concerns\": \"Directors confirmed adequate resources to continue operations for the foreseeable future\",\n      \"litigation_contingencies\": \"Contingent liabilities disclosed in notes\"\n    },\n    \"management_governance\": {\n      \"board_changes\": null,\n      \"auditor_opinion\": \"Unqualified opinion stating financial statements give a true and fair view\",\n      \"related_party_transactions\": \"Carried out in the ordinary course of business and on arm’s length terms\",\n      \"corporate_governance_statements\": \"Comprehensive corporate governance framework disclosed\",\n      \"director_responsibility_statement\": \"Directors confirmed responsibility for preparation and fair presentation of financial statements\"\n    },\n    \"future_outlook\": {\n      \"chairman_ceo_outlook\": \"Group remains confident of medium to long-term growth prospects despite short-term macroeconomic challenges\",\n      \"expansion_plans\": \"Continued investments in property, logistics, retail and other core sectors\",\n      \"expected_challenges\": \"Macroeconomic instability, foreign exchange shortages and inflationary pressures\",\n      \"strategy\": \"Focus on portfolio resilience, disciplined capital allocation and governance\",\n      \"forward_looking_statements\": \"Outlook based on IMF and local economic projections\"\n    }\n  },\n  \"investor_friendly_insight\": {\n    \"summary\": \"For the year ended 31 March 2022, John Keells Holdings PLC recorded a strong recovery in profitability with Group revenue of Rs.218.1 billion and profit after tax of Rs.20.4 billion, supported by improved performance across most business segments.\",\n    \"key_strengths\": [\n      \"Diversified business portfolio\",\n      \"Strong rebound in earnings and EBITDA\",\n      \"Robust cash and liquidity position\"\n    ],\n    \"key_concerns\": [\n      \"High exposure to foreign currency debt\",\n      \"Macroeconomic and currency volatility in Sri Lanka\"\n    ],\n    \"risk_level_explanation\": \"The Group faces elevated macroeconomic and foreign exchange risks, partially mitigated by diversification and liquidity management.\",\n    \"non_advisory_note\": \"This is an informational summary only and not financial advice.\"\n  },\n  \"source_evidence\": [\n    {\n      \"field\": \"revenue_turnover\",\n      \"value\": \"Rs. 218,074,746 thousand\",\n      \"page_number\": 208,\n      \"source_quote\": \"Total revenue amounted to Rs. 218,074,746 thousand for the year ended 31 March 2022.\"\n    },\n    {\n      \"field\": \"profit_after_tax\",\n      \"value\": \"Rs. 20,442,907 thousand\",\n      \"page_number\": 208,\n      \"source_quote\": \"Profit for the year was Rs. 20,442,907 thousand.\"\n    },\n    {\n      \"field\": \"total_assets\",\n      \"value\": \"Rs. 717,795,693 thousand\",\n      \"page_number\": 210,\n      \"source_quote\": \"Total assets as at 31 March 2022 amounted to Rs. 717,795,693 thousand.\"\n    }\n  ],\n  \"missing_fields\": [\n    \"gross_profit_margin\",\n    \"net_profit_margin\",\n    \"current_ratio\",\n    \"debt_to_equity_ratio\",\n    \"return_on_equity\",\n    \"return_on_assets\",\n    \"free_cash_flow\",\n    \"trade_payables\"\n  ],\n  \"confidence_score\": 0.74\n}\n```",
+  "parsed_json": {
+    "metadata": {
+      "pdf_name": "JKH_2022.pdf",
+      "company_name": "John Keells Holdings PLC",
+      "reporting_year": "Year ended 31 March 2022",
+      "prompt_id": "prompt_09",
+      "model": "gpt-5.2-chat",
+      "generated_at": "2026-05-08T15:21:24.562395+00:00"
+    },
+    "extracted_facts": {
+      "company_overview": {
+        "company_name": "John Keells Holdings PLC",
+        "reporting_year": "Year ended 31 March 2022",
+        "business_segments": "Transportation, Consumer Foods, Retail, Leisure, Property, Financial Services, Other including Information Technology and Plantation Services",
+        "principal_activities": "Holding company managing a diversified portfolio of investments and providing function-based services to subsidiaries, jointly controlled entities and associates",
+        "sector_industry": "Diversified conglomerate",
+        "subsidiaries_associates": "Group comprises subsidiaries, associates and joint ventures; examples include Waterfront Properties (Private) Limited and Vauxhall Land Developments (Private) Limited"
+      },
+      "financial_performance": {
+        "revenue_turnover": "Rs. 218,074,746 thousand",
+        "gross_profit": "Rs. 37,644,738 thousand",
+        "operating_profit": "Rs. 7,308,186 thousand",
+        "profit_before_tax": "Rs. 27,324,493 thousand",
+        "profit_after_tax": "Rs. 20,442,907 thousand",
+        "eps": "Rs. 15.13",
+        "ebitda": "Rs. 29,262 million",
+        "net_finance_cost": "Net finance income of Rs. 23,771,422 thousand",
+        "tax_expense": "Rs. 6,881,586 thousand"
+      },
+      "financial_position": {
+        "total_assets": "Rs. 717,795,693 thousand",
+        "total_liabilities": "Rs. 387,704,220 thousand",
+        "total_equity": "Rs. 330,091,473 thousand",
+        "borrowings_debt": "Group debt (excluding lease liabilities) Rs. 234.70 billion",
+        "cash_and_cash_equivalents": "Rs. 163.10 billion",
+        "inventory": "Rs. 36,224,887 thousand",
+        "trade_receivables": "Rs. 25,550,066 thousand",
+        "trade_payables": null
+      },
+      "cash_flow": {
+        "operating_cash_flow": "Rs. 30,439,794 thousand",
+        "investing_cash_flow": null,
+        "financing_cash_flow": null,
+        "free_cash_flow": null,
+        "capital_expenditure": "Rs. 6,627 million"
+      },
+      "investor_ratios": {
+        "gross_profit_margin": null,
+        "net_profit_margin": null,
+        "current_ratio": null,
+        "debt_to_equity_ratio": null,
+        "return_on_equity": null,
+        "return_on_assets": null,
+        "eps_ratio_reference": "Basic EPS Rs.15.13; Diluted EPS Rs.15.12",
+        "dividend_payout_ratio": null
+      },
+      "shareholder_information": {
+        "stated_capital": "Rs. 73,187,861 thousand",
+        "number_of_shares": "1,384,916,632 shares",
+        "major_shareholders": "Non-resident institutions held 36% of shares as at 31 March 2022",
+        "public_holding_percentage": "64%",
+        "dividends": "Dividend per share Rs. 1.50",
+        "market_price_per_share": "Rs. 145.00 as at 31 March 2022"
+      },
+      "risk_factors": {
+        "liquidity_risk": "Group manages liquidity through cash flow matching and maintaining sufficient liquid assets and committed facilities",
+        "credit_risk": "Exposure primarily from trade receivables; allowance for expected credit losses recognised",
+        "market_risk": "Exposure to interest rate, foreign exchange, equity price and commodity price risks",
+        "interest_rate_risk": "Sensitivity analysis disclosed for rupee and foreign currency borrowings",
+        "foreign_exchange_risk": "Significant exposure due to foreign currency borrowings and depreciation of Sri Lankan Rupee",
+        "operational_risk": "Operational disruptions from macroeconomic conditions and supply chain constraints",
+        "regulatory_risk": null,
+        "going_concern_concerns": "Directors confirmed adequate resources to continue operations for the foreseeable future",
+        "litigation_contingencies": "Contingent liabilities disclosed in notes"
+      },
+      "management_governance": {
+        "board_changes": null,
+        "auditor_opinion": "Unqualified opinion stating financial statements give a true and fair view",
+        "related_party_transactions": "Carried out in the ordinary course of business and on arm’s length terms",
+        "corporate_governance_statements": "Comprehensive corporate governance framework disclosed",
+        "director_responsibility_statement": "Directors confirmed responsibility for preparation and fair presentation of financial statements"
+      },
+      "future_outlook": {
+        "chairman_ceo_outlook": "Group remains confident of medium to long-term growth prospects despite short-term macroeconomic challenges",
+        "expansion_plans": "Continued investments in property, logistics, retail and other core sectors",
+        "expected_challenges": "Macroeconomic instability, foreign exchange shortages and inflationary pressures",
+        "strategy": "Focus on portfolio resilience, disciplined capital allocation and governance",
+        "forward_looking_statements": "Outlook based on IMF and local economic projections"
+      }
+    },
+    "investor_friendly_insight": {
+      "summary": "For the year ended 31 March 2022, John Keells Holdings PLC recorded a strong recovery in profitability with Group revenue of Rs.218.1 billion and profit after tax of Rs.20.4 billion, supported by improved performance across most business segments.",
+      "key_strengths": [
+        "Diversified business portfolio",
+        "Strong rebound in earnings and EBITDA",
+        "Robust cash and liquidity position"
+      ],
+      "key_concerns": [
+        "High exposure to foreign currency debt",
+        "Macroeconomic and currency volatility in Sri Lanka"
+      ],
+      "risk_level_explanation": "The Group faces elevated macroeconomic and foreign exchange risks, partially mitigated by diversification and liquidity management.",
+      "non_advisory_note": "This is an informational summary only and not financial advice."
+    },
+    "source_evidence": [
+      {
+        "field": "revenue_turnover",
+        "value": "Rs. 218,074,746 thousand",
+        "page_number": 208,
+        "source_quote": "Total revenue amounted to Rs. 218,074,746 thousand for the year ended 31 March 2022."
+      },
+      {
+        "field": "profit_after_tax",
+        "value": "Rs. 20,442,907 thousand",
+        "page_number": 208,
+        "source_quote": "Profit for the year was Rs. 20,442,907 thousand."
+      },
+      {
+        "field": "total_assets",
+        "value": "Rs. 717,795,693 thousand",
+        "page_number": 210,
+        "source_quote": "Total assets as at 31 March 2022 amounted to Rs. 717,795,693 thousand."
+      }
+    ],
+    "missing_fields": [
+      "trade_payables",
+      "investing_cash_flow",
+      "financing_cash_flow",
+      "free_cash_flow",
+      "gross_profit_margin",
+      "net_profit_margin",
+      "current_ratio",
+      "debt_to_equity_ratio",
+      "return_on_equity",
+      "return_on_assets",
+      "dividend_payout_ratio",
+      "regulatory_risk",
+      "board_changes"
+    ],
+    "confidence_score": 0.74
+  },
+  "token_usage": {
+    "input_tokens": 41197,
+    "output_tokens": 1702,
+    "total_tokens": 42899
+  },
+  "runtime_seconds": 16.467,
+  "errors": null
+}

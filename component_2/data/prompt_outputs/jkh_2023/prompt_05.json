@@ -1,0 +1,176 @@
+{
+  "pdf_name": "JKH_2023.pdf",
+  "prompt_id": "prompt_05",
+  "prompt_name": "Chain-of-Verification Prompt",
+  "model": "gpt-5.2-chat",
+  "full_model_output": "```json\n{\n  \"metadata\": {\n    \"pdf_name\": \"JKH_2023.pdf\",\n    \"company_name\": \"John Keells PLC\",\n    \"reporting_year\": \"2022/2023\",\n    \"prompt_id\": \"JKH_2023_FACT_EXTRACTION\",\n    \"model\": \"GPT-5.2\",\n    \"generated_at\": \"2026-05-08\"\n  },\n  \"extracted_facts\": {\n    \"company_overview\": {\n      \"company_name\": \"John Keells PLC\",\n      \"reporting_year\": \"Year ended 31 March 2023\",\n      \"business_segments\": [\n        \"Produce Broking\",\n        \"Warehousing\",\n        \"Share Broking\"\n      ],\n      \"principal_activities\": \"Produce broking services; subsidiaries provide stock broking and warehousing services.\",\n      \"sector_industry\": \"Plantation services / financial services (produce and share broking)\",\n      \"subsidiaries_associates\": {\n        \"subsidiaries\": [\n          \"John Keells Stock Brokers (Pvt) Ltd (76%)\",\n          \"John Keells Warehousing (Pvt) Ltd (100%)\"\n        ],\n        \"associate\": \"Keells Realtors Ltd (32%)\"\n      }\n    },\n    \"financial_performance\": {\n      \"revenue_turnover\": \"Rs. 1,024,588 thousand (Group)\",\n      \"gross_profit\": \"Rs. 659,621 thousand (Group)\",\n      \"operating_profit\": \"Rs. 370,222 thousand (Group results from operating activities)\",\n      \"profit_before_tax\": \"Rs. 495,392 thousand (Group)\",\n      \"profit_after_tax\": \"Rs. 309,497 thousand (Group)\",\n      \"eps\": \"Rs. 5.03 (Group)\",\n      \"ebitda\": null,\n      \"net_finance_cost\": \"Net finance income of Rs. 64,352 thousand (Group)\",\n      \"tax_expense\": \"Rs. 185,895 thousand (Group)\"\n    },\n    \"financial_position\": {\n      \"total_assets\": \"Rs. 5,965,630 thousand (Group)\",\n      \"total_liabilities\": \"Rs. 1,740,695 thousand (Group)\",\n      \"total_equity\": \"Rs. 4,224,935 thousand (Group)\",\n      \"borrowings_debt\": \"Rs. 84,123 thousand (Group bank overdrafts)\",\n      \"cash_and_cash_equivalents\": \"Rs. 509,896 thousand (Group)\",\n      \"inventory\": \"Rs. 1,613 thousand (Group)\",\n      \"trade_receivables\": \"Rs. 751,581 thousand (Group)\",\n      \"trade_payables\": \"Rs. 1,127,656 thousand (Group)\"\n    },\n    \"cash_flow\": {\n      \"operating_cash_flow\": null,\n      \"investing_cash_flow\": \"Net outflow of Rs. 15,717 thousand (Group)\",\n      \"financing_cash_flow\": \"Net outflow of Rs. 195,330 thousand (Group)\",\n      \"free_cash_flow\": null,\n      \"capital_expenditure\": \"Rs. 20,873 thousand on property, plant and equipment (Group)\"\n    },\n    \"investor_ratios\": {\n      \"gross_profit_margin\": \"64.4% (calculated from reported revenue and gross profit)\",\n      \"net_profit_margin\": \"30.2% (Group, as reported in Key Ratios)\",\n      \"current_ratio\": \"1.26 times (Group)\",\n      \"debt_to_equity_ratio\": \"2.02% (Group)\",\n      \"return_on_equity\": \"7.29% (Group)\",\n      \"return_on_assets\": null,\n      \"eps_ratio_reference\": \"Basic EPS as per Income Statement\",\n      \"dividend_payout_ratio\": \"58.64% (Group)\"\n    },\n    \"shareholder_information\": {\n      \"stated_capital\": \"Rs. 152,000 thousand\",\n      \"number_of_shares\": \"60,800,000 ordinary shares\",\n      \"major_shareholders\": \"John Keells Holdings PLC and subsidiaries hold 86.90%\",\n      \"public_holding_percentage\": \"13.10%\",\n      \"dividends\": \"Rs. 2.95 per share; total Rs. 179,360 thousand paid\",\n      \"market_price_per_share\": \"Rs. 68.80 as at 31 March 2023\"\n    },\n    \"risk_factors\": {\n      \"liquidity_risk\": \"Managed through holding sufficient cash and committed facilities.\",\n      \"credit_risk\": \"Exposure from trade receivables and loans to tea sellers; managed via credit assessments and ECL provisions.\",\n      \"market_risk\": \"Exposure to interest rate and equity price movements.\",\n      \"interest_rate_risk\": \"Arises from investments and overdrafts.\",\n      \"foreign_exchange_risk\": null,\n      \"operational_risk\": \"Industry-related risks including supply disruptions and operational interruptions.\",\n      \"regulatory_risk\": \"Subject to CSE listing rules and Sri Lankan regulations.\",\n      \"going_concern_concerns\": \"Directors confirmed adequacy of resources to continue as a going concern.\",\n      \"litigation_contingencies\": \"No material litigation contingencies disclosed.\"\n    },\n    \"management_governance\": {\n      \"board_changes\": \"Directors retiring by rotation proposed for re-election at the AGM.\",\n      \"auditor_opinion\": \"Unqualified opinion stating financial statements give a true and fair view.\",\n      \"related_party_transactions\": \"Conducted in the ordinary course of business; no material non-recurrent RPTs exceeding disclosure thresholds.\",\n      \"corporate_governance_statements\": \"Compliance with CSE and SEC corporate governance codes.\",\n      \"director_responsibility_statement\": \"Directors acknowledged responsibility for preparation of financial statements.\"\n    },\n    \"future_outlook\": {\n      \"chairman_ceo_outlook\": \"Positive outlook for plantation services sector with expected recovery in tea production.\",\n      \"expansion_plans\": null,\n      \"expected_challenges\": \"Potential headwinds from macroeconomic conditions and industry supply factors.\",\n      \"strategy\": \"Focus on core broking and warehousing services with prudent capital management.\",\n      \"forward_looking_statements\": \"Statements based on expectations for industry recovery and market conditions.\"\n    }\n  },\n  \"investor_friendly_insight\": {\n    \"summary\": \"For FY 2022/23, John Keells PLC reported higher group revenue and profitability, supported mainly by improved performance in produce broking. The Group maintained a strong equity base and low leverage, while continuing dividend distributions to shareholders.\",\n    \"key_strengths\": [\n      \"Strong revenue growth year-on-year\",\n      \"Low debt-to-equity ratio\",\n      \"Diversified service segments within broking and warehousing\"\n    ],\n    \"key_concerns\": [\n      \"Exposure to industry and macroeconomic volatility\",\n      \"Dependence on commodity market activity\"\n    ],\n    \"risk_level_explanation\": \"The Group faces moderate risk, primarily from market and credit exposures, mitigated through governance, liquidity management, and conservative leverage.\",\n    \"non_advisory_note\": \"This is an informational summary only and not financial advice.\"\n  },\n  \"source_evidence\": [\n    \"Income Statement – Page 88\",\n    \"Statement of Financial Position – Page 90\",\n    \"Statement of Cash Flow – Page 94\",\n    \"Performance Highlights – Page 8\",\n    \"Notes to the Financial Statements – Pages 96–142\",\n    \"Information to Shareholders and Investors – Pages 143–145\"\n  ],\n  \"missing_fields\": [\n    \"EBITDA\",\n    \"Operating cash flow\",\n    \"Free cash flow\",\n    \"Foreign exchange risk details\",\n    \"Return on assets\"\n  ],\n  \"confidence_score\": 0.91\n}\n```",
+  "parsed_json": {
+    "metadata": {
+      "pdf_name": "JKH_2023.pdf",
+      "company_name": "John Keells PLC",
+      "reporting_year": "Year ended 31 March 2023",
+      "prompt_id": "prompt_05",
+      "model": "gpt-5.2-chat",
+      "generated_at": "2026-05-08T15:14:23.564757+00:00"
+    },
+    "extracted_facts": {
+      "company_overview": {
+        "company_name": "John Keells PLC",
+        "reporting_year": "Year ended 31 March 2023",
+        "business_segments": [
+          "Produce Broking",
+          "Warehousing",
+          "Share Broking"
+        ],
+        "principal_activities": "Produce broking services; subsidiaries provide stock broking and warehousing services.",
+        "sector_industry": "Plantation services / financial services (produce and share broking)",
+        "subsidiaries_associates": {
+          "subsidiaries": [
+            "John Keells Stock Brokers (Pvt) Ltd (76%)",
+            "John Keells Warehousing (Pvt) Ltd (100%)"
+          ],
+          "associate": "Keells Realtors Ltd (32%)"
+        }
+      },
+      "financial_performance": {
+        "revenue_turnover": "Rs. 1,024,588 thousand (Group)",
+        "gross_profit": "Rs. 659,621 thousand (Group)",
+        "operating_profit": "Rs. 370,222 thousand (Group results from operating activities)",
+        "profit_before_tax": "Rs. 495,392 thousand (Group)",
+        "profit_after_tax": "Rs. 309,497 thousand (Group)",
+        "eps": "Rs. 5.03 (Group)",
+        "ebitda": null,
+        "net_finance_cost": "Net finance income of Rs. 64,352 thousand (Group)",
+        "tax_expense": "Rs. 185,895 thousand (Group)"
+      },
+      "financial_position": {
+        "total_assets": "Rs. 5,965,630 thousand (Group)",
+        "total_liabilities": "Rs. 1,740,695 thousand (Group)",
+        "total_equity": "Rs. 4,224,935 thousand (Group)",
+        "borrowings_debt": "Rs. 84,123 thousand (Group bank overdrafts)",
+        "cash_and_cash_equivalents": "Rs. 509,896 thousand (Group)",
+        "inventory": "Rs. 1,613 thousand (Group)",
+        "trade_receivables": "Rs. 751,581 thousand (Group)",
+        "trade_payables": "Rs. 1,127,656 thousand (Group)"
+      },
+      "cash_flow": {
+        "operating_cash_flow": null,
+        "investing_cash_flow": "Net outflow of Rs. 15,717 thousand (Group)",
+        "financing_cash_flow": "Net outflow of Rs. 195,330 thousand (Group)",
+        "free_cash_flow": null,
+        "capital_expenditure": "Rs. 20,873 thousand on property, plant and equipment (Group)"
+      },
+      "investor_ratios": {
+        "gross_profit_margin": "64.4% (calculated from reported revenue and gross profit)",
+        "net_profit_margin": "30.2% (Group, as reported in Key Ratios)",
+        "current_ratio": "1.26 times (Group)",
+        "debt_to_equity_ratio": "2.02% (Group)",
+        "return_on_equity": "7.29% (Group)",
+        "return_on_assets": null,
+        "eps_ratio_reference": "Basic EPS as per Income Statement",
+        "dividend_payout_ratio": "58.64% (Group)"
+      },
+      "shareholder_information": {
+        "stated_capital": "Rs. 152,000 thousand",
+        "number_of_shares": "60,800,000 ordinary shares",
+        "major_shareholders": "John Keells Holdings PLC and subsidiaries hold 86.90%",
+        "public_holding_percentage": "13.10%",
+        "dividends": "Rs. 2.95 per share; total Rs. 179,360 thousand paid",
+        "market_price_per_share": "Rs. 68.80 as at 31 March 2023"
+      },
+      "risk_factors": {
+        "liquidity_risk": "Managed through holding sufficient cash and committed facilities.",
+        "credit_risk": "Exposure from trade receivables and loans to tea sellers; managed via credit assessments and ECL provisions.",
+        "market_risk": "Exposure to interest rate and equity price movements.",
+        "interest_rate_risk": "Arises from investments and overdrafts.",
+        "foreign_exchange_risk": null,
+        "operational_risk": "Industry-related risks including supply disruptions and operational interruptions.",
+        "regulatory_risk": "Subject to CSE listing rules and Sri Lankan regulations.",
+        "going_concern_concerns": "Directors confirmed adequacy of resources to continue as a going concern.",
+        "litigation_contingencies": "No material litigation contingencies disclosed."
+      },
+      "management_governance": {
+        "board_changes": "Directors retiring by rotation proposed for re-election at the AGM.",
+        "auditor_opinion": "Unqualified opinion stating financial statements give a true and fair view.",
+        "related_party_transactions": "Conducted in the ordinary course of business; no material non-recurrent RPTs exceeding disclosure thresholds.",
+        "corporate_governance_statements": "Compliance with CSE and SEC corporate governance codes.",
+        "director_responsibility_statement": "Directors acknowledged responsibility for preparation of financial statements."
+      },
+      "future_outlook": {
+        "chairman_ceo_outlook": "Positive outlook for plantation services sector with expected recovery in tea production.",
+        "expansion_plans": null,
+        "expected_challenges": "Potential headwinds from macroeconomic conditions and industry supply factors.",
+        "strategy": "Focus on core broking and warehousing services with prudent capital management.",
+        "forward_looking_statements": "Statements based on expectations for industry recovery and market conditions."
+      }
+    },
+    "investor_friendly_insight": {
+      "summary": "For FY 2022/23, John Keells PLC reported higher group revenue and profitability, supported mainly by improved performance in produce broking. The Group maintained a strong equity base and low leverage, while continuing dividend distributions to shareholders.",
+      "key_strengths": [
+        "Strong revenue growth year-on-year",
+        "Low debt-to-equity ratio",
+        "Diversified service segments within broking and warehousing"
+      ],
+      "key_concerns": [
+        "Exposure to industry and macroeconomic volatility",
+        "Dependence on commodity market activity"
+      ],
+      "risk_level_explanation": "The Group faces moderate risk, primarily from market and credit exposures, mitigated through governance, liquidity management, and conservative leverage.",
+      "non_advisory_note": "This is an informational summary only and not financial advice."
+    },
+    "source_evidence": [
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Income Statement – Page 88"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Statement of Financial Position – Page 90"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Statement of Cash Flow – Page 94"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Performance Highlights – Page 8"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Notes to the Financial Statements – Pages 96–142"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Information to Shareholders and Investors – Pages 143–145"
+      }
+    ],
+    "missing_fields": [
+      "ebitda",
+      "operating_cash_flow",
+      "free_cash_flow",
+      "return_on_assets",
+      "foreign_exchange_risk",
+      "expansion_plans"
+    ],
+    "confidence_score": 0.91
+  },
+  "token_usage": {
+    "input_tokens": 40549,
+    "output_tokens": 1658,
+    "total_tokens": 42207
+  },
+  "runtime_seconds": 15.171,
+  "errors": null
+}

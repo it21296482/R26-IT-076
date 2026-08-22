@@ -1,0 +1,172 @@
+{
+  "pdf_name": "JKH_2024.pdf",
+  "prompt_id": "prompt_06",
+  "prompt_name": "Ratio-Aware Prompt",
+  "model": "gpt-5.2-chat",
+  "full_model_output": "```json\n{\n  \"metadata\": {\n    \"pdf_name\": \"JKH_2024.pdf\",\n    \"company_name\": \"John Keells PLC\",\n    \"reporting_year\": \"2024/25\",\n    \"prompt_id\": \"JKH_INV_001\",\n    \"model\": \"GPT-5.2\",\n    \"generated_at\": \"2026-05-08\"\n  },\n  \"extracted_facts\": {\n    \"company_overview\": {\n      \"company_name\": \"John Keells PLC\",\n      \"reporting_year\": \"2024/25\",\n      \"business_segments\": [\"Produce broking\", \"Share broking\", \"Warehousing\"],\n      \"principal_activities\": \"Produce/commodity broking; subsidiaries provide stock broking and warehousing services\",\n      \"sector_industry\": \"Financial services / Commodity broking\",\n      \"subsidiaries_associates\": [\n        \"John Keells Stockbrokers (Private) Limited\",\n        \"John Keells Warehousing (Private) Limited\",\n        \"Associate accounted under equity method (unnamed)\"\n      ]\n    },\n    \"financial_performance\": {\n      \"revenue_turnover\": 1009382,\n      \"gross_profit\": 535766,\n      \"operating_profit\": 142364,\n      \"profit_before_tax\": 256644,\n      \"profit_after_tax\": 173488,\n      \"eps\": 2.80,\n      \"ebitda\": null,\n      \"net_finance_cost\": -51210,\n      \"tax_expense\": 83156\n    },\n    \"financial_position\": {\n      \"total_assets\": 6537394,\n      \"total_liabilities\": 1753687,\n      \"total_equity\": 4783707,\n      \"borrowings_debt\": 69115,\n      \"cash_and_cash_equivalents\": 748271,\n      \"inventory\": 996,\n      \"trade_receivables\": 1118777,\n      \"trade_payables\": 1285276\n    },\n    \"cash_flow\": {\n      \"operating_cash_flow\": null,\n      \"investing_cash_flow\": null,\n      \"financing_cash_flow\": 5600,\n      \"free_cash_flow\": null,\n      \"capital_expenditure\": 38030\n    },\n    \"investor_ratios\": {\n      \"gross_profit_margin\": 0.53,\n      \"net_profit_margin\": 0.17,\n      \"current_ratio\": 1.39,\n      \"debt_to_equity_ratio\": 0.0145,\n      \"return_on_equity\": 0.0362,\n      \"return_on_assets\": 0.0265,\n      \"eps_ratio_reference\": \"Basic EPS\",\n      \"dividend_payout_ratio\": 0.3571\n    },\n    \"shareholder_information\": {\n      \"stated_capital\": 152000,\n      \"number_of_shares\": 60800000,\n      \"major_shareholders\": [\"John Keells Holdings PLC (86.90%)\"],\n      \"public_holding_percentage\": 13.10,\n      \"dividends\": {\n        \"dividend_per_share\": 1.00,\n        \"total_dividend_paid\": 60800\n      },\n      \"market_price_per_share\": 74.00\n    },\n    \"risk_factors\": {\n      \"liquidity_risk\": \"Managed through cash flow matching and liquid assets approach\",\n      \"credit_risk\": \"Exposure mainly from trade receivables; ECL provisioning applied\",\n      \"market_risk\": \"Exposure to equity price movements on quoted/unquoted investments\",\n      \"interest_rate_risk\": \"Low due to net cash position\",\n      \"foreign_exchange_risk\": null,\n      \"operational_risk\": \"Segment-specific operational and market risks\",\n      \"regulatory_risk\": \"Compliance with Companies Act, SEC and CSE rules\",\n      \"going_concern_concerns\": \"No material going concern issues reported\",\n      \"litigation_contingencies\": \"No significant contingencies reported\"\n    },\n    \"management_governance\": {\n      \"board_changes\": \"New appointments of Mr. N W R Wijewantha and Mr. P D Samarasinghe during the year\",\n      \"auditor_opinion\": \"Unqualified (true and fair view)\",\n      \"related_party_transactions\": \"No material related party transactions exceeding disclosure thresholds\",\n      \"corporate_governance_statements\": \"Company states full compliance with mandatory governance provisions\",\n      \"director_responsibility_statement\": \"Included and compliant with Companies Act No. 7 of 2007\"\n    },\n    \"future_outlook\": {\n      \"chairman_ceo_outlook\": \"Positive outlook supported by macroeconomic recovery and resilience\",\n      \"expansion_plans\": \"Strengthening rubber and tea broking segments and operational efficiency\",\n      \"expected_challenges\": \"Market volatility, climate impacts on tea, price competition\",\n      \"strategy\": \"Operational efficiency, stakeholder engagement, diversification of sales channels\",\n      \"forward_looking_statements\": \"Report includes forward-looking statements subject to risks and uncertainties\"\n    }\n  },\n  \"investor_friendly_insight\": {\n    \"summary\": \"John Keells PLC reported revenue growth and improved profitability in FY2024/25, supported by brokerage income and lower finance costs, while maintaining a strong net cash position and low leverage.\",\n    \"key_strengths\": [\n      \"Strong balance sheet with net cash\",\n      \"Diversified service segments\",\n      \"Improved profit before tax year-on-year\"\n    ],\n    \"key_concerns\": [\n      \"Exposure to commodity market volatility\",\n      \"Dependence on tea and rubber industry conditions\"\n    ],\n    \"risk_level_explanation\": \"Overall risk is moderated by low leverage and strong liquidity, though earnings remain sensitive to commodity market dynamics.\",\n    \"non_advisory_note\": \"This is an informational summary only and not financial advice.\"\n  },\n  \"source_evidence\": [\n    \"Income Statement page 114\",\n    \"Statement of Financial Position page 116\",\n    \"Performance Highlights page 10\",\n    \"Key Ratios & Information page 170\",\n    \"Auditor’s Report page 111\"\n  ],\n  \"missing_fields\": [\n    \"ebitda\",\n    \"operating_cash_flow\",\n    \"investing_cash_flow\",\n    \"free_cash_flow\",\n    \"foreign_exchange_risk\"\n  ],\n  \"confidence_score\": 0.86\n}\n```",
+  "parsed_json": {
+    "metadata": {
+      "pdf_name": "JKH_2024.pdf",
+      "company_name": "John Keells PLC",
+      "reporting_year": "2024/25",
+      "prompt_id": "prompt_06",
+      "model": "gpt-5.2-chat",
+      "generated_at": "2026-05-08T15:10:04.699918+00:00"
+    },
+    "extracted_facts": {
+      "company_overview": {
+        "company_name": "John Keells PLC",
+        "reporting_year": "2024/25",
+        "business_segments": [
+          "Produce broking",
+          "Share broking",
+          "Warehousing"
+        ],
+        "principal_activities": "Produce/commodity broking; subsidiaries provide stock broking and warehousing services",
+        "sector_industry": "Financial services / Commodity broking",
+        "subsidiaries_associates": [
+          "John Keells Stockbrokers (Private) Limited",
+          "John Keells Warehousing (Private) Limited",
+          "Associate accounted under equity method (unnamed)"
+        ]
+      },
+      "financial_performance": {
+        "revenue_turnover": 1009382,
+        "gross_profit": 535766,
+        "operating_profit": 142364,
+        "profit_before_tax": 256644,
+        "profit_after_tax": 173488,
+        "eps": 2.8,
+        "ebitda": null,
+        "net_finance_cost": -51210,
+        "tax_expense": 83156
+      },
+      "financial_position": {
+        "total_assets": 6537394,
+        "total_liabilities": 1753687,
+        "total_equity": 4783707,
+        "borrowings_debt": 69115,
+        "cash_and_cash_equivalents": 748271,
+        "inventory": 996,
+        "trade_receivables": 1118777,
+        "trade_payables": 1285276
+      },
+      "cash_flow": {
+        "operating_cash_flow": null,
+        "investing_cash_flow": null,
+        "financing_cash_flow": 5600,
+        "free_cash_flow": null,
+        "capital_expenditure": 38030
+      },
+      "investor_ratios": {
+        "gross_profit_margin": 0.53,
+        "net_profit_margin": 0.17,
+        "current_ratio": 1.39,
+        "debt_to_equity_ratio": 0.0145,
+        "return_on_equity": 0.0362,
+        "return_on_assets": 0.0265,
+        "eps_ratio_reference": "Basic EPS",
+        "dividend_payout_ratio": 0.3571
+      },
+      "shareholder_information": {
+        "stated_capital": 152000,
+        "number_of_shares": 60800000,
+        "major_shareholders": [
+          "John Keells Holdings PLC (86.90%)"
+        ],
+        "public_holding_percentage": 13.1,
+        "dividends": {
+          "dividend_per_share": 1.0,
+          "total_dividend_paid": 60800
+        },
+        "market_price_per_share": 74.0
+      },
+      "risk_factors": {
+        "liquidity_risk": "Managed through cash flow matching and liquid assets approach",
+        "credit_risk": "Exposure mainly from trade receivables; ECL provisioning applied",
+        "market_risk": "Exposure to equity price movements on quoted/unquoted investments",
+        "interest_rate_risk": "Low due to net cash position",
+        "foreign_exchange_risk": null,
+        "operational_risk": "Segment-specific operational and market risks",
+        "regulatory_risk": "Compliance with Companies Act, SEC and CSE rules",
+        "going_concern_concerns": "No material going concern issues reported",
+        "litigation_contingencies": "No significant contingencies reported"
+      },
+      "management_governance": {
+        "board_changes": "New appointments of Mr. N W R Wijewantha and Mr. P D Samarasinghe during the year",
+        "auditor_opinion": "Unqualified (true and fair view)",
+        "related_party_transactions": "No material related party transactions exceeding disclosure thresholds",
+        "corporate_governance_statements": "Company states full compliance with mandatory governance provisions",
+        "director_responsibility_statement": "Included and compliant with Companies Act No. 7 of 2007"
+      },
+      "future_outlook": {
+        "chairman_ceo_outlook": "Positive outlook supported by macroeconomic recovery and resilience",
+        "expansion_plans": "Strengthening rubber and tea broking segments and operational efficiency",
+        "expected_challenges": "Market volatility, climate impacts on tea, price competition",
+        "strategy": "Operational efficiency, stakeholder engagement, diversification of sales channels",
+        "forward_looking_statements": "Report includes forward-looking statements subject to risks and uncertainties"
+      }
+    },
+    "investor_friendly_insight": {
+      "summary": "John Keells PLC reported revenue growth and improved profitability in FY2024/25, supported by brokerage income and lower finance costs, while maintaining a strong net cash position and low leverage.",
+      "key_strengths": [
+        "Strong balance sheet with net cash",
+        "Diversified service segments",
+        "Improved profit before tax year-on-year"
+      ],
+      "key_concerns": [
+        "Exposure to commodity market volatility",
+        "Dependence on tea and rubber industry conditions"
+      ],
+      "risk_level_explanation": "Overall risk is moderated by low leverage and strong liquidity, though earnings remain sensitive to commodity market dynamics.",
+      "non_advisory_note": "This is an informational summary only and not financial advice."
+    },
+    "source_evidence": [
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Income Statement page 114"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Statement of Financial Position page 116"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Performance Highlights page 10"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Key Ratios & Information page 170"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Auditor’s Report page 111"
+      }
+    ],
+    "missing_fields": [
+      "ebitda",
+      "operating_cash_flow",
+      "investing_cash_flow",
+      "free_cash_flow",
+      "foreign_exchange_risk"
+    ],
+    "confidence_score": 0.86
+  },
+  "token_usage": {
+    "input_tokens": 43463,
+    "output_tokens": 1356,
+    "total_tokens": 44819
+  },
+  "runtime_seconds": 13.701,
+  "errors": null
+}

@@ -1,0 +1,156 @@
+{
+  "pdf_name": "DIAL_2024.pdf",
+  "prompt_id": "prompt_09",
+  "prompt_name": "Few-Shot Prompt",
+  "model": "gpt-5.2-chat",
+  "full_model_output": "```json\n{\n  \"metadata\": {\n    \"pdf_name\": \"DIAL_2024.pdf\",\n    \"company_name\": \"Dialog Axiata PLC\",\n    \"reporting_year\": \"2024\",\n    \"prompt_id\": \"DIAL_2024_EXTRACTION_001\",\n    \"model\": \"GPT-5.2\",\n    \"generated_at\": \"2026-05-08\"\n  },\n  \"extracted_facts\": {\n    \"company_overview\": {\n      \"company_name\": \"Dialog Axiata PLC\",\n      \"reporting_year\": \"Year ended 31 December 2024\",\n      \"business_segments\": [\n        \"Mobile operation\",\n        \"Fixed telephony and broadband operation\",\n        \"Television operation\"\n      ],\n      \"principal_activities\": \"Provision of mobile services, data services, international direct dialling services, leasing of passive infrastructure, interconnect services, pay television transmission services, other data services and digital services.\",\n      \"sector_industry\": \"Telecommunications\",\n      \"subsidiaries_associates\": \"The Group comprises multiple wholly owned, non-wholly owned subsidiaries and associates including Dialog Broadband Networks (Private) Limited, Dialog Television (Private) Limited, Dialog Finance PLC, and others as part of the Dialog Group Structure as at 31 December 2024.\"\n    },\n    \"financial_performance\": {\n      \"revenue_turnover\": \"Rs. 171,170 million\",\n      \"gross_profit\": \"Rs. 72,695 million\",\n      \"operating_profit\": \"Rs. 20,779 million\",\n      \"profit_before_tax\": \"Rs. 16,140 million\",\n      \"profit_after_tax\": \"Rs. 12,435 million\",\n      \"eps\": \"Rs. 1.43\",\n      \"ebitda\": null,\n      \"net_finance_cost\": \"Rs. 4,604 million\",\n      \"tax_expense\": \"Rs. 3,705 million\"\n    },\n    \"financial_position\": {\n      \"total_assets\": \"Rs. 309,147 million\",\n      \"total_liabilities\": \"Rs. 230,867 million\",\n      \"total_equity\": \"Rs. 78,280 million\",\n      \"borrowings_debt\": \"Rs. 107,694 million\",\n      \"cash_and_cash_equivalents\": \"Rs. 33,786 million\",\n      \"inventory\": \"Rs. 1,773 million\",\n      \"trade_receivables\": \"Rs. 47,411 million\",\n      \"trade_payables\": \"Rs. 78,646 million\"\n    },\n    \"cash_flow\": {\n      \"operating_cash_flow\": \"Rs. 49,483 million\",\n      \"investing_cash_flow\": \"Rs. (38,853) million\",\n      \"financing_cash_flow\": \"Rs. (4,880) million\",\n      \"free_cash_flow\": null,\n      \"capital_expenditure\": \"Rs. 30,300 million\"\n    },\n    \"investor_ratios\": {\n      \"gross_profit_margin\": \"42.47%\",\n      \"net_profit_margin\": \"7.26%\",\n      \"current_ratio\": \"0.51 times\",\n      \"debt_to_equity_ratio\": \"1.38 times\",\n      \"return_on_equity\": \"15.89%\",\n      \"return_on_assets\": \"4.02%\",\n      \"eps_ratio_reference\": \"Basic EPS\",\n      \"dividend_payout_ratio\": \"74%\"\n    },\n    \"shareholder_information\": {\n      \"stated_capital\": \"Rs. 39,906 million\",\n      \"number_of_shares\": \"8,740,953,000 ordinary shares\",\n      \"major_shareholders\": \"Axiata Investments (Labuan) Limited (73.75%), Bharti Airtel Limited (10.36%)\",\n      \"public_holding_percentage\": \"15.82%\",\n      \"dividends\": \"Final dividend proposed of Rs. 1.00 per share for FY 2024\",\n      \"market_price_per_share\": \"Rs. 11.70 (closing price at 31 December 2024)\"\n    },\n    \"risk_factors\": {\n      \"liquidity_risk\": \"Exposure to liquidity management due to debt servicing and working capital requirements.\",\n      \"credit_risk\": \"Risk arising from trade receivables and counterparty defaults.\",\n      \"market_risk\": \"Exposure to foreign exchange and interest rate fluctuations.\",\n      \"interest_rate_risk\": \"Borrowings subject to variable and fixed interest rates.\",\n      \"foreign_exchange_risk\": \"Exposure due to USD-denominated borrowings and capital expenditure.\",\n      \"operational_risk\": \"Risks associated with network operations, technology and service delivery.\",\n      \"regulatory_risk\": \"Exposure to telecommunications regulations, taxes, levies and compliance requirements.\",\n      \"going_concern_concerns\": null,\n      \"litigation_contingencies\": \"Pending litigation with Sri Lanka Customs relating to import duties of CDMA equipment.\"\n    },\n    \"management_governance\": {\n      \"board_changes\": \"New Independent and Non-Independent Directors appointed during 2024; Board composition complied with CSE Listing Rules.\",\n      \"auditor_opinion\": \"Unqualified opinion – financial statements give a true and fair view in accordance with Sri Lanka Accounting Standards.\",\n      \"related_party_transactions\": \"Reviewed by the Related Party Transactions Review Committee in accordance with CSE Listing Rules.\",\n      \"corporate_governance_statements\": \"Corporate Governance Report included, detailing Board structure, committees and compliance.\",\n      \"director_responsibility_statement\": \"Directors acknowledged responsibility for preparation and fair presentation of financial statements.\"\n    },\n    \"future_outlook\": {\n      \"chairman_ceo_outlook\": \"Continued investment in digital infrastructure, 5G readiness and enterprise solutions to support Sri Lanka’s digital transformation.\",\n      \"expansion_plans\": \"Integration of Airtel Lanka, network expansion, broadband and digital services growth.\",\n      \"expected_challenges\": \"Macroeconomic volatility, foreign exchange exposure, interest rate movements and regulatory changes.\",\n      \"strategy\": \"Focus on high-value segments, cost optimisation, network excellence and sustainable growth.\",\n      \"forward_looking_statements\": \"Management highlights continued growth opportunities while noting exposure to economic and market risks.\"\n    }\n  },\n  \"investor_friendly_insight\": {\n    \"summary\": \"Dialog Axiata PLC reported consolidated revenue of Rs. 171.2 billion in 2024 with a net profit of Rs. 12.4 billion, maintaining profitability amid economic recovery and post-merger integration of Airtel Lanka. The Group continued disciplined capital expenditure and declared a final dividend of Rs. 1.00 per share.\",\n    \"key_strengths\": [\n      \"Market leadership in Sri Lanka’s telecommunications sector\",\n      \"Strong operating cash flows\",\n      \"Successful integration of Airtel Lanka\"\n    ],\n    \"key_concerns\": [\n      \"High leverage relative to equity\",\n      \"Exposure to foreign exchange and interest rate volatility\",\n      \"Low current ratio\"\n    ],\n    \"risk_level_explanation\": \"The Group faces moderate financial and market risk due to leverage and macroeconomic exposure, mitigated by strong cash generation and market position.\",\n    \"non_advisory_note\": \"This is an informational summary only and not financial advice.\"\n  },\n  \"source_evidence\": [\n    {\n      \"field\": \"revenue_turnover\",\n      \"value\": \"Rs. 171,170 million\",\n      \"page_number\": 12,\n      \"source_quote\": \"Revenue Rs. Million 171,170\"\n    },\n    {\n      \"field\": \"profit_after_tax\",\n      \"value\": \"Rs. 12,435 million\",\n      \"page_number\": 12,\n      \"source_quote\": \"Profit for the year Rs. Million 12,435\"\n    },\n    {\n      \"field\": \"total_assets\",\n      \"value\": \"Rs. 309,147 million\",\n      \"page_number\": 142,\n      \"source_quote\": \"Total assets 309,147,354\"\n    },\n    {\n      \"field\": \"dividends\",\n      \"value\": \"Rs. 1.00 per share\",\n      \"page_number\": 224,\n      \"source_quote\": \"The Board of Directors has proposed a final dividend of Rs.1.00 per share for the financial year 2024.\"\n    }\n  ],\n  \"missing_fields\": [\n    \"ebitda\",\n    \"free_cash_flow\"\n  ],\n  \"confidence_score\": 0.67\n}\n```",
+  "parsed_json": {
+    "metadata": {
+      "pdf_name": "DIAL_2024.pdf",
+      "company_name": "Dialog Axiata PLC",
+      "reporting_year": "Year ended 31 December 2024",
+      "prompt_id": "prompt_09",
+      "model": "gpt-5.2-chat",
+      "generated_at": "2026-05-08T15:36:30.407698+00:00"
+    },
+    "extracted_facts": {
+      "company_overview": {
+        "company_name": "Dialog Axiata PLC",
+        "reporting_year": "Year ended 31 December 2024",
+        "business_segments": [
+          "Mobile operation",
+          "Fixed telephony and broadband operation",
+          "Television operation"
+        ],
+        "principal_activities": "Provision of mobile services, data services, international direct dialling services, leasing of passive infrastructure, interconnect services, pay television transmission services, other data services and digital services.",
+        "sector_industry": "Telecommunications",
+        "subsidiaries_associates": "The Group comprises multiple wholly owned, non-wholly owned subsidiaries and associates including Dialog Broadband Networks (Private) Limited, Dialog Television (Private) Limited, Dialog Finance PLC, and others as part of the Dialog Group Structure as at 31 December 2024."
+      },
+      "financial_performance": {
+        "revenue_turnover": "Rs. 171,170 million",
+        "gross_profit": "Rs. 72,695 million",
+        "operating_profit": "Rs. 20,779 million",
+        "profit_before_tax": "Rs. 16,140 million",
+        "profit_after_tax": "Rs. 12,435 million",
+        "eps": "Rs. 1.43",
+        "ebitda": null,
+        "net_finance_cost": "Rs. 4,604 million",
+        "tax_expense": "Rs. 3,705 million"
+      },
+      "financial_position": {
+        "total_assets": "Rs. 309,147 million",
+        "total_liabilities": "Rs. 230,867 million",
+        "total_equity": "Rs. 78,280 million",
+        "borrowings_debt": "Rs. 107,694 million",
+        "cash_and_cash_equivalents": "Rs. 33,786 million",
+        "inventory": "Rs. 1,773 million",
+        "trade_receivables": "Rs. 47,411 million",
+        "trade_payables": "Rs. 78,646 million"
+      },
+      "cash_flow": {
+        "operating_cash_flow": "Rs. 49,483 million",
+        "investing_cash_flow": "Rs. (38,853) million",
+        "financing_cash_flow": "Rs. (4,880) million",
+        "free_cash_flow": null,
+        "capital_expenditure": "Rs. 30,300 million"
+      },
+      "investor_ratios": {
+        "gross_profit_margin": "42.47%",
+        "net_profit_margin": "7.26%",
+        "current_ratio": "0.51 times",
+        "debt_to_equity_ratio": "1.38 times",
+        "return_on_equity": "15.89%",
+        "return_on_assets": "4.02%",
+        "eps_ratio_reference": "Basic EPS",
+        "dividend_payout_ratio": "74%"
+      },
+      "shareholder_information": {
+        "stated_capital": "Rs. 39,906 million",
+        "number_of_shares": "8,740,953,000 ordinary shares",
+        "major_shareholders": "Axiata Investments (Labuan) Limited (73.75%), Bharti Airtel Limited (10.36%)",
+        "public_holding_percentage": "15.82%",
+        "dividends": "Final dividend proposed of Rs. 1.00 per share for FY 2024",
+        "market_price_per_share": "Rs. 11.70 (closing price at 31 December 2024)"
+      },
+      "risk_factors": {
+        "liquidity_risk": "Exposure to liquidity management due to debt servicing and working capital requirements.",
+        "credit_risk": "Risk arising from trade receivables and counterparty defaults.",
+        "market_risk": "Exposure to foreign exchange and interest rate fluctuations.",
+        "interest_rate_risk": "Borrowings subject to variable and fixed interest rates.",
+        "foreign_exchange_risk": "Exposure due to USD-denominated borrowings and capital expenditure.",
+        "operational_risk": "Risks associated with network operations, technology and service delivery.",
+        "regulatory_risk": "Exposure to telecommunications regulations, taxes, levies and compliance requirements.",
+        "going_concern_concerns": null,
+        "litigation_contingencies": "Pending litigation with Sri Lanka Customs relating to import duties of CDMA equipment."
+      },
+      "management_governance": {
+        "board_changes": "New Independent and Non-Independent Directors appointed during 2024; Board composition complied with CSE Listing Rules.",
+        "auditor_opinion": "Unqualified opinion – financial statements give a true and fair view in accordance with Sri Lanka Accounting Standards.",
+        "related_party_transactions": "Reviewed by the Related Party Transactions Review Committee in accordance with CSE Listing Rules.",
+        "corporate_governance_statements": "Corporate Governance Report included, detailing Board structure, committees and compliance.",
+        "director_responsibility_statement": "Directors acknowledged responsibility for preparation and fair presentation of financial statements."
+      },
+      "future_outlook": {
+        "chairman_ceo_outlook": "Continued investment in digital infrastructure, 5G readiness and enterprise solutions to support Sri Lanka’s digital transformation.",
+        "expansion_plans": "Integration of Airtel Lanka, network expansion, broadband and digital services growth.",
+        "expected_challenges": "Macroeconomic volatility, foreign exchange exposure, interest rate movements and regulatory changes.",
+        "strategy": "Focus on high-value segments, cost optimisation, network excellence and sustainable growth.",
+        "forward_looking_statements": "Management highlights continued growth opportunities while noting exposure to economic and market risks."
+      }
+    },
+    "investor_friendly_insight": {
+      "summary": "Dialog Axiata PLC reported consolidated revenue of Rs. 171.2 billion in 2024 with a net profit of Rs. 12.4 billion, maintaining profitability amid economic recovery and post-merger integration of Airtel Lanka. The Group continued disciplined capital expenditure and declared a final dividend of Rs. 1.00 per share.",
+      "key_strengths": [
+        "Market leadership in Sri Lanka’s telecommunications sector",
+        "Strong operating cash flows",
+        "Successful integration of Airtel Lanka"
+      ],
+      "key_concerns": [
+        "High leverage relative to equity",
+        "Exposure to foreign exchange and interest rate volatility",
+        "Low current ratio"
+      ],
+      "risk_level_explanation": "The Group faces moderate financial and market risk due to leverage and macroeconomic exposure, mitigated by strong cash generation and market position.",
+      "non_advisory_note": "This is an informational summary only and not financial advice."
+    },
+    "source_evidence": [
+      {
+        "field": "revenue_turnover",
+        "value": "Rs. 171,170 million",
+        "page_number": 12,
+        "source_quote": "Revenue Rs. Million 171,170"
+      },
+      {
+        "field": "profit_after_tax",
+        "value": "Rs. 12,435 million",
+        "page_number": 12,
+        "source_quote": "Profit for the year Rs. Million 12,435"
+      },
+      {
+        "field": "total_assets",
+        "value": "Rs. 309,147 million",
+        "page_number": 142,
+        "source_quote": "Total assets 309,147,354"
+      },
+      {
+        "field": "dividends",
+        "value": "Rs. 1.00 per share",
+        "page_number": 224,
+        "source_quote": "The Board of Directors has proposed a final dividend of Rs.1.00 per share for the financial year 2024."
+      }
+    ],
+    "missing_fields": [
+      "ebitda",
+      "free_cash_flow",
+      "going_concern_concerns"
+    ],
+    "confidence_score": 0.67
+  },
+  "token_usage": {
+    "input_tokens": 37565,
+    "output_tokens": 1803,
+    "total_tokens": 39368
+  },
+  "runtime_seconds": 18.221,
+  "errors": null
+}

@@ -1,0 +1,143 @@
+{
+  "metadata": {
+    "pdf_name": "369_1741169817422.pdf",
+    "company_name": "Commercial Bank of Ceylon PLC",
+    "reporting_year": "2024",
+    "prompt_id": "prompt_08",
+    "model": "gpt-5.2-chat",
+    "generated_at": "2026-05-08T12:11:40.938996+00:00"
+  },
+  "extracted_facts": {
+    "company_overview": {
+      "company_name": "Commercial Bank of Ceylon PLC",
+      "reporting_year": "2024",
+      "business_segments": [
+        "Personal Banking",
+        "Corporate Banking",
+        "International Operations",
+        "Dealing/Treasury",
+        "NBFI, Real Estate & Services"
+      ],
+      "principal_activities": "Banking and related activities including accepting deposits, lending, trade finance, treasury operations, digital banking, cards, remittances, investment banking, leasing, pawning, and Islamic banking services.",
+      "sector_industry": "Banking / Financial Services",
+      "subsidiaries_associates": "Key subsidiaries include Commercial Development Company PLC, CBC Finance Limited, CBC Tech Solutions Limited, Commercial Insurance Brokers (Pvt) Ltd., Commercial Bank of Maldives Private Limited, and CBC Myanmar Microfinance Company Limited."
+    },
+    "financial_performance": {
+      "revenue_turnover": null,
+      "gross_profit": null,
+      "operating_profit": "Operating profit before taxes on financial services for the Group was Rs. 117,515 Mn. for 2024.",
+      "profit_before_tax": "Group profit before income tax was Rs. 97,808 Mn. for 2024.",
+      "profit_after_tax": "Group profit after tax was Rs. 55,686 Mn. for 2024.",
+      "eps": "Basic EPS for the Group was Rs. 38.44 per share in 2024.",
+      "ebitda": null,
+      "net_finance_cost": null,
+      "tax_expense": "Total income tax expense for the Group was Rs. 55,686 Mn. in 2024."
+    },
+    "financial_position": {
+      "total_assets": "Total assets increased to Rs. 2.790 trillion as at December 31, 2024.",
+      "total_liabilities": null,
+      "total_equity": null,
+      "borrowings_debt": null,
+      "cash_and_cash_equivalents": "Cash and cash equivalents of the Bank were Rs. 86,848 Mn. as at December 31, 2024.",
+      "inventory": null,
+      "trade_receivables": null,
+      "trade_payables": null
+    },
+    "cash_flow": {
+      "operating_cash_flow": "Net cash used in operating activities was Rs. 92,347 Mn. for the Group in 2024.",
+      "investing_cash_flow": null,
+      "financing_cash_flow": null,
+      "free_cash_flow": null,
+      "capital_expenditure": "Purchase of property, plant and equipment amounted to Rs. 3,398 Mn. in 2024."
+    },
+    "investor_ratios": {
+      "gross_profit_margin": null,
+      "net_profit_margin": null,
+      "current_ratio": null,
+      "debt_to_equity_ratio": null,
+      "return_on_equity": "Return on Equity (ROE) was 22.06% for Commercial Bank in 2024.",
+      "return_on_assets": "Return on Assets (ROA) before tax was 3.56% in 2024.",
+      "eps_ratio_reference": "Basic EPS Rs. 38.44 reported in Note 24.",
+      "dividend_payout_ratio": "Total dividend payout ratio (cash and scrip) was 28.29% for 2024."
+    },
+    "shareholder_information": {
+      "stated_capital": null,
+      "number_of_shares": "Weighted average number of ordinary shares for EPS was 1,432,678,752 in 2024.",
+      "major_shareholders": "Top 20 ordinary voting shareholders held 77.08% of voting shares as at end 2024.",
+      "public_holding_percentage": null,
+      "dividends": "For 2024, total dividend was Rs. 9.50 per share (Rs. 7.50 cash + Rs. 2.00 scrip).",
+      "market_price_per_share": "Market price of a voting ordinary share was Rs. 144.75 at end of 2024."
+    },
+    "risk_factors": {
+      "liquidity_risk": "Liquidity risk is actively managed through monitoring of liquidity ratios and stress testing; deposits made up about 80% of total assets in 2024.",
+      "credit_risk": "Credit risk arises mainly from loans and advances; Stage 3 impaired loans ratio reduced to 2.76% in 2024.",
+      "market_risk": "Exposure to interest rate, foreign exchange and equity price movements is monitored using sensitivity and stress testing.",
+      "interest_rate_risk": "Interest rate risk is managed through repricing gap analysis and stress testing of net interest income.",
+      "foreign_exchange_risk": "Foreign exchange risk is monitored using Net Open Position limits and sensitivity analysis.",
+      "operational_risk": "Operational risk includes process failures, system issues and fraud, managed through policies, controls and insurance.",
+      "regulatory_risk": "The Bank operates under banking regulations of Sri Lanka and other countries where it has subsidiaries.",
+      "going_concern_concerns": "The financial statements were prepared on a going concern basis with no material uncertainty reported.",
+      "litigation_contingencies": "Contingent liabilities and litigation details are disclosed in Notes 57 and 59."
+    },
+    "management_governance": {
+      "board_changes": "Director appointments and retirements during 2024 followed a formal nomination and governance process.",
+      "auditor_opinion": "The independent auditor issued an unmodified (clean) audit opinion for 2024.",
+      "related_party_transactions": "Related party transactions are disclosed in Note 62 and are conducted at arm’s length.",
+      "corporate_governance_statements": "The Bank reports compliance with the CSE Listing Rules and the Code of Best Practice on Corporate Governance 2023.",
+      "director_responsibility_statement": "Directors confirmed responsibility for preparation of financial statements and internal controls."
+    },
+    "future_outlook": {
+      "chairman_ceo_outlook": "Management highlighted continued focus on sustainable growth, digital transformation and financial stability amid economic recovery.",
+      "expansion_plans": "Plans include expansion of sustainable finance, digital banking solutions and regional operations.",
+      "expected_challenges": "Challenges include macroeconomic volatility, credit risk and regulatory changes.",
+      "strategy": "The Bank’s strategy integrates financial performance with ESG priorities and risk management.",
+      "forward_looking_statements": "Forward-looking statements are subject to economic, regulatory and market risks."
+    }
+  },
+  "investor_friendly_insight": {
+    "summary": "Commercial Bank of Ceylon PLC is Sri Lanka’s largest private sector bank by assets. In 2024, it grew total assets to Rs. 2.79 trillion and earned a profit after tax of Rs. 55.7 billion. The Bank operates across multiple banking segments and maintains strong capital and profitability ratios.",
+    "key_strengths": [
+      "Large and diversified banking operations",
+      "Strong profitability with ROE above 22%",
+      "Improved asset quality with lower impaired loan ratios",
+      "Consistent dividend payments combining cash and scrip"
+    ],
+    "key_concerns": [
+      "Exposure to economic and political conditions in operating countries",
+      "Sensitivity to interest rate and foreign exchange movements",
+      "Credit risk from lending activities"
+    ],
+    "risk_level_explanation": "As a commercial bank, risk mainly comes from lending, interest rates, currency movements and economic conditions. The Bank manages these through capital buffers, diversification and regular stress testing.",
+    "non_advisory_note": "This is an informational summary only and not financial advice."
+  },
+  "source_evidence": [
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Annual Report 2024 – Commercial Bank of Ceylon PLC, pages 11, 18, 160, 170, 188, 292, 345"
+    }
+  ],
+  "missing_fields": [
+    "revenue_turnover",
+    "gross_profit",
+    "ebitda",
+    "net_finance_cost",
+    "total_liabilities",
+    "total_equity",
+    "borrowings_debt",
+    "inventory",
+    "trade_receivables",
+    "trade_payables",
+    "investing_cash_flow",
+    "financing_cash_flow",
+    "free_cash_flow",
+    "gross_profit_margin",
+    "net_profit_margin",
+    "current_ratio",
+    "debt_to_equity_ratio",
+    "stated_capital",
+    "public_holding_percentage"
+  ],
+  "confidence_score": 0.72
+}

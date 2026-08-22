@@ -1,0 +1,11 @@
+pdf_name,prompt_id,prompt_name,coverage_score,numeric_accuracy_score,similarity_score,semantic_similarity_score,source_faithfulness_score,investor_relevance_score,hallucination_penalty,final_score,rank
+369_1741169817422.pdf,prompt_04,Source-Grounded Evidence Prompt,0.88,0.0,0.0877,0.0877,0.0,1.0,0.25,0.1375,1
+369_1741169817422.pdf,prompt_06,Ratio-Aware Prompt,0.8,0.0723,0.1091,0.1091,0.0,1.0,0.25,0.1363,2
+369_1741169817422.pdf,prompt_07,Risk-Focused Investor Prompt,0.84,0.0355,0.095,0.095,0.0,1.0,0.25,0.1361,3
+369_1741169817422.pdf,prompt_10,Hybrid Best-Practice Prompt,0.86,0.0,0.088,0.088,0.0,1.0,0.25,0.1326,4
+369_1741169817422.pdf,prompt_01,Basic Extraction Prompt,0.82,0.0355,0.0985,0.0985,0.0,1.0,0.25,0.1318,5
+369_1741169817422.pdf,prompt_02,Role-Based Financial Analyst Prompt,0.86,0.0012,0.0815,0.0815,0.0,1.0,0.25,0.1315,6
+369_1741169817422.pdf,prompt_08,Beginner Investor Explanation Prompt,0.8,0.0339,0.1227,0.1227,0.0,1.0,0.25,0.1313,7
+369_1741169817422.pdf,prompt_05,Chain-of-Verification Prompt,0.78,0.0339,0.1206,0.1206,0.0,1.0,0.25,0.1259,8
+369_1741169817422.pdf,prompt_03,JSON Schema-Constrained Prompt,0.78,0.0339,0.0994,0.0994,0.0,1.0,0.25,0.1216,9
+369_1741169817422.pdf,prompt_09,Few-Shot Prompt,0.24,0.0,0.1434,0.1434,0.0,0.75,0.25,0.0,10

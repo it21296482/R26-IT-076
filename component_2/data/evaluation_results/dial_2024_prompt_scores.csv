@@ -1,0 +1,11 @@
+pdf_name,prompt_id,prompt_name,coverage_score,numeric_accuracy_score,similarity_score,semantic_similarity_score,source_faithfulness_score,investor_relevance_score,hallucination_penalty,final_score,rank
+DIAL_2024.pdf,prompt_10,Hybrid Best-Practice Prompt,0.9464,0.1935,0.221,0.221,0.0,1.0,0.25,0.2195,1
+DIAL_2024.pdf,prompt_01,Basic Extraction Prompt,0.9464,0.1935,0.1952,0.1952,0.0,1.0,0.25,0.2144,2
+DIAL_2024.pdf,prompt_03,JSON Schema-Constrained Prompt,0.9464,0.1613,0.2075,0.2075,0.0,1.0,0.25,0.2104,3
+DIAL_2024.pdf,prompt_09,Few-Shot Prompt,0.9464,0.1613,0.1928,0.1928,0.0,1.0,0.25,0.2074,4
+DIAL_2024.pdf,prompt_04,Source-Grounded Evidence Prompt,0.9286,0.1613,0.2048,0.2048,0.0,1.0,0.25,0.2054,5
+DIAL_2024.pdf,prompt_05,Chain-of-Verification Prompt,0.9286,0.1613,0.2043,0.2043,0.0,1.0,0.25,0.2053,6
+DIAL_2024.pdf,prompt_08,Beginner Investor Explanation Prompt,0.9464,0.1613,0.1824,0.1824,0.0,1.0,0.25,0.2053,7
+DIAL_2024.pdf,prompt_07,Risk-Focused Investor Prompt,0.9643,0.1613,0.1528,0.1528,0.0,1.0,0.25,0.2039,8
+DIAL_2024.pdf,prompt_02,Role-Based Financial Analyst Prompt,0.9464,0.1613,0.1742,0.1742,0.0,1.0,0.25,0.2037,9
+DIAL_2024.pdf,prompt_06,Ratio-Aware Prompt,0.9464,0.0968,0.1807,0.1807,0.0,1.0,0.25,0.1921,10

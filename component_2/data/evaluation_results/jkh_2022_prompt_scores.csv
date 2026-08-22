@@ -1,0 +1,11 @@
+pdf_name,prompt_id,prompt_name,coverage_score,numeric_accuracy_score,similarity_score,semantic_similarity_score,source_faithfulness_score,investor_relevance_score,hallucination_penalty,final_score,rank
+JKH_2022.pdf,prompt_08,Beginner Investor Explanation Prompt,1.0,0.0667,0.1169,0.1169,0.0,1.0,0.25,0.1867,1
+JKH_2022.pdf,prompt_07,Risk-Focused Investor Prompt,0.9074,0.0333,0.0952,0.0952,0.0,1.0,0.25,0.1526,2
+JKH_2022.pdf,prompt_01,Basic Extraction Prompt,0.9074,0.0333,0.0942,0.0942,0.0,1.0,0.25,0.1524,3
+JKH_2022.pdf,prompt_06,Ratio-Aware Prompt,0.9259,0.0332,0.0704,0.0704,0.0,1.0,0.25,0.1522,4
+JKH_2022.pdf,prompt_10,Hybrid Best-Practice Prompt,0.9444,0.0,0.0795,0.0795,0.0,1.0,0.25,0.152,5
+JKH_2022.pdf,prompt_04,Source-Grounded Evidence Prompt,0.8889,0.0333,0.0931,0.0931,0.0,1.0,0.25,0.1475,6
+JKH_2022.pdf,prompt_09,Few-Shot Prompt,0.8704,0.0333,0.1137,0.1137,0.0,1.0,0.25,0.147,7
+JKH_2022.pdf,prompt_02,Role-Based Financial Analyst Prompt,0.8704,0.0333,0.1098,0.1098,0.0,1.0,0.25,0.1462,8
+JKH_2022.pdf,prompt_05,Chain-of-Verification Prompt,0.8519,0.0333,0.1169,0.1169,0.0,1.0,0.25,0.143,9
+JKH_2022.pdf,prompt_03,JSON Schema-Constrained Prompt,0.7963,0.0333,0.1452,0.1452,0.0,1.0,0.25,0.1348,10

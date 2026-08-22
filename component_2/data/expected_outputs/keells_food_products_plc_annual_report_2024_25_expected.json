@@ -1,0 +1,1189 @@
+{
+  "pdf_name": "Keells Food Products PLC Annual Report 2024:25.pdf",
+  "discovery_summary": {
+    "company_overview": [
+      {
+        "field": "company_name",
+        "found": true,
+        "candidate_pages": [
+          78,
+          21
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 78",
+          "Keells Food Products PLC Annual Report 2024:25 page 21"
+        ]
+      },
+      {
+        "field": "reporting_year",
+        "found": true,
+        "candidate_pages": [
+          149,
+          231
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 149",
+          "Keells Food Products PLC Annual Report 2024:25 page 231"
+        ]
+      },
+      {
+        "field": "business_segments",
+        "found": true,
+        "candidate_pages": [
+          174,
+          13
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 174",
+          "Keells Food Products PLC Annual Report 2024:25 page 13"
+        ]
+      },
+      {
+        "field": "principal_activities",
+        "found": true,
+        "candidate_pages": [
+          171,
+          119
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 171",
+          "Keells Food Products PLC Annual Report 2024:25 page 119"
+        ]
+      },
+      {
+        "field": "sector_industry",
+        "found": true,
+        "candidate_pages": [
+          23,
+          32
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 23",
+          "Keells Food Products PLC Annual Report 2024:25 page 32"
+        ]
+      },
+      {
+        "field": "subsidiaries_associates",
+        "found": true,
+        "candidate_pages": [
+          119,
+          197
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 119",
+          "Keells Food Products PLC Annual Report 2024:25 page 197"
+        ]
+      }
+    ],
+    "financial_performance": [
+      {
+        "field": "revenue_turnover",
+        "found": true,
+        "candidate_pages": [
+          192,
+          229
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 192",
+          "Keells Food Products PLC Annual Report 2024:25 page 229"
+        ]
+      },
+      {
+        "field": "gross_profit",
+        "found": true,
+        "candidate_pages": [
+          41,
+          10
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 41",
+          "Keells Food Products PLC Annual Report 2024:25 page 10"
+        ]
+      },
+      {
+        "field": "operating_profit",
+        "found": true,
+        "candidate_pages": [
+          41,
+          175
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 41",
+          "Keells Food Products PLC Annual Report 2024:25 page 175"
+        ]
+      },
+      {
+        "field": "profit_before_tax",
+        "found": true,
+        "candidate_pages": [
+          14,
+          41
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 14",
+          "Keells Food Products PLC Annual Report 2024:25 page 41"
+        ]
+      },
+      {
+        "field": "profit_after_tax",
+        "found": true,
+        "candidate_pages": [
+          229,
+          169
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 229",
+          "Keells Food Products PLC Annual Report 2024:25 page 169"
+        ]
+      },
+      {
+        "field": "eps",
+        "found": true,
+        "candidate_pages": [
+          195,
+          229
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 195",
+          "Keells Food Products PLC Annual Report 2024:25 page 229"
+        ]
+      },
+      {
+        "field": "ebitda",
+        "found": true,
+        "candidate_pages": [
+          229,
+          34
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 229",
+          "Keells Food Products PLC Annual Report 2024:25 page 34"
+        ]
+      },
+      {
+        "field": "net_finance_cost",
+        "found": true,
+        "candidate_pages": [
+          194,
+          164
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 194",
+          "Keells Food Products PLC Annual Report 2024:25 page 164"
+        ]
+      },
+      {
+        "field": "tax_expense",
+        "found": true,
+        "candidate_pages": [
+          198,
+          200
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 198",
+          "Keells Food Products PLC Annual Report 2024:25 page 200"
+        ]
+      }
+    ],
+    "financial_position": [
+      {
+        "field": "total_assets",
+        "found": true,
+        "candidate_pages": [
+          229,
+          10
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 229",
+          "Keells Food Products PLC Annual Report 2024:25 page 10"
+        ]
+      },
+      {
+        "field": "total_liabilities",
+        "found": true,
+        "candidate_pages": [
+          229,
+          190
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 229",
+          "Keells Food Products PLC Annual Report 2024:25 page 190"
+        ]
+      },
+      {
+        "field": "total_equity",
+        "found": true,
+        "candidate_pages": [
+          166,
+          229
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 166",
+          "Keells Food Products PLC Annual Report 2024:25 page 229"
+        ]
+      },
+      {
+        "field": "borrowings_debt",
+        "found": true,
+        "candidate_pages": [
+          229,
+          190
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 229",
+          "Keells Food Products PLC Annual Report 2024:25 page 190"
+        ]
+      },
+      {
+        "field": "cash_and_cash_equivalents",
+        "found": true,
+        "candidate_pages": [
+          168,
+          182
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 168",
+          "Keells Food Products PLC Annual Report 2024:25 page 182"
+        ]
+      },
+      {
+        "field": "inventory",
+        "found": true,
+        "candidate_pages": [
+          211,
+          161
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 211",
+          "Keells Food Products PLC Annual Report 2024:25 page 161"
+        ]
+      },
+      {
+        "field": "trade_receivables",
+        "found": true,
+        "candidate_pages": [
+          212,
+          180
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 212",
+          "Keells Food Products PLC Annual Report 2024:25 page 180"
+        ]
+      },
+      {
+        "field": "trade_payables",
+        "found": true,
+        "candidate_pages": [
+          219,
+          191
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 219",
+          "Keells Food Products PLC Annual Report 2024:25 page 191"
+        ]
+      }
+    ],
+    "cash_flow": [
+      {
+        "field": "operating_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          167,
+          168
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 167",
+          "Keells Food Products PLC Annual Report 2024:25 page 168"
+        ]
+      },
+      {
+        "field": "investing_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          42,
+          167
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 42",
+          "Keells Food Products PLC Annual Report 2024:25 page 167"
+        ]
+      },
+      {
+        "field": "financing_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          167,
+          182
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 167",
+          "Keells Food Products PLC Annual Report 2024:25 page 182"
+        ]
+      },
+      {
+        "field": "free_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          168,
+          182
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 168",
+          "Keells Food Products PLC Annual Report 2024:25 page 182"
+        ]
+      },
+      {
+        "field": "capital_expenditure",
+        "found": true,
+        "candidate_pages": [
+          44,
+          150
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 44",
+          "Keells Food Products PLC Annual Report 2024:25 page 150"
+        ]
+      }
+    ],
+    "investor_ratios": [
+      {
+        "field": "gross_profit_margin",
+        "found": true,
+        "candidate_pages": [
+          41,
+          14
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 41",
+          "Keells Food Products PLC Annual Report 2024:25 page 14"
+        ]
+      },
+      {
+        "field": "net_profit_margin",
+        "found": true,
+        "candidate_pages": [
+          229,
+          10
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 229",
+          "Keells Food Products PLC Annual Report 2024:25 page 10"
+        ]
+      },
+      {
+        "field": "current_ratio",
+        "found": true,
+        "candidate_pages": [
+          229,
+          227
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 229",
+          "Keells Food Products PLC Annual Report 2024:25 page 227"
+        ]
+      },
+      {
+        "field": "debt_to_equity_ratio",
+        "found": true,
+        "candidate_pages": [
+          41,
+          54
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 41",
+          "Keells Food Products PLC Annual Report 2024:25 page 54"
+        ]
+      },
+      {
+        "field": "return_on_equity",
+        "found": true,
+        "candidate_pages": [
+          12,
+          30
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 12",
+          "Keells Food Products PLC Annual Report 2024:25 page 30"
+        ]
+      },
+      {
+        "field": "return_on_assets",
+        "found": true,
+        "candidate_pages": [
+          114,
+          15
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 114",
+          "Keells Food Products PLC Annual Report 2024:25 page 15"
+        ]
+      },
+      {
+        "field": "eps_ratio_reference",
+        "found": true,
+        "candidate_pages": [
+          195,
+          229
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 195",
+          "Keells Food Products PLC Annual Report 2024:25 page 229"
+        ]
+      },
+      {
+        "field": "dividend_payout_ratio",
+        "found": true,
+        "candidate_pages": [
+          229,
+          227
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 229",
+          "Keells Food Products PLC Annual Report 2024:25 page 227"
+        ]
+      }
+    ],
+    "shareholder_information": [
+      {
+        "field": "stated_capital",
+        "found": true,
+        "candidate_pages": [
+          151,
+          229
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 151",
+          "Keells Food Products PLC Annual Report 2024:25 page 229"
+        ]
+      },
+      {
+        "field": "number_of_shares",
+        "found": true,
+        "candidate_pages": [
+          195,
+          196
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 195",
+          "Keells Food Products PLC Annual Report 2024:25 page 196"
+        ]
+      },
+      {
+        "field": "major_shareholders",
+        "found": true,
+        "candidate_pages": [
+          151,
+          224
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 151",
+          "Keells Food Products PLC Annual Report 2024:25 page 224"
+        ]
+      },
+      {
+        "field": "public_holding_percentage",
+        "found": true,
+        "candidate_pages": [
+          119,
+          229
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 119",
+          "Keells Food Products PLC Annual Report 2024:25 page 229"
+        ]
+      },
+      {
+        "field": "dividends",
+        "found": true,
+        "candidate_pages": [
+          229,
+          42
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 229",
+          "Keells Food Products PLC Annual Report 2024:25 page 42"
+        ]
+      },
+      {
+        "field": "market_price_per_share",
+        "found": true,
+        "candidate_pages": [
+          216,
+          229
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 216",
+          "Keells Food Products PLC Annual Report 2024:25 page 229"
+        ]
+      }
+    ],
+    "risk_factors": [
+      {
+        "field": "liquidity_risk",
+        "found": true,
+        "candidate_pages": [
+          182,
+          184
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 182",
+          "Keells Food Products PLC Annual Report 2024:25 page 184"
+        ]
+      },
+      {
+        "field": "credit_risk",
+        "found": true,
+        "candidate_pages": [
+          179,
+          180
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 179",
+          "Keells Food Products PLC Annual Report 2024:25 page 180"
+        ]
+      },
+      {
+        "field": "market_risk",
+        "found": true,
+        "candidate_pages": [
+          184,
+          132
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 184",
+          "Keells Food Products PLC Annual Report 2024:25 page 132"
+        ]
+      },
+      {
+        "field": "interest_rate_risk",
+        "found": true,
+        "candidate_pages": [
+          184,
+          129
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 184",
+          "Keells Food Products PLC Annual Report 2024:25 page 129"
+        ]
+      },
+      {
+        "field": "foreign_exchange_risk",
+        "found": true,
+        "candidate_pages": [
+          185,
+          184
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 185",
+          "Keells Food Products PLC Annual Report 2024:25 page 184"
+        ]
+      },
+      {
+        "field": "operational_risk",
+        "found": true,
+        "candidate_pages": [
+          182,
+          129
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 182",
+          "Keells Food Products PLC Annual Report 2024:25 page 129"
+        ]
+      },
+      {
+        "field": "regulatory_risk",
+        "found": true,
+        "candidate_pages": [
+          134,
+          129
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 134",
+          "Keells Food Products PLC Annual Report 2024:25 page 129"
+        ]
+      },
+      {
+        "field": "going_concern_concerns",
+        "found": true,
+        "candidate_pages": [
+          162,
+          163
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 162",
+          "Keells Food Products PLC Annual Report 2024:25 page 163"
+        ]
+      },
+      {
+        "field": "litigation_contingencies",
+        "found": true,
+        "candidate_pages": [
+          223,
+          151
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 223",
+          "Keells Food Products PLC Annual Report 2024:25 page 151"
+        ]
+      }
+    ],
+    "management_governance": [
+      {
+        "field": "board_changes",
+        "found": true,
+        "candidate_pages": [
+          84,
+          85
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 84",
+          "Keells Food Products PLC Annual Report 2024:25 page 85"
+        ]
+      },
+      {
+        "field": "auditor_opinion",
+        "found": true,
+        "candidate_pages": [
+          161,
+          162
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 161",
+          "Keells Food Products PLC Annual Report 2024:25 page 162"
+        ]
+      },
+      {
+        "field": "related_party_transactions",
+        "found": true,
+        "candidate_pages": [
+          87,
+          220
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 87",
+          "Keells Food Products PLC Annual Report 2024:25 page 220"
+        ]
+      },
+      {
+        "field": "corporate_governance_statements",
+        "found": true,
+        "candidate_pages": [
+          122,
+          126
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 122",
+          "Keells Food Products PLC Annual Report 2024:25 page 126"
+        ]
+      },
+      {
+        "field": "director_responsibility_statement",
+        "found": true,
+        "candidate_pages": [
+          4,
+          147
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 4",
+          "Keells Food Products PLC Annual Report 2024:25 page 147"
+        ]
+      }
+    ],
+    "future_outlook": [
+      {
+        "field": "chairman_ceo_outlook",
+        "found": true,
+        "candidate_pages": [
+          15,
+          32
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 15",
+          "Keells Food Products PLC Annual Report 2024:25 page 32"
+        ]
+      },
+      {
+        "field": "expansion_plans",
+        "found": true,
+        "candidate_pages": [
+          9,
+          38
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 9",
+          "Keells Food Products PLC Annual Report 2024:25 page 38"
+        ]
+      },
+      {
+        "field": "expected_challenges",
+        "found": true,
+        "candidate_pages": [
+          132,
+          3
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 132",
+          "Keells Food Products PLC Annual Report 2024:25 page 3"
+        ]
+      },
+      {
+        "field": "strategy",
+        "found": true,
+        "candidate_pages": [
+          93,
+          114
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 93",
+          "Keells Food Products PLC Annual Report 2024:25 page 114"
+        ]
+      },
+      {
+        "field": "forward_looking_statements",
+        "found": true,
+        "candidate_pages": [
+          181,
+          16
+        ],
+        "sample_source_refs": [
+          "Keells Food Products PLC Annual Report 2024:25 page 181",
+          "Keells Food Products PLC Annual Report 2024:25 page 16"
+        ]
+      }
+    ]
+  },
+  "expected_outputs": {
+    "company_name": {
+      "category": "company_overview",
+      "expected_value": "Keells Food Products PLC",
+      "source_text": "Keells Food Products PLC",
+      "page_number": 78,
+      "confidence": 0.85
+    },
+    "reporting_year": {
+      "category": "company_overview",
+      "expected_value": "2024/25",
+      "source_text": "147 Annual Report 2024/25 ANNUAL REPORT OF THE BOARD OF DIRECTORS The Board of Directors of Keells Food Products PLC (Company) has pleasure in presenting the 43rd A",
+      "page_number": 149,
+      "confidence": 0.85
+    },
+    "business_segments": {
+      "category": "company_overview",
+      "expected_value": "As such for management purposes, the Group is organised into business units based on their products and services and has two operating business segments as manufacturing and trading. The measurement policies the Group uses for segment reporting under SLFRS 8 are the same as those used in",
+      "source_text": "As such for management purposes, the Group is organised into business units based on their products and services and has two operating business segments as manufacturing and trading. The measurement policies the Group uses for segment reporting under SLFRS 8 are the same as those used in",
+      "page_number": 174,
+      "confidence": 0.85
+    },
+    "principal_activities": {
+      "category": "company_overview",
+      "expected_value": "Statements of the Group for the year ended 31st March 2025 were authorised for issue by the Board of Directors on the 26th May 2025. Principal activities and nature of operations Company The principal activities of the Company were manufacture and sale of processed meats, raw meats, c",
+      "source_text": "Statements of the Group for the year ended 31st March 2025 were authorised for issue by the Board of Directors on the 26th May 2025. Principal activities and nature of operations Company The principal activities of the Company were manufacture and sale of processed meats, raw meats, c",
+      "page_number": 171,
+      "confidence": 0.85
+    },
+    "sector_industry": {
+      "category": "company_overview",
+      "expected_value": "o Director/ Executive Vice President Chief Financial Officer - Consumer Foods Industry Group Ms. J Ganeshan Senior Assistant Vice President Sector Financial Controller - Consumer Foods Industry Group Mr. G Samarakkody Assistant Vice President Financial Controller - Consumer Foods Indu",
+      "source_text": "o Director/ Executive Vice President Chief Financial Officer - Consumer Foods Industry Group Ms. J Ganeshan Senior Assistant Vice President Sector Financial Controller - Consumer Foods Industry Group Mr. G Samarakkody Assistant Vice President Financial Controller - Consumer Foods Indu",
+      "page_number": 23,
+      "confidence": 0.85
+    },
+    "subsidiaries_associates": {
+      "category": "company_overview",
+      "expected_value": "117 Annual Report 2024/25 Section Compliance Status Reference Pages 168 (1) (h) Information on the Directorate of the Company-and its subsidiaries during and at the end of the accounting period Yes Annual Report of the Board of Directors 150 168 (1) (i) Amounts paid/payable to the",
+      "source_text": "117 Annual Report 2024/25 Section Compliance Status Reference Pages 168 (1) (h) Information on the Directorate of the Company-and its subsidiaries during and at the end of the accounting period Yes Annual Report of the Board of Directors 150 168 (1) (i) Amounts paid/payable to the",
+      "page_number": 119,
+      "confidence": 0.85
+    },
+    "revenue_turnover": {
+      "category": "financial_performance",
+      "expected_value": "13",
+      "source_text": "required in establishing fair values. The judgement include consideration of input such as liquidity risk, credit risk and volatility. 13 REVENUE Accounting Policy Revenue from contracts with customers Revenue from contracts with customers is",
+      "page_number": 192,
+      "confidence": 0.85
+    },
+    "gross_profit": {
+      "category": "financial_performance",
+      "expected_value": "Rs. 1.8 billion",
+      "source_text": "remained relatively high. The HoReCa channel, buoyed by a recovery in tourism and out-of-home consumption, posted strong volume growth. Gross Profit KFP reported a gross profit of Rs. 1.8 billion, reflecting a substantial 43% increase over the previous year, with gross profit margins r",
+      "page_number": 41,
+      "confidence": 0.85
+    },
+    "operating_profit": {
+      "category": "financial_performance",
+      "expected_value": "Rs. 248 million",
+      "source_text": "sourcing initiatives, enhanced production efficiencies including reduced electricity costs and favourable changes in raw material prices. Operating Profitability The Group recorded an operating profit of Rs. 248 million for the year, marking a significant turnaround from the operating loss",
+      "page_number": 41,
+      "confidence": 0.85
+    },
+    "profit_before_tax": {
+      "category": "financial_performance",
+      "expected_value": "Rs. 179 million",
+      "source_text": "tory efficiency. Finance costs decreased by 50% to Rs. 84 million primarily on account of the decline in interest rates during the year. Profit Before Tax (PBT) was recorded at Rs. 179 million, a notable turnaround from the loss recorded in the previous year, whilst PBT margins improved fro",
+      "page_number": 14,
+      "confidence": 0.85
+    },
+    "profit_after_tax": {
+      "category": "financial_performance",
+      "expected_value": "period. CAPITAL EMPLOYED Shareholders’ funds plus non-controlling interests and debt including lease liabilities. CASH EARNINGS PER SHARE Profit After Tax attributable to Ordinary Shareholding adjusted for non-cash items over by weighted average number of shares in issue during the year. CO",
+      "source_text": "period. CAPITAL EMPLOYED Shareholders’ funds plus non-controlling interests and debt including lease liabilities. CASH EARNINGS PER SHARE Profit After Tax attributable to Ordinary Shareholding adjusted for non-cash items over by weighted average number of shares in issue during the year. CO",
+      "page_number": 229,
+      "confidence": 0.85
+    },
+    "eps": {
+      "category": "financial_performance",
+      "expected_value": "3,004 17",
+      "source_text": "1,423 1,423 1,423 1,423 Amortisation of intangible assets 1,536 1,512 1,536 1,512 Donations - 3,004 - 3,004 17 EARNINGS PER SHARE (EPS) Accounting Policy Basic EPS is calculated by dividing the profit for the year attributable to ordinary equit",
+      "page_number": 195,
+      "confidence": 0.85
+    },
+    "ebitda": {
+      "category": "financial_performance",
+      "expected_value": "a percentage of Market Price per Share at the end of the period. EBIT Earnings Before Interest and Tax (includes other operating income) EBITDA Earnings before interest expense, tax, depreciation and amortization (includes other operating income). Note that EBITDA includes intere",
+      "source_text": "a percentage of Market Price per Share at the end of the period. EBIT Earnings Before Interest and Tax (includes other operating income) EBITDA Earnings before interest expense, tax, depreciation and amortization (includes other operating income). Note that EBITDA includes intere",
+      "page_number": 229,
+      "confidence": 0.85
+    },
+    "net_finance_cost": {
+      "category": "financial_performance",
+      "expected_value": "69,853",
+      "source_text": "t expense on borrowings - Short-term (83,111) (160,852) (83,111) (160,852) Total finance cost (83,993) (166,849) (83,993) (166,849) Net finance cost (69,853) (152,751) (69,853) (152,751) 16 PROFIT/ (LOSS) BEFORE TAX Accounting Policy Expenditure recognition Expenses are recogn",
+      "page_number": 194,
+      "confidence": 0.85
+    },
+    "tax_expense": {
+      "category": "financial_performance",
+      "expected_value": "19.2",
+      "source_text": "AL STATEMENTS Group Company For the year ended 31st March Notes 2025 2024 2025 2024 Rs. '000 Rs. '000 Rs. '000 Rs. '000 19.1 Tax expense Deferred Tax Relating to origination and (reversal) of temporary differences 19.2 45,407 (71,666) 45,407 (71,666) 45,407 (71,6",
+      "page_number": 198,
+      "confidence": 0.85
+    },
+    "total_assets": {
+      "category": "financial_position",
+      "expected_value": ". MARKET CAPITALISATION Number of Shares in issue at the end the of period multiplied by the share price at end of the period. NET ASSETS Total Assets minus Current Liabilities minus Long Term Liabilities minus Minority Interest. NET ASSET PER SHARE Net Assets divided by the number of O",
+      "source_text": ". MARKET CAPITALISATION Number of Shares in issue at the end the of period multiplied by the share price at end of the period. NET ASSETS Total Assets minus Current Liabilities minus Long Term Liabilities minus Minority Interest. NET ASSET PER SHARE Net Assets divided by the number of O",
+      "page_number": 229,
+      "confidence": 0.85
+    },
+    "total_liabilities": {
+      "category": "financial_position",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "total_equity": {
+      "category": "financial_position",
+      "expected_value": "1,972,232 1,863,261 1,975,851 1,867,034",
+      "source_text": "1,294,815 Revenue reserve 31 229,192 143,013 226,340 142,076 Other components of equity 32 448,225 425,433 454,696 430,143 Total equity 1,972,232 1,863,261 1,975,851 1,867,034 Non-current liabilities Lease liabilities 21.1.2 2,238 3,357 2,238 3,357 Deferred t",
+      "page_number": 166,
+      "confidence": 0.85
+    },
+    "borrowings_debt": {
+      "category": "financial_position",
+      "expected_value": "gardless of whether cash is received or disbursed in that period. CAPITAL EMPLOYED Shareholders’ funds plus non-controlling interests and debt including lease liabilities. CASH EARNINGS PER SHARE Profit After Tax attributable to Ordinary Shareholding adjusted for non-cash items",
+      "source_text": "gardless of whether cash is received or disbursed in that period. CAPITAL EMPLOYED Shareholders’ funds plus non-controlling interests and debt including lease liabilities. CASH EARNINGS PER SHARE Profit After Tax attributable to Ordinary Shareholding adjusted for non-cash items",
+      "page_number": 229,
+      "confidence": 0.85
+    },
+    "cash_and_cash_equivalents": {
+      "category": "financial_position",
+      "expected_value": "780,860",
+      "source_text": "s. '000 Rs. '000 Rs. '000 Rs. '000 NET INCREASE / (DECREASE) IN CASH AND CASH EQUIVALENTS (122,070) 327,595 (123,804) 330,918 CASH AND CASH EQUIVALENTS AT THE BEGINNING (780,860) (1,112,577) (781,537) (1,112,455) Effect of exchange rate changes (1,761) 4,122 - - CASH AND CASH",
+      "page_number": 168,
+      "confidence": 0.85
+    },
+    "inventory": {
+      "category": "financial_position",
+      "expected_value": "osts of completion and the estimated costs necessary to make the sale. Significant accounting judgements, estimates and assumptions Inventory provisions are recognized in cases where the expected net realizable value of inventory is lower than its carrying amount, including provi",
+      "source_text": "osts of completion and the estimated costs necessary to make the sale. Significant accounting judgements, estimates and assumptions Inventory provisions are recognized in cases where the expected net realizable value of inventory is lower than its carrying amount, including provi",
+      "page_number": 211,
+      "confidence": 0.85
+    },
+    "trade_receivables": {
+      "category": "financial_position",
+      "expected_value": "27",
+      "source_text": "Food Products PLC NOTES TO THE FINANCIAL STATEMENTS 27 TRADE AND OTHER RECEIVABLES Accounting Policy Trade receivables are classified as current assets if payment is due within one year. A receivable represents the Group’s right to an amount of consid",
+      "page_number": 212,
+      "confidence": 0.85
+    },
+    "trade_payables": {
+      "category": "financial_position",
+      "expected_value": "35",
+      "source_text": "25 Weighted average duration of the defined benefit plan obligation in years 4.99 5.45 35 TRADE AND OTHER PAYABLES Accounting Policy Trade payables are aggregate amount of obligations to pay for goods or services, that have been acquired in the ordinary course of business. Trade and ot",
+      "page_number": 219,
+      "confidence": 0.85
+    },
+    "operating_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "investing_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": "Rs. 123 million",
+      "source_text": "Inventory levels increased by Rs. 257 million and trade receivables grew by Rs. 124 million, both consistent with higher sales volumes. Net cash used in investing activities was Rs. 123 million, down from Rs. 189 million in the previous year, as capital expenditure was largely confined to the maintenance and",
+      "page_number": 42,
+      "confidence": 0.85
+    },
+    "financing_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "free_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "capital_expenditure": {
+      "category": "cash_flow",
+      "expected_value": "2024",
+      "source_text": "as per the Halal Assessment Council and GSO guidelines Factory registration for export by Department of Animal Production and Health (DAPH) CAPITAL EXPENDITURE IN 2024/25 During the year, capital expenditure was primarily directed towards maintaining existing machinery to ensure operational effic",
+      "page_number": 44,
+      "confidence": 0.85
+    },
+    "gross_profit_margin": {
+      "category": "investor_ratios",
+      "expected_value": "22%",
+      "source_text": "growth. Gross Profit KFP reported a gross profit of Rs. 1.8 billion, reflecting a substantial 43% increase over the previous year, with gross profit margins rising from 22% to 27%. This improvement was driven by higher sales volumes, strategic sourcing initiatives, enhanced production effici",
+      "page_number": 41,
+      "confidence": 0.85
+    },
+    "net_profit_margin": {
+      "category": "investor_ratios",
+      "expected_value": "Net Assets divided by the number of Ordinary Shares in issue at the end of the period NET DEBT Debt minus Cash and Short-Term Deposits. NET PROFIT MARGIN Profit After Tax attributable to equity holders of the Parent divided by total Revenue. NET WORKING CAPITAL Current Assets - Current Liab",
+      "source_text": "Net Assets divided by the number of Ordinary Shares in issue at the end of the period NET DEBT Debt minus Cash and Short-Term Deposits. NET PROFIT MARGIN Profit After Tax attributable to equity holders of the Parent divided by total Revenue. NET WORKING CAPITAL Current Assets - Current Liab",
+      "page_number": 229,
+      "confidence": 0.85
+    },
+    "current_ratio": {
+      "category": "investor_ratios",
+      "expected_value": "3",
+      "source_text": "events or, 2. A probable outflow of economic resources is not expected or, 3. It is unable to be measured with sufficient reliability. CURRENT RATIO Current Assets over Current Liabilities. DEBT/ EQUITY RATIO (GEARING) Debt as a percentage of Shareholders’ Funds. DIVIDEND PAYABLE Final",
+      "page_number": 229,
+      "confidence": 0.85
+    },
+    "debt_to_equity_ratio": {
+      "category": "investor_ratios",
+      "expected_value": "52%",
+      "source_text": "es associated with increased trading activity, as well as a rise in bank overdrafts to meet elevated working capital demands. The Group’s debt-to-equity ratio improved to 52% in FY 2024/25, compared to 58% in the previous year, reflecting enhanced financial stability and a more balanced c",
+      "page_number": 41,
+      "confidence": 0.85
+    },
+    "return_on_equity": {
+      "category": "investor_ratios",
+      "expected_value": "2024,",
+      "source_text": "ning its market leadership position and future prospects of the business. OPERATING LANDSCAPE Sri Lanka continued to witness a stable macroeconomic environment in CY2024, maintaining the strong growth momentum established in the latter part of CY2023, with all key indicators s",
+      "page_number": 12,
+      "confidence": 0.85
+    },
+    "return_on_assets": {
+      "category": "investor_ratios",
+      "expected_value": "terial conflicts were reported during the year. Internal Audit The ensuing diagram provides a helicopter view of the new Internal Audit Approach that has been rolled-out within the KFP Group. Central to this approach is the business strategy and how the current processes, systems,",
+      "source_text": "terial conflicts were reported during the year. Internal Audit The ensuing diagram provides a helicopter view of the new Internal Audit Approach that has been rolled-out within the KFP Group. Central to this approach is the business strategy and how the current processes, systems,",
+      "page_number": 114,
+      "confidence": 0.85
+    },
+    "eps_ratio_reference": {
+      "category": "investor_ratios",
+      "expected_value": "3,004 17",
+      "source_text": "1,423 1,423 1,423 1,423 Amortisation of intangible assets 1,536 1,512 1,536 1,512 Donations - 3,004 - 3,004 17 EARNINGS PER SHARE (EPS) Accounting Policy Basic EPS is calculated by dividing the profit for the year attributable to ordinary equit",
+      "page_number": 195,
+      "confidence": 0.85
+    },
+    "dividend_payout_ratio": {
+      "category": "investor_ratios",
+      "expected_value": "ds paid to ordinary shareholders divided by Number of Ordinary Shares issued. DIVIDEND COVER Earnings per Share over Dividend per Share. DIVIDEND PAYOUT RATIO Total Dividend as a percentage of Profit After Tax. DIVIDEND YIELD Dividend per Share as a percentage of Market Price of Share at the end",
+      "source_text": "ds paid to ordinary shareholders divided by Number of Ordinary Shares issued. DIVIDEND COVER Earnings per Share over Dividend per Share. DIVIDEND PAYOUT RATIO Total Dividend as a percentage of Profit After Tax. DIVIDEND YIELD Dividend per Share as a percentage of Market Price of Share at the end",
+      "page_number": 229,
+      "confidence": 0.85
+    },
+    "stated_capital": {
+      "category": "shareholder_information",
+      "expected_value": "23",
+      "source_text": "149 Annual Report 2024/25 INVESTMENTS Details of investments held by the Company are disclosed in Note 23 to the Financial Statements. STATED CAPITAL In compliance with the Companies Act, the Financial Statements reflect the Stated Capital of the Company. The Stated Capital is the total",
+      "page_number": 151,
+      "confidence": 0.85
+    },
+    "number_of_shares": {
+      "category": "shareholder_information",
+      "expected_value": "7",
+      "source_text": "is calculated by dividing the profit for the year attributable to ordinary equity holders of the parent by the weighted average number of ordinary shares outstanding during the year. Diluted EPS is calculated by dividing the profit attributable to ordinary equity holders of the parent (after",
+      "page_number": 195,
+      "confidence": 0.85
+    },
+    "major_shareholders": {
+      "category": "shareholder_information",
+      "expected_value": "r option 2 of the minimum threshold requirements for the Diri Savi Board of the CSE, as per section 7.6 of the listing rules of the CSE. MAJOR SHAREHOLDERS The list of the top twenty shareholders is given on page 223 of this report. INFORMATION TO SHAREHOLDERS The Board strives to be transpar",
+      "source_text": "r option 2 of the minimum threshold requirements for the Diri Savi Board of the CSE, as per section 7.6 of the listing rules of the CSE. MAJOR SHAREHOLDERS The list of the top twenty shareholders is given on page 223 of this report. INFORMATION TO SHAREHOLDERS The Board strives to be transpar",
+      "page_number": 151,
+      "confidence": 0.85
+    },
+    "public_holding_percentage": {
+      "category": "shareholder_information",
+      "expected_value": "223",
+      "source_text": "ated in LKR and the percentage of such shares held Yes Your Share in Detail 222-223 (iv) a) The float adjusted market capitalisation, public holding percentage (%), number of public shareholders and under which option the Listed Companies complies with the Minimum Public Holding requ",
+      "page_number": 119,
+      "confidence": 0.85
+    },
+    "dividends": {
+      "category": "shareholder_information",
+      "expected_value": "3",
+      "source_text": "iability. CURRENT RATIO Current Assets over Current Liabilities. DEBT/ EQUITY RATIO (GEARING) Debt as a percentage of Shareholders’ Funds. DIVIDEND PAYABLE Final Dividend per share multiplied by the latest available total number of shares as at the reporting date. DIVIDEND PER SHARE -",
+      "page_number": 229,
+      "confidence": 0.85
+    },
+    "market_price_per_share": {
+      "category": "shareholder_information",
+      "expected_value": "194.00",
+      "source_text": "rest rate (%) 12.76 14.49 26.92 23.10 8.87 6.44 Expected life of share options (Years) 5 5 5 5 5 5 Weighted average share price at the grant date (Rs) 194.00 158.36 137.83 119.85 132.63 134.74 Weighted average remaining contractual life for the share op",
+      "page_number": 216,
+      "confidence": 0.85
+    },
+    "liquidity_risk": {
+      "category": "risk_factors",
+      "expected_value": "net negative cash and cash equivalents of 905 Mn as at 31 March 2025 (2023/24 net negative cash and cash equivalents of Rs.782 Mn). 10.2 Liquidity risk The Group's policy is to hold cash and undrawn committed facilities at a level sufficient to ensure that there is available f",
+      "source_text": "net negative cash and cash equivalents of 905 Mn as at 31 March 2025 (2023/24 net negative cash and cash equivalents of Rs.782 Mn). 10.2 Liquidity risk The Group's policy is to hold cash and undrawn committed facilities at a level sufficient to ensure that there is available f",
+      "page_number": 182,
+      "confidence": 0.85
+    },
+    "credit_risk": {
+      "category": "risk_factors",
+      "expected_value": "177 Annual Report 2024/25 10.1 Credit risk Credit risk is the risk that a counter party will not meet its obligations under a financial instrument or customer contract, leading to",
+      "source_text": "177 Annual Report 2024/25 10.1 Credit risk Credit risk is the risk that a counter party will not meet its obligations under a financial instrument or customer contract, leading to",
+      "page_number": 179,
+      "confidence": 0.85
+    },
+    "market_risk": {
+      "category": "risk_factors",
+      "expected_value": "- - 45,164 Bank overdrafts 849,373 - - - - - 849,373 1,684,806 1,407 578 625 675 27,283 1,715,374 10.3 Market risk Market risk is the risk that the fair value of future cash flows of a financial instrument will fluctuate because of changes in market p",
+      "source_text": "- - 45,164 Bank overdrafts 849,373 - - - - - 849,373 1,684,806 1,407 578 625 675 27,283 1,715,374 10.3 Market risk Market risk is the risk that the fair value of future cash flows of a financial instrument will fluctuate because of changes in market p",
+      "page_number": 184,
+      "confidence": 0.85
+    },
+    "interest_rate_risk": {
+      "category": "risk_factors",
+      "expected_value": "financial instrument will fluctuate because of changes in market prices. Market risk comprises of the following risks: * Interest rate risk * Foreign currency risk The objective of market risk management is to manage and control market risk exposures within acceptable param",
+      "source_text": "financial instrument will fluctuate because of changes in market prices. Market risk comprises of the following risks: * Interest rate risk * Foreign currency risk The objective of market risk management is to manage and control market risk exposures within acceptable param",
+      "page_number": 184,
+      "confidence": 0.85
+    },
+    "foreign_exchange_risk": {
+      "category": "risk_factors",
+      "expected_value": "sensitivity analysis is based on the currently observable market environment changes to base floating interest rates. 10.3.2 Foreign currency risk Foreign currency risk is the risk that the fair value or future cash flows of a financial instrument will fluctuate because",
+      "source_text": "sensitivity analysis is based on the currently observable market environment changes to base floating interest rates. 10.3.2 Foreign currency risk Foreign currency risk is the risk that the fair value or future cash flows of a financial instrument will fluctuate because",
+      "page_number": 185,
+      "confidence": 0.85
+    },
+    "operational_risk": {
+      "category": "risk_factors",
+      "expected_value": "PLC NOTES TO THE FINANCIAL STATEMENTS 10.1.5 Cash and cash equivalents In order to mitigate the concentration, settlement and operational risks related to cash and cash equivalents, the Group consciously manages the exposure to a single counter-party, where taking into considerati",
+      "source_text": "PLC NOTES TO THE FINANCIAL STATEMENTS 10.1.5 Cash and cash equivalents In order to mitigate the concentration, settlement and operational risks related to cash and cash equivalents, the Group consciously manages the exposure to a single counter-party, where taking into considerati",
+      "page_number": 182,
+      "confidence": 0.85
+    },
+    "regulatory_risk": {
+      "category": "risk_factors",
+      "expected_value": "rising from the rapid adoption of generative artificial intelligence in data governance and protection practices. The Group is exposed to compliance risks related to domestic and international data protection laws, such as the Personal Data Protection Act No. 9 of 2022 and the European Un",
+      "source_text": "rising from the rapid adoption of generative artificial intelligence in data governance and protection practices. The Group is exposed to compliance risks related to domestic and international data protection laws, such as the Personal Data Protection Act No. 9 of 2022 and the European Un",
+      "page_number": 134,
+      "confidence": 0.85
+    },
+    "going_concern_concerns": {
+      "category": "risk_factors",
+      "expected_value": "to fraud or error. In preparing the financial statements, management is responsible for assessing the Group’s ability to continue as a going concern, disclosing, as applicable, matters related to going concern and using the going concern basis of accounting unless management either int",
+      "source_text": "to fraud or error. In preparing the financial statements, management is responsible for assessing the Group’s ability to continue as a going concern, disclosing, as applicable, matters related to going concern and using the going concern basis of accounting unless management either int",
+      "page_number": 162,
+      "confidence": 0.85
+    },
+    "litigation_contingencies": {
+      "category": "risk_factors",
+      "expected_value": "d Party Transaction Review Committee” under Corporate Governance and the Corporate Information in Note 1 of the Financial Statements. 38 CONTINGENT LIABILITIES Accounting Policy Provisions, contingent assets and contingent liabilities Provisions are recognised when the Group has a present obl",
+      "source_text": "d Party Transaction Review Committee” under Corporate Governance and the Corporate Information in Note 1 of the Financial Statements. 38 CONTINGENT LIABILITIES Accounting Policy Provisions, contingent assets and contingent liabilities Provisions are recognised when the Group has a present obl",
+      "page_number": 223,
+      "confidence": 0.85
+    },
+    "board_changes": {
+      "category": "management_governance",
+      "expected_value": "82 Keells Food Products PLC 30th September 2024: The Committee met on five occasions from April to September 2024. Date of Appointment Eligible to Attend Attended Dr (Ms) S A Coorey - Chairperson 08/11/2023 5 5 Mr D A Cabraal 07/11/2013 5 5 Dr (Mr) S S H Wijayasuriya 05/11/",
+      "source_text": "82 Keells Food Products PLC 30th September 2024: The Committee met on five occasions from April to September 2024. Date of Appointment Eligible to Attend Attended Dr (Ms) S A Coorey - Chairperson 08/11/2023 5 5 Mr D A Cabraal 07/11/2013 5 5 Dr (Mr) S S H Wijayasuriya 05/11/",
+      "page_number": 84,
+      "confidence": 0.85
+    },
+    "auditor_opinion": {
+      "category": "management_governance",
+      "expected_value": "luding material accounting policy information. In our opinion, the accompanying financial statements of the Company and the Group give a true and fair view of the financial position of the Company and the Group as at 31 March 2025, and of their financial performance and cash flows for the ye",
+      "source_text": "luding material accounting policy information. In our opinion, the accompanying financial statements of the Company and the Group give a true and fair view of the financial position of the Company and the Group as at 31 March 2025, and of their financial performance and cash flows for the ye",
+      "page_number": 161,
+      "confidence": 0.85
+    },
+    "related_party_transactions": {
+      "category": "management_governance",
+      "expected_value": "nel, whose transactions with Group companies also get reviewed by the Committee, in addition to the requisitions of the CSE. All proposed Related Party Transactions shall be reviewed in advance and in the event of any material changes, such changes shall also be reviewed by the Related Party Transactio",
+      "source_text": "nel, whose transactions with Group companies also get reviewed by the Committee, in addition to the requisitions of the CSE. All proposed Related Party Transactions shall be reviewed in advance and in the event of any material changes, such changes shall also be reviewed by the Related Party Transactio",
+      "page_number": 87,
+      "confidence": 0.85
+    },
+    "corporate_governance_statements": {
+      "category": "management_governance",
+      "expected_value": "sidered at any General Meeting including requisite information. Making available copies of the same on request to the CSE and/or SEC Yes Corporate Governance 102 9.4.2 a-d Communication and relations with shareholders and investors Yes Corporate Governance 101 9.5 Policy on matters relating",
+      "source_text": "sidered at any General Meeting including requisite information. Making available copies of the same on request to the CSE and/or SEC Yes Corporate Governance 102 9.4.2 a-d Communication and relations with shareholders and investors Yes Corporate Governance 101 9.5 Policy on matters relating",
+      "page_number": 122,
+      "confidence": 0.85
+    },
+    "director_responsibility_statement": {
+      "category": "management_governance",
+      "expected_value": "of Directors 21 Management Team 23 Key Product Categories 147 Annual Report of the Board of Directors 155 Audit Committee Report 158 Statement of Directors’ Responsibility 159 Independent Auditor’s Report 162 Income Statement 163 Statement of Comprehensive Income 164 Statement of Financial",
+      "source_text": "of Directors 21 Management Team 23 Key Product Categories 147 Annual Report of the Board of Directors 155 Audit Committee Report 158 Statement of Directors’ Responsibility 159 Independent Auditor’s Report 162 Income Statement 163 Statement of Comprehensive Income 164 Statement of Financial",
+      "page_number": 4,
+      "confidence": 0.85
+    },
+    "chairman_ceo_outlook": {
+      "category": "future_outlook",
+      "expected_value": "he National Industry Brand Excellence Awards 2024 and a Silver Award at the Annual Export Awards in the Processed Food Products sector. FUTURE OUTLOOK The emergence of strong macroeconomic fundamentals alongside a credible platform for sustained, broad-based growth marks a notable shift",
+      "source_text": "he National Industry Brand Excellence Awards 2024 and a Silver Award at the Annual Export Awards in the Processed Food Products sector. FUTURE OUTLOOK The emergence of strong macroeconomic fundamentals alongside a credible platform for sustained, broad-based growth marks a notable shift",
+      "page_number": 15,
+      "confidence": 0.85
+    },
+    "expansion_plans": {
+      "category": "future_outlook",
+      "expected_value": "owntime, and improve overall productivity. Strengthen Channel And Supply Chain Investments in infrastructure and services, along with an expansion of freezer capacity, have been made to strengthen and streamline the distribution process, enabling distributors to enhance efficiency i",
+      "source_text": "owntime, and improve overall productivity. Strengthen Channel And Supply Chain Investments in infrastructure and services, along with an expansion of freezer capacity, have been made to strengthen and streamline the distribution process, enabling distributors to enhance efficiency i",
+      "page_number": 9,
+      "confidence": 0.85
+    },
+    "expected_challenges": {
+      "category": "future_outlook",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "strategy": {
+      "category": "future_outlook",
+      "expected_value": "91 Annual Report 2024/25 STRATEGY FORMULATION AND DECISION-MAKING PROCESSES The Company and the KFP Group have adopted the JKH Strategy Formulation and Decision-Making Pro",
+      "source_text": "91 Annual Report 2024/25 STRATEGY FORMULATION AND DECISION-MAKING PROCESSES The Company and the KFP Group have adopted the JKH Strategy Formulation and Decision-Making Pro",
+      "page_number": 93,
+      "confidence": 0.85
+    },
+    "forward_looking_statements": {
+      "category": "future_outlook",
+      "expected_value": "sed on the Group’s historical observed default rates. The Group calibrates the matrix to adjust the historical credit loss experience with forward-looking information. At every reporting date, the historical observed default rates are updated and changes in the forward-looking estimates are a",
+      "source_text": "sed on the Group’s historical observed default rates. The Group calibrates the matrix to adjust the historical credit loss experience with forward-looking information. At every reporting date, the historical observed default rates are updated and changes in the forward-looking estimates are a",
+      "page_number": 181,
+      "confidence": 0.85
+    }
+  }
+}

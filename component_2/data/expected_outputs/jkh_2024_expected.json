@@ -1,0 +1,1194 @@
+{
+  "pdf_name": "JKH_2024.pdf",
+  "discovery_summary": {
+    "company_overview": [
+      {
+        "field": "company_name",
+        "found": true,
+        "candidate_pages": [
+          106,
+          68
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 106",
+          "JKH_2024 page 68"
+        ]
+      },
+      {
+        "field": "reporting_year",
+        "found": true,
+        "candidate_pages": [
+          174,
+          106
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 174",
+          "JKH_2024 page 106"
+        ]
+      },
+      {
+        "field": "business_segments",
+        "found": true,
+        "candidate_pages": [
+          127,
+          128
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 127",
+          "JKH_2024 page 128"
+        ]
+      },
+      {
+        "field": "principal_activities",
+        "found": true,
+        "candidate_pages": [
+          124,
+          94
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 124",
+          "JKH_2024 page 94"
+        ]
+      },
+      {
+        "field": "sector_industry",
+        "found": true,
+        "candidate_pages": [
+          30,
+          25
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 30",
+          "JKH_2024 page 25"
+        ]
+      },
+      {
+        "field": "subsidiaries_associates",
+        "found": true,
+        "candidate_pages": [
+          154,
+          110
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 154",
+          "JKH_2024 page 110"
+        ]
+      }
+    ],
+    "financial_performance": [
+      {
+        "field": "revenue_turnover",
+        "found": true,
+        "candidate_pages": [
+          140,
+          35
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 140",
+          "JKH_2024 page 35"
+        ]
+      },
+      {
+        "field": "gross_profit",
+        "found": true,
+        "candidate_pages": [
+          36,
+          156
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 36",
+          "JKH_2024 page 156"
+        ]
+      },
+      {
+        "field": "operating_profit",
+        "found": true,
+        "candidate_pages": [
+          141,
+          127
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 141",
+          "JKH_2024 page 127"
+        ]
+      },
+      {
+        "field": "profit_before_tax",
+        "found": true,
+        "candidate_pages": [
+          37,
+          142
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 37",
+          "JKH_2024 page 142"
+        ]
+      },
+      {
+        "field": "profit_after_tax",
+        "found": true,
+        "candidate_pages": [
+          173,
+          156
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 173",
+          "JKH_2024 page 156"
+        ]
+      },
+      {
+        "field": "eps",
+        "found": true,
+        "candidate_pages": [
+          143,
+          173
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 143",
+          "JKH_2024 page 173"
+        ]
+      },
+      {
+        "field": "ebitda",
+        "found": true,
+        "candidate_pages": [
+          136,
+          158
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 136",
+          "JKH_2024 page 158"
+        ]
+      },
+      {
+        "field": "net_finance_cost",
+        "found": true,
+        "candidate_pages": [
+          142,
+          116
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 142",
+          "JKH_2024 page 116"
+        ]
+      },
+      {
+        "field": "tax_expense",
+        "found": true,
+        "candidate_pages": [
+          147,
+          145
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 147",
+          "JKH_2024 page 145"
+        ]
+      }
+    ],
+    "financial_position": [
+      {
+        "field": "total_assets",
+        "found": true,
+        "candidate_pages": [
+          173,
+          12
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 173",
+          "JKH_2024 page 12"
+        ]
+      },
+      {
+        "field": "total_liabilities",
+        "found": true,
+        "candidate_pages": [
+          156,
+          139
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 156",
+          "JKH_2024 page 139"
+        ]
+      },
+      {
+        "field": "total_equity",
+        "found": true,
+        "candidate_pages": [
+          118,
+          130
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 118",
+          "JKH_2024 page 130"
+        ]
+      },
+      {
+        "field": "borrowings_debt",
+        "found": true,
+        "candidate_pages": [
+          173,
+          132
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 173",
+          "JKH_2024 page 132"
+        ]
+      },
+      {
+        "field": "cash_and_cash_equivalents",
+        "found": true,
+        "candidate_pages": [
+          122,
+          160
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 122",
+          "JKH_2024 page 160"
+        ]
+      },
+      {
+        "field": "inventory",
+        "found": true,
+        "candidate_pages": [
+          158,
+          152
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 158",
+          "JKH_2024 page 152"
+        ]
+      },
+      {
+        "field": "trade_receivables",
+        "found": true,
+        "candidate_pages": [
+          129,
+          130
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 129",
+          "JKH_2024 page 130"
+        ]
+      },
+      {
+        "field": "trade_payables",
+        "found": true,
+        "candidate_pages": [
+          164,
+          165
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 164",
+          "JKH_2024 page 165"
+        ]
+      }
+    ],
+    "cash_flow": [
+      {
+        "field": "operating_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          122,
+          170
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 122",
+          "JKH_2024 page 170"
+        ]
+      },
+      {
+        "field": "investing_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          122,
+          160
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 122",
+          "JKH_2024 page 160"
+        ]
+      },
+      {
+        "field": "financing_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          122,
+          160
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 122",
+          "JKH_2024 page 160"
+        ]
+      },
+      {
+        "field": "free_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          122,
+          160
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 122",
+          "JKH_2024 page 160"
+        ]
+      },
+      {
+        "field": "capital_expenditure",
+        "found": true,
+        "candidate_pages": [
+          18,
+          107
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 18",
+          "JKH_2024 page 107"
+        ]
+      }
+    ],
+    "investor_ratios": [
+      {
+        "field": "gross_profit_margin",
+        "found": true,
+        "candidate_pages": [
+          156,
+          116
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 156",
+          "JKH_2024 page 116"
+        ]
+      },
+      {
+        "field": "net_profit_margin",
+        "found": true,
+        "candidate_pages": [
+          173,
+          170
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 173",
+          "JKH_2024 page 170"
+        ]
+      },
+      {
+        "field": "current_ratio",
+        "found": true,
+        "candidate_pages": [
+          173,
+          172
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 173",
+          "JKH_2024 page 172"
+        ]
+      },
+      {
+        "field": "debt_to_equity_ratio",
+        "found": true,
+        "candidate_pages": [
+          31,
+          133
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 31",
+          "JKH_2024 page 133"
+        ]
+      },
+      {
+        "field": "return_on_equity",
+        "found": true,
+        "candidate_pages": [
+          14,
+          106
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 14",
+          "JKH_2024 page 106"
+        ]
+      },
+      {
+        "field": "return_on_assets",
+        "found": true,
+        "candidate_pages": [
+          44,
+          21
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 44",
+          "JKH_2024 page 21"
+        ]
+      },
+      {
+        "field": "eps_ratio_reference",
+        "found": true,
+        "candidate_pages": [
+          173,
+          143
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 173",
+          "JKH_2024 page 143"
+        ]
+      },
+      {
+        "field": "dividend_payout_ratio",
+        "found": true,
+        "candidate_pages": [
+          173,
+          12
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 173",
+          "JKH_2024 page 12"
+        ]
+      }
+    ],
+    "shareholder_information": [
+      {
+        "field": "stated_capital",
+        "found": true,
+        "candidate_pages": [
+          160,
+          107
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 160",
+          "JKH_2024 page 107"
+        ]
+      },
+      {
+        "field": "number_of_shares",
+        "found": true,
+        "candidate_pages": [
+          143,
+          11
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 143",
+          "JKH_2024 page 11"
+        ]
+      },
+      {
+        "field": "major_shareholders",
+        "found": true,
+        "candidate_pages": [
+          168,
+          173
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 168",
+          "JKH_2024 page 173"
+        ]
+      },
+      {
+        "field": "public_holding_percentage",
+        "found": true,
+        "candidate_pages": [
+          94,
+          168
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 94",
+          "JKH_2024 page 168"
+        ]
+      },
+      {
+        "field": "dividends",
+        "found": true,
+        "candidate_pages": [
+          106,
+          173
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 106",
+          "JKH_2024 page 173"
+        ]
+      },
+      {
+        "field": "market_price_per_share",
+        "found": true,
+        "candidate_pages": [
+          173,
+          172
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 173",
+          "JKH_2024 page 172"
+        ]
+      }
+    ],
+    "risk_factors": [
+      {
+        "field": "liquidity_risk",
+        "found": true,
+        "candidate_pages": [
+          131,
+          132
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 131",
+          "JKH_2024 page 132"
+        ]
+      },
+      {
+        "field": "credit_risk",
+        "found": true,
+        "candidate_pages": [
+          129,
+          130
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 129",
+          "JKH_2024 page 130"
+        ]
+      },
+      {
+        "field": "market_risk",
+        "found": true,
+        "candidate_pages": [
+          132,
+          102
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 132",
+          "JKH_2024 page 102"
+        ]
+      },
+      {
+        "field": "interest_rate_risk",
+        "found": true,
+        "candidate_pages": [
+          132,
+          102
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 132",
+          "JKH_2024 page 102"
+        ]
+      },
+      {
+        "field": "foreign_exchange_risk",
+        "found": true,
+        "candidate_pages": [
+          132,
+          102
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 132",
+          "JKH_2024 page 102"
+        ]
+      },
+      {
+        "field": "operational_risk",
+        "found": true,
+        "candidate_pages": [
+          131,
+          102
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 131",
+          "JKH_2024 page 102"
+        ]
+      },
+      {
+        "field": "regulatory_risk",
+        "found": true,
+        "candidate_pages": [
+          102,
+          101
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 102",
+          "JKH_2024 page 101"
+        ]
+      },
+      {
+        "field": "going_concern_concerns",
+        "found": true,
+        "candidate_pages": [
+          115,
+          124
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 115",
+          "JKH_2024 page 124"
+        ]
+      },
+      {
+        "field": "litigation_contingencies",
+        "found": true,
+        "candidate_pages": [
+          167,
+          123
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 167",
+          "JKH_2024 page 123"
+        ]
+      }
+    ],
+    "management_governance": [
+      {
+        "field": "board_changes",
+        "found": true,
+        "candidate_pages": [
+          78,
+          77
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 78",
+          "JKH_2024 page 77"
+        ]
+      },
+      {
+        "field": "auditor_opinion",
+        "found": true,
+        "candidate_pages": [
+          113,
+          88
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 113",
+          "JKH_2024 page 88"
+        ]
+      },
+      {
+        "field": "related_party_transactions",
+        "found": true,
+        "candidate_pages": [
+          165,
+          70
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 165",
+          "JKH_2024 page 70"
+        ]
+      },
+      {
+        "field": "corporate_governance_statements",
+        "found": true,
+        "candidate_pages": [
+          96,
+          95
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 96",
+          "JKH_2024 page 95"
+        ]
+      },
+      {
+        "field": "director_responsibility_statement",
+        "found": true,
+        "candidate_pages": [
+          4,
+          110
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 4",
+          "JKH_2024 page 110"
+        ]
+      }
+    ],
+    "future_outlook": [
+      {
+        "field": "chairman_ceo_outlook",
+        "found": true,
+        "candidate_pages": [
+          31,
+          28
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 31",
+          "JKH_2024 page 28"
+        ]
+      },
+      {
+        "field": "expansion_plans",
+        "found": true,
+        "candidate_pages": [
+          23,
+          49
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 23",
+          "JKH_2024 page 49"
+        ]
+      },
+      {
+        "field": "expected_challenges",
+        "found": true,
+        "candidate_pages": [
+          3,
+          25
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 3",
+          "JKH_2024 page 25"
+        ]
+      },
+      {
+        "field": "strategy",
+        "found": true,
+        "candidate_pages": [
+          85,
+          62
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 85",
+          "JKH_2024 page 62"
+        ]
+      },
+      {
+        "field": "forward_looking_statements",
+        "found": true,
+        "candidate_pages": [
+          7,
+          159
+        ],
+        "sample_source_refs": [
+          "JKH_2024 page 7",
+          "JKH_2024 page 159"
+        ]
+      }
+    ]
+  },
+  "expected_outputs": {
+    "company_name": {
+      "category": "company_overview",
+      "expected_value": "JOHN KEELLS PLC - ANNUAL REPORT 2024/25",
+      "source_text": "JOHN KEELLS PLC - ANNUAL REPORT 2024/25",
+      "page_number": 106,
+      "confidence": 0.85
+    },
+    "reporting_year": {
+      "category": "company_overview",
+      "expected_value": "2024/25",
+      "source_text": "172 JOHN KEELLS PLC - ANNUAL REPORT 2024/25 Notice of Meeting Notice is hereby given that the Seventy Eighth Annual General Meeting (AGM) of John Keells PLC (‘Company’) will be held a",
+      "page_number": 174,
+      "confidence": 0.85
+    },
+    "business_segments": {
+      "category": "company_overview",
+      "expected_value": "ies of each operating business of segments of the Group are detailed in the Group structure of the Annual report. The Group’s operating business segments are as follows Produce Broking provision of tea and rubber broking services. Warehousing provision of warehousing of tea service",
+      "source_text": "ies of each operating business of segments of the Group are detailed in the Group structure of the Annual report. The Group’s operating business segments are as follows Produce Broking provision of tea and rubber broking services. Warehousing provision of warehousing of tea service",
+      "page_number": 127,
+      "confidence": 0.85
+    },
+    "principal_activities": {
+      "category": "company_overview",
+      "expected_value": "cial statements The financial statements for the year ended 31 March 2025 were authorised for issue by the Directors’ on 26 May 2025. Principal activities and nature of operations Holding company The principal activities of the Group’s holding company is commodity broking. Subsidiarie",
+      "source_text": "cial statements The financial statements for the year ended 31 March 2025 were authorised for issue by the Directors’ on 26 May 2025. Principal activities and nature of operations Holding company The principal activities of the Group’s holding company is commodity broking. Subsidiarie",
+      "page_number": 124,
+      "confidence": 0.85
+    },
+    "sector_industry": {
+      "category": "company_overview",
+      "expected_value": "has a long and significant history in the global rubber industry, as it was the first Asian nation to commercially cultivate rubber. The sector contributes to the national economy through cultivation, processing, and the manufacture of value-added products, providing substant",
+      "source_text": "has a long and significant history in the global rubber industry, as it was the first Asian nation to commercially cultivate rubber. The sector contributes to the national economy through cultivation, processing, and the manufacture of value-added products, providing substant",
+      "page_number": 30,
+      "confidence": 0.85
+    },
+    "subsidiaries_associates": {
+      "category": "company_overview",
+      "expected_value": "or Rs. 2.66 Mn (2024 - Rs. 4.89 Mn) has been recognised as research and development expenditure during the period. 22 INVESTMENTS IN SUBSIDIARIES Accounting Policy Investment in subsidiaries are initially recognised at cost in the financial statements of the Company. Any transacti",
+      "source_text": "or Rs. 2.66 Mn (2024 - Rs. 4.89 Mn) has been recognised as research and development expenditure during the period. 22 INVESTMENTS IN SUBSIDIARIES Accounting Policy Investment in subsidiaries are initially recognised at cost in the financial statements of the Company. Any transacti",
+      "page_number": 154,
+      "confidence": 0.85
+    },
+    "revenue_turnover": {
+      "category": "financial_performance",
+      "expected_value": "10",
+      "source_text": "to estimate the fair values: Fair value of quoted equities, are based on price quotations in an active market at the reporting date 10 REVENUE Accounting Policy Revenue from contracts with customers Revenue from contracts with customer is recognised when control of the service",
+      "page_number": 140,
+      "confidence": 0.85
+    },
+    "gross_profit": {
+      "category": "financial_performance",
+      "expected_value": "6",
+      "source_text": "billion at the end of the previous year. In addition, JKSB reported revenue of Rs. 344.7 million for the same period. Cost of Sales and Gross Profits The Group recorded a 6 percent increase in cost of sales compared to the previous year, primarily driven by a 23 percent increase in J",
+      "page_number": 36,
+      "confidence": 0.85
+    },
+    "operating_profit": {
+      "category": "financial_performance",
+      "expected_value": "12",
+      "source_text": "- ANNUAL REPORT 2024/25 About Us Management Discussion and Analysis Stewardship Financial Information Supplementary Information 12 OTHER OPERATING INCOME AND OTHER OPERATING EXPENSES Accounting Policy Gains and losses Net gains and losses of a revenue nature arising from the disposa",
+      "page_number": 141,
+      "confidence": 0.85
+    },
+    "profit_before_tax": {
+      "category": "financial_performance",
+      "expected_value": "16",
+      "source_text": "T 2024/25 About Us Management Discussion and Analysis Stewardship Financial Information Supplementary Information Profitability The Group’s profit before tax (PBT) increased by 16 percent, reaching Rs. 256.64 million compared to Rs. 220.88 million recorded in the prior year. This year’s PBT in",
+      "page_number": 37,
+      "confidence": 0.85
+    },
+    "profit_after_tax": {
+      "category": "financial_performance",
+      "expected_value": "for changes in number of shares in issue as a percentage of the share price (diluted) at the end of the period. EARNINGS PER SHARE (EPS) Profit after Tax attributable to ordinary shareholding over weighted average number of shares in issue during the period. EARNINGS YIELD Earnings per shar",
+      "source_text": "for changes in number of shares in issue as a percentage of the share price (diluted) at the end of the period. EARNINGS PER SHARE (EPS) Profit after Tax attributable to ordinary shareholding over weighted average number of shares in issue during the period. EARNINGS YIELD Earnings per shar",
+      "page_number": 173,
+      "confidence": 0.85
+    },
+    "eps": {
+      "category": "financial_performance",
+      "expected_value": "15",
+      "source_text": "S PLC - ANNUAL REPORT 2024/25 About Us Management Discussion and Analysis Stewardship Financial Information Supplementary Information 15 EARNINGS PER SHARE Accounting Policy Basic EPS is calculated by dividing the profit for the year attributable to ordinary equity holders of the paren",
+      "page_number": 143,
+      "confidence": 0.85
+    },
+    "ebitda": {
+      "category": "financial_performance",
+      "expected_value": "5",
+      "source_text": "ve been forecasted for 5 years, with the terminal value based on an appropriate terminal growth rate in line with the market. Revenue, EBITDA Margins and Cashflow Projections Revenue and EBITDA margins have been adjusted for project specific aspects and the margin projections",
+      "page_number": 136,
+      "confidence": 0.85
+    },
+    "net_finance_cost": {
+      "category": "financial_performance",
+      "expected_value": "31",
+      "source_text": "140 JOHN KEELLS PLC - ANNUAL REPORT 2024/25 Finance cost For the year ended 31 March Group Company In Rs.000 2025 2024 2025 2024 Interest expense on borrowings (18,080) (28,360) (10,683) (28,",
+      "page_number": 142,
+      "confidence": 0.85
+    },
+    "tax_expense": {
+      "category": "financial_performance",
+      "expected_value": "256,644 220,876 241,442 233,315",
+      "source_text": "Information Supplementary Information For the year ended 31 March Group Company In Rs.000 2025 2024 2025 2024 17.7 Reconciliation between tax expense and the product of accounting profit Profit / (loss) before tax 256,644 220,876 241,442 233,315 Income tax not liable for income",
+      "page_number": 147,
+      "confidence": 0.85
+    },
+    "total_assets": {
+      "category": "financial_position",
+      "expected_value": "ense. MARKET CAPITALISATION Number of Shares in issue at the end of the period multiplied by the market price at end of period NET ASSETS Total assets minus current liabilities, long-term liabilities, and non-controlling interests. NET ASSET PER SHARE Net assets as at a particular financi",
+      "source_text": "ense. MARKET CAPITALISATION Number of Shares in issue at the end of the period multiplied by the market price at end of period NET ASSETS Total assets minus current liabilities, long-term liabilities, and non-controlling interests. NET ASSET PER SHARE Net assets as at a particular financi",
+      "page_number": 173,
+      "confidence": 0.85
+    },
+    "total_liabilities": {
+      "category": "financial_position",
+      "expected_value": "17,097",
+      "source_text": "assets 6,159 4,697 Total assets 217,672 445,697 Non - current liabilities (14,974) (126,330) Current liabilities (2,123) (2,144) Total Liabilities (17,097) (128,474) Net assets 200,575 (128,474) Group share of net assets 64,420 101,764 Cashflow from Operating activities (10,027)",
+      "page_number": 156,
+      "confidence": 0.85
+    },
+    "total_equity": {
+      "category": "financial_position",
+      "expected_value": "4,783,707 4,111,708 3,959,058 3,308,462",
+      "source_text": "49,639 1,000,657 984,127 458,144 4,723,845 4,056,924 3,959,058 3,308,462 Non-controlling interests 59,862 54,784 - - Total equity 4,783,707 4,111,708 3,959,058 3,308,462 Non-current liabilities Deferred tax liabilities 17.5 284,571 280,873 68,361 54,580",
+      "page_number": 118,
+      "confidence": 0.85
+    },
+    "borrowings_debt": {
+      "category": "financial_position",
+      "expected_value": "1",
+      "source_text": "less of whether cash is received or disbursed in that period. CAPITAL EMPLOYED Shareholders’ funds plus non-controlling interests and debt including lease liabilities. CONTINGENT LIABILITIES A condition or situation existing at the Balance Sheet date due to past events, where",
+      "page_number": 173,
+      "confidence": 0.85
+    },
+    "cash_and_cash_equivalents": {
+      "category": "financial_position",
+      "expected_value": "238,999 509,896",
+      "source_text": "ties 5,600 (176,320) (60,800) (176,320) NET INCREASE / (DECREASE) IN CASH AND CASH EQUIVALENTS 509,272 (270,897) 287,070 (92,190) CASH AND CASH EQUIVALENTS AT THE BEGINNING 238,999 509,896 (98,214) (6,024) CASH AND CASH EQUIVALENTS AT THE END 748,271 238,999 188,856 (98,214) ANALYS",
+      "page_number": 122,
+      "confidence": 0.85
+    },
+    "inventory": {
+      "category": "financial_position",
+      "expected_value": "rs 32,672 40,301 16,963 21,267 41,466 47,407 20,803 25,342 25",
+      "source_text": "Receivable after one year Receivable between one and five years 32,672 40,301 16,963 21,267 41,466 47,407 20,803 25,342 25 INVENTORIES Accounting Policy Inventories are valued at the lower of cost and net realisable value. Net realisable value is the estimated selling pri",
+      "page_number": 158,
+      "confidence": 0.85
+    },
+    "trade_receivables": {
+      "category": "financial_position",
+      "expected_value": "ustomer contract, leading to a financial loss. The Group and Company are exposed to credit risk from their operating activities (primarily trade receivables) and from their financing activities, including deposits with banks and financial institutions and other financial instruments. The Grou",
+      "source_text": "ustomer contract, leading to a financial loss. The Group and Company are exposed to credit risk from their operating activities (primarily trade receivables) and from their financing activities, including deposits with banks and financial institutions and other financial instruments. The Grou",
+      "page_number": 129,
+      "confidence": 0.85
+    },
+    "trade_payables": {
+      "category": "financial_position",
+      "expected_value": "31",
+      "source_text": "32.2) 75,485 99,630 38,948 53,871 At the end of the year 75,485 99,630 38,948 53,871 33 TRADE AND OTHER PAYABLES Accounting Policy Trade payables are the aggregate amount of obligations to pay for goods and services, that have been acquired in the ordinary course of business. As at 3",
+      "page_number": 164,
+      "confidence": 0.85
+    },
+    "operating_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "investing_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "financing_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "free_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "capital_expenditure": {
+      "category": "cash_flow",
+      "expected_value": "akeholder engagement • Health and safety initiatives Social & Relationship Capital • Brand development • Technological expertise • Capital expenditure on property, plant and equipment • Insurance / Maintenance plan cost Intellectual Capital Manufactured Capital CAPITAL INPUTS VALUE T",
+      "source_text": "akeholder engagement • Health and safety initiatives Social & Relationship Capital • Brand development • Technological expertise • Capital expenditure on property, plant and equipment • Insurance / Maintenance plan cost Intellectual Capital Manufactured Capital CAPITAL INPUTS VALUE T",
+      "page_number": 18,
+      "confidence": 0.85
+    },
+    "gross_profit_margin": {
+      "category": "investor_ratios",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "net_profit_margin": {
+      "category": "investor_ratios",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "current_ratio": {
+      "category": "investor_ratios",
+      "expected_value": "3",
+      "source_text": "e events or, 2. A probable outflow of economic resources is not expected or, 3. It is unable to be measured with sufficient reliability CURRENT RATIO Current assets divided by current liabilities. DEBT/EQUITY RATIO Debt as a percentage of Shareholders’ Funds DIVIDEND COVER Earnings per sh",
+      "page_number": 173,
+      "confidence": 0.85
+    },
+    "debt_to_equity_ratio": {
+      "category": "investor_ratios",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "return_on_equity": {
+      "category": "investor_ratios",
+      "expected_value": "2024,",
+      "source_text": "onment The year under review marked a period of steady recovery and resilience for Sri Lanka. The country continued to witness a stable macroeconomic environment in CY2024, building on the momentum witnessed in the second half of CY2023, with all key indicators supporting a susta",
+      "page_number": 14,
+      "confidence": 0.85
+    },
+    "return_on_assets": {
+      "category": "investor_ratios",
+      "expected_value": "5",
+      "source_text": "water bodies, aligning with our commitment to sustainable and environmentally responsible business practices. Waste Management JKPLC’s approach to waste management is guided by the broader John Keells Holdings PLC (JKH) Group’s 5R framework, originally developed to minimise plas",
+      "page_number": 44,
+      "confidence": 0.85
+    },
+    "eps_ratio_reference": {
+      "category": "investor_ratios",
+      "expected_value": "3",
+      "source_text": "y CURRENT RATIO Current assets divided by current liabilities. DEBT/EQUITY RATIO Debt as a percentage of Shareholders’ Funds DIVIDEND COVER Earnings per share over dividends per share DIVIDEND PAYOUT RATIO Dividend paid as a percentage of Company Profits. DIVIDEND YIELD Dividends adjusted for ch",
+      "page_number": 173,
+      "confidence": 0.85
+    },
+    "dividend_payout_ratio": {
+      "category": "investor_ratios",
+      "expected_value": "rrent liabilities. DEBT/EQUITY RATIO Debt as a percentage of Shareholders’ Funds DIVIDEND COVER Earnings per share over dividends per share DIVIDEND PAYOUT RATIO Dividend paid as a percentage of Company Profits. DIVIDEND YIELD Dividends adjusted for changes in number of shares in issue as a percen",
+      "source_text": "rrent liabilities. DEBT/EQUITY RATIO Debt as a percentage of Shareholders’ Funds DIVIDEND COVER Earnings per share over dividends per share DIVIDEND PAYOUT RATIO Dividend paid as a percentage of Company Profits. DIVIDEND YIELD Dividends adjusted for changes in number of shares in issue as a percen",
+      "page_number": 173,
+      "confidence": 0.85
+    },
+    "stated_capital": {
+      "category": "shareholder_information",
+      "expected_value": "30",
+      "source_text": "bank balances Bank overdrafts 2,715 201,520 2,714 201,460 Net cash and cash equivalents 748,271 238,999 188,856 (98,215) 30 STATED CAPITAL AND OTHER COMPONENTS OF EQUITY Accounting Policy The ordinary shares of John Keells PLC are quoted on the Colombo Stock Exchange. Holder",
+      "page_number": 160,
+      "confidence": 0.85
+    },
+    "number_of_shares": {
+      "category": "shareholder_information",
+      "expected_value": "31",
+      "source_text": "is calculated by dividing the profit for the year attributable to ordinary equity holders of the parent by the weighted average number of ordinary shares outstanding during the year. For the year ended 31 March Group Company 2025 2024 2025 2024 Basic earnings per share Profit attributable to",
+      "page_number": 143,
+      "confidence": 0.85
+    },
+    "major_shareholders": {
+      "category": "shareholder_information",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "public_holding_percentage": {
+      "category": "shareholder_information",
+      "expected_value": "167",
+      "source_text": "voting shares denominated in LKR and the percentage of such shares held Yes Page 167 (iv) a) The float adjusted market capitalisation, public holding percentage (%), number of public shareholders and under which option the Listed Companies complies with the Minimum Public Holding requir",
+      "page_number": 94,
+      "confidence": 0.85
+    },
+    "dividends": {
+      "category": "shareholder_information",
+      "expected_value": "Rs. 1.00",
+      "source_text": "Contribution to JKPLC Group revenue from the different business segments is provided in Note 6.1 to the Financial Statements on page 126. Dividend The Interim dividend per share of Rs. 1.00 was paid on or before the 06 March 2025. The Board of Directors has now approved a final divide",
+      "page_number": 106,
+      "confidence": 0.85
+    },
+    "market_price_per_share": {
+      "category": "shareholder_information",
+      "expected_value": "n hand and at bank plus short-term deposits). NET TURNOVER PER EMPLOYEE Net turnover over average number of employees PRICE EARNINGS RATIO Market Price per Share over earnings per share QUICK RATIO Cash plus short term investments plus receivables, divided by current liabilities. RETURN ON ASSETS Pr",
+      "source_text": "n hand and at bank plus short-term deposits). NET TURNOVER PER EMPLOYEE Net turnover over average number of employees PRICE EARNINGS RATIO Market Price per Share over earnings per share QUICK RATIO Cash plus short term investments plus receivables, divided by current liabilities. RETURN ON ASSETS Pr",
+      "page_number": 173,
+      "confidence": 0.85
+    },
+    "liquidity_risk": {
+      "category": "risk_factors",
+      "expected_value": "rd of Directors’ approvals. 7.1.1.8 Deposits with banks Deposits with bank mainly consist of fixed deposits. As at 31 March 2025. 7.2 Liquidity Risk The Group’s and Company’s policy is to hold cash and undrawn committed facilities at a level sufficient to ensure that the Company has a",
+      "source_text": "rd of Directors’ approvals. 7.1.1.8 Deposits with banks Deposits with bank mainly consist of fixed deposits. As at 31 March 2025. 7.2 Liquidity Risk The Group’s and Company’s policy is to hold cash and undrawn committed facilities at a level sufficient to ensure that the Company has a",
+      "page_number": 131,
+      "confidence": 0.85
+    },
+    "credit_risk": {
+      "category": "risk_factors",
+      "expected_value": "PLC - ANNUAL REPORT 2024/25 About Us Management Discussion and Analysis Stewardship Financial Information Supplementary Information 7.1 Credit risk Credit risk is the risk that a counterparty will not meet its obligations under a financial instrument or customer contract, leading to",
+      "source_text": "PLC - ANNUAL REPORT 2024/25 About Us Management Discussion and Analysis Stewardship Financial Information Supplementary Information 7.1 Credit risk Credit risk is the risk that a counterparty will not meet its obligations under a financial instrument or customer contract, leading to",
+      "page_number": 129,
+      "confidence": 0.85
+    },
+    "market_risk": {
+      "category": "risk_factors",
+      "expected_value": "14,056 Bank overdrafts 2,714 - - 2,714 201,460 - - 201,460 Total 745,837 - - 745,837 1,018,963 - - 1,018,963 7.3 Market risk Market risk is the risk that the fair value of future cash flows of a financial instrument will fluctuate because of changes in mark",
+      "source_text": "14,056 Bank overdrafts 2,714 - - 2,714 201,460 - - 201,460 Total 745,837 - - 745,837 1,018,963 - - 1,018,963 7.3 Market risk Market risk is the risk that the fair value of future cash flows of a financial instrument will fluctuate because of changes in mark",
+      "page_number": 132,
+      "confidence": 0.85
+    },
+    "interest_rate_risk": {
+      "category": "risk_factors",
+      "expected_value": "future cash flows of a financial instrument will fluctuate because of changes in market prices. Market prices comprise four types of risk: interest rate risk, currency risk, commodity price risk and other price risk, such as equity price risk. The financial instruments affected by the Company is",
+      "source_text": "future cash flows of a financial instrument will fluctuate because of changes in market prices. Market prices comprise four types of risk: interest rate risk, currency risk, commodity price risk and other price risk, such as equity price risk. The financial instruments affected by the Company is",
+      "page_number": 132,
+      "confidence": 0.85
+    },
+    "foreign_exchange_risk": {
+      "category": "risk_factors",
+      "expected_value": "a financial instrument will fluctuate because of changes in market prices. Market prices comprise four types of risk: interest rate risk, currency risk, commodity price risk and other price risk, such as equity price risk. The financial instruments affected by the Company is financial asse",
+      "source_text": "a financial instrument will fluctuate because of changes in market prices. Market prices comprise four types of risk: interest rate risk, currency risk, commodity price risk and other price risk, such as equity price risk. The financial instruments affected by the Company is financial asse",
+      "page_number": 132,
+      "confidence": 0.85
+    },
+    "operational_risk": {
+      "category": "risk_factors",
+      "expected_value": "common control. 7.1.1.6 Credit risk relating to cash in hand and at bank In order to mitigate the concentration, settlement and operational risks related to cash and cash equivalents, the Group consciously manages the exposure to a single counterparty taking into consideration, wher",
+      "source_text": "common control. 7.1.1.6 Credit risk relating to cash in hand and at bank In order to mitigate the concentration, settlement and operational risks related to cash and cash equivalents, the Group consciously manages the exposure to a single counterparty taking into consideration, wher",
+      "page_number": 131,
+      "confidence": 0.85
+    },
+    "regulatory_risk": {
+      "category": "risk_factors",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "going_concern_concerns": {
+      "category": "risk_factors",
+      "expected_value": "ANNUAL REPORT 2024/25 In preparing the financial statements, management is responsible for assessing the Group’s ability to continue as a going concern, disclosing, as applicable, matters related to going concern and using the going concern basis of accounting unless management either int",
+      "source_text": "ANNUAL REPORT 2024/25 In preparing the financial statements, management is responsible for assessing the Group’s ability to continue as a going concern, disclosing, as applicable, matters related to going concern and using the going concern basis of accounting unless management either int",
+      "page_number": 115,
+      "confidence": 0.85
+    },
+    "litigation_contingencies": {
+      "category": "risk_factors",
+      "expected_value": "as at the reporting date 36.2 Financial commitments The Company does not have any financial commitments as at the reporting date. 36.3 Contingencies There are no significant contingent liabilities as at the reporting date. 36.4 Assets Pledged There are no assets pledged as security",
+      "source_text": "as at the reporting date 36.2 Financial commitments The Company does not have any financial commitments as at the reporting date. 36.3 Contingencies There are no significant contingent liabilities as at the reporting date. 36.4 Assets Pledged There are no assets pledged as security",
+      "page_number": 167,
+      "confidence": 0.85
+    },
+    "board_changes": {
+      "category": "management_governance",
+      "expected_value": "ell-rounded mix of perspectives that enhance decision-making and Board performance. These considerations were integrated into the Director appointment process. • Evaluated all appointments and re-appointments to the Board, ensuring that all appointments were made in alignment with the Com",
+      "source_text": "ell-rounded mix of perspectives that enhance decision-making and Board performance. These considerations were integrated into the Director appointment process. • Evaluated all appointments and re-appointments to the Board, ensuring that all appointments were made in alignment with the Com",
+      "page_number": 78,
+      "confidence": 0.85
+    },
+    "auditor_opinion": {
+      "category": "management_governance",
+      "expected_value": "EELLS PLC - ANNUAL REPORT 2024/25 About Us Management Discussion and Analysis Stewardship Financial Information Supplementary Information Independent Auditors' Report TO THE SHAREHOLDERS OF JOHN KEELLS PLC REPORT ON THE AUDIT OF THE FINANCIAL STATEMENTS Opinion We have audited the financial statements",
+      "source_text": "EELLS PLC - ANNUAL REPORT 2024/25 About Us Management Discussion and Analysis Stewardship Financial Information Supplementary Information Independent Auditors' Report TO THE SHAREHOLDERS OF JOHN KEELLS PLC REPORT ON THE AUDIT OF THE FINANCIAL STATEMENTS Opinion We have audited the financial statements",
+      "page_number": 113,
+      "confidence": 0.85
+    },
+    "related_party_transactions": {
+      "category": "management_governance",
+      "expected_value": "2025 2024 OTHER CURRENT LIABILITIES Other tax payables 3,178 14,619 1,342 13,112 Other payables - 15,000 - - 3,178 29,619 1,342 13,112 35 RELATED PARTY TRANSACTIONS Terms and conditions of transactions with related parties Transactions with related parties are carried out in the ordinary course of b",
+      "source_text": "2025 2024 OTHER CURRENT LIABILITIES Other tax payables 3,178 14,619 1,342 13,112 Other payables - 15,000 - - 3,178 29,619 1,342 13,112 35 RELATED PARTY TRANSACTIONS Terms and conditions of transactions with related parties Transactions with related parties are carried out in the ordinary course of b",
+      "page_number": 165,
+      "confidence": 0.85
+    },
+    "corporate_governance_statements": {
+      "category": "management_governance",
+      "expected_value": "94 JOHN KEELLS PLC - ANNUAL REPORT 2024/25 Corporate Governance CSE Rule Compliance Status Reference (within the Annual Report) 9.5 Policy on matters relating to the Board of Directors 9.5.1 a Balanced",
+      "source_text": "94 JOHN KEELLS PLC - ANNUAL REPORT 2024/25 Corporate Governance CSE Rule Compliance Status Reference (within the Annual Report) 9.5 Policy on matters relating to the Board of Directors 9.5.1 a Balanced",
+      "page_number": 96,
+      "confidence": 0.85
+    },
+    "director_responsibility_statement": {
+      "category": "management_governance",
+      "expected_value": ".................. Enterprise Risk Management 104 ..................... Annual Report of the Board of Directors 108 ..................... Statement of Directors’ Responsibility Contents About Us Management Discussion and Analysis Financial Information Supplementary Information Stewardship 12 Chairp",
+      "source_text": ".................. Enterprise Risk Management 104 ..................... Annual Report of the Board of Directors 108 ..................... Statement of Directors’ Responsibility Contents About Us Management Discussion and Analysis Financial Information Supplementary Information Stewardship 12 Chairp",
+      "page_number": 4,
+      "confidence": 0.85
+    },
+    "chairman_ceo_outlook": {
+      "category": "future_outlook",
+      "expected_value": "s, stabilising auction supply volumes, and implementing targeted strategies to improve operational efficiency and market competitiveness. Future Outlook Looking ahead, the Company is focused on revitalising the rubber broking segment through a series of targeted strategic initiatives. Key a",
+      "source_text": "s, stabilising auction supply volumes, and implementing targeted strategies to improve operational efficiency and market competitiveness. Future Outlook Looking ahead, the Company is focused on revitalising the rubber broking segment through a series of targeted strategic initiatives. Key a",
+      "page_number": 31,
+      "confidence": 0.85
+    },
+    "expansion_plans": {
+      "category": "future_outlook",
+      "expected_value": "24, with a compound annual growth rate ranging from 5 percent to 7 percent over the next five to ten years, indicating consistent market expansion driven by increasing consumption and evolving consumer preferences. The global tea industry remained a significant sector within the bro",
+      "source_text": "24, with a compound annual growth rate ranging from 5 percent to 7 percent over the next five to ten years, indicating consistent market expansion driven by increasing consumption and evolving consumer preferences. The global tea industry remained a significant sector within the bro",
+      "page_number": 23,
+      "confidence": 0.85
+    },
+    "expected_challenges": {
+      "category": "future_outlook",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "strategy": {
+      "category": "future_outlook",
+      "expected_value": "procedures strengthen the elements of the Company’s Internal Governance Structure and are benchmarked against industry best practice. • Strategy formulation and decision- making process • Human resource governance • Integrated risk management • IT governance • Tax governance • S",
+      "source_text": "procedures strengthen the elements of the Company’s Internal Governance Structure and are benchmarked against industry best practice. • Strategy formulation and decision- making process • Human resource governance • Integrated risk management • IT governance • Tax governance • S",
+      "page_number": 85,
+      "confidence": 0.85
+    },
+    "forward_looking_statements": {
+      "category": "future_outlook",
+      "expected_value": "by Securities and Exchange Commission of Sri Lanka (2023) • Code of Best Practices on Related Party Transactions (2017) advocated by SEC Forward-Looking Statement This Annual Report contains forward-looking statements regarding the potential future financial position, performance, and oper",
+      "source_text": "by Securities and Exchange Commission of Sri Lanka (2023) • Code of Best Practices on Related Party Transactions (2017) advocated by SEC Forward-Looking Statement This Annual Report contains forward-looking statements regarding the potential future financial position, performance, and oper",
+      "page_number": 7,
+      "confidence": 0.85
+    }
+  }
+}
