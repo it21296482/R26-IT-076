@@ -37,9 +37,14 @@ function SiteHeader({ compact = false }) {
             </>
           )}
           {user?.role === "user" && (
-            <NavLink className={navLinkClass} to="/dashboard">
-              Workspace
-            </NavLink>
+            <>
+              <NavLink className={navLinkClass} to="/dashboard">
+                Workspace
+              </NavLink>
+              <NavLink className={navLinkClass} to="/profile">
+                Profile
+              </NavLink>
+            </>
           )}
           {user?.role === "admin" && (
             <NavLink className={navLinkClass} to={ADMIN_DASHBOARD_PATH}>
