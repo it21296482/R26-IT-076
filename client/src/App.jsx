@@ -8,6 +8,7 @@ import RegisterPage from "./pages/RegisterPage";
 import UserDashboardPage from "./pages/UserDashboardPage";
 import UserLoginPage from "./pages/UserLoginPage";
 import { ADMIN_DASHBOARD_PATH, ADMIN_ENTRY_PATH } from "./lib/routes";
+import RiskDashboard from "./pages/IT22547088/RiskDashboard";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<UserLoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/risk" element={<RiskDashboard />} />
       <Route path={ADMIN_ENTRY_PATH} element={<AdminLoginPage />} />
       <Route
         path="/dashboard"
