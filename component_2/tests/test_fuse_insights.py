@@ -81,3 +81,43 @@ def test_local_fusion_combines_deviation_report_and_context_in_plain_language():
     assert "Revenue grew" in insight["plain_language_overview"]
     assert "Middle East tensions" in insight["plain_language_overview"]
     assert "does not prove" in insight["plain_language_overview"]
+    assert insight["decision_balance"]["label"] == "Balanced with meaningful company strengths"
+
+
+def test_local_fusion_marks_downside_heavy_price_range_as_risk_heavy():
+    evidence = {
+        "selected_stock": {"symbol": "BIL.N0000", "company_name": "Browns Investments PLC"},
+        "market_evidence": {
+            "current_price_lkr": 5.0,
+            "horizons": [
+                {
+                    "label": "3 months",
+                    "key": "3m",
+                    "estimated_close_lkr": 4.65,
+                    "change_from_latest_pct": -7.0,
+                    "lower_80_lkr": 2.9,
+                    "upper_80_lkr": 6.4,
+                    "lower_95_lkr": 1.4,
+                    "upper_95_lkr": 7.9,
+                }
+            ],
+            "anomaly": {"detected": False},
+            "model_quality": {},
+        },
+        "report_evidence": {
+            "status": "completed",
+            "insight": {
+                "investor_friendly_insight": {
+                    "summary": "Revenue grew, but the company recorded a loss.",
+                    "key_strengths": ["Revenue increased."],
+                    "key_concerns": ["The company recorded a loss."],
+                }
+            },
+        },
+        "external_context": {"articles": [], "external_factors": {"factors": []}},
+    }
+
+    insight = build_local_fusion(evidence)
+
+    assert insight["decision_balance"]["label"] == "Risk-heavy despite upside possibilities"
+    assert "measured downside is larger" in insight["decision_balance"]["plain_conclusion"]

@@ -1,4 +1,6 @@
+const fs = require("fs/promises");
 const FinancialReport = require("../models/FinancialReport");
+const { inspectFinancialReport } = require("../services/reportValidationService");
 
 // Keeps the API response focused on the fields the workspace needs to render upload status.
 const buildReportResponse = (report) => ({
@@ -9,6 +11,8 @@ const buildReportResponse = (report) => ({
   mimeType: report.mimeType,
   sizeBytes: report.sizeBytes,
   processingStatus: report.processingStatus,
+  reportType: report.reportType,
+  reportingPeriodEnd: report.reportingPeriodEnd,
   summary: report.summary,
   uploadedAt: report.createdAt,
 });
@@ -39,6 +43,26 @@ const uploadFinancialReport = async (req, res) => {
     });
   }
 
+  let validation;
+  try {
+    validation = await inspectFinancialReport({
+      pdfPath: req.file.path,
+      companyName,
+      symbol,
+    });
+  } catch (error) {
+    await fs.unlink(req.file.path).catch(() => {});
+    throw error;
+  }
+
+  if (!validation.accepted) {
+    await fs.unlink(req.file.path).catch(() => {});
+    return res.status(422).json({
+      message: validation.message,
+      reportValidation: validation,
+    });
+  }
+
   const report = await FinancialReport.create({
     stockSymbol: symbol,
     companyName,
@@ -48,6 +72,9 @@ const uploadFinancialReport = async (req, res) => {
     sizeBytes: req.file.size,
     storagePath: req.file.path,
     processingStatus: "queued",
+    reportType: validation.report_type,
+    reportingPeriodEnd: new Date(validation.reporting_period_end),
+    latestRequiredPeriodEnd: new Date(validation.latest_required_period_end),
     summary: "Report received and ready for analysis.",
     uploadedBy: req.user._id,
   });

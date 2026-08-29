@@ -88,6 +88,8 @@ function InsightPreviewPage() {
   const report = analysis?.outputs?.report;
   const context = analysis?.outputs?.externalContext;
   const unified = analysis?.outputs?.unifiedInsight?.insight;
+  const priceScenarios = unified?.price_scenarios;
+  const decisionBalance = unified?.decision_balance;
   const reportSummary = report?.status === "completed" ? report.insight?.investor_friendly_insight : null;
   const news = context?.articles?.slice(0, 6) || [];
   const factors = context?.externalFactors?.factors || [];
@@ -139,6 +141,22 @@ function InsightPreviewPage() {
                   <p className="mt-5 max-w-4xl text-base leading-8 text-slate-300">
                     {unified?.plain_language_overview || "The historical price, uploaded report, and current market context are being brought together."}
                   </p>
+                  {priceScenarios && (
+                    <div className="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                      {[
+                        ["Current price", priceScenarios.current_price_lkr, "Where the stock is now"],
+                        ["Central path", priceScenarios.central_path_lkr, priceScenarios.horizon],
+                        ["Favourable range", priceScenarios.favourable_80_lkr, `${formatPercent(priceScenarios.favourable_change_pct)} scenario`],
+                        ["Adverse range", priceScenarios.adverse_80_lkr, `${formatPercent(priceScenarios.adverse_change_pct)} scenario`],
+                      ].map(([label, value, note]) => (
+                        <div className="rounded-[20px] border border-white/12 bg-slate-950/30 p-4" key={label}>
+                          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">{label}</p>
+                          <p className="mt-2 text-2xl font-semibold text-white">{formatMoney(value)}</p>
+                          <p className="mt-2 text-xs text-slate-400">{note}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {analysis.warnings?.length > 0 && (
@@ -151,6 +169,36 @@ function InsightPreviewPage() {
                 )}
               </div>
             </section>
+
+            {decisionBalance && (
+              <section className="grid gap-6 lg:grid-cols-2 fade-rise-delay-1">
+                <div className="rounded-[26px] border border-sky-200 bg-sky-50 p-5 lg:col-span-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">Overall evidence balance</p>
+                  <p className="mt-2 text-2xl font-semibold text-slate-950">{decisionBalance.label}</p>
+                </div>
+                <article className="rounded-[30px] border border-emerald-200 bg-emerald-50 p-6 md:p-8">
+                  <p className="eyebrow !text-emerald-700">What supports the potential</p>
+                  <h2 className="mt-3 text-3xl font-semibold text-emerald-950">Evidence working in the company&apos;s favour</h2>
+                  <div className="mt-6 grid gap-3">
+                    {decisionBalance.supporting_evidence?.slice(0, 6).map((item) => (
+                      <p className="rounded-[18px] bg-white/80 p-4 text-sm leading-7 text-emerald-950" key={item}>{item}</p>
+                    ))}
+                  </div>
+                </article>
+                <article className="rounded-[30px] border border-rose-200 bg-rose-50 p-6 md:p-8">
+                  <p className="eyebrow !text-rose-700">What could go wrong</p>
+                  <h2 className="mt-3 text-3xl font-semibold text-rose-950">Evidence that increases downside risk</h2>
+                  <div className="mt-6 grid gap-3">
+                    {decisionBalance.risk_evidence?.slice(0, 6).map((item) => (
+                      <p className="rounded-[18px] bg-white/80 p-4 text-sm leading-7 text-rose-950" key={item}>{item}</p>
+                    ))}
+                  </div>
+                </article>
+                <p className="rounded-[24px] border border-slate-200 bg-white p-5 text-sm leading-7 text-slate-700 lg:col-span-2">
+                  {decisionBalance.plain_conclusion}
+                </p>
+              </section>
+            )}
 
             <section className="surface-panel fade-rise-delay-1">
               <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
@@ -272,9 +320,19 @@ function InsightPreviewPage() {
                 <div className="grid content-start gap-3">
                   {factors.map((factor) => (
                     <article className="rounded-[22px] bg-slate-950 p-5 text-white" key={factor.key}>
-                      <div className="flex items-center justify-between gap-4"><h3 className="font-semibold">{factor.label}</h3><span className="text-sm text-slate-300">30d {formatPercent(factor.change30dPct)}</span></div>
-                      <p className="mt-3 text-sm leading-7 text-slate-300">{factor.interpretation}</p>
-                      <p className="mt-3 text-xs text-slate-500">{factor.overlappingReturnDays} overlapping market days</p>
+                      <div className="flex items-start justify-between gap-4">
+                        <div><h3 className="font-semibold">{factor.label}</h3><p className="mt-1 text-xs text-slate-500">{factor.unit}</p></div>
+                        <span className="text-right text-sm text-slate-300">{factor.latestValue}<br />30d {formatPercent(factor.change30dPct)}</span>
+                      </div>
+                      <p className="mt-4 text-sm leading-7 text-slate-200">{factor.meaning?.businessChannel}</p>
+                      <p className="mt-3 text-xs leading-6 text-slate-400"><strong className="text-slate-200">If it rises:</strong> {factor.meaning?.ifFactorRises}</p>
+                      <p className="mt-2 text-xs leading-6 text-slate-400"><strong className="text-slate-200">If it falls:</strong> {factor.meaning?.ifFactorFalls}</p>
+                      <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
+                        <p className="rounded-xl bg-white/8 p-3 text-slate-300">90-day move<strong className="mt-1 block text-white">{formatPercent(factor.change90dPct)}</strong></p>
+                        <p className="rounded-xl bg-white/8 p-3 text-slate-300">Movement explained<strong className="mt-1 block text-white">{Number(factor.explanatorySharePct || 0).toFixed(1)}%</strong></p>
+                      </div>
+                      <p className="mt-4 text-xs leading-6 text-cyan-100">{factor.meaning?.contributionEstimate || factor.interpretation}</p>
+                      <p className="mt-3 text-xs text-slate-500">Compared across {factor.overlappingReturnDays} shared trading days. Association does not prove cause.</p>
                     </article>
                   ))}
                 </div>

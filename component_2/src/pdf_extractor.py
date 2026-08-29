@@ -20,7 +20,7 @@ SECTION_HEADING_PATTERN = re.compile(r"^(?:[A-Z][A-Z\s,&/-]{3,}|[0-9]+(?:\.[0-9]
 def _require_pdf_dependencies():
     """Import PDF libraries only when extraction is actually requested."""
     try:
-        import fitz
+        import pymupdf as fitz
         import pdfplumber
     except ImportError as exc:
         raise RuntimeError(

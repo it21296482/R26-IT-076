@@ -46,6 +46,17 @@ const financialReportSchema = new mongoose.Schema(
       default: "uploaded",
       index: true,
     },
+    reportType: {
+      type: String,
+      enum: ["annual", "interim"],
+    },
+    reportingPeriodEnd: {
+      type: Date,
+      index: true,
+    },
+    latestRequiredPeriodEnd: {
+      type: Date,
+    },
     summary: {
       type: String,
       trim: true,

@@ -12,6 +12,9 @@ Build a source-grounded annual report understanding pipeline that:
 - evaluates prompts with measurable research metrics
 - selects the best prompt for final investor-friendly insight generation
 
+### Application runtime
+The integrated application accepts both annual and interim company reports. Before analysis, it verifies the selected company and requires the latest report period that should reasonably be available. The runtime extracts statement figures and operational highlights with page-level source quotes, including strengths, concerns, changes, and company milestones found in the uploaded report. A deterministic verified summary remains available when the optional wording service is disabled or unavailable.
+
 ## 3. Novelty
 This component introduces a source-grounded prompt-engineering evaluation framework for investor-related information extraction from company annual reports. Unlike generic PDF summarization approaches, the framework first identifies investor-relevant information categories, constructs expected outputs with page-level evidence, evaluates 10 prompt strategies using coverage, numeric accuracy, semantic similarity, source faithfulness, and investor relevance, and selects the best prompt for final insight generation. This provides a measurable and reproducible approach for applying LLMs to financial document understanding in a localized emerging market context.
 

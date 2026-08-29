@@ -20,7 +20,8 @@ This repository contains the MERN application and reproducible research packages
 - hidden admin access route
 - secure role-based sessions
 - user workspace requiring a supported stock and its latest quarterly or annual PDF report
-- one evidence-aware result containing forecast horizons, deviation/anomaly context, verified report takeaways, dated news, external-factor associations, risks, limitations, and a non-advisory statement
+- report company and period verification both when the PDF is uploaded and immediately before analysis; stale or mismatched reports are rejected
+- one evidence-aware result containing forecast horizons, deviation/anomaly context, favourable and adverse price ranges, page-verified report strengths and concerns, dated news, stock-specific external-factor associations, risks, limitations, and a non-advisory statement
 - short-lived analysis storage with automatic expiry after 24 hours
 - admin console for:
   - viewing current users and account activity
@@ -87,6 +88,8 @@ Open `http://127.0.0.1:5173`.
 - set `PYTHON_BIN=python` in this local workspace
 - report extraction and the combined explanation work locally from verified evidence by default (`USE_AZURE_OPENAI=false`)
 - Azure wording enhancement is optional; enable it only with `USE_AZURE_OPENAI=true` and a valid rotated credential that matches the endpoint and deployment
+- oil, gold, and USD/LKR relationships use overlapping one-year daily returns and are presented as associations with business context, never as proof of cause
+- the admin console includes a plain-language four-stage workflow demonstration for research review
 - never commit `.env` files or reuse credentials that have appeared in chat or Git history
 
 ## Verification

@@ -20,10 +20,46 @@ const EVENT_GROUPS = {
   geopolitical: ["war", "sanctions", "geopolitical", "conflict"],
 };
 const FACTORS = [
-  { key: "gold", label: "Gold", symbol: "GC=F" },
-  { key: "oil", label: "Crude oil", symbol: "CL=F" },
-  { key: "usd_lkr", label: "USD/LKR", symbol: "USDLKR=X" },
+  { key: "gold", label: "Gold", symbol: "GC=F", unit: "USD per troy ounce" },
+  { key: "oil", label: "Crude oil", symbol: "CL=F", unit: "USD per barrel" },
+  { key: "usd_lkr", label: "USD/LKR", symbol: "USDLKR=X", unit: "LKR per USD" },
 ];
+const STOCK_FACTOR_EXPOSURES = {
+  "JKH.N0000": {
+    oil: {
+      channel: "Oil can raise fuel, electricity, distribution, hotel, and travel costs. JKH also has bunkering exposure, so the effect can be mixed rather than purely negative.",
+      rise: "A sustained oil rise can squeeze transport, retail, leisure, and food margins unless pricing or bunkering income offsets it.",
+      fall: "Lower oil can reduce operating and travel costs, although it may also reduce some bunkering-related revenue opportunities.",
+    },
+    usd_lkr: {
+      channel: "A weaker rupee can help foreign-currency tourism and port revenue, but it increases the rupee value of foreign-currency debt and imported costs.",
+      rise: "A higher USD/LKR rate is a mixed signal: export-like earnings may improve, while exchange losses and imported costs can rise.",
+      fall: "A stronger rupee can reduce exchange-loss and import-cost pressure, but lowers the rupee value of foreign-currency revenue.",
+    },
+    gold: {
+      channel: "Gold has no strong direct operating link to JKH. It mainly reflects global risk appetite, inflation concern, and demand for defensive assets.",
+      rise: "Rising gold can indicate risk aversion, which may weigh on travel, investment confidence, and market valuations.",
+      fall: "Falling gold can accompany improving risk appetite, but it is not a direct earnings driver for JKH.",
+    },
+  },
+  "BIL.N0000": {
+    oil: {
+      channel: "Oil can affect BIL through hotel, plantation, manufacturing, construction, transport, and electricity costs.",
+      rise: "A sustained oil rise can increase operating and logistics costs across several businesses and pressure already-thin cash generation.",
+      fall: "Lower oil can ease operating and transport costs across the diversified portfolio.",
+    },
+    usd_lkr: {
+      channel: "BIL has overseas and tourism-linked activities, so rupee depreciation can create translation gains, but foreign funding and imported inputs can become more expensive.",
+      rise: "A higher USD/LKR rate can improve translated foreign earnings while increasing debt, finance, and import-cost pressure.",
+      fall: "A stronger rupee can reduce imported-cost and foreign-liability pressure but may reduce translation gains.",
+    },
+    gold: {
+      channel: "Gold is mainly an indirect signal of inflation and global risk appetite for BIL, not a confirmed direct revenue driver.",
+      rise: "Rising gold can signal defensive investor behaviour and broader uncertainty around diversified-market valuations.",
+      fall: "Falling gold can accompany stronger risk appetite, but the direct effect on BIL operations is limited.",
+    },
+  },
+};
 
 const normalize = (value) => String(value || "")
   .toLowerCase()
@@ -163,12 +199,50 @@ const pearsonCorrelation = (pairs) => {
   return denominator ? numerator / denominator : null;
 };
 
+const regressionSensitivity = (pairs) => {
+  if (pairs.length < 2) return { beta: null, rSquared: null };
+  const meanStock = pairs.reduce((sum, pair) => sum + pair[0], 0) / pairs.length;
+  const meanFactor = pairs.reduce((sum, pair) => sum + pair[1], 0) / pairs.length;
+  let covariance = 0;
+  let factorVariance = 0;
+  for (const [stockReturn, factorReturn] of pairs) {
+    covariance += (factorReturn - meanFactor) * (stockReturn - meanStock);
+    factorVariance += (factorReturn - meanFactor) ** 2;
+  }
+  const correlation = pearsonCorrelation(pairs);
+  return {
+    beta: factorVariance ? covariance / factorVariance : null,
+    rSquared: correlation === null ? null : correlation ** 2,
+  };
+};
+
 const describeAssociation = (correlation) => {
   if (correlation === null) return "There is not enough overlapping data to estimate an association.";
   const magnitude = Math.abs(correlation);
   const strength = magnitude < 0.2 ? "very weak" : magnitude < 0.4 ? "weak" : magnitude < 0.6 ? "moderate" : "strong";
   const direction = correlation >= 0 ? "same-direction" : "opposite-direction";
   return `The observed daily relationship was ${strength} and ${direction}. This is correlation, not proof of cause.`;
+};
+
+
+const buildFactorMeaning = ({ symbol, factor, correlation, beta, change30dPct }) => {
+  const exposure = STOCK_FACTOR_EXPOSURES[String(symbol).toUpperCase()]?.[factor.key];
+  const association = describeAssociation(correlation);
+  const estimatedAssociation = Number.isFinite(beta) && Number.isFinite(change30dPct)
+    ? beta * change30dPct
+    : null;
+  const magnitude = Math.abs(correlation || 0);
+  const contribution = magnitude < 0.2
+    ? "The measured relationship is too weak to treat this factor as a major statistical contributor by itself."
+    : `Based on the one-year sensitivity, the factor's 30-day move corresponds to an estimated ${estimatedAssociation >= 0 ? "+" : ""}${estimatedAssociation.toFixed(1)}% stock-return association. This is not a causal attribution.`;
+  return {
+    businessChannel: exposure?.channel || "This factor can influence costs, demand, currency conditions, or investor confidence.",
+    ifFactorRises: exposure?.rise || "A sustained rise may change costs, demand, or market confidence.",
+    ifFactorFalls: exposure?.fall || "A sustained fall may change costs, demand, or market confidence.",
+    statisticalReading: association,
+    contributionEstimate: contribution,
+    estimatedAssociated30dStockMovePct: estimatedAssociation === null ? null : Number(estimatedAssociation.toFixed(4)),
+  };
 };
 
 const analyzeExternalFactors = async (symbol) => {
@@ -197,16 +271,24 @@ const analyzeExternalFactors = async (symbol) => {
       if (factorReturns.has(date)) pairs.push([stockReturn, factorReturns.get(date)]);
     }
     const correlation = pairs.length >= 20 ? pearsonCorrelation(pairs) : null;
+    const sensitivity = pairs.length >= 20 ? regressionSensitivity(pairs) : { beta: null, rSquared: null };
+    const change30dPct = percentChange(result.value.observations, 21);
+    const change90dPct = percentChange(result.value.observations, 63);
     factors.push({
       key: factor.key,
       label: factor.label,
       source: "Yahoo Finance chart data",
       sourceSymbol: factor.symbol,
+      unit: factor.unit,
       latestDate: result.value.observations.at(-1).date,
-      change30dPct: Number(percentChange(result.value.observations, 21)?.toFixed(4)),
-      change90dPct: Number(percentChange(result.value.observations, 63)?.toFixed(4)),
+      latestValue: Number(result.value.observations.at(-1).close.toFixed(4)),
+      change30dPct: Number(change30dPct?.toFixed(4)),
+      change90dPct: Number(change90dPct?.toFixed(4)),
       overlappingReturnDays: pairs.length,
       dailyReturnCorrelation: correlation === null ? null : Number(correlation.toFixed(4)),
+      sensitivityBeta: sensitivity.beta === null ? null : Number(sensitivity.beta.toFixed(4)),
+      explanatorySharePct: sensitivity.rSquared === null ? null : Number((sensitivity.rSquared * 100).toFixed(2)),
+      meaning: buildFactorMeaning({ symbol, factor, correlation, beta: sensitivity.beta, change30dPct }),
       interpretation: describeAssociation(correlation),
     });
   });
@@ -214,7 +296,7 @@ const analyzeExternalFactors = async (symbol) => {
   if (stockObservations.length < 20) {
     warnings.push("The database does not contain enough selected-stock history for factor association estimates.");
   }
-  return { factors, warnings, method: "Pearson correlation of overlapping daily returns over the latest available year." };
+  return { factors, warnings, method: "One-year overlapping daily returns using Pearson correlation and single-factor return sensitivity. Results describe association, not cause." };
 };
 
 const collectExternalContext = async ({ symbol, companyName }) => {
@@ -266,4 +348,6 @@ module.exports = {
   describeAssociation,
   eventTags,
   pearsonCorrelation,
+  regressionSensitivity,
+  buildFactorMeaning,
 };

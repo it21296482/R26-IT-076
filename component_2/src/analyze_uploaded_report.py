@@ -46,7 +46,8 @@ GENERIC_COMPANY_WORDS = {
 
 def normalize_text(value: Any) -> str:
     """Normalize extracted text for conservative identity and quote matching."""
-    return re.sub(r"\s+", " ", str(value or "")).strip().lower()
+    text = str(value or "").replace("ﬁ", "fi").replace("ﬂ", "fl")
+    return re.sub(r"\s+", " ", text).strip().lower()
 
 
 def company_identity_matches(extracted_payload: dict[str, Any], company_name: str, symbol: str) -> bool:
@@ -168,7 +169,10 @@ def locally_grounded_result(
     insight["source_evidence"] = valid_evidence
     important_fields = {"revenue", "profit_after_tax", "total_assets", "total_equity"}
     verified_fields = {item["field"] for item in valid_evidence}
-    enough_evidence = len(valid_evidence) >= 3 and bool(important_fields & verified_fields)
+    narrative_count = sum(field.startswith("operational_") for field in verified_fields)
+    enough_evidence = len(valid_evidence) >= 3 and (
+        bool(important_fields & verified_fields) or narrative_count >= 5
+    )
     warnings = evidence_warnings
     if not enough_evidence:
         warnings.append("The report text was readable, but too few standard statement rows could be verified.")
@@ -185,7 +189,7 @@ def locally_grounded_result(
             "valid_count": len(valid_evidence),
             "rejected_count": max(0, len(raw_evidence) - len(valid_evidence)),
             "selected_prompt_id": SELECTED_PROMPT_ID,
-            "method": "verified_statement_rows",
+            "method": "verified_statement_rows_and_operational_highlights",
         },
         "warnings": warnings,
     }

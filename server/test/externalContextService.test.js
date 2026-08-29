@@ -7,6 +7,8 @@ const {
   describeAssociation,
   eventTags,
   pearsonCorrelation,
+  regressionSensitivity,
+  buildFactorMeaning,
 } = require("../src/services/externalContextService");
 
 test("financial language receives a transparent sentiment label", () => {
@@ -34,3 +36,18 @@ test("correlation calculation and wording avoid causal claims", () => {
   assert.match(describeAssociation(correlation), /correlation, not proof of cause/i);
 });
 
+test("factor sensitivity quantifies association without presenting it as cause", () => {
+  const pairs = [[0.01, 0.02], [0.02, 0.04], [-0.01, -0.02], [0.005, 0.01]];
+  const result = regressionSensitivity(pairs);
+  assert.ok(Math.abs(result.beta - 0.5) < 0.0001);
+  assert.ok(result.rSquared > 0.99);
+  const meaning = buildFactorMeaning({
+    symbol: "JKH.N0000",
+    factor: { key: "oil", label: "Crude oil" },
+    correlation: 0.5,
+    beta: result.beta,
+    change30dPct: 10,
+  });
+  assert.match(meaning.businessChannel, /fuel|energy|cost/i);
+  assert.match(meaning.contributionEstimate, /not a causal attribution/i);
+});

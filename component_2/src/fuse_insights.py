@@ -118,6 +118,43 @@ def _market_outlook(market: dict[str, Any] | None) -> tuple[str, list[str], list
     return outlook + caution, paths, risks
 
 
+def _price_scenarios(market: dict[str, Any] | None) -> dict[str, Any] | None:
+    if not market:
+        return None
+    horizons = [item for item in market.get("horizons", []) if item.get("estimated_close_lkr") is not None]
+    if not horizons:
+        return None
+    horizon = next((item for item in horizons if item.get("key") == "3m"), horizons[-1])
+    current = float(market.get("current_price_lkr") or 0)
+    central = float(horizon["estimated_close_lkr"])
+    lower_80 = horizon.get("lower_80_lkr")
+    upper_80 = horizon.get("upper_80_lkr")
+    lower_95 = horizon.get("lower_95_lkr")
+    upper_95 = horizon.get("upper_95_lkr")
+
+    def change(value: Any) -> float | None:
+        return round(((float(value) / current) - 1) * 100, 1) if value is not None and current else None
+
+    narrative = (
+        f"For {horizon.get('label')}, the central path is {_money(central)}. "
+        f"The more favourable side of the 80% range reaches {_money(upper_80)} ({_percent(change(upper_80))} from today), "
+        f"while the adverse side falls to {_money(lower_80)} ({_percent(change(lower_80))}). "
+        f"The wider 95% range is {_money(lower_95)} to {_money(upper_95)} and should be treated as uncertainty, not as price targets."
+    )
+    return {
+        "horizon": horizon.get("label"),
+        "current_price_lkr": current,
+        "central_path_lkr": central,
+        "favourable_80_lkr": upper_80,
+        "favourable_change_pct": change(upper_80),
+        "adverse_80_lkr": lower_80,
+        "adverse_change_pct": change(lower_80),
+        "wide_lower_95_lkr": lower_95,
+        "wide_upper_95_lkr": upper_95,
+        "narrative": narrative,
+    }
+
+
 def _parse_date(value: Any) -> datetime | None:
     try:
         return datetime.fromisoformat(str(value).replace("Z", "+00:00"))
@@ -160,7 +197,7 @@ def _report_takeaway(report: dict[str, Any] | None) -> tuple[str, list[str], lis
     summary = _sentence(friendly.get("summary"), "The report was verified, but no short summary was available")
     strengths = [str(item) for item in friendly.get("key_strengths", []) if str(item).strip()]
     concerns = [str(item) for item in friendly.get("key_concerns", []) if str(item).strip()]
-    return summary, strengths[:4], concerns[:4]
+    return summary, strengths[:10], concerns[:8]
 
 
 def _external_takeaway(context: dict[str, Any] | None) -> tuple[str, list[str], list[str], list[str]]:
@@ -179,10 +216,15 @@ def _external_takeaway(context: dict[str, Any] | None) -> tuple[str, list[str], 
     else:
         explanation = "No dated relevant news item was available in this analysis run."
     factors = ((context.get("external_factors") or {}).get("factors") or [])
-    factor_notes = [
-        f"{item.get('label')}: {_percent(item.get('change30dPct'))} over about 30 market days; {str(item.get('interpretation') or '').lower()}"
-        for item in factors
-    ]
+    factor_notes = []
+    for item in factors:
+        meaning = item.get("meaning") or {}
+        move_meaning = meaning.get("ifFactorRises") if float(item.get("change30dPct") or 0) >= 0 else meaning.get("ifFactorFalls")
+        factor_notes.append(
+            f"{item.get('label')} is {item.get('latestValue')} {item.get('unit')} and changed {_percent(item.get('change30dPct'))} "
+            f"over about 30 market days. {meaning.get('businessChannel') or item.get('interpretation')} "
+            f"{move_meaning or ''} {meaning.get('contributionEstimate') or ''}".strip()
+        )
     risks = [f"Negative coverage to monitor: {item.get('title')}" for item in negative[:2]]
     changes = [f"A meaningful change in {item.get('label')} could alter the wider market picture." for item in factors[:3]]
     return explanation, factor_notes, risks, changes
@@ -196,30 +238,70 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
     report = evidence.get("report_evidence")
     context = evidence.get("external_context")
     market_text, paths, market_risks = _market_outlook(market)
+    price_scenarios = _price_scenarios(market)
     report_text, strengths, report_risks = _report_takeaway(report)
     external_text, factors, external_risks, changes = _external_takeaway(context)
     external_text += _nearby_event_context(market, context)
+    middle_east_report_risk = next((item for item in report_risks if "middle east" in item.lower()), None)
+    if middle_east_report_risk:
+        external_text += (
+            " The uploaded report directly confirms that Middle East conflict affected travel sentiment or leisure performance. "
+            "This confirms a business impact, but it does not prove how much of the share-price movement it caused."
+        )
     anomaly = (market or {}).get("anomaly") or {}
     direction = "showed an unusual departure from its expected level" if anomaly.get("detected") else "remained within its expected movement range"
-    headline = f"{company} {direction}, while company finances and current events add important context."
-    overview = f"{market_text} {report_text} {external_text}"
+    headline = f"{company} {direction}; verified business strengths and external risks pull the picture in different directions."
+    overview = f"{market_text} {price_scenarios.get('narrative', '') if price_scenarios else ''} {report_text} {external_text}"
     potential = []
-    if paths:
+    if price_scenarios:
+        potential.append(
+            f"A favourable {price_scenarios['horizon']} outcome within the measured 80% range reaches about {_money(price_scenarios['favourable_80_lkr'])}; this is a scenario, not a target."
+        )
+    elif paths:
         potential.append(f"The observed price pattern currently points to {paths[0].lower()}.")
-    potential.extend(strengths[:2])
+    potential.extend(strengths[:5])
     if not potential:
         potential.append("No clear positive possibility could be confirmed from the available evidence.")
-    key_risks = (report_risks + market_risks + external_risks)[:5]
+    if price_scenarios:
+        market_risks.insert(
+            0,
+            f"The adverse side of the measured {price_scenarios['horizon']} 80% range is about {_money(price_scenarios['adverse_80_lkr'])}; the wider downside is {_money(price_scenarios['wide_lower_95_lkr'])}.",
+        )
+    key_risks = (report_risks + market_risks + external_risks)[:8]
     if not key_risks:
         key_risks.append("Unexpected company or market developments could move the price away from the estimated path.")
+    central_change = None
+    favourable_change = None
+    adverse_change = None
+    if price_scenarios and price_scenarios.get("current_price_lkr"):
+        current_price = float(price_scenarios["current_price_lkr"])
+        central_change = ((float(price_scenarios["central_path_lkr"]) / current_price) - 1) * 100
+        favourable_change = float(price_scenarios.get("favourable_change_pct") or 0)
+        adverse_change = abs(float(price_scenarios.get("adverse_change_pct") or 0))
+    risk_heavy = bool(
+        (central_change is not None and central_change <= -5)
+        or (favourable_change is not None and adverse_change is not None and adverse_change > favourable_change * 1.3)
+    )
+    balance_label = "Risk-heavy despite upside possibilities" if risk_heavy else "Balanced with meaningful company strengths"
+    balance_conclusion = (
+        "The central path is below today and the measured downside is larger than the favourable range. "
+        "Any upside possibility should therefore be weighed against the report's losses, cash pressure, external risks, and forecast uncertainty."
+        if risk_heavy else
+        "The central path is close to today's price. Verified operating improvements support potential, but the downside range, currency and finance-cost exposure, and external uncertainty remain important."
+    )
     change_items = changes[:4]
     change_items.append("A newer company report could materially change the financial picture.")
+    factor_impacts = []
+    for item in ((context or {}).get("external_factors") or {}).get("factors") or []:
+        public_item = dict(item)
+        public_item.pop("sensitivityBeta", None)
+        factor_impacts.append(public_item)
     uncertainty_parts = [
         "Price estimates are ranges, not promises.",
         "News and global-market relationships show context and timing, not proof of cause.",
     ]
     if (market or {}).get("model_quality", {}).get("advanced_model_beats_naive_mae") is False:
-        uncertainty_parts.append("The advanced estimate did not outperform a simple unchanged-price comparison in testing.")
+        uncertainty_parts.append("The current estimate did not outperform a simple unchanged-price comparison in testing.")
     report_period = (((report or {}).get("insight") or {}).get("metadata") or {}).get("reporting_period")
     if report_period:
         uncertainty_parts.append(f"The uploaded report covers the period ended {report_period}, so later company developments are not included in it.")
@@ -229,7 +311,15 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
         "market_outlook": market_text,
         "company_report_takeaway": report_text,
         "external_context": external_text + (f" Wider factors: {' '.join(factors)}" if factors else ""),
-        "potential": potential[:3],
+        "price_scenarios": price_scenarios,
+        "decision_balance": {
+            "label": balance_label,
+            "supporting_evidence": strengths[:8],
+            "risk_evidence": key_risks,
+            "plain_conclusion": balance_conclusion,
+        },
+        "factor_impacts": factor_impacts,
+        "potential": potential[:6],
         "key_risks": key_risks,
         "what_could_change_the_picture": change_items[:5],
         "uncertainty": " ".join(uncertainty_parts),
@@ -322,6 +412,9 @@ def fuse(evidence: dict[str, Any]) -> dict[str, Any]:
             "warnings": [],
             "fallback_used": True,
         }
+    insight["price_scenarios"] = local_insight.get("price_scenarios")
+    insight["decision_balance"] = local_insight.get("decision_balance")
+    insight["factor_impacts"] = local_insight.get("factor_impacts")
     return {
         "status": "completed",
         "insight": insight,

@@ -373,6 +373,28 @@ function AdminDashboardPage() {
           </section>
         )}
 
+        <section className="surface-panel fade-rise-delay-1">
+          <p className="eyebrow !text-slate-500">Analysis demonstration</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">How one stock picture is prepared</h2>
+          <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">
+            These four stages run together after a user selects a stock and uploads its latest verified company report.
+          </p>
+          <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              ["01", "Price behaviour", "Checks historical price and volume, expected ranges, recent deviations, and unusual movement signals."],
+              ["02", "Company report", "Confirms the company and latest reporting period, then finds page-backed strengths, concerns, and operational changes."],
+              ["03", "Outside conditions", "Reviews relevant company, local, and global news together with oil, gold, and USD/LKR movements and their business meaning."],
+              ["04", "Clear stock picture", "Combines potential, downside ranges, company performance, external pressure, and uncertainty into one plain-language explanation."],
+            ].map(([number, title, description]) => (
+              <article className="rounded-[24px] border border-slate-200 bg-slate-50 p-5" key={number}>
+                <p className="text-xs font-semibold tracking-[0.2em] text-sky-700">{number}</p>
+                <h3 className="mt-3 text-xl font-semibold text-slate-950">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">{description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="grid gap-8 2xl:grid-cols-[0.86fr_1.14fr]">
           <article className="surface-panel fade-rise">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">

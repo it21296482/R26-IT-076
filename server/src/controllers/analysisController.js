@@ -4,6 +4,7 @@ const Stock = require("../models/Stock");
 const { collectExternalContext } = require("../services/externalContextService");
 const { loadMarketInsight } = require("../services/marketInsightService");
 const { analyzeFinancialReport } = require("../services/reportInsightService");
+const { inspectFinancialReport } = require("../services/reportValidationService");
 const { generateUnifiedInsight } = require("../services/unifiedInsightService");
 
 const temporaryExpiry = () => new Date(Date.now() + 24 * 60 * 60 * 1000);
@@ -34,6 +35,57 @@ const safeWarning = (value) => {
 const resultOrNull = (settledResult) => (
   settledResult.status === "fulfilled" ? settledResult.value : null
 );
+
+const publicMarketOutput = (market) => {
+  if (!market) return null;
+  const publicMarket = structuredClone(market);
+  const quality = publicMarket.model_quality;
+  delete publicMarket.source_file;
+  delete publicMarket.top_factors;
+  delete publicMarket.limitations;
+  delete publicMarket.model_quality;
+  return {
+    ...publicMarket,
+    estimate_quality: quality
+      ? {
+          test_error_lkr: quality.test_mae_lkr,
+          unchanged_price_error_lkr: quality.naive_test_mae_lkr,
+          estimate_beats_unchanged_price: quality.advanced_model_beats_naive_mae,
+          plain_assessment: quality.advanced_model_beats_naive_mae === false
+            ? "Use these price ranges with extra caution because an unchanged-price comparison performed better in testing."
+            : "The price ranges passed the available comparison check.",
+        }
+      : null,
+    limitations: [
+      "Price ranges are uncertain and are not promises or financial advice.",
+      "Unusual-movement checks have a limited number of independently verified examples.",
+      "Historical price sources should be checked against official exchange records when possible.",
+    ],
+  };
+};
+
+const publicReportOutput = (reportOutput) => {
+  if (!reportOutput) return null;
+  const output = structuredClone(reportOutput);
+  if (output.insight?.metadata) delete output.insight.metadata.prompt_id;
+  if (output.evidence_validation) {
+    output.evidence_validation = {
+      valid_count: output.evidence_validation.valid_count,
+      rejected_count: output.evidence_validation.rejected_count,
+    };
+  }
+  return output;
+};
+
+const publicExternalOutput = (externalContext) => {
+  if (!externalContext) return null;
+  const output = structuredClone(externalContext);
+  if (output.externalFactors) {
+    output.externalFactors.method = "Compared one year of shared daily stock and factor movements. Results describe association, not cause.";
+    output.externalFactors.factors = (output.externalFactors.factors || []).map(({ sensitivityBeta, ...factor }) => factor);
+  }
+  return output;
+};
 
 const warningsFrom = (settledResult, label) => {
   if (settledResult.status === "rejected") {
@@ -92,6 +144,18 @@ const createAnalysis = async (req, res) => {
   if (!report) {
     return res.status(400).json({
       message: "A financial report uploaded for the selected company is required.",
+    });
+  }
+
+  const reportValidation = await inspectFinancialReport({
+    pdfPath: report.storagePath,
+    companyName: latestStock.companyName,
+    symbol: stockSymbol,
+  });
+  if (!reportValidation.accepted) {
+    return res.status(422).json({
+      message: reportValidation.message,
+      reportValidation,
     });
   }
 
@@ -163,7 +227,12 @@ const createAnalysis = async (req, res) => {
       market && reportOutput?.status === "completed" && externalContext && unifiedInsight?.status === "completed"
     );
     analysis.status = requiredInputsComplete ? "completed" : "partial";
-    analysis.outputs = { market, report: reportOutput, externalContext, unifiedInsight };
+    analysis.outputs = {
+      market: publicMarketOutput(market),
+      report: publicReportOutput(reportOutput),
+      externalContext: publicExternalOutput(externalContext),
+      unifiedInsight,
+    };
     analysis.warnings = [...new Set(warnings)];
     await analysis.save();
 
