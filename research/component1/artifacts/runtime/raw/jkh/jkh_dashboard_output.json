@@ -1,0 +1,1594 @@
+{
+  "selected_stock": "JKH",
+  "analysis_date": "2026-08-28",
+  "formula": "Deviation = abs(actual_price - predicted_price); volume_scaled = volume / 1_000_000; liquidity_aware_anomaly_score = deviation / (volume_scaled + epsilon)",
+  "predicted_price": 19.5833,
+  "actual_price": 19.9,
+  "signed_residual": 0.3167,
+  "deviation": 0.3167,
+  "volume": 1680918,
+  "volume_scaled": 1.680918,
+  "epsilon": 1e-06,
+  "anomaly_threshold": 2.565833,
+  "prediction_band_threshold": 1.05,
+  "structural_gap_threshold_pct": 4.9457,
+  "threshold_basis": "Validation-only calibration on the chronological validation split using a train/validation quantile grid. Thresholds are selected before the test split is evaluated.",
+  "anomaly_threshold_basis": "Validation-calibrated final anomaly logic. liquidity_anomaly_flag uses the liquidity-aware anomaly score threshold below; final_anomaly_detected = liquidity_anomaly_flag OR prediction_band_anomaly_flag. structural_value_signal is reported separately and is not OR-ed into final_anomaly_detected.",
+  "anomaly_detected": false,
+  "final_anomaly_detected": false,
+  "direction_signal": "Neutral",
+  "anomaly_side": "none",
+  "liquidity_anomaly_flag": false,
+  "prediction_band_anomaly_flag": false,
+  "structural_value_signal": false,
+  "liquidity_aware_anomaly_score": 0.188395,
+  "structural_expected_price": 19.9265,
+  "structural_discount": 0.0265,
+  "structural_discount_pct": 0.1328,
+  "value_opportunity_flag": false,
+  "market_confirmed_score": 0.312294,
+  "prediction_band_lower": 18.7949,
+  "prediction_band_upper": 20.3718,
+  "downside_band_break": false,
+  "upside_band_break": false,
+  "risk_level": "Medium",
+  "data_source_note": "The CSV source column indicates tradingview_cselk_fallback, so this is not a pure Ideabeam-only dataset. Historical OHLCV was recovered through the TradingView CSELK fallback path when the Ideabeam workflow was unavailable.",
+  "data_quality_summary": {
+    "stock": "JKH",
+    "rows": 3384,
+    "start_date": "2012-02-22",
+    "end_date": "2026-08-28",
+    "missing_ohlcv_count": 0,
+    "duplicate_date_count": 0,
+    "zero_volume_count": 0,
+    "data_source": "tradingview_cselk_fallback"
+  },
+  "prediction_metrics": {
+    "mae": 0.365438,
+    "rmse": 0.488812,
+    "mape": 0.017314,
+    "mape_pct": 1.731406,
+    "approximate_price_level_accuracy_pct": 98.268594,
+    "residual_mean": 0.295721,
+    "residual_std": 0.389212,
+    "residual_min": -1.517958,
+    "residual_max": 2.266037,
+    "latest_prediction_error": 0.316677,
+    "directional_accuracy": 0.537764
+  },
+  "naive_baseline_metrics": {
+    "mae": 0.191545,
+    "rmse": 0.274352,
+    "mape": 0.009254,
+    "mape_pct": 0.92541,
+    "approximate_price_level_accuracy_pct": 99.07459,
+    "residual_mean": 0.000669,
+    "residual_std": 0.274351,
+    "residual_min": -1.746118,
+    "residual_max": 1.199999,
+    "latest_prediction_error": -0.0,
+    "directional_accuracy": 0.539275
+  },
+  "lstm_vs_naive_comparison": {
+    "mae_delta": 0.173893,
+    "rmse_delta": 0.21446,
+    "mape_pct_delta": 0.805996,
+    "directional_accuracy_delta": -0.001511,
+    "beats_naive_on_mae": false,
+    "beats_naive_on_rmse": false,
+    "beats_naive_on_mape": false,
+    "beats_naive_on_directional_accuracy": false
+  },
+  "price_regression_directional_metrics": {
+    "directional_accuracy": 0.5377643504531722,
+    "up_day_precision": 0.4918032786885246,
+    "up_day_recall": 0.09836065573770492,
+    "down_day_precision": 0.5424292845257903,
+    "down_day_recall": 0.9131652661064426,
+    "direction_confusion_matrix": {
+      "tn": 326,
+      "fp": 31,
+      "fn": 275,
+      "tp": 30
+    },
+    "up_day_support": 305,
+    "down_day_support": 357
+  },
+  "directional_metrics": {
+    "task": "three_class",
+    "neutral_threshold_basis": "rolling_volatility_20 * 0.10",
+    "directional_accuracy": 0.43116490166414523,
+    "balanced_accuracy": 0.3681705357784535,
+    "macro_f1": 0.36805856335527937,
+    "down_precision": 0.5,
+    "down_recall": 0.5033783783783784,
+    "neutral_precision": 0.14,
+    "neutral_recall": 0.13725490196078433,
+    "up_precision": 0.46387832699619774,
+    "up_recall": 0.46387832699619774,
+    "support_down": 296,
+    "support_neutral": 102,
+    "support_up": 263,
+    "predicted_down_count": 298,
+    "predicted_neutral_count": 100,
+    "predicted_up_count": 263,
+    "direction_confusion_matrix": {
+      "labels": [
+        "Down",
+        "Neutral",
+        "Up"
+      ],
+      "matrix": [
+        [
+          149,
+          46,
+          101
+        ],
+        [
+          48,
+          14,
+          40
+        ],
+        [
+          101,
+          40,
+          122
+        ]
+      ]
+    },
+    "binary_direction_comparison": {
+      "best_model": {
+        "task": "binary",
+        "model": "Previous-day direction baseline",
+        "selection_metric": "validation_macro_f1",
+        "validation_macro_f1": 0.5162227201062153,
+        "validation_balanced_accuracy": 0.5162337662337662,
+        "test_macro_f1": 0.5548034851061391,
+        "test_balanced_accuracy": 0.5548034851061391,
+        "test_directional_accuracy": 0.573373676248109,
+        "summary_text": "Previous-day direction baseline is the best binary direction model on validation macro F1. Direction is evaluated as classification quality only, not as a profitable trading claim."
+      },
+      "test_metrics": {
+        "model": "Previous-day direction baseline",
+        "split": "test",
+        "directional_accuracy": 0.573373676248109,
+        "balanced_accuracy": 0.5548034851061391,
+        "macro_f1": 0.5548034851061391,
+        "up_precision": 0.46387832699619774,
+        "up_recall": 0.46387832699619774,
+        "down_precision": 0.6457286432160804,
+        "down_recall": 0.6457286432160804,
+        "support_up": 263,
+        "support_down": 398,
+        "direction_confusion_matrix": {
+          "tn": 257,
+          "fp": 141,
+          "fn": 141,
+          "tp": 122
+        }
+      }
+    }
+  },
+  "best_direction_model": {
+    "task": "three_class",
+    "model": "Previous-day direction baseline",
+    "selection_metric": "validation_macro_f1",
+    "validation_macro_f1": 0.3353047475669337,
+    "validation_balanced_accuracy": 0.3353150481838399,
+    "test_macro_f1": 0.36805856335527937,
+    "test_balanced_accuracy": 0.3681705357784535,
+    "test_directional_accuracy": 0.43116490166414523,
+    "summary_text": "Previous-day direction baseline is the best three class direction model on validation macro F1. Direction is evaluated as classification quality only, not as a profitable trading claim.",
+    "binary_reference": {
+      "task": "binary",
+      "model": "Previous-day direction baseline",
+      "selection_metric": "validation_macro_f1",
+      "validation_macro_f1": 0.5162227201062153,
+      "validation_balanced_accuracy": 0.5162337662337662,
+      "test_macro_f1": 0.5548034851061391,
+      "test_balanced_accuracy": 0.5548034851061391,
+      "test_directional_accuracy": 0.573373676248109,
+      "summary_text": "Previous-day direction baseline is the best binary direction model on validation macro F1. Direction is evaluated as classification quality only, not as a profitable trading claim."
+    }
+  },
+  "direction_model_comparison": {
+    "three_class": [
+      {
+        "model": "Logistic Regression baseline",
+        "split": "validation",
+        "directional_accuracy": 0.30303,
+        "balanced_accuracy": 0.337448,
+        "macro_f1": 0.291283,
+        "down_precision": 0.369048,
+        "down_recall": 0.21831,
+        "neutral_precision": 0.118056,
+        "neutral_recall": 0.447368,
+        "up_precision": 0.509804,
+        "up_recall": 0.346667,
+        "support_down": 142,
+        "support_neutral": 38,
+        "support_up": 150,
+        "predicted_down_count": 84,
+        "predicted_neutral_count": 144,
+        "predicted_up_count": 102,
+        "direction_confusion_matrix": {
+          "labels": [
+            "Down",
+            "Neutral",
+            "Up"
+          ],
+          "matrix": [
+            [
+              31,
+              68,
+              43
+            ],
+            [
+              14,
+              17,
+              7
+            ],
+            [
+              39,
+              59,
+              52
+            ]
+          ]
+        }
+      },
+      {
+        "model": "Logistic Regression baseline",
+        "split": "test",
+        "directional_accuracy": 0.425113,
+        "balanced_accuracy": 0.388825,
+        "macro_f1": 0.385292,
+        "down_precision": 0.493464,
+        "down_recall": 0.510135,
+        "neutral_precision": 0.19708,
+        "neutral_recall": 0.264706,
+        "up_precision": 0.472477,
+        "up_recall": 0.391635,
+        "support_down": 296,
+        "support_neutral": 102,
+        "support_up": 263,
+        "predicted_down_count": 306,
+        "predicted_neutral_count": 137,
+        "predicted_up_count": 218,
+        "direction_confusion_matrix": {
+          "labels": [
+            "Down",
+            "Neutral",
+            "Up"
+          ],
+          "matrix": [
+            [
+              151,
+              57,
+              88
+            ],
+            [
+              48,
+              27,
+              27
+            ],
+            [
+              107,
+              53,
+              103
+            ]
+          ]
+        }
+      },
+      {
+        "model": "Random Forest Classifier",
+        "split": "validation",
+        "directional_accuracy": 0.439394,
+        "balanced_accuracy": 0.337035,
+        "macro_f1": 0.328959,
+        "down_precision": 0.437086,
+        "down_recall": 0.464789,
+        "neutral_precision": 0.058824,
+        "neutral_recall": 0.026316,
+        "up_precision": 0.481481,
+        "up_recall": 0.52,
+        "support_down": 142,
+        "support_neutral": 38,
+        "support_up": 150,
+        "predicted_down_count": 151,
+        "predicted_neutral_count": 17,
+        "predicted_up_count": 162,
+        "direction_confusion_matrix": {
+          "labels": [
+            "Down",
+            "Neutral",
+            "Up"
+          ],
+          "matrix": [
+            [
+              66,
+              7,
+              69
+            ],
+            [
+              22,
+              1,
+              15
+            ],
+            [
+              63,
+              9,
+              78
+            ]
+          ]
+        }
+      },
+      {
+        "model": "Random Forest Classifier",
+        "split": "test",
+        "directional_accuracy": 0.472012,
+        "balanced_accuracy": 0.372732,
+        "macro_f1": 0.351469,
+        "down_precision": 0.497368,
+        "down_recall": 0.638514,
+        "neutral_precision": 0.095238,
+        "neutral_recall": 0.019608,
+        "up_precision": 0.465385,
+        "up_recall": 0.460076,
+        "support_down": 296,
+        "support_neutral": 102,
+        "support_up": 263,
+        "predicted_down_count": 380,
+        "predicted_neutral_count": 21,
+        "predicted_up_count": 260,
+        "direction_confusion_matrix": {
+          "labels": [
+            "Down",
+            "Neutral",
+            "Up"
+          ],
+          "matrix": [
+            [
+              189,
+              8,
+              99
+            ],
+            [
+              60,
+              2,
+              40
+            ],
+            [
+              131,
+              11,
+              121
+            ]
+          ]
+        }
+      },
+      {
+        "model": "Gradient Boosting Classifier",
+        "split": "validation",
+        "directional_accuracy": 0.421212,
+        "balanced_accuracy": 0.323576,
+        "macro_f1": 0.314226,
+        "down_precision": 0.401235,
+        "down_recall": 0.457746,
+        "neutral_precision": 0.111111,
+        "neutral_recall": 0.026316,
+        "up_precision": 0.459119,
+        "up_recall": 0.486667,
+        "support_down": 142,
+        "support_neutral": 38,
+        "support_up": 150,
+        "predicted_down_count": 162,
+        "predicted_neutral_count": 9,
+        "predicted_up_count": 159,
+        "direction_confusion_matrix": {
+          "labels": [
+            "Down",
+            "Neutral",
+            "Up"
+          ],
+          "matrix": [
+            [
+              65,
+              5,
+              72
+            ],
+            [
+              23,
+              1,
+              14
+            ],
+            [
+              74,
+              3,
+              73
+            ]
+          ]
+        }
+      },
+      {
+        "model": "Gradient Boosting Classifier",
+        "split": "test",
+        "directional_accuracy": 0.470499,
+        "balanced_accuracy": 0.367628,
+        "macro_f1": 0.339097,
+        "down_precision": 0.47981,
+        "down_recall": 0.682432,
+        "neutral_precision": 0.142857,
+        "neutral_recall": 0.009804,
+        "up_precision": 0.463519,
+        "up_recall": 0.410646,
+        "support_down": 296,
+        "support_neutral": 102,
+        "support_up": 263,
+        "predicted_down_count": 421,
+        "predicted_neutral_count": 7,
+        "predicted_up_count": 233,
+        "direction_confusion_matrix": {
+          "labels": [
+            "Down",
+            "Neutral",
+            "Up"
+          ],
+          "matrix": [
+            [
+              202,
+              2,
+              92
+            ],
+            [
+              68,
+              1,
+              33
+            ],
+            [
+              151,
+              4,
+              108
+            ]
+          ]
+        }
+      },
+      {
+        "model": "Previous-day direction baseline",
+        "split": "validation",
+        "directional_accuracy": 0.40303,
+        "balanced_accuracy": 0.335315,
+        "macro_f1": 0.335305,
+        "down_precision": 0.397163,
+        "down_recall": 0.394366,
+        "neutral_precision": 0.135135,
+        "neutral_recall": 0.131579,
+        "up_precision": 0.473684,
+        "up_recall": 0.48,
+        "support_down": 142,
+        "support_neutral": 38,
+        "support_up": 150,
+        "predicted_down_count": 141,
+        "predicted_neutral_count": 37,
+        "predicted_up_count": 152,
+        "direction_confusion_matrix": {
+          "labels": [
+            "Down",
+            "Neutral",
+            "Up"
+          ],
+          "matrix": [
+            [
+              56,
+              17,
+              69
+            ],
+            [
+              22,
+              5,
+              11
+            ],
+            [
+              63,
+              15,
+              72
+            ]
+          ]
+        }
+      },
+      {
+        "model": "Previous-day direction baseline",
+        "split": "test",
+        "directional_accuracy": 0.431165,
+        "balanced_accuracy": 0.368171,
+        "macro_f1": 0.368059,
+        "down_precision": 0.5,
+        "down_recall": 0.503378,
+        "neutral_precision": 0.14,
+        "neutral_recall": 0.137255,
+        "up_precision": 0.463878,
+        "up_recall": 0.463878,
+        "support_down": 296,
+        "support_neutral": 102,
+        "support_up": 263,
+        "predicted_down_count": 298,
+        "predicted_neutral_count": 100,
+        "predicted_up_count": 263,
+        "direction_confusion_matrix": {
+          "labels": [
+            "Down",
+            "Neutral",
+            "Up"
+          ],
+          "matrix": [
+            [
+              149,
+              46,
+              101
+            ],
+            [
+              48,
+              14,
+              40
+            ],
+            [
+              101,
+              40,
+              122
+            ]
+          ]
+        }
+      },
+      {
+        "model": "Majority-class baseline",
+        "split": "validation",
+        "directional_accuracy": 0.430303,
+        "balanced_accuracy": 0.333333,
+        "macro_f1": 0.200565,
+        "down_precision": 0.430303,
+        "down_recall": 1.0,
+        "neutral_precision": 0.0,
+        "neutral_recall": 0.0,
+        "up_precision": 0.0,
+        "up_recall": 0.0,
+        "support_down": 142,
+        "support_neutral": 38,
+        "support_up": 150,
+        "predicted_down_count": 330,
+        "predicted_neutral_count": 0,
+        "predicted_up_count": 0,
+        "direction_confusion_matrix": {
+          "labels": [
+            "Down",
+            "Neutral",
+            "Up"
+          ],
+          "matrix": [
+            [
+              142,
+              0,
+              0
+            ],
+            [
+              38,
+              0,
+              0
+            ],
+            [
+              150,
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        "model": "Majority-class baseline",
+        "split": "test",
+        "directional_accuracy": 0.447806,
+        "balanced_accuracy": 0.333333,
+        "macro_f1": 0.2062,
+        "down_precision": 0.447806,
+        "down_recall": 1.0,
+        "neutral_precision": 0.0,
+        "neutral_recall": 0.0,
+        "up_precision": 0.0,
+        "up_recall": 0.0,
+        "support_down": 296,
+        "support_neutral": 102,
+        "support_up": 263,
+        "predicted_down_count": 661,
+        "predicted_neutral_count": 0,
+        "predicted_up_count": 0,
+        "direction_confusion_matrix": {
+          "labels": [
+            "Down",
+            "Neutral",
+            "Up"
+          ],
+          "matrix": [
+            [
+              296,
+              0,
+              0
+            ],
+            [
+              102,
+              0,
+              0
+            ],
+            [
+              263,
+              0,
+              0
+            ]
+          ]
+        }
+      }
+    ],
+    "binary": [
+      {
+        "model": "Logistic Regression baseline",
+        "split": "validation",
+        "directional_accuracy": 0.50303,
+        "balanced_accuracy": 0.502029,
+        "macro_f1": 0.501859,
+        "up_precision": 0.46875,
+        "up_recall": 0.487013,
+        "down_precision": 0.535294,
+        "down_recall": 0.517045,
+        "support_up": 154,
+        "support_down": 176,
+        "direction_confusion_matrix": {
+          "tn": 91,
+          "fp": 85,
+          "fn": 79,
+          "tp": 75
+        }
+      },
+      {
+        "model": "Logistic Regression baseline",
+        "split": "test",
+        "directional_accuracy": 0.549168,
+        "balanced_accuracy": 0.541152,
+        "macro_f1": 0.538823,
+        "up_precision": 0.441472,
+        "up_recall": 0.501901,
+        "down_precision": 0.638122,
+        "down_recall": 0.580402,
+        "support_up": 263,
+        "support_down": 398,
+        "direction_confusion_matrix": {
+          "tn": 231,
+          "fp": 167,
+          "fn": 131,
+          "tp": 132
+        }
+      },
+      {
+        "model": "Random Forest Classifier",
+        "split": "validation",
+        "directional_accuracy": 0.512121,
+        "balanced_accuracy": 0.50487,
+        "macro_f1": 0.50202,
+        "up_precision": 0.472868,
+        "up_recall": 0.396104,
+        "down_precision": 0.537313,
+        "down_recall": 0.613636,
+        "support_up": 154,
+        "support_down": 176,
+        "direction_confusion_matrix": {
+          "tn": 108,
+          "fp": 68,
+          "fn": 93,
+          "tp": 61
+        }
+      },
+      {
+        "model": "Random Forest Classifier",
+        "split": "test",
+        "directional_accuracy": 0.582451,
+        "balanced_accuracy": 0.553313,
+        "macro_f1": 0.553247,
+        "up_precision": 0.471616,
+        "up_recall": 0.410646,
+        "down_precision": 0.641204,
+        "down_recall": 0.69598,
+        "support_up": 263,
+        "support_down": 398,
+        "direction_confusion_matrix": {
+          "tn": 277,
+          "fp": 121,
+          "fn": 155,
+          "tp": 108
+        }
+      },
+      {
+        "model": "Gradient Boosting Classifier",
+        "split": "validation",
+        "directional_accuracy": 0.5,
+        "balanced_accuracy": 0.484578,
+        "macro_f1": 0.462652,
+        "up_precision": 0.438202,
+        "up_recall": 0.253247,
+        "down_precision": 0.522822,
+        "down_recall": 0.715909,
+        "support_up": 154,
+        "support_down": 176,
+        "direction_confusion_matrix": {
+          "tn": 126,
+          "fp": 50,
+          "fn": 115,
+          "tp": 39
+        }
+      },
+      {
+        "model": "Gradient Boosting Classifier",
+        "split": "test",
+        "directional_accuracy": 0.627837,
+        "balanced_accuracy": 0.569721,
+        "macro_f1": 0.556565,
+        "up_precision": 0.56391,
+        "up_recall": 0.285171,
+        "down_precision": 0.643939,
+        "down_recall": 0.854271,
+        "support_up": 263,
+        "support_down": 398,
+        "direction_confusion_matrix": {
+          "tn": 340,
+          "fp": 58,
+          "fn": 188,
+          "tp": 75
+        }
+      },
+      {
+        "model": "Previous-day direction baseline",
+        "split": "validation",
+        "directional_accuracy": 0.518182,
+        "balanced_accuracy": 0.516234,
+        "macro_f1": 0.516223,
+        "up_precision": 0.483871,
+        "up_recall": 0.487013,
+        "down_precision": 0.548571,
+        "down_recall": 0.545455,
+        "support_up": 154,
+        "support_down": 176,
+        "direction_confusion_matrix": {
+          "tn": 96,
+          "fp": 80,
+          "fn": 79,
+          "tp": 75
+        }
+      },
+      {
+        "model": "Previous-day direction baseline",
+        "split": "test",
+        "directional_accuracy": 0.573374,
+        "balanced_accuracy": 0.554803,
+        "macro_f1": 0.554803,
+        "up_precision": 0.463878,
+        "up_recall": 0.463878,
+        "down_precision": 0.645729,
+        "down_recall": 0.645729,
+        "support_up": 263,
+        "support_down": 398,
+        "direction_confusion_matrix": {
+          "tn": 257,
+          "fp": 141,
+          "fn": 141,
+          "tp": 122
+        }
+      },
+      {
+        "model": "Majority-class baseline",
+        "split": "validation",
+        "directional_accuracy": 0.533333,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.347826,
+        "up_precision": 0.0,
+        "up_recall": 0.0,
+        "down_precision": 0.533333,
+        "down_recall": 1.0,
+        "support_up": 154,
+        "support_down": 176,
+        "direction_confusion_matrix": {
+          "tn": 176,
+          "fp": 0,
+          "fn": 154,
+          "tp": 0
+        }
+      },
+      {
+        "model": "Majority-class baseline",
+        "split": "test",
+        "directional_accuracy": 0.602118,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.375826,
+        "up_precision": 0.0,
+        "up_recall": 0.0,
+        "down_precision": 0.602118,
+        "down_recall": 1.0,
+        "support_up": 263,
+        "support_down": 398,
+        "direction_confusion_matrix": {
+          "tn": 398,
+          "fp": 0,
+          "fn": 263,
+          "tp": 0
+        }
+      }
+    ]
+  },
+  "direction_confusion_matrix": {
+    "labels": [
+      "Down",
+      "Neutral",
+      "Up"
+    ],
+    "matrix": [
+      [
+        149,
+        46,
+        101
+      ],
+      [
+        48,
+        14,
+        40
+      ],
+      [
+        101,
+        40,
+        122
+      ]
+    ]
+  },
+  "next_day_direction_prediction": "Neutral",
+  "next_day_direction_confidence": 0.164955,
+  "direction_prediction_note": "Directional prediction was improved by adding a dedicated classification layer instead of relying only on next-price regression. Because daily stock returns contain noise, a neutral movement class was introduced to avoid forcing very small movements into up/down predictions. Direction is evaluated as classification quality only and does not imply profitable trading accuracy.",
+  "selective_direction_signal": "No Signal",
+  "selective_direction_confidence": null,
+  "selective_direction_threshold": 0.55,
+  "selective_direction_metrics": {
+    "selection_split": "validation",
+    "selected_threshold_basis": "validation_macro_f1_with_coverage_floor",
+    "coverage_floor": 0.25,
+    "coverage_constraint_met": false,
+    "selected_validation_metrics": {
+      "signal_accuracy": NaN,
+      "signal_balanced_accuracy": NaN,
+      "signal_macro_f1": NaN,
+      "signal_coverage_rate": 0.0,
+      "no_signal_rate": 1.0,
+      "number_of_up_signals": 0,
+      "number_of_down_signals": 0,
+      "signaled_count": 0,
+      "threshold": 0.55,
+      "split": "validation"
+    },
+    "selected_test_metrics": {
+      "signal_accuracy": NaN,
+      "signal_balanced_accuracy": NaN,
+      "signal_macro_f1": NaN,
+      "signal_coverage_rate": 0.0,
+      "no_signal_rate": 1.0,
+      "number_of_up_signals": 0,
+      "number_of_down_signals": 0,
+      "signaled_count": 0,
+      "threshold": 0.55,
+      "split": "test"
+    },
+    "validation_threshold_table": [
+      {
+        "signal_accuracy": null,
+        "signal_balanced_accuracy": null,
+        "signal_macro_f1": null,
+        "signal_coverage_rate": 0.0,
+        "no_signal_rate": 1.0,
+        "number_of_up_signals": 0,
+        "number_of_down_signals": 0,
+        "signaled_count": 0,
+        "threshold": 0.55,
+        "split": "validation"
+      },
+      {
+        "signal_accuracy": null,
+        "signal_balanced_accuracy": null,
+        "signal_macro_f1": null,
+        "signal_coverage_rate": 0.0,
+        "no_signal_rate": 1.0,
+        "number_of_up_signals": 0,
+        "number_of_down_signals": 0,
+        "signaled_count": 0,
+        "threshold": 0.6,
+        "split": "validation"
+      },
+      {
+        "signal_accuracy": null,
+        "signal_balanced_accuracy": null,
+        "signal_macro_f1": null,
+        "signal_coverage_rate": 0.0,
+        "no_signal_rate": 1.0,
+        "number_of_up_signals": 0,
+        "number_of_down_signals": 0,
+        "signaled_count": 0,
+        "threshold": 0.65,
+        "split": "validation"
+      },
+      {
+        "signal_accuracy": null,
+        "signal_balanced_accuracy": null,
+        "signal_macro_f1": null,
+        "signal_coverage_rate": 0.0,
+        "no_signal_rate": 1.0,
+        "number_of_up_signals": 0,
+        "number_of_down_signals": 0,
+        "signaled_count": 0,
+        "threshold": 0.7,
+        "split": "validation"
+      }
+    ],
+    "test_threshold_table": [
+      {
+        "signal_accuracy": null,
+        "signal_balanced_accuracy": null,
+        "signal_macro_f1": null,
+        "signal_coverage_rate": 0.0,
+        "no_signal_rate": 1.0,
+        "number_of_up_signals": 0,
+        "number_of_down_signals": 0,
+        "signaled_count": 0,
+        "threshold": 0.55,
+        "split": "test"
+      },
+      {
+        "signal_accuracy": null,
+        "signal_balanced_accuracy": null,
+        "signal_macro_f1": null,
+        "signal_coverage_rate": 0.0,
+        "no_signal_rate": 1.0,
+        "number_of_up_signals": 0,
+        "number_of_down_signals": 0,
+        "signaled_count": 0,
+        "threshold": 0.6,
+        "split": "test"
+      },
+      {
+        "signal_accuracy": null,
+        "signal_balanced_accuracy": null,
+        "signal_macro_f1": null,
+        "signal_coverage_rate": 0.0,
+        "no_signal_rate": 1.0,
+        "number_of_up_signals": 0,
+        "number_of_down_signals": 0,
+        "signaled_count": 0,
+        "threshold": 0.65,
+        "split": "test"
+      },
+      {
+        "signal_accuracy": null,
+        "signal_balanced_accuracy": null,
+        "signal_macro_f1": null,
+        "signal_coverage_rate": 0.0,
+        "no_signal_rate": 1.0,
+        "number_of_up_signals": 0,
+        "number_of_down_signals": 0,
+        "signaled_count": 0,
+        "threshold": 0.7,
+        "split": "test"
+      }
+    ],
+    "note": "The model does not force a direction every day. Directional output is provided only when the model confidence exceeds the validation-selected threshold; otherwise the dashboard reports No Signal."
+  },
+  "signal_coverage_rate": 0.0,
+  "no_signal_rate": 1.0,
+  "anomaly_comparison": [
+    {
+      "method": "Z-score baseline",
+      "purpose": "Simple statistical anomaly detection",
+      "threshold": 3.0,
+      "prediction_band_threshold": null,
+      "accuracy": 0.993958,
+      "precision": 0.8,
+      "recall": 0.571429,
+      "f1_score": 0.666667,
+      "predicted_positive_rate": 0.007553,
+      "tn": 654,
+      "fp": 1,
+      "fn": 3,
+      "tp": 4,
+      "support_positive": 7,
+      "support_negative": 655,
+      "predicted_positive_count": 5
+    },
+    {
+      "method": "Isolation Forest",
+      "purpose": "Machine-learning anomaly detection",
+      "threshold": 0.547143,
+      "prediction_band_threshold": null,
+      "accuracy": 0.968278,
+      "precision": 0.181818,
+      "recall": 0.571429,
+      "f1_score": 0.275862,
+      "predicted_positive_rate": 0.033233,
+      "tn": 637,
+      "fp": 18,
+      "fn": 3,
+      "tp": 4,
+      "support_positive": 7,
+      "support_negative": 655,
+      "predicted_positive_count": 22
+    },
+    {
+      "method": "LSTM deviation method",
+      "purpose": "Time-series expected-vs-actual anomaly detection",
+      "threshold": 2.565833,
+      "prediction_band_threshold": 1.05,
+      "accuracy": 0.903323,
+      "precision": 0.047619,
+      "recall": 0.428571,
+      "f1_score": 0.085714,
+      "predicted_positive_rate": 0.095166,
+      "tn": 595,
+      "fp": 60,
+      "fn": 4,
+      "tp": 3,
+      "support_positive": 7,
+      "support_negative": 655,
+      "predicted_positive_count": 63
+    }
+  ],
+  "best_anomaly_method": {
+    "metric": "f1_score",
+    "f1_score": 0.666667,
+    "method_list": [
+      "Z-score baseline"
+    ],
+    "method_text": "Z-score baseline",
+    "tie": false,
+    "support_positive": 7,
+    "summary_text": "Z-score baseline is the best-performing anomaly method on the test split with F1 score 0.6667.",
+    "records": [
+      {
+        "method": "Z-score baseline",
+        "purpose": "Simple statistical anomaly detection",
+        "threshold": 3.0,
+        "prediction_band_threshold": null,
+        "accuracy": 0.993958,
+        "precision": 0.8,
+        "recall": 0.571429,
+        "f1_score": 0.666667,
+        "predicted_positive_rate": 0.007553,
+        "tn": 654,
+        "fp": 1,
+        "fn": 3,
+        "tp": 4,
+        "support_positive": 7,
+        "support_negative": 655,
+        "predicted_positive_count": 5
+      }
+    ],
+    "representative_method": "Z-score baseline"
+  },
+  "anomaly_method_split_metrics_summary": [
+    {
+      "method": "Z-score baseline",
+      "purpose": "Simple statistical anomaly detection",
+      "split": "train",
+      "threshold": 3.0,
+      "prediction_band_threshold": null,
+      "accuracy": 0.975011,
+      "precision": 0.923077,
+      "recall": 0.3,
+      "f1_score": 0.45283,
+      "predicted_positive_rate": 0.011202,
+      "tn": 2239,
+      "fp": 2,
+      "fn": 56,
+      "tp": 24,
+      "support_positive": 80,
+      "support_negative": 2241,
+      "predicted_positive_count": 26
+    },
+    {
+      "method": "Z-score baseline",
+      "purpose": "Simple statistical anomaly detection",
+      "split": "validation",
+      "threshold": 3.0,
+      "prediction_band_threshold": null,
+      "accuracy": 0.873112,
+      "precision": 0.846154,
+      "recall": 0.215686,
+      "f1_score": 0.34375,
+      "predicted_positive_rate": 0.039275,
+      "tn": 278,
+      "fp": 2,
+      "fn": 40,
+      "tp": 11,
+      "support_positive": 51,
+      "support_negative": 280,
+      "predicted_positive_count": 13
+    },
+    {
+      "method": "Z-score baseline",
+      "purpose": "Simple statistical anomaly detection",
+      "split": "test",
+      "threshold": 3.0,
+      "prediction_band_threshold": null,
+      "accuracy": 0.993958,
+      "precision": 0.8,
+      "recall": 0.571429,
+      "f1_score": 0.666667,
+      "predicted_positive_rate": 0.007553,
+      "tn": 654,
+      "fp": 1,
+      "fn": 3,
+      "tp": 4,
+      "support_positive": 7,
+      "support_negative": 655,
+      "predicted_positive_count": 5
+    },
+    {
+      "method": "Isolation Forest",
+      "purpose": "Machine-learning anomaly detection",
+      "split": "train",
+      "threshold": 0.547143,
+      "prediction_band_threshold": null,
+      "accuracy": 0.947006,
+      "precision": 0.316239,
+      "recall": 0.4625,
+      "f1_score": 0.375635,
+      "predicted_positive_rate": 0.050409,
+      "tn": 2161,
+      "fp": 80,
+      "fn": 43,
+      "tp": 37,
+      "support_positive": 80,
+      "support_negative": 2241,
+      "predicted_positive_count": 117
+    },
+    {
+      "method": "Isolation Forest",
+      "purpose": "Machine-learning anomaly detection",
+      "split": "validation",
+      "threshold": 0.547143,
+      "prediction_band_threshold": null,
+      "accuracy": 0.851964,
+      "precision": 0.583333,
+      "recall": 0.137255,
+      "f1_score": 0.222222,
+      "predicted_positive_rate": 0.036254,
+      "tn": 275,
+      "fp": 5,
+      "fn": 44,
+      "tp": 7,
+      "support_positive": 51,
+      "support_negative": 280,
+      "predicted_positive_count": 12
+    },
+    {
+      "method": "Isolation Forest",
+      "purpose": "Machine-learning anomaly detection",
+      "split": "test",
+      "threshold": 0.547143,
+      "prediction_band_threshold": null,
+      "accuracy": 0.968278,
+      "precision": 0.181818,
+      "recall": 0.571429,
+      "f1_score": 0.275862,
+      "predicted_positive_rate": 0.033233,
+      "tn": 637,
+      "fp": 18,
+      "fn": 3,
+      "tp": 4,
+      "support_positive": 7,
+      "support_negative": 655,
+      "predicted_positive_count": 22
+    },
+    {
+      "method": "LSTM deviation method",
+      "purpose": "Time-series expected-vs-actual anomaly detection",
+      "split": "train",
+      "threshold": 2.565833,
+      "prediction_band_threshold": 1.05,
+      "accuracy": 0.937958,
+      "precision": 0.186275,
+      "recall": 0.2375,
+      "f1_score": 0.208791,
+      "predicted_positive_rate": 0.043947,
+      "tn": 2158,
+      "fp": 83,
+      "fn": 61,
+      "tp": 19,
+      "support_positive": 80,
+      "support_negative": 2241,
+      "predicted_positive_count": 102
+    },
+    {
+      "method": "LSTM deviation method",
+      "purpose": "Time-series expected-vs-actual anomaly detection",
+      "split": "validation",
+      "threshold": 2.565833,
+      "prediction_band_threshold": 1.05,
+      "accuracy": 0.867069,
+      "precision": 0.684211,
+      "recall": 0.254902,
+      "f1_score": 0.371429,
+      "predicted_positive_rate": 0.057402,
+      "tn": 274,
+      "fp": 6,
+      "fn": 38,
+      "tp": 13,
+      "support_positive": 51,
+      "support_negative": 280,
+      "predicted_positive_count": 19
+    },
+    {
+      "method": "LSTM deviation method",
+      "purpose": "Time-series expected-vs-actual anomaly detection",
+      "split": "test",
+      "threshold": 2.565833,
+      "prediction_band_threshold": 1.05,
+      "accuracy": 0.903323,
+      "precision": 0.047619,
+      "recall": 0.428571,
+      "f1_score": 0.085714,
+      "predicted_positive_rate": 0.095166,
+      "tn": 595,
+      "fp": 60,
+      "fn": 4,
+      "tp": 3,
+      "support_positive": 7,
+      "support_negative": 655,
+      "predicted_positive_count": 63
+    }
+  ],
+  "support_warning": "The test split contains only 7 proxy-positive anomaly cases, so anomaly metrics remain sensitive to a small number of events.",
+  "threshold_calibration": {
+    "threshold_basis": "Validation-only calibration on the chronological validation split using a train/validation quantile grid. Thresholds are selected before the test split is evaluated.",
+    "threshold_percentile": 98.2335,
+    "prediction_band_threshold_percentile": 97.1995,
+    "validation_split_used_for_threshold": "chronological_validation_split",
+    "predicted_positive_rate_validation": 0.057402,
+    "actual_proxy_positive_rate_validation": 0.154079,
+    "actual_proxy_positive_rate_test": 0.010574
+  },
+  "walk_forward_validation": {
+    "method_note": "This is a lightweight chronological backtest summary across contiguous folds of the saved test window. It preserves time order and reports ensemble price error, direction-classification accuracy, and 95% interval coverage without fully retraining the LSTM in every fold.",
+    "fold_count": 3,
+    "fold_metrics": [
+      {
+        "fold": 1,
+        "train_period_start": "2012-06-14",
+        "train_period_end": "2023-11-13",
+        "validation_period_start": "2023-11-14",
+        "validation_period_end": "2024-10-15",
+        "rows": 221,
+        "mae": 0.148078,
+        "rmse": 0.222772,
+        "mape": 0.00785,
+        "mape_pct": 0.78497,
+        "directional_accuracy": 0.484163,
+        "balanced_directional_accuracy": 0.381571,
+        "interval_95_coverage": 0.959276
+      },
+      {
+        "fold": 2,
+        "train_period_start": "2012-06-14",
+        "train_period_end": "2024-10-15",
+        "validation_period_start": "2024-10-16",
+        "validation_period_end": "2025-09-29",
+        "rows": 221,
+        "mae": 0.250077,
+        "rmse": 0.335204,
+        "mape": 0.011376,
+        "mape_pct": 1.137625,
+        "directional_accuracy": 0.447964,
+        "balanced_directional_accuracy": 0.382893,
+        "interval_95_coverage": 0.837104
+      },
+      {
+        "fold": 3,
+        "train_period_start": "2012-06-14",
+        "train_period_end": "2025-09-29",
+        "validation_period_start": "2025-09-30",
+        "validation_period_end": "2026-08-28",
+        "rows": 220,
+        "mae": 0.210358,
+        "rmse": 0.294271,
+        "mape": 0.010103,
+        "mape_pct": 1.010346,
+        "directional_accuracy": 0.360731,
+        "balanced_directional_accuracy": 0.327831,
+        "interval_95_coverage": 0.881818
+      }
+    ],
+    "aggregate_metrics": [
+      {
+        "mae_mean": 0.202838,
+        "mae_std": 0.041979,
+        "rmse_mean": 0.284082,
+        "rmse_std": 0.046462,
+        "mape_mean": 0.009776,
+        "mape_std": 0.001458,
+        "directional_accuracy_mean": 0.430952,
+        "directional_accuracy_std": 0.051807,
+        "balanced_directional_accuracy_mean": 0.364098,
+        "balanced_directional_accuracy_std": 0.02565,
+        "interval_95_coverage_mean": 0.892733,
+        "interval_95_coverage_std": 0.05047
+      }
+    ],
+    "price_baseline_fold_metrics": [
+      {
+        "fold": 1,
+        "model": "LSTM expected-price baseline",
+        "start_date": "2023-11-14",
+        "end_date": "2024-10-15",
+        "rows": 221,
+        "mae": 0.215178,
+        "rmse": 0.303056,
+        "mape": 0.01122,
+        "mape_pct": 1.121981,
+        "directional_accuracy": 0.520362
+      },
+      {
+        "fold": 1,
+        "model": "Naive previous-close baseline",
+        "start_date": "2023-11-14",
+        "end_date": "2024-10-15",
+        "rows": 221,
+        "mae": 0.146168,
+        "rmse": 0.220543,
+        "mape": 0.007773,
+        "mape_pct": 0.777292,
+        "directional_accuracy": 0.524887
+      },
+      {
+        "fold": 2,
+        "model": "LSTM expected-price baseline",
+        "start_date": "2024-10-16",
+        "end_date": "2025-09-29",
+        "rows": 221,
+        "mae": 0.472519,
+        "rmse": 0.602782,
+        "mape": 0.021281,
+        "mape_pct": 2.128121,
+        "directional_accuracy": 0.533937
+      },
+      {
+        "fold": 2,
+        "model": "Naive previous-close baseline",
+        "start_date": "2024-10-16",
+        "end_date": "2025-09-29",
+        "rows": 221,
+        "mae": 0.238914,
+        "rmse": 0.31729,
+        "mape": 0.010861,
+        "mape_pct": 1.08605,
+        "directional_accuracy": 0.533937
+      },
+      {
+        "fold": 3,
+        "model": "LSTM expected-price baseline",
+        "start_date": "2025-09-30",
+        "end_date": "2026-08-28",
+        "rows": 220,
+        "mae": 0.408814,
+        "rmse": 0.51159,
+        "mape": 0.019451,
+        "mape_pct": 1.945082,
+        "directional_accuracy": 0.559091
+      },
+      {
+        "fold": 3,
+        "model": "Naive previous-close baseline",
+        "start_date": "2025-09-30",
+        "end_date": "2026-08-28",
+        "rows": 220,
+        "mae": 0.189546,
+        "rmse": 0.276586,
+        "mape": 0.009128,
+        "mape_pct": 0.912831,
+        "directional_accuracy": 0.559091
+      }
+    ],
+    "price_baseline_aggregate_metrics": [
+      {
+        "model": "LSTM expected-price baseline",
+        "mae_mean": 0.365504,
+        "mae_std": 0.134026,
+        "rmse_mean": 0.472476,
+        "rmse_std": 0.153644,
+        "mape_mean": 0.017317,
+        "mape_std": 0.005359,
+        "mape_pct_mean": 1.731728,
+        "mape_pct_std": 0.535928,
+        "directional_accuracy_mean": 0.537797,
+        "directional_accuracy_std": 0.019651
+      },
+      {
+        "model": "Naive previous-close baseline",
+        "mae_mean": 0.191542,
+        "mae_std": 0.046405,
+        "rmse_mean": 0.271473,
+        "rmse_std": 0.048576,
+        "mape_mean": 0.009254,
+        "mape_std": 0.001548,
+        "mape_pct_mean": 0.925391,
+        "mape_pct_std": 0.154762,
+        "directional_accuracy_mean": 0.539305,
+        "directional_accuracy_std": 0.017723
+      }
+    ]
+  },
+  "top_shap_factors": [
+    {
+      "feature": "Trading Volume",
+      "contribution": 0.824336
+    },
+    {
+      "feature": "1D Return",
+      "contribution": 0.065527
+    },
+    {
+      "feature": "ATR 14D",
+      "contribution": 0.043226
+    }
+  ],
+  "shap_backend": "tree_shap",
+  "shap_explanation_target": "surrogate_liquidity_anomaly_score",
+  "shap_explanation_note": "SHAP explains the surrogate anomaly-score model, not the LSTM internals directly.",
+  "top_feature_contribution_percentage": 82.43362,
+  "esi_latest": 0.666667,
+  "esi_mean": 0.933333,
+  "esi_min": 0.666667,
+  "esi_max": 1.0,
+  "number_of_windows_used": 31,
+  "esi_score": 0.666667,
+  "esi_interpretation": "moderately stable",
+  "explanation_stability_comment": "Moderate",
+  "dominance_warning": "Explanation is stable, but dominated by trading volume, so interpretation should be treated as volume-led.",
+  "simple_explanation": "The latest movement is within the model's normal range. The score behaviour was mainly influenced by lower trading volume, weaker recent returns, and a lower average true range.",
+  "thin_trading_diagnostics": {
+    "zero_volume_flag": false,
+    "low_volume_flag": false,
+    "thin_trading_flag": false,
+    "rolling_volume_median_20": 1823460.5,
+    "relative_volume": 0.921829,
+    "zero_volume_count": 0,
+    "formula_validation_max_diff": 0.0,
+    "zero_volume_formula_validation_pass": true
+  },
+  "proxy_anomaly_label_construction": "Proxy labels are generated from market-stress windows plus extreme realized price, volatility, and volume conditions. They are not manually verified CSE event labels, so anomaly evaluation is proxy-label evaluation rather than real-world ground truth.",
+  "recent_anomaly_summary": {
+    "recent_window_start": "2026-06-02",
+    "recent_window_end": "2026-08-28",
+    "recent_window_rows": 60,
+    "recent_anomaly_count": 0,
+    "recent_liquidity_anomaly_count": 0,
+    "recent_prediction_band_anomaly_count": 0,
+    "recent_downside_count": 0,
+    "recent_structural_discount_count": 0,
+    "latest_recent_anomaly": null,
+    "latest_recent_downside_anomaly": null,
+    "latest_recent_structural_anomaly": null
+  },
+  "forecast_basis": "anomaly_adjusted_structural_reversion_scenario",
+  "forecast_reliability_metrics": {
+    "forecast_mae_backtest": 0.202826,
+    "forecast_rmse_backtest": 0.287847,
+    "forecast_mape_backtest": 0.009776,
+    "forecast_mape_backtest_pct": 0.977597,
+    "interval_80_coverage": 0.697885,
+    "interval_95_coverage": 0.892749,
+    "average_interval_width_95": 0.926817,
+    "coverage_error_95": 0.057251,
+    "forecast_bias": 0.070045,
+    "direction_hit_rate_for_forecast_horizon": 0.546828,
+    "price_error_score": 9.022403,
+    "interval_coverage_score": 9.39736,
+    "bias_score": 9.660558,
+    "stability_score": 8.508504,
+    "forecast_reliability_score": 9.229879,
+    "forecast_reliability_interpretation": "High",
+    "fold_mape_mean": 0.009776,
+    "fold_mape_std": 0.001458
+  },
+  "forecast_reliability_score": 9.229879,
+  "forecast_reliability_interpretation": "High",
+  "forecast_interval_coverage": {
+    "interval_80_coverage": 0.697885,
+    "interval_95_coverage": 0.892749
+  },
+  "forecast_bias": 0.070045,
+  "forecast_model_weights": {
+    "scenario_lstm_forecast": 0.239837,
+    "naive_random_walk_forecast": 0.389482,
+    "moving_average_drift_forecast": 0.370681
+  },
+  "forecast_reliability_note": "Forecast reliability was improved by adding backtested conformal prediction intervals and ensemble scenario forecasting. Therefore reliability is evaluated not only by point forecast error, but also by whether the forecast intervals contain actual prices at the expected rate.",
+  "forecast_3m": {
+    "forecast_basis": "anomaly_adjusted_structural_reversion_scenario",
+    "forecast_heading": "3-Month Model-Based Scenario Forecast",
+    "forecast_start_date": "2026-08-31",
+    "forecast_end_date": "2026-11-20",
+    "forecast_start_price": 19.8972,
+    "forecast_end_price": 19.7681,
+    "forecast_end_fair_value_anchor": 19.9565,
+    "lower_80": 17.9869,
+    "upper_80": 21.5492,
+    "lower_95": 13.9739,
+    "upper_95": 25.5623,
+    "forecast_end_lower_80": 17.9869,
+    "forecast_end_upper_80": 21.5492,
+    "forecast_end_lower_95": 13.9739,
+    "forecast_end_upper_95": 25.5623,
+    "forecast_3m_return_pct": -0.6629,
+    "uncertainty_width": 11.5885,
+    "forecast_model_weights": {
+      "scenario_lstm_forecast": 0.239837,
+      "naive_random_walk_forecast": 0.389482,
+      "moving_average_drift_forecast": 0.370681
+    },
+    "forecast_note": "This is a model-based scenario forecast, not guaranteed, and not financial advice.",
+    "risk_warning": "Backtested interval coverage is reasonably calibrated, but the 3-month path remains a scenario rather than a guaranteed future price."
+  },
+  "ensemble_forecast_3m": {
+    "forecast_start_price": 19.8972,
+    "forecast_end_price": 19.7681,
+    "lower_80": 17.9869,
+    "upper_80": 21.5492,
+    "lower_95": 13.9739,
+    "upper_95": 25.5623
+  },
+  "structural_forecast_3m": 19.7681,
+  "anomaly_adjusted_forecast_3m": 19.7681,
+  "current_price": 19.9,
+  "recovery_gap": -0.1319,
+  "recovery_gap_pct": -0.006628,
+  "target_price": 20.89,
+  "target_price_basis": "auto_structural_plus_5pct_target",
+  "target_breakout_probability": 0.352157,
+  "anomaly_adjusted_breakout_probability": 0.352157,
+  "target_breakout_interpretation": "Weak breakout potential",
+  "anomaly_pressure_score": 1.246967,
+  "anomaly_pressure_threshold": 4.367769,
+  "anomaly_pressure_threshold_basis": "Train/validation only 90th-percentile threshold over anomaly_pressure_score, with component z-scores standardized from train/validation statistics only. No test rows are used in threshold selection.",
+  "temporary_anomaly_drag_flag": false,
+  "anomaly_penalty_pct": 0.0,
+  "anomaly_type": "Normal movement",
+  "shock_adjusted_explanation": "The model does not currently show strong evidence that the stock will break above the selected target within the forecast period.",
+  "external_data_limitations": "The following optional external/proxy inputs were unavailable: market_return_proxy, sector_return_proxy, news_sentiment_score, external_pressure_proxy. Shock-adjusted interpretation therefore relies on stock-level anomaly and stress proxies only.",
+  "counterfactual_structural_forecast_3m": 19.198023,
+  "current_regime_forecast_3m": 19.7681,
+  "structural_suppression_gap": -0.701977,
+  "structural_suppression_gap_pct": -0.035275,
+  "pre_shock_anchor_price": 21.200001,
+  "pre_shock_anchor_date": "2026-03-04",
+  "regime_shift_score": 0.280783,
+  "regime_shift_flag": false,
+  "regime_shift_threshold": 6.94335,
+  "regime_shift_threshold_basis": "Train/validation only 90th-percentile threshold over trailing regime-shift components. Components use historical rolling windows and no future rows.",
+  "suppression_materiality_threshold_pct": 0.035835,
+  "suppressed_but_not_currently_anomalous_flag": false,
+  "structural_suppression_interpretation": "The latest movement does not show current anomaly behavior, and the model does not detect a strong structural suppression gap based on the available historical path.",
+  "counterfactual_layer_limitations": [
+    "Counterfactual forecast is model-based, not guaranteed.",
+    "It estimates an alternative no-shock structural path using historical trend behavior.",
+    "It does not prove the exact external cause of the suppression.",
+    "It should be validated with external news, market, and fundamental evidence.",
+    "It should not be treated as financial advice."
+  ],
+  "novelty_statement": "The novelty of Component 1 is not simply stock price prediction. The contribution is an explainable and liquidity-aware market modeling framework for CSE stocks that combines LSTM-based expected-price modeling, deviation-based anomaly scoring adjusted by trading volume, separated anomaly/value-signal logic, SHAP-based surrogate explanation, and ESI-based explanation stability measurement. This makes the output more suitable for investor-facing interpretation in a low-liquidity emerging-market context.",
+  "limitations": [
+    "Anomaly labels are proxy labels, not manually verified CSE event labels.",
+    "The test split contains only 7 proxy-positive anomaly cases, so anomaly metrics remain sensitive to a small number of events.",
+    "The CSV source column indicates tradingview_cselk_fallback, so this is not a pure Ideabeam-only dataset. Historical OHLCV was recovered through the TradingView CSELK fallback path when the Ideabeam workflow was unavailable.",
+    "Low MAPE does not guarantee profitable trading performance.",
+    "Directional prediction is evaluated as classification quality only; it should not be presented as guaranteed trading accuracy.",
+    "SHAP explains a surrogate anomaly-score model, not internal LSTM gates.",
+    "The forecast is scenario-based, interval-calibrated, not guaranteed, and not financial advice.",
+    "The following optional external/proxy inputs were unavailable: market_return_proxy, sector_return_proxy, news_sentiment_score, external_pressure_proxy. Shock-adjusted interpretation therefore relies on stock-level anomaly and stress proxies only.",
+    "Counterfactual structural suppression is model-based and should be validated with external market, news, and fundamental evidence.",
+    "Data source should be validated against official CSE/MyCSE when possible."
+  ]
+}

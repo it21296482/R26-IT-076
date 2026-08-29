@@ -1,0 +1,170 @@
+{
+  "pdf_name": "JKH_2022.pdf",
+  "prompt_id": "prompt_06",
+  "prompt_name": "Ratio-Aware Prompt",
+  "model": "gpt-5.2-chat",
+  "full_model_output": "```json\n{\n  \"metadata\": {\n    \"pdf_name\": \"JKH_2022.pdf\",\n    \"company_name\": \"John Keells Holdings PLC\",\n    \"reporting_year\": \"2021/22\",\n    \"prompt_id\": \"JKH_INVESTOR_FACTS_2022\",\n    \"model\": \"GPT-5.2\",\n    \"generated_at\": \"2026-05-08\"\n  },\n  \"extracted_facts\": {\n    \"company_overview\": {\n      \"company_name\": \"John Keells Holdings PLC\",\n      \"reporting_year\": \"2021/22\",\n      \"business_segments\": [\n        \"Transportation\",\n        \"Consumer Foods\",\n        \"Retail\",\n        \"Leisure\",\n        \"Property\",\n        \"Financial Services\",\n        \"Other (including IT and Plantation Services)\"\n      ],\n      \"principal_activities\": \"Holding company managing a diversified portfolio of businesses and providing functional services to subsidiaries, associates and joint ventures.\",\n      \"sector_industry\": \"Diversified Conglomerate\",\n      \"subsidiaries_associates\": \"Multiple subsidiaries and associates across leisure, retail, property, transportation, financial services and consumer sectors.\"\n    },\n    \"financial_performance\": {\n      \"revenue_turnover\": 218074746000,\n      \"gross_profit\": 37644738000,\n      \"operating_profit\": 7308186000,\n      \"profit_before_tax\": 27324493000,\n      \"profit_after_tax\": 20442907000,\n      \"eps\": 15.13,\n      \"ebitda\": 29262000000,\n      \"net_finance_cost\": -23771422000,\n      \"tax_expense\": 6881586000\n    },\n    \"financial_position\": {\n      \"total_assets\": 717795693000,\n      \"total_liabilities\": 387704220000,\n      \"total_equity\": 330091473000,\n      \"borrowings_debt\": 268227627000,\n      \"cash_and_cash_equivalents\": 163100000000,\n      \"inventory\": 36224887000,\n      \"trade_receivables\": 27495348000,\n      \"trade_payables\": null\n    },\n    \"cash_flow\": {\n      \"operating_cash_flow\": 30439794000,\n      \"investing_cash_flow\": null,\n      \"financing_cash_flow\": null,\n      \"free_cash_flow\": null,\n      \"capital_expenditure\": 6626776000\n    },\n    \"investor_ratios\": {\n      \"gross_profit_margin\": 0.1727,\n      \"net_profit_margin\": 0.0938,\n      \"current_ratio\": null,\n      \"debt_to_equity_ratio\": 0.8126,\n      \"return_on_equity\": 0.0619,\n      \"return_on_assets\": 0.0285,\n      \"eps_ratio_reference\": \"Basic EPS\",\n      \"dividend_payout_ratio\": null\n    },\n    \"shareholder_information\": {\n      \"stated_capital\": 73187861000,\n      \"number_of_shares\": 1384916632,\n      \"major_shareholders\": \"Asian Development Bank (via private placement), institutional and resident/non-resident shareholders\",\n      \"public_holding_percentage\": 64,\n      \"dividends\": \"Rs.1.50 per share\",\n      \"market_price_per_share\": 145.0\n    },\n    \"risk_factors\": {\n      \"liquidity_risk\": \"Managed through liquid assets approach and committed facilities.\",\n      \"credit_risk\": \"Primarily from trade receivables; monitored with ECL provisioning.\",\n      \"market_risk\": \"Exposure to interest rate, currency, equity price and commodity risks.\",\n      \"interest_rate_risk\": \"Sensitivity disclosed for Rupee and foreign currency borrowings.\",\n      \"foreign_exchange_risk\": \"Significant due to foreign currency debt and cash flows.\",\n      \"operational_risk\": \"Managed through ERM framework across business units.\",\n      \"regulatory_risk\": \"Subject to Sri Lankan regulatory environment and sector regulations.\",\n      \"going_concern_concerns\": \"Board confirms adequate resources to continue as a going concern.\",\n      \"litigation_contingencies\": \"Disclosed as contingent liabilities where applicable.\"\n    },\n    \"management_governance\": {\n      \"board_changes\": null,\n      \"auditor_opinion\": \"Unqualified opinion; financial statements give a true and fair view.\",\n      \"related_party_transactions\": \"Conducted at arm’s length in the ordinary course of business.\",\n      \"corporate_governance_statements\": \"Compliant with CSE Listing Rules and best practices.\",\n      \"director_responsibility_statement\": \"Directors responsible for preparation and fair presentation of financial statements.\"\n    },\n    \"future_outlook\": {\n      \"chairman_ceo_outlook\": \"Cautiously optimistic with focus on resilience amid macroeconomic challenges.\",\n      \"expansion_plans\": \"Continued investment in property, retail, logistics and strategic assets.\",\n      \"expected_challenges\": \"Macroeconomic instability, currency volatility, inflation and liquidity constraints.\",\n      \"strategy\": \"Portfolio diversification, capital discipline, ESG focus and digital transformation.\",\n      \"forward_looking_statements\": \"Outlook subject to economic, regulatory and market uncertainties.\"\n    }\n  },\n  \"investor_friendly_insight\": {\n    \"summary\": \"John Keells Holdings PLC reported a strong recovery in 2021/22 with revenue of Rs.218.1 billion and profit after tax of Rs.20.4 billion, supported by diversified operations and improved EBITDA.\",\n    \"key_strengths\": [\n      \"Diversified business portfolio\",\n      \"Strong EBITDA growth\",\n      \"Robust liquidity position\"\n    ],\n    \"key_concerns\": [\n      \"High leverage relative to equity\",\n      \"Exposure to foreign exchange volatility\",\n      \"Macroeconomic uncertainty in Sri Lanka\"\n    ],\n    \"risk_level_explanation\": \"Risk profile reflects a large diversified conglomerate operating in a volatile macroeconomic environment with significant foreign currency exposure.\",\n    \"non_advisory_note\": \"This is an informational summary only and not financial advice.\"\n  },\n  \"source_evidence\": [\n    \"Income Statement and Notes – Pages 206–208\",\n    \"Statement of Financial Position – Page 210\",\n    \"Statement of Cash Flows – Page 209\",\n    \"Capital Management Review – Pages 46–52\",\n    \"Share Information – Pages 167–171\"\n  ],\n  \"missing_fields\": [\n    \"current_ratio\",\n    \"dividend_payout_ratio\",\n    \"free_cash_flow\",\n    \"trade_payables\",\n    \"financing_cash_flow\",\n    \"investing_cash_flow\"\n  ],\n  \"confidence_score\": 0.84\n}\n```",
+  "parsed_json": {
+    "metadata": {
+      "pdf_name": "JKH_2022.pdf",
+      "company_name": "John Keells Holdings PLC",
+      "reporting_year": "2021/22",
+      "prompt_id": "prompt_06",
+      "model": "gpt-5.2-chat",
+      "generated_at": "2026-05-08T15:20:16.871256+00:00"
+    },
+    "extracted_facts": {
+      "company_overview": {
+        "company_name": "John Keells Holdings PLC",
+        "reporting_year": "2021/22",
+        "business_segments": [
+          "Transportation",
+          "Consumer Foods",
+          "Retail",
+          "Leisure",
+          "Property",
+          "Financial Services",
+          "Other (including IT and Plantation Services)"
+        ],
+        "principal_activities": "Holding company managing a diversified portfolio of businesses and providing functional services to subsidiaries, associates and joint ventures.",
+        "sector_industry": "Diversified Conglomerate",
+        "subsidiaries_associates": "Multiple subsidiaries and associates across leisure, retail, property, transportation, financial services and consumer sectors."
+      },
+      "financial_performance": {
+        "revenue_turnover": 218074746000,
+        "gross_profit": 37644738000,
+        "operating_profit": 7308186000,
+        "profit_before_tax": 27324493000,
+        "profit_after_tax": 20442907000,
+        "eps": 15.13,
+        "ebitda": 29262000000,
+        "net_finance_cost": -23771422000,
+        "tax_expense": 6881586000
+      },
+      "financial_position": {
+        "total_assets": 717795693000,
+        "total_liabilities": 387704220000,
+        "total_equity": 330091473000,
+        "borrowings_debt": 268227627000,
+        "cash_and_cash_equivalents": 163100000000,
+        "inventory": 36224887000,
+        "trade_receivables": 27495348000,
+        "trade_payables": null
+      },
+      "cash_flow": {
+        "operating_cash_flow": 30439794000,
+        "investing_cash_flow": null,
+        "financing_cash_flow": null,
+        "free_cash_flow": null,
+        "capital_expenditure": 6626776000
+      },
+      "investor_ratios": {
+        "gross_profit_margin": 0.1727,
+        "net_profit_margin": 0.0938,
+        "current_ratio": null,
+        "debt_to_equity_ratio": 0.8126,
+        "return_on_equity": 0.0619,
+        "return_on_assets": 0.0285,
+        "eps_ratio_reference": "Basic EPS",
+        "dividend_payout_ratio": null
+      },
+      "shareholder_information": {
+        "stated_capital": 73187861000,
+        "number_of_shares": 1384916632,
+        "major_shareholders": "Asian Development Bank (via private placement), institutional and resident/non-resident shareholders",
+        "public_holding_percentage": 64,
+        "dividends": "Rs.1.50 per share",
+        "market_price_per_share": 145.0
+      },
+      "risk_factors": {
+        "liquidity_risk": "Managed through liquid assets approach and committed facilities.",
+        "credit_risk": "Primarily from trade receivables; monitored with ECL provisioning.",
+        "market_risk": "Exposure to interest rate, currency, equity price and commodity risks.",
+        "interest_rate_risk": "Sensitivity disclosed for Rupee and foreign currency borrowings.",
+        "foreign_exchange_risk": "Significant due to foreign currency debt and cash flows.",
+        "operational_risk": "Managed through ERM framework across business units.",
+        "regulatory_risk": "Subject to Sri Lankan regulatory environment and sector regulations.",
+        "going_concern_concerns": "Board confirms adequate resources to continue as a going concern.",
+        "litigation_contingencies": "Disclosed as contingent liabilities where applicable."
+      },
+      "management_governance": {
+        "board_changes": null,
+        "auditor_opinion": "Unqualified opinion; financial statements give a true and fair view.",
+        "related_party_transactions": "Conducted at arm’s length in the ordinary course of business.",
+        "corporate_governance_statements": "Compliant with CSE Listing Rules and best practices.",
+        "director_responsibility_statement": "Directors responsible for preparation and fair presentation of financial statements."
+      },
+      "future_outlook": {
+        "chairman_ceo_outlook": "Cautiously optimistic with focus on resilience amid macroeconomic challenges.",
+        "expansion_plans": "Continued investment in property, retail, logistics and strategic assets.",
+        "expected_challenges": "Macroeconomic instability, currency volatility, inflation and liquidity constraints.",
+        "strategy": "Portfolio diversification, capital discipline, ESG focus and digital transformation.",
+        "forward_looking_statements": "Outlook subject to economic, regulatory and market uncertainties."
+      }
+    },
+    "investor_friendly_insight": {
+      "summary": "John Keells Holdings PLC reported a strong recovery in 2021/22 with revenue of Rs.218.1 billion and profit after tax of Rs.20.4 billion, supported by diversified operations and improved EBITDA.",
+      "key_strengths": [
+        "Diversified business portfolio",
+        "Strong EBITDA growth",
+        "Robust liquidity position"
+      ],
+      "key_concerns": [
+        "High leverage relative to equity",
+        "Exposure to foreign exchange volatility",
+        "Macroeconomic uncertainty in Sri Lanka"
+      ],
+      "risk_level_explanation": "Risk profile reflects a large diversified conglomerate operating in a volatile macroeconomic environment with significant foreign currency exposure.",
+      "non_advisory_note": "This is an informational summary only and not financial advice."
+    },
+    "source_evidence": [
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Income Statement and Notes – Pages 206–208"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Statement of Financial Position – Page 210"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Statement of Cash Flows – Page 209"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Capital Management Review – Pages 46–52"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Share Information – Pages 167–171"
+      }
+    ],
+    "missing_fields": [
+      "trade_payables",
+      "investing_cash_flow",
+      "financing_cash_flow",
+      "free_cash_flow",
+      "current_ratio",
+      "dividend_payout_ratio",
+      "board_changes"
+    ],
+    "confidence_score": 0.84
+  },
+  "token_usage": {
+    "input_tokens": 41140,
+    "output_tokens": 1439,
+    "total_tokens": 42579
+  },
+  "runtime_seconds": 14.981,
+  "errors": null
+}

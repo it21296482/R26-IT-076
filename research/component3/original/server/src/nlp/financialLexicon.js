@@ -1,0 +1,322 @@
+// server/src/nlp/financialLexicon.js
+
+const financialLexicon = {
+  positive: {
+    // General positive financial terms
+    profit: 2,
+    profits: 2,
+    profitability: 2,
+    growth: 2,
+    grow: 1,
+    gain: 2,
+    gains: 2,
+    gained: 2,
+    rise: 2,
+    rises: 2,
+    rising: 2,
+    increase: 2,
+    increased: 2,
+    improvement: 2,
+    improved: 2,
+    recovery: 2,
+    recover: 2,
+    rebound: 2,
+    surge: 3,
+    surged: 3,
+    rally: 3,
+    rallied: 3,
+    strong: 2,
+    stronger: 2,
+    robust: 2,
+    bullish: 3,
+    optimistic: 2,
+    outperform: 3,
+    outperformed: 3,
+    beat: 2,
+    success: 2,
+    successful: 2,
+    favorable: 2,
+    upgrade: 3,
+    upgraded: 3,
+
+    // Earnings / revenue
+    earnings: 1,
+    revenue: 1,
+    sales: 1,
+    margin: 1,
+    margins: 1,
+    dividend: 1,
+    dividends: 1,
+
+    // Expansion / investment
+    expansion: 2,
+    expand: 2,
+    expanded: 2,
+    investment: 1,
+    acquisition: 2,
+    merger: 2,
+    partnership: 2,
+    contract: 1,
+    innovation: 1,
+    listing: 1,
+    ipo: 2,
+    subsidiary: 1,
+
+    // Finance / banking
+    liquidity: 0,
+    capital: 1,
+    funding: 1,
+    financing: 1,
+
+    // Strong positive phrases
+    phrases: {
+      "record profit": 3,
+      "record profits": 3,
+      "record earnings": 3,
+      "earnings beat": 3,
+      "revenue growth": 2,
+      "profit growth": 3,
+      "higher revenue": 2,
+      "higher sales": 2,
+      "record sales": 3,
+      "strong demand": 2,
+      "strong growth": 3,
+      "robust growth": 3,
+
+      "improved margins": 3,
+      "higher margins": 2,
+      "cost control": 2,
+      "positive cash flow": 3,
+      "cash inflow": 2,
+
+      "capital raise": 2,
+      "capital raising": 2,
+      "rights issue": 2,
+      "share buyback": 3,
+      "bonus issue": 2,
+
+      "interim dividend": 2,
+      "special dividend": 3,
+      "dividend increase": 3,
+
+      "credit upgrade": 3,
+      "rating upgrade": 3,
+
+      "contract award": 3,
+      "wins contract": 3,
+      "major contract": 3,
+
+      "strategic partnership": 2,
+      "joint venture": 2,
+      "new investment": 2,
+      "foreign investment": 2,
+
+      "new subsidiary": 2,
+      "new sector": 2,
+      "new market": 2,
+      "new product": 2,
+      "successful launch": 2,
+
+      "loan growth": 2,
+      "loan book growth": 3,
+      "asset growth": 2,
+      "market share growth": 3,
+      "export growth": 2,
+
+      "tourism recovery": 3,
+      "economic recovery": 3,
+      "successful acquisition": 3,
+      "expanding operations": 2,
+
+      "profit increase": 3,
+      "profits increase": 3,
+      "revenue increase": 2,
+      "earnings increase": 3,
+      "dividend increase": 3,
+      "higher dividend": 3,
+      "dividend above expectations": 3,
+      "declares dividend": 2
+
+    }
+  },
+
+  negative: {
+    // General negative financial terms
+    loss: -2,
+    losses: -2,
+    decline: -2,
+    declined: -2,
+    declining: -2,
+    drop: -2,
+    dropped: -2,
+    falling: -2,
+    fall: -2,
+    falls: -2,
+    plunge: -3,
+    plunged: -3,
+    crash: -4,
+    crashed: -4,
+    slump: -3,
+    weakness: -2,
+    weak: -2,
+    slowdown: -2,
+    bearish: -3,
+
+    // Macroeconomic
+    inflation: -2,
+    recession: -4,
+    uncertainty: -2,
+    turmoil: -3,
+    volatility: -2,
+    crisis: -4,
+    instability: -3,
+
+    // Debt / liquidity
+    debt: -2,
+    default: -4,
+    bankruptcy: -5,
+    insolvency: -5,
+    liquidation: -4,
+
+    // Legal / governance
+    fraud: -5,
+    corruption: -4,
+    scandal: -4,
+    lawsuit: -3,
+    penalty: -2,
+    fine: -2,
+    investigation: -2,
+
+    // Business deterioration
+    downgrade: -3,
+    downgraded: -3,
+    underperform: -3,
+    underperformed: -3,
+    resignation: -2,
+    layoffs: -3,
+    shutdown: -3,
+    cancellation: -2,
+    deficit: -2,
+
+    // Strong negative phrases
+    phrases: {
+      "profit warning": -4,
+      "earnings miss": -3,
+      "poor earnings": -3,
+      "operating loss": -3,
+      "record loss": -4,
+
+      "revenue decline": -3,
+      "declining revenue": -3,
+      "sales decline": -3,
+      "export decline": -3,
+      "decreased margins": -3,
+      "margin pressure": -2,
+      "weak demand": -3,
+
+      "cash flow strain": -4,
+      "negative cash flow": -4,
+      "liquidity crisis": -5,
+      "liquidity shortage": -4,
+
+      "loan default": -5,
+      "bad debt": -3,
+      "rising debt": -3,
+      "debt crisis": -5,
+
+      "credit downgrade": -4,
+      "rating downgrade": -4,
+
+      "interest rate hike": -3,
+      "rate hike": -3,
+      "higher interest rates": -3,
+      "high inflation": -3,
+
+      "political turmoil": -4,
+      "political instability": -4,
+      "policy uncertainty": -3,
+      "market uncertainty": -3,
+      "economic uncertainty": -3,
+      "geopolitical risk": -3,
+
+      "currency depreciation": -3,
+      "exchange rate loss": -3,
+
+      "regulatory action": -3,
+      "regulatory fine": -3,
+      "fraud allegations": -5,
+
+      "factory shutdown": -4,
+      "production halt": -4,
+      "job cuts": -3,
+      "management resignation": -3,
+
+      "contract cancellation": -3,
+      "share dilution": -2,
+      "poor outlook": -3,
+      "tourism decline": -3,
+      "supply chain disruption": -3,
+
+      "bad loan provisions": -5,
+"loan loss provisions": -5,
+"rising bad loan provisions": -5,
+"higher loan provisions": -4,
+"higher provisions": -3,
+"non performing loans": -5,
+"non-performing loans": -5
+    }
+  },
+
+  neutral: [
+    "announce",
+    "announces",
+    "announcement",
+    "meeting",
+    "committee",
+    "panel",
+    "session",
+    "conference",
+    "briefing",
+    "notice",
+    "report",
+    "reports",
+    "update",
+    "review",
+    "agenda",
+    "scheduled",
+    "calendar",
+    "publication",
+    "release",
+    "audit",
+    "auditor",
+    "disclosure",
+    "compliance",
+    "filing",
+    "hearing",
+    "discussion",
+    "consultation",
+    "appointment"
+  ],
+
+  neutralPhrases: [
+    "board meeting",
+    "shareholder notice",
+    "annual report",
+    "financial statement",
+    "quarterly results",
+    "press briefing",
+    "policy meeting",
+    "budget session",
+    "routine auditor appointment",
+    "unchanged management structure",
+    "date for dividend payment",
+"dividend payment date",
+"confirms dividend payment",
+"confirms date for dividend payment",
+"tax reforms",
+"forms panel",
+"parliament resumes",
+  ]
+};
+
+module.exports = financialLexicon;

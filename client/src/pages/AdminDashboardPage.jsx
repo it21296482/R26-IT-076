@@ -16,20 +16,6 @@ const initialUserForm = {
   role: "user",
 };
 
-const initialRecordForm = {
-  _id: "",
-  symbol: "",
-  companyName: "",
-  tradeDate: "",
-  open: "",
-  high: "",
-  low: "",
-  close: "",
-  adjustedClose: "",
-  volume: "",
-  notes: "",
-};
-
 const USERS_PER_PAGE = 5;
 const RECORDS_PER_PAGE = 6;
 
@@ -56,7 +42,6 @@ function AdminDashboardPage() {
   const [stockRecords, setStockRecords] = useState([]);
   const [uploadForm, setUploadForm] = useState(initialUploadForm);
   const [userForm, setUserForm] = useState(initialUserForm);
-  const [recordForm, setRecordForm] = useState(initialRecordForm);
   const [csvFile, setCsvFile] = useState(null);
   const [resetDrafts, setResetDrafts] = useState({});
   const [error, setError] = useState("");
@@ -69,9 +54,8 @@ function AdminDashboardPage() {
   const [deletingUserId, setDeletingUserId] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [recordSearchTerm, setRecordSearchTerm] = useState("");
+  const [recordSearchTerm] = useState("");
   const [recordPage, setRecordPage] = useState(1);
-  const [savingRecord, setSavingRecord] = useState(false);
   const [deletingRecordId, setDeletingRecordId] = useState("");
 
   const loadAdminData = async () => {
@@ -332,52 +316,6 @@ function AdminDashboardPage() {
     popup.print();
   };
 
-  const handleEditRecord = (record) => {
-    setRecordForm({
-      _id: record._id,
-      symbol: record.symbol,
-      companyName: record.companyName,
-      tradeDate: new Date(record.tradeDate).toISOString().slice(0, 10),
-      open: record.open,
-      high: record.high,
-      low: record.low,
-      close: record.close,
-      adjustedClose: record.adjustedClose ?? "",
-      volume: record.volume,
-      notes: record.notes || "",
-    });
-    setError("");
-    setSuccess("");
-  };
-
-  const handleCancelRecordEdit = () => {
-    setRecordForm(initialRecordForm);
-  };
-
-  const handleSaveRecord = async (event) => {
-    event.preventDefault();
-
-    if (!recordForm._id) {
-      setError("Select a stock record to edit.");
-      return;
-    }
-
-    setError("");
-    setSuccess("");
-    setSavingRecord(true);
-
-    try {
-      const { data } = await api.put(`/admin/stocks/${recordForm._id}`, recordForm);
-      setSuccess(data.message);
-      setRecordForm(initialRecordForm);
-      await loadAdminData();
-    } catch (err) {
-      setError(err.response?.data?.message || "Unable to update the stock record.");
-    } finally {
-      setSavingRecord(false);
-    }
-  };
-
   const handleDeleteRecord = async (stockId) => {
     setError("");
     setSuccess("");
@@ -386,9 +324,6 @@ function AdminDashboardPage() {
     try {
       const { data } = await api.delete(`/admin/stocks/${stockId}`);
       setSuccess(data.message);
-      if (recordForm._id === stockId) {
-        setRecordForm(initialRecordForm);
-      }
       await loadAdminData();
     } catch (err) {
       setError(err.response?.data?.message || "Unable to delete the stock record.");
@@ -724,9 +659,6 @@ function AdminDashboardPage() {
                       <td className="px-5 py-4 text-sm text-slate-600">{stock.volume}</td>
                       <td className="px-5 py-4">
                         <div className="flex flex-col gap-3">
-                          <button className="secondary-cta !justify-center" onClick={() => handleEditRecord(stock)} type="button">
-                            Edit
-                          </button>
                           <button
                             className="rounded-full border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-700 transition hover:bg-rose-100"
                             disabled={deletingRecordId === stock._id}

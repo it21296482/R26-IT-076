@@ -1,0 +1,167 @@
+{
+  "pdf_name": "Keells Food Products PLC Annual Report 2024:25.pdf",
+  "prompt_id": "prompt_03",
+  "prompt_name": "JSON Schema-Constrained Prompt",
+  "model": "gpt-5.2-chat",
+  "full_model_output": "{\n  \"metadata\": {\n    \"pdf_name\": \"Keells Food Products PLC Annual Report 2024:25.pdf\",\n    \"company_name\": \"Keells Food Products PLC\",\n    \"reporting_year\": \"2024/25\",\n    \"prompt_id\": \"\",\n    \"model\": \"GPT-5.2\",\n    \"generated_at\": \"2026-05-11\"\n  },\n  \"extracted_facts\": {\n    \"company_overview\": {\n      \"company_name\": \"Keells Food Products PLC\",\n      \"reporting_year\": \"Year ended 31 March 2025\",\n      \"business_segments\": \"Manufacturing and Trading segments; operating segments structured by individual products and services with similar risks and returns\",\n      \"principal_activities\": \"Manufacture and sale of processed meats, raw meats, crumbed products and other convenient food products\",\n      \"sector_industry\": \"Food Products / Processed Meats\",\n      \"subsidiaries_associates\": \"John Keells Foods India (Private) Limited (subsidiary; no commercial operations during the year)\"\n    },\n    \"financial_performance\": {\n      \"revenue_turnover\": \"Rs. 6,741,140,000\",\n      \"gross_profit\": \"Rs. 1,822,705,000\",\n      \"operating_profit\": \"Rs. 248,421,000\",\n      \"profit_before_tax\": \"Rs. 178,568,000\",\n      \"profit_after_tax\": \"Rs. 133,161,000\",\n      \"eps\": \"Rs. 5.22\",\n      \"ebitda\": \"Rs. 476,459,000\",\n      \"net_finance_cost\": \"Rs. 69,853,000\",\n      \"tax_expense\": \"Rs. 45,407,000\"\n    },\n    \"financial_position\": {\n      \"total_assets\": \"Rs. 4,367,649,000\",\n      \"total_liabilities\": \"Rs. 2,395,417,000\",\n      \"total_equity\": \"Rs. 1,972,232,000\",\n      \"borrowings_debt\": \"Rs. 1,033,259,000\",\n      \"cash_and_cash_equivalents\": \"Net negative Rs. 904,691,000\",\n      \"inventory\": \"Rs. 1,146,181,000\",\n      \"trade_receivables\": \"Rs. 854,943,000\",\n      \"trade_payables\": \"Rs. 391,043,000\"\n    },\n    \"cash_flow\": {\n      \"operating_cash_flow\": \"Rs. 290,880,000\",\n      \"investing_cash_flow\": \"Rs. (123,014,000)\",\n      \"financing_cash_flow\": \"Rs. (290,000,000)\",\n      \"free_cash_flow\": null,\n      \"capital_expenditure\": \"Rs. 124,293,000\"\n    },\n    \"investor_ratios\": {\n      \"gross_profit_margin\": \"27%\",\n      \"net_profit_margin\": \"1.98%\",\n      \"current_ratio\": \"1.23\",\n      \"debt_to_equity_ratio\": \"52.39%\",\n      \"return_on_equity\": \"6.94%\",\n      \"return_on_assets\": \"3.20%\",\n      \"eps_ratio_reference\": \"Basic EPS Rs. 5.22\",\n      \"dividend_payout_ratio\": \"46.92%\"\n    },\n    \"shareholder_information\": {\n      \"stated_capital\": \"Rs. 1,294,815,000\",\n      \"number_of_shares\": \"25,500,000\",\n      \"major_shareholders\": \"John Keells Holdings PLC and subsidiaries (89.95%)\",\n      \"public_holding_percentage\": \"10.05%\",\n      \"dividends\": \"Total dividend Rs. 2.45 per share (two interim dividends paid; final dividend of Rs. 1.15 approved post year-end)\",\n      \"market_price_per_share\": \"Rs. 169.00 as at 31 March 2025\"\n    },\n    \"risk_factors\": {\n      \"liquidity_risk\": \"Net negative cash and cash equivalents of Rs. 905 Mn; reliance on overdraft facilities\",\n      \"credit_risk\": \"Exposure primarily from trade receivables; monitored with provisions for expected credit losses\",\n      \"market_risk\": \"Exposure to interest rate and foreign exchange movements\",\n      \"interest_rate_risk\": \"Sensitivity to floating rate borrowings; mix of fixed and variable rates\",\n      \"foreign_exchange_risk\": \"Exposure from overseas operations and foreign currency transactions\",\n      \"operational_risk\": \"Supply chain disruptions including African Swine Fever impacting pork sourcing\",\n      \"regulatory_risk\": \"Compliance with food safety, tax, data protection and listing regulations\",\n      \"going_concern_concerns\": \"Directors state the Group has adequate resources to continue as a going concern\",\n      \"litigation_contingencies\": \"No material litigation expected to impact financial results\"\n    },\n    \"management_governance\": {\n      \"board_changes\": \"Directors retired and re-elected in accordance with Articles; committee restructuring effective 1 October 2024\",\n      \"auditor_opinion\": \"Unqualified audit opinion by Ernst & Young\",\n      \"related_party_transactions\": \"No non-recurrent related party transactions during the year\",\n      \"corporate_governance_statements\": \"Compliant with Companies Act, CSE Listing Rules and CA Sri Lanka Corporate Governance Code\",\n      \"director_responsibility_statement\": \"Statement of Directors’ Responsibility included in the Annual Report\"\n    },\n    \"future_outlook\": {\n      \"chairman_ceo_outlook\": \"Positive outlook supported by macroeconomic stability and recovery in consumer demand\",\n      \"expansion_plans\": \"Focus on export growth, expansion of dry range and distribution network\",\n      \"expected_challenges\": \"Input price volatility, supply chain risks, currency fluctuations\",\n      \"strategy\": \"Growth through strategic pricing, innovation, operational efficiency and channel expansion\",\n      \"forward_looking_statements\": \"Plans to broaden product portfolio and strengthen export markets\"\n    }\n  },\n  \"investor_friendly_insight\": {\n    \"summary\": \"Keells Food Products PLC recorded a strong turnaround in 2024/25, returning to profitability with higher volumes, improved margins and disciplined cost management, while maintaining market leadership in processed meats.\",\n    \"key_strengths\": [\n      \"Significant recovery from prior year losses\",\n      \"Improved gross and operating margins\",\n      \"Strong brand presence and diversified sales channels\"\n    ],\n    \"key_concerns\": [\n      \"Net negative cash position and reliance on overdrafts\",\n      \"Exposure to raw material price volatility and supply disruptions\"\n    ],\n    \"risk_level_explanation\": \"The Group faces moderate risk driven by liquidity pressures and market volatility, partly mitigated by improved profitability, backing from the John Keells Group and active risk management.\",\n    \"non_advisory_note\": \"This is an informational summary only and not financial advice.\"\n  },\n  \"source_evidence\": [\n    \"Annual Report of the Board of Directors – pages 147–150\",\n    \"Financial Highlights – page 8\",\n    \"Income Statement – page 162\",\n    \"Statement of Financial Position – page 164\",\n    \"Statement of Cash Flows – page 165\",\n    \"Your Share in Detail – pages 222–224\",\n    \"Notes to the Financial Statements – pages 169–221\"\n  ],\n  \"missing_fields\": [\n    \"free_cash_flow\"\n  ],\n  \"confidence_score\": 0.86\n}",
+  "parsed_json": {
+    "metadata": {
+      "pdf_name": "Keells Food Products PLC Annual Report 2024:25.pdf",
+      "company_name": "Keells Food Products PLC",
+      "reporting_year": "Year ended 31 March 2025",
+      "prompt_id": "prompt_03",
+      "model": "gpt-5.2-chat",
+      "generated_at": "2026-05-11T08:30:39.709819+00:00"
+    },
+    "extracted_facts": {
+      "company_overview": {
+        "company_name": "Keells Food Products PLC",
+        "reporting_year": "Year ended 31 March 2025",
+        "business_segments": "Manufacturing and Trading segments; operating segments structured by individual products and services with similar risks and returns",
+        "principal_activities": "Manufacture and sale of processed meats, raw meats, crumbed products and other convenient food products",
+        "sector_industry": "Food Products / Processed Meats",
+        "subsidiaries_associates": "John Keells Foods India (Private) Limited (subsidiary; no commercial operations during the year)"
+      },
+      "financial_performance": {
+        "revenue_turnover": "Rs. 6,741,140,000",
+        "gross_profit": "Rs. 1,822,705,000",
+        "operating_profit": "Rs. 248,421,000",
+        "profit_before_tax": "Rs. 178,568,000",
+        "profit_after_tax": "Rs. 133,161,000",
+        "eps": "Rs. 5.22",
+        "ebitda": "Rs. 476,459,000",
+        "net_finance_cost": "Rs. 69,853,000",
+        "tax_expense": "Rs. 45,407,000"
+      },
+      "financial_position": {
+        "total_assets": "Rs. 4,367,649,000",
+        "total_liabilities": "Rs. 2,395,417,000",
+        "total_equity": "Rs. 1,972,232,000",
+        "borrowings_debt": "Rs. 1,033,259,000",
+        "cash_and_cash_equivalents": "Net negative Rs. 904,691,000",
+        "inventory": "Rs. 1,146,181,000",
+        "trade_receivables": "Rs. 854,943,000",
+        "trade_payables": "Rs. 391,043,000"
+      },
+      "cash_flow": {
+        "operating_cash_flow": "Rs. 290,880,000",
+        "investing_cash_flow": "Rs. (123,014,000)",
+        "financing_cash_flow": "Rs. (290,000,000)",
+        "free_cash_flow": null,
+        "capital_expenditure": "Rs. 124,293,000"
+      },
+      "investor_ratios": {
+        "gross_profit_margin": "27%",
+        "net_profit_margin": "1.98%",
+        "current_ratio": "1.23",
+        "debt_to_equity_ratio": "52.39%",
+        "return_on_equity": "6.94%",
+        "return_on_assets": "3.20%",
+        "eps_ratio_reference": "Basic EPS Rs. 5.22",
+        "dividend_payout_ratio": "46.92%"
+      },
+      "shareholder_information": {
+        "stated_capital": "Rs. 1,294,815,000",
+        "number_of_shares": "25,500,000",
+        "major_shareholders": "John Keells Holdings PLC and subsidiaries (89.95%)",
+        "public_holding_percentage": "10.05%",
+        "dividends": "Total dividend Rs. 2.45 per share (two interim dividends paid; final dividend of Rs. 1.15 approved post year-end)",
+        "market_price_per_share": "Rs. 169.00 as at 31 March 2025"
+      },
+      "risk_factors": {
+        "liquidity_risk": "Net negative cash and cash equivalents of Rs. 905 Mn; reliance on overdraft facilities",
+        "credit_risk": "Exposure primarily from trade receivables; monitored with provisions for expected credit losses",
+        "market_risk": "Exposure to interest rate and foreign exchange movements",
+        "interest_rate_risk": "Sensitivity to floating rate borrowings; mix of fixed and variable rates",
+        "foreign_exchange_risk": "Exposure from overseas operations and foreign currency transactions",
+        "operational_risk": "Supply chain disruptions including African Swine Fever impacting pork sourcing",
+        "regulatory_risk": "Compliance with food safety, tax, data protection and listing regulations",
+        "going_concern_concerns": "Directors state the Group has adequate resources to continue as a going concern",
+        "litigation_contingencies": "No material litigation expected to impact financial results"
+      },
+      "management_governance": {
+        "board_changes": "Directors retired and re-elected in accordance with Articles; committee restructuring effective 1 October 2024",
+        "auditor_opinion": "Unqualified audit opinion by Ernst & Young",
+        "related_party_transactions": "No non-recurrent related party transactions during the year",
+        "corporate_governance_statements": "Compliant with Companies Act, CSE Listing Rules and CA Sri Lanka Corporate Governance Code",
+        "director_responsibility_statement": "Statement of Directors’ Responsibility included in the Annual Report"
+      },
+      "future_outlook": {
+        "chairman_ceo_outlook": "Positive outlook supported by macroeconomic stability and recovery in consumer demand",
+        "expansion_plans": "Focus on export growth, expansion of dry range and distribution network",
+        "expected_challenges": "Input price volatility, supply chain risks, currency fluctuations",
+        "strategy": "Growth through strategic pricing, innovation, operational efficiency and channel expansion",
+        "forward_looking_statements": "Plans to broaden product portfolio and strengthen export markets"
+      }
+    },
+    "investor_friendly_insight": {
+      "summary": "Keells Food Products PLC recorded a strong turnaround in 2024/25, returning to profitability with higher volumes, improved margins and disciplined cost management, while maintaining market leadership in processed meats.",
+      "key_strengths": [
+        "Significant recovery from prior year losses",
+        "Improved gross and operating margins",
+        "Strong brand presence and diversified sales channels"
+      ],
+      "key_concerns": [
+        "Net negative cash position and reliance on overdrafts",
+        "Exposure to raw material price volatility and supply disruptions"
+      ],
+      "risk_level_explanation": "The Group faces moderate risk driven by liquidity pressures and market volatility, partly mitigated by improved profitability, backing from the John Keells Group and active risk management.",
+      "non_advisory_note": "This is an informational summary only and not financial advice."
+    },
+    "source_evidence": [
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Annual Report of the Board of Directors – pages 147–150"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Financial Highlights – page 8"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Income Statement – page 162"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Statement of Financial Position – page 164"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Statement of Cash Flows – page 165"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Your Share in Detail – pages 222–224"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Notes to the Financial Statements – pages 169–221"
+      }
+    ],
+    "missing_fields": [
+      "free_cash_flow"
+    ],
+    "confidence_score": 0.86
+  },
+  "token_usage": {
+    "input_tokens": 39316,
+    "output_tokens": 1609,
+    "total_tokens": 40925
+  },
+  "runtime_seconds": 17.721,
+  "errors": null
+}

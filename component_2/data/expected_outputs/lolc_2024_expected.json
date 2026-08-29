@@ -1,0 +1,1196 @@
+{
+  "pdf_name": "LOLC_2024.pdf",
+  "discovery_summary": {
+    "company_overview": [
+      {
+        "field": "company_name",
+        "found": true,
+        "candidate_pages": [
+          151,
+          55
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 151",
+          "LOLC_2024 page 55"
+        ]
+      },
+      {
+        "field": "reporting_year",
+        "found": true,
+        "candidate_pages": [
+          42,
+          113
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 42",
+          "LOLC_2024 page 113"
+        ]
+      },
+      {
+        "field": "business_segments",
+        "found": true,
+        "candidate_pages": [
+          315,
+          25
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 315",
+          "LOLC_2024 page 25"
+        ]
+      },
+      {
+        "field": "principal_activities",
+        "found": true,
+        "candidate_pages": [
+          108,
+          51
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 108",
+          "LOLC_2024 page 51"
+        ]
+      },
+      {
+        "field": "sector_industry",
+        "found": true,
+        "candidate_pages": [
+          80,
+          81
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 80",
+          "LOLC_2024 page 81"
+        ]
+      },
+      {
+        "field": "subsidiaries_associates",
+        "found": true,
+        "candidate_pages": [
+          207,
+          108
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 207",
+          "LOLC_2024 page 108"
+        ]
+      }
+    ],
+    "financial_performance": [
+      {
+        "field": "revenue_turnover",
+        "found": true,
+        "candidate_pages": [
+          124,
+          41
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 124",
+          "LOLC_2024 page 41"
+        ]
+      },
+      {
+        "field": "gross_profit",
+        "found": true,
+        "candidate_pages": [
+          45,
+          29
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 45",
+          "LOLC_2024 page 29"
+        ]
+      },
+      {
+        "field": "operating_profit",
+        "found": true,
+        "candidate_pages": [
+          340,
+          92
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 340",
+          "LOLC_2024 page 92"
+        ]
+      },
+      {
+        "field": "profit_before_tax",
+        "found": true,
+        "candidate_pages": [
+          14,
+          316
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 14",
+          "LOLC_2024 page 316"
+        ]
+      },
+      {
+        "field": "profit_after_tax",
+        "found": true,
+        "candidate_pages": [
+          5,
+          147
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 5",
+          "LOLC_2024 page 147"
+        ]
+      },
+      {
+        "field": "eps",
+        "found": true,
+        "candidate_pages": [
+          147,
+          95
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 147",
+          "LOLC_2024 page 95"
+        ]
+      },
+      {
+        "field": "ebitda",
+        "found": true,
+        "candidate_pages": [
+          30,
+          34
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 30",
+          "LOLC_2024 page 34"
+        ]
+      },
+      {
+        "field": "net_finance_cost",
+        "found": true,
+        "candidate_pages": [
+          259,
+          260
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 259",
+          "LOLC_2024 page 260"
+        ]
+      },
+      {
+        "field": "tax_expense",
+        "found": true,
+        "candidate_pages": [
+          140,
+          139
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 140",
+          "LOLC_2024 page 139"
+        ]
+      }
+    ],
+    "financial_position": [
+      {
+        "field": "total_assets",
+        "found": true,
+        "candidate_pages": [
+          317,
+          334
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 317",
+          "LOLC_2024 page 334"
+        ]
+      },
+      {
+        "field": "total_liabilities",
+        "found": true,
+        "candidate_pages": [
+          317,
+          91
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 317",
+          "LOLC_2024 page 91"
+        ]
+      },
+      {
+        "field": "total_equity",
+        "found": true,
+        "candidate_pages": [
+          91,
+          339
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 91",
+          "LOLC_2024 page 339"
+        ]
+      },
+      {
+        "field": "borrowings_debt",
+        "found": true,
+        "candidate_pages": [
+          329,
+          284
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 329",
+          "LOLC_2024 page 284"
+        ]
+      },
+      {
+        "field": "cash_and_cash_equivalents",
+        "found": true,
+        "candidate_pages": [
+          148,
+          107
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 148",
+          "LOLC_2024 page 107"
+        ]
+      },
+      {
+        "field": "inventory",
+        "found": true,
+        "candidate_pages": [
+          181,
+          182
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 181",
+          "LOLC_2024 page 182"
+        ]
+      },
+      {
+        "field": "trade_receivables",
+        "found": true,
+        "candidate_pages": [
+          184,
+          178
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 184",
+          "LOLC_2024 page 178"
+        ]
+      },
+      {
+        "field": "trade_payables",
+        "found": true,
+        "candidate_pages": [
+          271,
+          272
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 271",
+          "LOLC_2024 page 272"
+        ]
+      }
+    ],
+    "cash_flow": [
+      {
+        "field": "operating_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          107,
+          148
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 107",
+          "LOLC_2024 page 148"
+        ]
+      },
+      {
+        "field": "investing_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          107,
+          148
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 107",
+          "LOLC_2024 page 148"
+        ]
+      },
+      {
+        "field": "financing_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          107,
+          148
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 107",
+          "LOLC_2024 page 148"
+        ]
+      },
+      {
+        "field": "free_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          148,
+          107
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 148",
+          "LOLC_2024 page 107"
+        ]
+      },
+      {
+        "field": "capital_expenditure",
+        "found": true,
+        "candidate_pages": [
+          315,
+          244
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 315",
+          "LOLC_2024 page 244"
+        ]
+      }
+    ],
+    "investor_ratios": [
+      {
+        "field": "gross_profit_margin",
+        "found": true,
+        "candidate_pages": [
+          340,
+          122
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 340",
+          "LOLC_2024 page 122"
+        ]
+      },
+      {
+        "field": "net_profit_margin",
+        "found": true,
+        "candidate_pages": [
+          340,
+          98
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 340",
+          "LOLC_2024 page 98"
+        ]
+      },
+      {
+        "field": "current_ratio",
+        "found": true,
+        "candidate_pages": [
+          328,
+          327
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 328",
+          "LOLC_2024 page 327"
+        ]
+      },
+      {
+        "field": "debt_to_equity_ratio",
+        "found": true,
+        "candidate_pages": [
+          5,
+          104
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 5",
+          "LOLC_2024 page 104"
+        ]
+      },
+      {
+        "field": "return_on_equity",
+        "found": true,
+        "candidate_pages": [
+          19,
+          25
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 19",
+          "LOLC_2024 page 25"
+        ]
+      },
+      {
+        "field": "return_on_assets",
+        "found": true,
+        "candidate_pages": [
+          330,
+          23
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 330",
+          "LOLC_2024 page 23"
+        ]
+      },
+      {
+        "field": "eps_ratio_reference",
+        "found": true,
+        "candidate_pages": [
+          147,
+          95
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 147",
+          "LOLC_2024 page 95"
+        ]
+      },
+      {
+        "field": "dividend_payout_ratio",
+        "found": true,
+        "candidate_pages": [
+          233,
+          329
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 233",
+          "LOLC_2024 page 329"
+        ]
+      }
+    ],
+    "shareholder_information": [
+      {
+        "field": "stated_capital",
+        "found": true,
+        "candidate_pages": [
+          278,
+          283
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 278",
+          "LOLC_2024 page 283"
+        ]
+      },
+      {
+        "field": "number_of_shares",
+        "found": true,
+        "candidate_pages": [
+          147,
+          274
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 147",
+          "LOLC_2024 page 274"
+        ]
+      },
+      {
+        "field": "major_shareholders",
+        "found": true,
+        "candidate_pages": [
+          66,
+          361
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 66",
+          "LOLC_2024 page 361"
+        ]
+      },
+      {
+        "field": "public_holding_percentage",
+        "found": true,
+        "candidate_pages": [
+          361,
+          213
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 361",
+          "LOLC_2024 page 213"
+        ]
+      },
+      {
+        "field": "dividends",
+        "found": true,
+        "candidate_pages": [
+          126,
+          129
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 126",
+          "LOLC_2024 page 129"
+        ]
+      },
+      {
+        "field": "market_price_per_share",
+        "found": true,
+        "candidate_pages": [
+          53,
+          5
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 53",
+          "LOLC_2024 page 5"
+        ]
+      }
+    ],
+    "risk_factors": [
+      {
+        "field": "liquidity_risk",
+        "found": true,
+        "candidate_pages": [
+          323,
+          112
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 323",
+          "LOLC_2024 page 112"
+        ]
+      },
+      {
+        "field": "credit_risk",
+        "found": true,
+        "candidate_pages": [
+          321,
+          320
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 321",
+          "LOLC_2024 page 320"
+        ]
+      },
+      {
+        "field": "market_risk",
+        "found": true,
+        "candidate_pages": [
+          323,
+          265
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 323",
+          "LOLC_2024 page 265"
+        ]
+      },
+      {
+        "field": "interest_rate_risk",
+        "found": true,
+        "candidate_pages": [
+          324,
+          323
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 324",
+          "LOLC_2024 page 323"
+        ]
+      },
+      {
+        "field": "foreign_exchange_risk",
+        "found": true,
+        "candidate_pages": [
+          152,
+          325
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 152",
+          "LOLC_2024 page 325"
+        ]
+      },
+      {
+        "field": "operational_risk",
+        "found": true,
+        "candidate_pages": [
+          80,
+          81
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 80",
+          "LOLC_2024 page 81"
+        ]
+      },
+      {
+        "field": "regulatory_risk",
+        "found": true,
+        "candidate_pages": [
+          80,
+          81
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 80",
+          "LOLC_2024 page 81"
+        ]
+      },
+      {
+        "field": "going_concern_concerns",
+        "found": true,
+        "candidate_pages": [
+          89,
+          110
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 89",
+          "LOLC_2024 page 110"
+        ]
+      },
+      {
+        "field": "litigation_contingencies",
+        "found": true,
+        "candidate_pages": [
+          280,
+          283
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 280",
+          "LOLC_2024 page 283"
+        ]
+      }
+    ],
+    "management_governance": [
+      {
+        "field": "board_changes",
+        "found": true,
+        "candidate_pages": [
+          72,
+          61
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 72",
+          "LOLC_2024 page 61"
+        ]
+      },
+      {
+        "field": "auditor_opinion",
+        "found": true,
+        "candidate_pages": [
+          85,
+          88
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 85",
+          "LOLC_2024 page 88"
+        ]
+      },
+      {
+        "field": "related_party_transactions",
+        "found": true,
+        "candidate_pages": [
+          285,
+          64
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 285",
+          "LOLC_2024 page 64"
+        ]
+      },
+      {
+        "field": "corporate_governance_statements",
+        "found": true,
+        "candidate_pages": [
+          74,
+          61
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 74",
+          "LOLC_2024 page 61"
+        ]
+      },
+      {
+        "field": "director_responsibility_statement",
+        "found": true,
+        "candidate_pages": [
+          83,
+          4
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 83",
+          "LOLC_2024 page 4"
+        ]
+      }
+    ],
+    "future_outlook": [
+      {
+        "field": "chairman_ceo_outlook",
+        "found": true,
+        "candidate_pages": [
+          40,
+          35
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 40",
+          "LOLC_2024 page 35"
+        ]
+      },
+      {
+        "field": "expansion_plans",
+        "found": true,
+        "candidate_pages": [
+          8,
+          16
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 8",
+          "LOLC_2024 page 16"
+        ]
+      },
+      {
+        "field": "expected_challenges",
+        "found": true,
+        "candidate_pages": [
+          177,
+          176
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 177",
+          "LOLC_2024 page 176"
+        ]
+      },
+      {
+        "field": "strategy",
+        "found": true,
+        "candidate_pages": [
+          18,
+          12
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 18",
+          "LOLC_2024 page 12"
+        ]
+      },
+      {
+        "field": "forward_looking_statements",
+        "found": true,
+        "candidate_pages": [
+          368,
+          131
+        ],
+        "sample_source_refs": [
+          "LOLC_2024 page 368",
+          "LOLC_2024 page 131"
+        ]
+      }
+    ]
+  },
+  "expected_outputs": {
+    "company_name": {
+      "category": "company_overview",
+      "expected_value": "Annual Report 2024/25    LOLC HOLDINGS PLC 149",
+      "source_text": "Annual Report 2024/25 LOLC HOLDINGS PLC 149",
+      "page_number": 151,
+      "confidence": 0.85
+    },
+    "reporting_year": {
+      "category": "company_overview",
+      "expected_value": "2024/25",
+      "source_text": "LOLC HOLDINGS PLC Annual Report 2024/25 40 MANAGEMENT DISCUSSION AND ANALYSIS MANUFACTURING AND TRADING Manufacturing and Trading BROWNS BATTERY & TYRE SBU The Browns Battery &",
+      "page_number": 42,
+      "confidence": 0.85
+    },
+    "business_segments": {
+      "category": "company_overview",
+      "expected_value": "Annual Report 2024/25 LOLC HOLDINGS PLC 313 55 OPERATING SEGMENTS Accounting Policy Operating Segments An operating segment is a component of the Group that engages in business activities from which it may",
+      "source_text": "Annual Report 2024/25 LOLC HOLDINGS PLC 313 55 OPERATING SEGMENTS Accounting Policy Operating Segments An operating segment is a component of the Group that engages in business activities from which it may",
+      "page_number": 315,
+      "confidence": 0.85
+    },
+    "principal_activities": {
+      "category": "company_overview",
+      "expected_value": "struction and power & energy etc. Ordinary shares of the Company are listed on the main board of the Colombo Stock Exchange (CSE). 1.2. Principal Activities and Nature of Operations 1.2.1 Company LOLC Holdings PLC, the Group’s holding Company, manages a portfolio of investments consisting",
+      "source_text": "struction and power & energy etc. Ordinary shares of the Company are listed on the main board of the Colombo Stock Exchange (CSE). 1.2. Principal Activities and Nature of Operations 1.2.1 Company LOLC Holdings PLC, the Group’s holding Company, manages a portfolio of investments consisting",
+      "page_number": 108,
+      "confidence": 0.85
+    },
+    "sector_industry": {
+      "category": "company_overview",
+      "expected_value": "a diversified conglomerate with operations spanning the financial services, insurance, leisure, plantations, manufacturing and technology sectors, with a significant presence across the Asian and African continents. This broad geographical footprint, combined with its multi-sectora",
+      "source_text": "a diversified conglomerate with operations spanning the financial services, insurance, leisure, plantations, manufacturing and technology sectors, with a significant presence across the Asian and African continents. This broad geographical footprint, combined with its multi-sectora",
+      "page_number": 80,
+      "confidence": 0.85
+    },
+    "subsidiaries_associates": {
+      "category": "company_overview",
+      "expected_value": "Annual Report 2024/25 LOLC HOLDINGS PLC 205 31 SUBSIDIARY COMPANIES Accounting Policy Subsidiaries are entities controlled by the Group. Control exists when the Company has the power, directly or indirectly, to govern the financial and o",
+      "source_text": "Annual Report 2024/25 LOLC HOLDINGS PLC 205 31 SUBSIDIARY COMPANIES Accounting Policy Subsidiaries are entities controlled by the Group. Control exists when the Company has the power, directly or indirectly, to govern the financial and o",
+      "page_number": 207,
+      "confidence": 0.85
+    },
+    "revenue_turnover": {
+      "category": "financial_performance",
+      "expected_value": "4.2",
+      "source_text": "LOLC HOLDINGS PLC Annual Report 2024/25 122 FINANCIAL INFORMATION Notes to the Financial Statements 4.2 Revenue Accounting Policy Revenue is measured based on the consideration specified in a contract with a customer and excludes amounts collected on",
+      "page_number": 124,
+      "confidence": 0.85
+    },
+    "gross_profit": {
+      "category": "financial_performance",
+      "expected_value": "Rs. 141 million",
+      "source_text": "oals. INTEGRATED ENGINEERING SOLUTIONS SBU Industrial Engineering Solutions posted a turnover of Rs. 316 million in 2024/25, delivering a gross profit of Rs. 141 million (before commissions) and recording its highest-ever net contribution of Rs. 51 million. The operational focus during",
+      "page_number": 45,
+      "confidence": 0.85
+    },
+    "operating_profit": {
+      "category": "financial_performance",
+      "expected_value": "124,358 90,979 5,224 3,163",
+      "source_text": "376,631 270,270 7,448 9,923 Cost of sales (224,383) (183,115) (6,865) (8,990) Gross profit 152,248 87,156 583 932 Other operating income 124,358 90,979 5,224 3,163 Other income/(expenses) 79,518 166,231 11,224 (6,817) Net Operating Income 704,164 613,439 5",
+      "page_number": 340,
+      "confidence": 0.85
+    },
+    "profit_before_tax": {
+      "category": "financial_performance",
+      "expected_value": "LKR 52.1 BILLION",
+      "source_text": "RE NOTABLY, REVENUE SURGED BY 30.6% TO LKR 112.2 BILLION, UNDERLINING THE GROUP’S SUCCESSFUL EXPANSION ACROSS ITS CORE BUSINESS SECTORS. PROFIT BEFORE TAX (PBT) FROM CONTINUING OPERATIONS STOOD AT LKR 52.1 BILLION, MARKING A 72.7% INCREASE FROM THE PREVIOUS YEAR, WHILE PROFIT AFTER TAX (PAT)",
+      "page_number": 14,
+      "confidence": 0.85
+    },
+    "profit_after_tax": {
+      "category": "financial_performance",
+      "expected_value": "9,331 20,921 19,190 5,933 812 53,233 77,596 21,671 21,753 50,385",
+      "source_text": "Net profit before tax - Continuing operations 11,858 24,379 24,655 9,550 3,376 57,135 83,553 30,062 30,203 52,152 Net profit after tax - Continuing operations 9,331 20,921 19,190 5,933 812 53,233 77,596 21,671 21,753 50,385 Total assets 379,595 640,9",
+      "page_number": 5,
+      "confidence": 0.85
+    },
+    "eps": {
+      "category": "financial_performance",
+      "expected_value": "145 17",
+      "source_text": "Annual Report 2024/25 LOLC HOLDINGS PLC 145 17 EARNINGS PER SHARE Accounting Policy The Group presents basic and diluted earnings per share data for its ordinary shares. Basic earnings per share is calcula",
+      "page_number": 147,
+      "confidence": 0.85
+    },
+    "ebitda": {
+      "category": "financial_performance",
+      "expected_value": "1,200",
+      "source_text": "This marked improvement reflected well on the company’s operational efficiency, although the business continued to operate at a negative EBITDA. The shortfall against expectations was largely due to severe and unforeseen weather conditions which affected approximately 1,200 hect",
+      "page_number": 30,
+      "confidence": 0.75
+    },
+    "net_finance_cost": {
+      "category": "financial_performance",
+      "expected_value": "227,852",
+      "source_text": ") - - Other movements - - - - Disposal of subsidiaries - - - - Balance as at 31st March 1,212,447 1,069,050 - - Finance costs allocated to future years (227,852) (225,852) - - Net Liability 984,595 843,198 - - Payable within one year Gross liability",
+      "page_number": 259,
+      "confidence": 0.85
+    },
+    "tax_expense": {
+      "category": "financial_performance",
+      "expected_value": "16.1",
+      "source_text": "LOLC HOLDINGS PLC Annual Report 2024/25 138 FINANCIAL INFORMATION Notes to the Financial Statements 16.1 Major components of income tax expense are as follows: Accounting Policy Current Tax “Current tax” comprises the expected tax payable or receivable on the taxable income or loss",
+      "page_number": 140,
+      "confidence": 0.85
+    },
+    "total_assets": {
+      "category": "financial_position",
+      "expected_value": "31",
+      "source_text": "rsal on financial assets - - - - - - - - Depreciation and amortisation - - - - - - - - Continuing operations Total assets (as at 31 March 2025) 1,089,260,773 43,411,115 213,302,760 338,136,562 337,266,941 - 8,248,000 2,029,626,151 Total liabilit",
+      "page_number": 317,
+      "confidence": 0.85
+    },
+    "total_liabilities": {
+      "category": "financial_position",
+      "expected_value": "31",
+      "source_text": "s Total assets (as at 31 March 2025) 1,089,260,773 43,411,115 213,302,760 338,136,562 337,266,941 - 8,248,000 2,029,626,151 Total liabilities (as at 31 March 2025) 800,991,301 29,434,843 142,809,093 182,661,224 119,013,732 - 150,508,827 1,425,419,020 Discontinued o",
+      "page_number": 317,
+      "confidence": 0.85
+    },
+    "total_equity": {
+      "category": "financial_position",
+      "expected_value": "604,207,131 487,326,670 342,693,785 298,610,277",
+      "source_text": "olders of the Company 342,693,785 298,610,277 342,693,785 298,610,277 Non-controlling interests 261,513,346 188,716,393 - - Total equity 604,207,131 487,326,670 342,693,785 298,610,277 Total liabilities & equity 2,029,626,151 1,739,705,901 708,294,917 616,474,2",
+      "page_number": 91,
+      "confidence": 0.85
+    },
+    "borrowings_debt": {
+      "category": "financial_position",
+      "expected_value": "31",
+      "source_text": "gearing ratio, which is ‘net debt’ divided by total capital plus net debt. The Group includes within net debt, interest bearing loans and borrowings, less cash and short-term deposits, excluding discontinued operations. Group Company As at 31 March 2025 2024 2025 2024 Rs.’000 Rs.’00",
+      "page_number": 329,
+      "confidence": 0.85
+    },
+    "cash_and_cash_equivalents": {
+      "category": "financial_position",
+      "expected_value": "18",
+      "source_text": "There were no potential dilutive ordinary shares outstanding at any time during the year or previous year. Therefore, not presented. 18 CASH AND CASH EQUIVALENTS Accounting Policy Cash and cash equivalents include cash in hand, demand placements with banks and loans at call/short notice and highly li",
+      "page_number": 148,
+      "confidence": 0.85
+    },
+    "inventory": {
+      "category": "financial_position",
+      "expected_value": "365",
+      "source_text": "The cost incurred in bringing inventories to its present location and condition is accounted using the following cost formula: Type of Inventory Method of Valuation Input Materials Weighted Average basis Growing Crop - Nurseries At the cost of direct materials, direct labour and appr",
+      "page_number": 181,
+      "confidence": 0.85
+    },
+    "trade_receivables": {
+      "category": "financial_position",
+      "expected_value": "26.1",
+      "source_text": "OTHER CURRENT ASSETS Group Company As at 31 March 2025 2024 2025 2024 Note Rs.’000 Rs.’000 Rs.’000 Rs.’000 Financial Assets Trade receivables 26.1 25,434,614 28,975,856 497,809 950,135 Amount due from related parties 1,484,405 2,488,056 218,980,812 195,984,061 Al",
+      "page_number": 184,
+      "confidence": 0.85
+    },
+    "trade_payables": {
+      "category": "financial_position",
+      "expected_value": "31",
+      "source_text": "determined that. There is no material impact on the assumptions used for the valuation of insurance contract liabilities. 40 CURRENT TAX PAYABLES Group Company As at 31 March 2025 2024 2025 2024 Note Rs.’000 Rs.’000 Rs.’000 Rs.’000 Income tax payables 40.1 4,559,626",
+      "page_number": 271,
+      "confidence": 0.85
+    },
+    "operating_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "investing_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "financing_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "free_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "capital_expenditure": {
+      "category": "cash_flow",
+      "expected_value": "ets and liabilities include items directly attributable to a segment as well as those that can be allocated on a reasonable basis. Segment capital expenditure is the total cost incurred during the period to acquire segment assets that are expected to be used for more than one period. Expenses",
+      "source_text": "ets and liabilities include items directly attributable to a segment as well as those that can be allocated on a reasonable basis. Segment capital expenditure is the total cost incurred during the period to acquire segment assets that are expected to be used for more than one period. Expenses",
+      "page_number": 315,
+      "confidence": 0.85
+    },
+    "gross_profit_margin": {
+      "category": "investor_ratios",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "net_profit_margin": {
+      "category": "investor_ratios",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "current_ratio": {
+      "category": "investor_ratios",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "debt_to_equity_ratio": {
+      "category": "investor_ratios",
+      "expected_value": "1.08",
+      "source_text": "75.00 397.50 594.75 Net asset value per share 74.71 98.89 108.69 101.49 194.72 291.37 515.81 535.50 628.39 721.16 Debt to equity ratio - Times 1.08 1.12 1.05 1.52 1.03 0.76 0.60 0.74 1.03 1.01 Interest cover - Times 1.26 2.93 1.78 0.61 0.15 3.98",
+      "page_number": 5,
+      "confidence": 0.85
+    },
+    "return_on_equity": {
+      "category": "investor_ratios",
+      "expected_value": "30.00%",
+      "source_text": "ts operating model. The Non-Performing Loan (NPL) ratio was maintained at a healthy 3.89%, significantly below industry averages, while Return on Equity (ROE) improved to 30.00%. The liability portfolio also demonstrated resilience, with overall growth of 3.61%. The Mudharabah Fixed Deposi",
+      "page_number": 19,
+      "confidence": 0.85
+    },
+    "return_on_assets": {
+      "category": "investor_ratios",
+      "expected_value": "0",
+      "source_text": "182 149,205 2 No. C/313, Industrial Area, Ampara - - 1 - 7,165 93,182 156,370 Investment Property Details 1 No.246/56, Kandy Road, Eldeniya, Kadawatha 0A-0R-23.37P 1,831 1 11,000 - 2 No. 25/7, Wimalawatta Road, Mirihana, Nugegoda 0A-0R-33.40P - - 20,000",
+      "page_number": 330,
+      "confidence": 0.85
+    },
+    "eps_ratio_reference": {
+      "category": "investor_ratios",
+      "expected_value": "145 17",
+      "source_text": "Annual Report 2024/25 LOLC HOLDINGS PLC 145 17 EARNINGS PER SHARE Accounting Policy The Group presents basic and diluted earnings per share data for its ordinary shares. Basic earnings per share is calcula",
+      "page_number": 147,
+      "confidence": 0.85
+    },
+    "dividend_payout_ratio": {
+      "category": "investor_ratios",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "stated_capital": {
+      "category": "shareholder_information",
+      "expected_value": "44",
+      "source_text": "LOLC HOLDINGS PLC Annual Report 2024/25 276 FINANCIAL INFORMATION Notes to the Financial Statements 44 STATED CAPITAL Accounting Policy Ordinary Shares are classified as equity. Incremental costs directly attributable to the issue of ordinary shares and sha",
+      "page_number": 278,
+      "confidence": 0.85
+    },
+    "number_of_shares": {
+      "category": "shareholder_information",
+      "expected_value": "145 17",
+      "source_text": "/25 LOLC HOLDINGS PLC 145 17 EARNINGS PER SHARE Accounting Policy The Group presents basic and diluted earnings per share data for its ordinary shares. Basic earnings per share is calculated by dividing the Profit or Loss attributable to ordinary shareholders of the Parent Company by the",
+      "page_number": 147,
+      "confidence": 0.85
+    },
+    "major_shareholders": {
+      "category": "shareholder_information",
+      "expected_value": "Executive Officer or Chief Financial Officer has failed to resolve or for which such contact is inappropriate. 2 Attend meetings with major shareholders and financial analysts to obtain an understanding of shareholders’ views on governance and performance against strategy and support the",
+      "source_text": "Executive Officer or Chief Financial Officer has failed to resolve or for which such contact is inappropriate. 2 Attend meetings with major shareholders and financial analysts to obtain an understanding of shareholders’ views on governance and performance against strategy and support the",
+      "page_number": 66,
+      "confidence": 0.85
+    },
+    "public_holding_percentage": {
+      "category": "shareholder_information",
+      "expected_value": "15.1023%",
+      "source_text": "439,223,756 92.43 Total 7,124 475,200,000 100.00 7,784 475,200,000 100.00 PUBLIC SHAREHOLDING 31st March 2025 31st March 2024 % % Public Holding percentage 15.1023% 15.105 Number of public shareholders 7,112 7,772 Float adjusted market capitalisation (Rs.) 42,682,950,423 28,531,647,6",
+      "page_number": 361,
+      "confidence": 0.85
+    },
+    "dividends": {
+      "category": "shareholder_information",
+      "expected_value": "prise of gains or losses related to trading assets and liabilities, and includes all realised and unrealised fair value changes, interest, dividends and foreign exchange differences. Net income from Other Financial Instruments at Fair Value Through Profit or Loss Net income from o",
+      "source_text": "prise of gains or losses related to trading assets and liabilities, and includes all realised and unrealised fair value changes, interest, dividends and foreign exchange differences. Net income from Other Financial Instruments at Fair Value Through Profit or Loss Net income from o",
+      "page_number": 126,
+      "confidence": 0.85
+    },
+    "market_price_per_share": {
+      "category": "shareholder_information",
+      "expected_value": "Rs. 749.00",
+      "source_text": "200,000 shares. The shareholding structure is given on pages 359 to 361 together with the 20 largest shareholders. During the year, the share price ranged from Rs. 749.00 /- to Rs. 577.00. As at the end of trading on 31st March 2025, the share price was Rs. 594.75/-. The details of t",
+      "page_number": 53,
+      "confidence": 0.85
+    },
+    "liquidity_risk": {
+      "category": "risk_factors",
+      "expected_value": "ot yet identified. The collective loss allowance is determined based on historical data of payment statistics of the portfolio. 56.2 Liquidity risk Liquidity risk is the risk that the Group will encounter difficulty in meeting obligations associated with its financial lia",
+      "source_text": "ot yet identified. The collective loss allowance is determined based on historical data of payment statistics of the portfolio. 56.2 Liquidity risk Liquidity risk is the risk that the Group will encounter difficulty in meeting obligations associated with its financial lia",
+      "page_number": 323,
+      "confidence": 0.85
+    },
+    "credit_risk": {
+      "category": "risk_factors",
+      "expected_value": "Annual Report 2024/25 LOLC HOLDINGS PLC 319 Management of credit risk The Board of Directors of each financial sector Company has delegated responsibility for the oversight of credit risk to its Credit Co",
+      "source_text": "Annual Report 2024/25 LOLC HOLDINGS PLC 319 Management of credit risk The Board of Directors of each financial sector Company has delegated responsibility for the oversight of credit risk to its Credit Co",
+      "page_number": 321,
+      "confidence": 0.85
+    },
+    "market_risk": {
+      "category": "risk_factors",
+      "expected_value": "assets comprising cash and cash equivalents and investment securities for which there an active and liquid market is available. 56.3 Market Risk Market risk is the risk that changes in market prices, such as interest rates, equity prices, foreign exchange rates and credit spreads w",
+      "source_text": "assets comprising cash and cash equivalents and investment securities for which there an active and liquid market is available. 56.3 Market Risk Market risk is the risk that changes in market prices, such as interest rates, equity prices, foreign exchange rates and credit spreads w",
+      "page_number": 323,
+      "confidence": 0.85
+    },
+    "interest_rate_risk": {
+      "category": "risk_factors",
+      "expected_value": "LOLC HOLDINGS PLC Annual Report 2024/25 322 FINANCIAL INFORMATION Notes to the Financial Statements 56.3.1 Interest Rate Risk Interest rates have been reduced as advised by the Central Bank of Sri Lanka and is likely to have negative impact on the in",
+      "source_text": "LOLC HOLDINGS PLC Annual Report 2024/25 322 FINANCIAL INFORMATION Notes to the Financial Statements 56.3.1 Interest Rate Risk Interest rates have been reduced as advised by the Central Bank of Sri Lanka and is likely to have negative impact on the in",
+      "page_number": 324,
+      "confidence": 0.85
+    },
+    "foreign_exchange_risk": {
+      "category": "risk_factors",
+      "expected_value": "d as liabilities when the fair value is negative. Hedge Accounting The Group holds derivative financial instruments to hedge its foreign currency risk exposure. On initial designation of derivative as hedge instrument, the Group documents the relationship between the hedging instruments a",
+      "source_text": "d as liabilities when the fair value is negative. Hedge Accounting The Group holds derivative financial instruments to hedge its foreign currency risk exposure. On initial designation of derivative as hedge instrument, the Group documents the relationship between the hedging instruments a",
+      "page_number": 152,
+      "confidence": 0.85
+    },
+    "operational_risk": {
+      "category": "risk_factors",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "regulatory_risk": {
+      "category": "risk_factors",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "going_concern_concerns": {
+      "category": "risk_factors",
+      "expected_value": "onsolidated financial statements of the Group, management is responsible for assessing the Company’s and Group’s ability to continue as a going concern, disclosing, as applicable, matters related to going concern and using the going concern basis of accounting unless management either int",
+      "source_text": "onsolidated financial statements of the Group, management is responsible for assessing the Company’s and Group’s ability to continue as a going concern, disclosing, as applicable, matters related to going concern and using the going concern basis of accounting unless management either int",
+      "page_number": 89,
+      "confidence": 0.85
+    },
+    "litigation_contingencies": {
+      "category": "risk_factors",
+      "expected_value": "LOLC HOLDINGS PLC Annual Report 2024/25 278 FINANCIAL INFORMATION Notes to the Financial Statements 46 COMMITMENTS AND CONTINGENCIES Accounting Policy Provisions, Contingent Assets and Contingent Liabilities Provisions are made for all obligations (legal",
+      "source_text": "LOLC HOLDINGS PLC Annual Report 2024/25 278 FINANCIAL INFORMATION Notes to the Financial Statements 46 COMMITMENTS AND CONTINGENCIES Accounting Policy Provisions, Contingent Assets and Contingent Liabilities Provisions are made for all obligations (legal",
+      "page_number": 280,
+      "confidence": 0.85
+    },
+    "board_changes": {
+      "category": "management_governance",
+      "expected_value": "companies/societies/bodies including subsidiaries and associates of the Company, subject to however, in the case of listed entities, such appointments being limited to 20. 9.10.2 Immediate market announcement upon appointment of new director setting out resume, capacity of directorship,",
+      "source_text": "companies/societies/bodies including subsidiaries and associates of the Company, subject to however, in the case of listed entities, such appointments being limited to 20. 9.10.2 Immediate market announcement upon appointment of new director setting out resume, capacity of directorship,",
+      "page_number": 72,
+      "confidence": 0.85
+    },
+    "auditor_opinion": {
+      "category": "management_governance",
+      "expected_value": "statement of cash flows for the year then ended, and notes to the financial statements, including material accounting policy information. In our opinion, the accompanying financial statements of the Company and the consolidated financial statements of the Group give a true and fair view of",
+      "source_text": "statement of cash flows for the year then ended, and notes to the financial statements, including material accounting policy information. In our opinion, the accompanying financial statements of the Company and the consolidated financial statements of the Group give a true and fair view of",
+      "page_number": 85,
+      "confidence": 0.85
+    },
+    "related_party_transactions": {
+      "category": "management_governance",
+      "expected_value": "rms basis. Outstanding current account balances at year end are unsecured, interest free and settlement occurs in cash. Non-recurrent related party transactions There were no non-recurrent related party transactions which aggregate value exceeds 10% of the equity or 5% of the to",
+      "source_text": "rms basis. Outstanding current account balances at year end are unsecured, interest free and settlement occurs in cash. Non-recurrent related party transactions There were no non-recurrent related party transactions which aggregate value exceeds 10% of the equity or 5% of the to",
+      "page_number": 285,
+      "confidence": 0.85
+    },
+    "corporate_governance_statements": {
+      "category": "management_governance",
+      "expected_value": "LOLC HOLDINGS PLC Annual Report 2024/25 72 Corporate Governance Report STEWARDSHIP 9 Section 9 of the Listing Rules Effective date of applicability and Level of Compliance 9.16 Additional Disclosures The",
+      "source_text": "LOLC HOLDINGS PLC Annual Report 2024/25 72 Corporate Governance Report STEWARDSHIP 9 Section 9 of the Listing Rules Effective date of applicability and Level of Compliance 9.16 Additional Disclosures The",
+      "page_number": 74,
+      "confidence": 0.85
+    },
+    "director_responsibility_statement": {
+      "category": "management_governance",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "chairman_ceo_outlook": {
+      "category": "future_outlook",
+      "expected_value": "al learning environments, each effort reflects a proactive understanding of the social landscape and a commitment to inclusive progress. FUTURE OUTLOOK Looking ahead, LOLCTECH remains dedicated to driving innovation across its digital ecosystem while expanding its presence in transformat",
+      "source_text": "al learning environments, each effort reflects a proactive understanding of the social landscape and a commitment to inclusive progress. FUTURE OUTLOOK Looking ahead, LOLCTECH remains dedicated to driving innovation across its digital ecosystem while expanding its presence in transformat",
+      "page_number": 40,
+      "confidence": 0.85
+    },
+    "expansion_plans": {
+      "category": "future_outlook",
+      "expected_value": "foresight. As Sri Lanka’s most diversified and globally integrated conglomerate, we continued to focus on operational resilience, market expansion and sustainable value creation. In Sri Lanka, the economy entered a phase of cautious recovery. Supported by the International Monetary",
+      "source_text": "foresight. As Sri Lanka’s most diversified and globally integrated conglomerate, we continued to focus on operational resilience, market expansion and sustainable value creation. In Sri Lanka, the economy entered a phase of cautious recovery. Supported by the International Monetary",
+      "page_number": 8,
+      "confidence": 0.85
+    },
+    "expected_challenges": {
+      "category": "future_outlook",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "strategy": {
+      "category": "future_outlook",
+      "expected_value": "21 million transactions. iPay also received multiple awards for innovation and excellence, such as Gold awards for Best Digital Payment Strategy (Banks & NBFI), Best Mobile Application for Retail Payments via JustPay (Banks & NBFI), Excellence in Customer Convenience (NBFI), Finan",
+      "source_text": "21 million transactions. iPay also received multiple awards for innovation and excellence, such as Gold awards for Best Digital Payment Strategy (Banks & NBFI), Best Mobile Application for Retail Payments via JustPay (Banks & NBFI), Excellence in Customer Convenience (NBFI), Finan",
+      "page_number": 18,
+      "confidence": 0.85
+    },
+    "forward_looking_statements": {
+      "category": "future_outlook",
+      "expected_value": "LOLC HOLDINGS PLC Annual Report 2024/25 366 SUPPLEMENTARY INFORMATION Forward-Looking Information & Major Developments 1. How useful do you find the Company’s forward-looking comments and information on future prospects? Ve",
+      "source_text": "LOLC HOLDINGS PLC Annual Report 2024/25 366 SUPPLEMENTARY INFORMATION Forward-Looking Information & Major Developments 1. How useful do you find the Company’s forward-looking comments and information on future prospects? Ve",
+      "page_number": 368,
+      "confidence": 0.85
+    }
+  }
+}

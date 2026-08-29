@@ -1,0 +1,20 @@
+{
+  "forecast_mae_backtest": 0.11167915940046175,
+  "forecast_rmse_backtest": 0.1505052473883626,
+  "forecast_mape_backtest": 0.01740207023822785,
+  "forecast_mape_backtest_pct": 1.740207023822785,
+  "interval_80_coverage": 0.8913043478260869,
+  "interval_95_coverage": 0.9875776397515528,
+  "average_interval_width_95": 0.8411490842471347,
+  "coverage_error_95": 0.037577639751552816,
+  "forecast_bias": -0.0055633318754528625,
+  "direction_hit_rate_for_forecast_horizon": 0.531055900621118,
+  "price_error_score": 8.259792976177215,
+  "interval_coverage_score": 9.604445897352075,
+  "bias_score": 9.913649087211173,
+  "stability_score": 9.59372158410237,
+  "forecast_reliability_score": 9.194585581587724,
+  "forecast_reliability_interpretation": "High",
+  "fold_mape_mean": 0.017400834719633752,
+  "fold_mape_std": 0.0007069583565189272
+}

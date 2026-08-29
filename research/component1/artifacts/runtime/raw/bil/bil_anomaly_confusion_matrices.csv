@@ -1,0 +1,10 @@
+method,split,tn,fp,fn,tp
+Z-score baseline,train,2103,3,121,29
+Z-score baseline,validation,319,0,1,2
+Z-score baseline,test,642,0,1,1
+Isolation Forest,train,2030,76,113,37
+Isolation Forest,validation,319,0,2,1
+Isolation Forest,test,642,0,1,1
+LSTM deviation method,train,1186,920,120,30
+LSTM deviation method,validation,319,0,1,2
+LSTM deviation method,test,636,6,1,1

@@ -1,0 +1,173 @@
+{
+  "pdf_name": "LOLC_2024.pdf",
+  "prompt_id": "prompt_04",
+  "prompt_name": "Source-Grounded Evidence Prompt",
+  "model": "gpt-5.2-chat",
+  "full_model_output": "```json\n{\n  \"metadata\": {\n    \"pdf_name\": \"LOLC_2024.pdf\",\n    \"company_name\": \"LOLC Holdings PLC\",\n    \"reporting_year\": \"2024/25\",\n    \"prompt_id\": \"INV_EXT_LOLC_2024\",\n    \"model\": \"GPT-5.2\",\n    \"generated_at\": \"2026-05-08\"\n  },\n  \"extracted_facts\": {\n    \"company_overview\": {\n      \"company_name\": \"LOLC Holdings PLC\",\n      \"reporting_year\": \"Year ended 31 March 2025\",\n      \"business_segments\": \"Financial services, insurance, manufacturing & trading, leisure & entertainment, plantation & agriculture, IT services, others\",\n      \"principal_activities\": \"Holding company managing a diversified portfolio of investments and providing centralized services to subsidiaries and associates\",\n      \"sector_industry\": \"Diversified conglomerate – Financial services and multi-sector\",\n      \"subsidiaries_associates\": \"The Group comprises numerous subsidiaries and associates across Sri Lanka, Asia and Africa (refer Note 31)\"\n    },\n    \"financial_performance\": {\n      \"revenue_turnover\": \"LKR 112.2 billion\",\n      \"gross_profit\": \"LKR 45.36 billion\",\n      \"operating_profit\": \"LKR 45.70 billion\",\n      \"profit_before_tax\": \"LKR 52.1 billion (continuing operations)\",\n      \"profit_after_tax\": \"Approximately LKR 41 billion (management discussion)\",\n      \"eps\": \"LKR 104.61\",\n      \"ebitda\": null,\n      \"net_finance_cost\": \"LKR 51.8 billion\",\n      \"tax_expense\": \"LKR 5.9 billion\"\n    },\n    \"financial_position\": {\n      \"total_assets\": \"LKR 2,029.6 billion\",\n      \"total_liabilities\": \"LKR 1,425.4 billion\",\n      \"total_equity\": \"LKR 604.2 billion\",\n      \"borrowings_debt\": \"LKR 601.2 billion\",\n      \"cash_and_cash_equivalents\": \"LKR 111.6 billion\",\n      \"inventory\": \"LKR 33.3 billion\",\n      \"trade_receivables\": \"LKR 25.4 billion\",\n      \"trade_payables\": \"LKR 45.2 billion\"\n    },\n    \"cash_flow\": {\n      \"operating_cash_flow\": \"LKR 6.7 billion\",\n      \"investing_cash_flow\": \"LKR (22.2) billion\",\n      \"financing_cash_flow\": null,\n      \"free_cash_flow\": null,\n      \"capital_expenditure\": \"LKR 19.9 billion (PPE acquisitions)\"\n    },\n    \"investor_ratios\": {\n      \"gross_profit_margin\": \"Approximately 40.4%\",\n      \"net_profit_margin\": \"Approximately 36.5%\",\n      \"current_ratio\": null,\n      \"debt_to_equity_ratio\": \"Approximately 1.0x\",\n      \"return_on_equity\": \"15.5%\",\n      \"return_on_assets\": null,\n      \"eps_ratio_reference\": \"Basic EPS per Note 17\",\n      \"dividend_payout_ratio\": null\n    },\n    \"shareholder_information\": {\n      \"stated_capital\": \"LKR 475.2 million\",\n      \"number_of_shares\": \"475.2 million ordinary shares\",\n      \"major_shareholders\": \"Institutional investors hold approximately 75% of shares\",\n      \"public_holding_percentage\": \"15.10%\",\n      \"dividends\": null,\n      \"market_price_per_share\": \"LKR 594.75 (last traded at 31 March 2025)\"\n    },\n    \"risk_factors\": {\n      \"liquidity_risk\": \"Managed through Group-level ERM framework\",\n      \"credit_risk\": \"Significant due to financial services exposure; managed via credit committees and ECL models\",\n      \"market_risk\": \"Includes interest rate, equity price and commodity risks\",\n      \"interest_rate_risk\": \"Sensitivity disclosed; rate changes impact net interest income\",\n      \"foreign_exchange_risk\": \"Exposure from overseas subsidiaries using multiple functional currencies\",\n      \"operational_risk\": \"Managed through Three Lines of Defence model\",\n      \"regulatory_risk\": \"Subject to multi-jurisdictional financial and capital market regulations\",\n      \"going_concern_concerns\": \"No material going concern uncertainty disclosed\",\n      \"litigation_contingencies\": \"No material litigation disclosed\"\n    },\n    \"management_governance\": {\n      \"board_changes\": \"Several appointments and resignations during the year including new independent directors\",\n      \"auditor_opinion\": \"Unqualified audit opinion – true and fair view\",\n      \"related_party_transactions\": \"Conducted in ordinary course; no material non-recurrent RPTs\",\n      \"corporate_governance_statements\": \"Complies with CSE Listing Rules and Corporate Governance requirements\",\n      \"director_responsibility_statement\": \"Directors confirmed responsibility for financial reporting\"\n    },\n    \"future_outlook\": {\n      \"chairman_ceo_outlook\": \"Cautiously optimistic outlook with focus on resilience, growth and value creation\",\n      \"expansion_plans\": \"Continued expansion across financial services, plantations, leisure and digital platforms\",\n      \"expected_challenges\": \"Macroeconomic volatility, regulatory changes and geopolitical risks\",\n      \"strategy\": \"Diversification, prudent risk management and sustainable growth\",\n      \"forward_looking_statements\": \"Growth expectations subject to global and local economic conditions\"\n    }\n  },\n  \"investor_friendly_insight\": {\n    \"summary\": \"LOLC Holdings PLC delivered strong earnings growth in FY2024/25, driven by diversified operations and improved profitability across core sectors, while maintaining a robust asset base and capital position.\",\n    \"key_strengths\": [\n      \"Diversified multi-sector and geographic footprint\",\n      \"Strong revenue and profit growth\",\n      \"Robust capital base and asset expansion\"\n    ],\n    \"key_concerns\": [\n      \"High leverage typical of financial services groups\",\n      \"Exposure to macroeconomic and foreign exchange volatility\"\n    ],\n    \"risk_level_explanation\": \"Overall risk is moderated by diversification and established risk management frameworks, but remains influenced by financial sector exposure and global economic conditions.\",\n    \"non_advisory_note\": \"This is an informational summary only and not financial advice.\"\n  },\n  \"source_evidence\": [\n    {\n      \"page\": 108,\n      \"quote\": \"LOLC Holdings PLC is a public quoted company incorporated on 14 March 1980... primarily involved in providing diversified financial solutions...\"\n    },\n    {\n      \"page\": 14,\n      \"quote\": \"Revenue surged by 30.6% to LKR 112.2 billion... Profit before tax stood at LKR 52.1 billion...\"\n    },\n    {\n      \"page\": 92,\n      \"quote\": \"Total assets amounted to Rs. 2,029,626,151 thousand as at 31 March 2025.\"\n    },\n    {\n      \"page\": 147,\n      \"quote\": \"Earnings per share... Basic EPS for the year was Rs. 104.61.\"\n    },\n    {\n      \"page\": 361,\n      \"quote\": \"Last traded share price as at 31st March 2025 was Rs. 594.75.\"\n    },\n    {\n      \"page\": 80,\n      \"quote\": \"LOLC Holdings PLC is a diversified conglomerate... giving rise to a wide spectrum of risks.\"\n    },\n    {\n      \"page\": 85,\n      \"quote\": \"In our opinion, the financial statements give a true and fair view...\"\n    }\n  ],\n  \"missing_fields\": [\n    \"EBITDA\",\n    \"Dividend details\",\n    \"Free cash flow\",\n    \"Current ratio\"\n  ],\n  \"confidence_score\": 0.72\n}\n```",
+  "parsed_json": {
+    "metadata": {
+      "pdf_name": "LOLC_2024.pdf",
+      "company_name": "LOLC Holdings PLC",
+      "reporting_year": "Year ended 31 March 2025",
+      "prompt_id": "prompt_04",
+      "model": "gpt-5.2-chat",
+      "generated_at": "2026-05-08T15:26:37.285559+00:00"
+    },
+    "extracted_facts": {
+      "company_overview": {
+        "company_name": "LOLC Holdings PLC",
+        "reporting_year": "Year ended 31 March 2025",
+        "business_segments": "Financial services, insurance, manufacturing & trading, leisure & entertainment, plantation & agriculture, IT services, others",
+        "principal_activities": "Holding company managing a diversified portfolio of investments and providing centralized services to subsidiaries and associates",
+        "sector_industry": "Diversified conglomerate – Financial services and multi-sector",
+        "subsidiaries_associates": "The Group comprises numerous subsidiaries and associates across Sri Lanka, Asia and Africa (refer Note 31)"
+      },
+      "financial_performance": {
+        "revenue_turnover": "LKR 112.2 billion",
+        "gross_profit": "LKR 45.36 billion",
+        "operating_profit": "LKR 45.70 billion",
+        "profit_before_tax": "LKR 52.1 billion (continuing operations)",
+        "profit_after_tax": "Approximately LKR 41 billion (management discussion)",
+        "eps": "LKR 104.61",
+        "ebitda": null,
+        "net_finance_cost": "LKR 51.8 billion",
+        "tax_expense": "LKR 5.9 billion"
+      },
+      "financial_position": {
+        "total_assets": "LKR 2,029.6 billion",
+        "total_liabilities": "LKR 1,425.4 billion",
+        "total_equity": "LKR 604.2 billion",
+        "borrowings_debt": "LKR 601.2 billion",
+        "cash_and_cash_equivalents": "LKR 111.6 billion",
+        "inventory": "LKR 33.3 billion",
+        "trade_receivables": "LKR 25.4 billion",
+        "trade_payables": "LKR 45.2 billion"
+      },
+      "cash_flow": {
+        "operating_cash_flow": "LKR 6.7 billion",
+        "investing_cash_flow": "LKR (22.2) billion",
+        "financing_cash_flow": null,
+        "free_cash_flow": null,
+        "capital_expenditure": "LKR 19.9 billion (PPE acquisitions)"
+      },
+      "investor_ratios": {
+        "gross_profit_margin": "Approximately 40.4%",
+        "net_profit_margin": "Approximately 36.5%",
+        "current_ratio": null,
+        "debt_to_equity_ratio": "Approximately 1.0x",
+        "return_on_equity": "15.5%",
+        "return_on_assets": null,
+        "eps_ratio_reference": "Basic EPS per Note 17",
+        "dividend_payout_ratio": null
+      },
+      "shareholder_information": {
+        "stated_capital": "LKR 475.2 million",
+        "number_of_shares": "475.2 million ordinary shares",
+        "major_shareholders": "Institutional investors hold approximately 75% of shares",
+        "public_holding_percentage": "15.10%",
+        "dividends": null,
+        "market_price_per_share": "LKR 594.75 (last traded at 31 March 2025)"
+      },
+      "risk_factors": {
+        "liquidity_risk": "Managed through Group-level ERM framework",
+        "credit_risk": "Significant due to financial services exposure; managed via credit committees and ECL models",
+        "market_risk": "Includes interest rate, equity price and commodity risks",
+        "interest_rate_risk": "Sensitivity disclosed; rate changes impact net interest income",
+        "foreign_exchange_risk": "Exposure from overseas subsidiaries using multiple functional currencies",
+        "operational_risk": "Managed through Three Lines of Defence model",
+        "regulatory_risk": "Subject to multi-jurisdictional financial and capital market regulations",
+        "going_concern_concerns": "No material going concern uncertainty disclosed",
+        "litigation_contingencies": "No material litigation disclosed"
+      },
+      "management_governance": {
+        "board_changes": "Several appointments and resignations during the year including new independent directors",
+        "auditor_opinion": "Unqualified audit opinion – true and fair view",
+        "related_party_transactions": "Conducted in ordinary course; no material non-recurrent RPTs",
+        "corporate_governance_statements": "Complies with CSE Listing Rules and Corporate Governance requirements",
+        "director_responsibility_statement": "Directors confirmed responsibility for financial reporting"
+      },
+      "future_outlook": {
+        "chairman_ceo_outlook": "Cautiously optimistic outlook with focus on resilience, growth and value creation",
+        "expansion_plans": "Continued expansion across financial services, plantations, leisure and digital platforms",
+        "expected_challenges": "Macroeconomic volatility, regulatory changes and geopolitical risks",
+        "strategy": "Diversification, prudent risk management and sustainable growth",
+        "forward_looking_statements": "Growth expectations subject to global and local economic conditions"
+      }
+    },
+    "investor_friendly_insight": {
+      "summary": "LOLC Holdings PLC delivered strong earnings growth in FY2024/25, driven by diversified operations and improved profitability across core sectors, while maintaining a robust asset base and capital position.",
+      "key_strengths": [
+        "Diversified multi-sector and geographic footprint",
+        "Strong revenue and profit growth",
+        "Robust capital base and asset expansion"
+      ],
+      "key_concerns": [
+        "High leverage typical of financial services groups",
+        "Exposure to macroeconomic and foreign exchange volatility"
+      ],
+      "risk_level_explanation": "Overall risk is moderated by diversification and established risk management frameworks, but remains influenced by financial sector exposure and global economic conditions.",
+      "non_advisory_note": "This is an informational summary only and not financial advice."
+    },
+    "source_evidence": [
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": ""
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": ""
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": ""
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": ""
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": ""
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": ""
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": ""
+      }
+    ],
+    "missing_fields": [
+      "ebitda",
+      "financing_cash_flow",
+      "free_cash_flow",
+      "current_ratio",
+      "return_on_assets",
+      "dividend_payout_ratio",
+      "dividends"
+    ],
+    "confidence_score": 0.72
+  },
+  "token_usage": {
+    "input_tokens": 47411,
+    "output_tokens": 1684,
+    "total_tokens": 49095
+  },
+  "runtime_seconds": 19.62,
+  "errors": null
+}

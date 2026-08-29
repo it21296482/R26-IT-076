@@ -1,0 +1,17 @@
+field,required_for,status,note
+date,core_inputs,available_raw,temporal ordering
+open,core_inputs,available_raw,market features
+high,core_inputs,available_raw,market features
+low,core_inputs,available_raw,market features
+close,core_inputs,available_raw,market features and prediction target
+volume,core_inputs,available_raw,liquidity-aware anomaly scoring
+return_1d,feature_engineering,derived,derived from close prices
+moving averages,feature_engineering,derived,derived from close prices
+volatility,feature_engineering,derived,derived from rolling returns
+momentum,feature_engineering,derived,derived from lagged closes
+atr_14,feature_engineering,derived,derived from OHLC range
+rsi_14,feature_engineering,derived,derived from directional close changes
+liquidity ratios,feature_engineering,derived,derived from volume history
+lstm_target_close,feature_engineering,derived,next-step close derived by shifting close
+proxy_event_labels,feature_engineering,derived,constructed from known CSE stress windows and extreme market realizations
+ground_truth_anomaly_labels,evaluation,missing_raw,No manually labeled CSE anomaly file is present; proxy event labels will be constructed for research evaluation.

@@ -1,0 +1,2 @@
+stock,rows,start_date,end_date,missing_ohlcv_count,duplicate_date_count,zero_volume_count,data_source
+BIL,3238,2012-02-23,2026-05-07,0,0,1,tradingview_cselk_fallback

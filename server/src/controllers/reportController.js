@@ -48,9 +48,7 @@ const uploadFinancialReport = async (req, res) => {
     sizeBytes: req.file.size,
     storagePath: req.file.path,
     processingStatus: "queued",
-    // This placeholder summary mirrors the first stage of the research pipeline until parsing is implemented.
-    summary:
-      "Report received and queued for document parsing, indicator extraction, and explainable insight generation.",
+    summary: "Report received and ready for analysis.",
     uploadedBy: req.user._id,
   });
 

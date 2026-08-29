@@ -1,0 +1,247 @@
+{
+  "pdf_name": "369_1741169817422.pdf",
+  "prompt_id": "prompt_09",
+  "prompt_name": "Few-Shot Prompt",
+  "model": "gpt-5.2-chat",
+  "full_model_output": "```json\n{\n  \"metadata\": {\n    \"pdf_name\": \"369_1741169817422.pdf\",\n    \"company_name\": \"Commercial Bank of Ceylon PLC\",\n    \"reporting_year\": \"2024\",\n    \"prompt_id\": \"annual_report_extraction_001\",\n    \"model\": \"GPT-5.2\",\n    \"generated_at\": \"2026-05-08\"\n  },\n  \"extracted_facts\": {\n    \"company_overview\": {\n      \"company_name\": {\n        \"value\": \"Commercial Bank of Ceylon PLC\",\n        \"page_number\": 18,\n        \"source_quote\": \"About Commercial Bank of Ceylon PLC\"\n      },\n      \"reporting_year\": {\n        \"value\": \"Year ended December 31, 2024\",\n        \"page_number\": 11,\n        \"source_quote\": \"This 56th Annual Report... covers the 12-month period from January 01 to December 31, 2024.\"\n      },\n      \"business_segments\": {\n        \"value\": \"Personal Banking, Corporate Banking, International Operations, Dealing/Treasury, NBFI, Real Estate & Services\",\n        \"page_number\": 422,\n        \"source_quote\": \"The Group has five strategic divisions (operating segments)... Personal Banking, Corporate Banking, International Operations, Dealing/Treasury, NBFI, Real Estate & Services.\"\n      },\n      \"principal_activities\": {\n        \"value\": \"Banking and related financial services\",\n        \"page_number\": 312,\n        \"source_quote\": \"Commercial Bank of Ceylon PLC – Banking and related activities such as accepting deposits, personal banking, trade financing...\"\n      },\n      \"sector_industry\": {\n        \"value\": \"Banking and Financial Services\",\n        \"page_number\": 185,\n        \"source_quote\": \"GICS Industry Group Banks\"\n      },\n      \"subsidiaries_associates\": {\n        \"value\": \"Local and foreign subsidiaries including Commercial Development Company PLC, CBC Finance Limited, Commercial Bank of Maldives Private Limited\",\n        \"page_number\": 312,\n        \"source_quote\": \"Local subsidiaries... Foreign subsidiaries...\"\n      }\n    },\n    \"financial_performance\": {\n      \"profit_after_tax\": {\n        \"value\": \"Rs. 55,073 million\",\n        \"page_number\": 349,\n        \"source_quote\": \"Profit for the year attributable to equity holders of the Bank (Rs. ’000) 55,073,240\"\n      },\n      \"eps\": {\n        \"value\": \"Rs. 38.44 (Basic EPS)\",\n        \"page_number\": 349,\n        \"source_quote\": \"Basic earnings per ordinary share (Rs.) 38.44\"\n      }\n    },\n    \"financial_position\": {\n      \"total_assets\": {\n        \"value\": \"Rs. 2.790 trillion\",\n        \"page_number\": 160,\n        \"source_quote\": \"The Bank’s total assets grew... reaching Rs. 2.790 Tn.\"\n      }\n    },\n    \"cash_flow\": {},\n    \"investor_ratios\": {},\n    \"shareholder_information\": {\n      \"dividends\": {\n        \"value\": \"Total dividend per share Rs. 9.50 for 2024\",\n        \"page_number\": 188,\n        \"source_quote\": \"Total 9.50\"\n      }\n    },\n    \"risk_factors\": {},\n    \"management_governance\": {\n      \"auditor_opinion\": {\n        \"value\": \"Unqualified opinion\",\n        \"page_number\": 292,\n        \"source_quote\": \"In our opinion, the accompanying financial statements... give a true and fair view...\"\n      }\n    },\n    \"future_outlook\": {\n      \"chairman_ceo_outlook\": {\n        \"value\": \"Continued focus on resilience, sustainable growth and digital transformation\",\n        \"page_number\": 36,\n        \"source_quote\": \"Commercial Bank has not only reinforced its leadership position but has continued to drive sustainable growth...\"\n      }\n    }\n  },\n  \"investor_friendly_insight\": {\n    \"summary\": \"Commercial Bank of Ceylon PLC reported strong profitability in 2024 with total assets reaching Rs. 2.79 trillion and basic EPS of Rs. 38.44. The Bank operates across diversified banking segments and maintains a strong market position in Sri Lanka.\",\n    \"key_strengths\": [\n      \"Largest private sector bank in Sri Lanka by assets\",\n      \"Diversified business segments\",\n      \"Strong capital and profitability metrics\"\n    ],\n    \"key_concerns\": [\n      \"Exposure to macroeconomic volatility\",\n      \"Credit risk from evolving economic conditions\"\n    ],\n    \"risk_level_explanation\": \"The Bank faces typical banking sector risks including credit, market, liquidity and regulatory risks, which are actively managed through established risk frameworks.\",\n    \"non_advisory_note\": \"This is an informational summary only and not financial advice.\"\n  },\n  \"source_evidence\": [\n    {\n      \"field\": \"total_assets\",\n      \"value\": \"Rs. 2.790 Tn.\",\n      \"page_number\": 160,\n      \"source_quote\": \"The Bank’s total assets grew by a healthy 8.12%... reaching Rs. 2.790 Tn.\"\n    },\n    {\n      \"field\": \"eps\",\n      \"value\": \"Rs. 38.44\",\n      \"page_number\": 349,\n      \"source_quote\": \"Basic earnings per ordinary share (Rs.) 38.44\"\n    },\n    {\n      \"field\": \"dividends\",\n      \"value\": \"Rs. 9.50 per share\",\n      \"page_number\": 188,\n      \"source_quote\": \"Total 9.50\"\n    }\n  ],\n  \"missing_fields\": [\n    \"revenue_turnover\",\n    \"gross_profit\",\n    \"operating_cash_flow\",\n    \"free_cash_flow\",\n    \"debt_to_equity_ratio\"\n  ],\n  \"confidence_score\": 0.67\n}\n```",
+  "parsed_json": {
+    "metadata": {
+      "pdf_name": "369_1741169817422.pdf",
+      "company_name": {
+        "value": "Commercial Bank of Ceylon PLC",
+        "page_number": 18,
+        "source_quote": "About Commercial Bank of Ceylon PLC"
+      },
+      "reporting_year": {
+        "value": "Year ended December 31, 2024",
+        "page_number": 11,
+        "source_quote": "This 56th Annual Report... covers the 12-month period from January 01 to December 31, 2024."
+      },
+      "prompt_id": "prompt_09",
+      "model": "gpt-5.2-chat",
+      "generated_at": "2026-05-08T12:12:03.024541+00:00"
+    },
+    "extracted_facts": {
+      "company_overview": {
+        "company_name": {
+          "value": "Commercial Bank of Ceylon PLC",
+          "page_number": 18,
+          "source_quote": "About Commercial Bank of Ceylon PLC"
+        },
+        "reporting_year": {
+          "value": "Year ended December 31, 2024",
+          "page_number": 11,
+          "source_quote": "This 56th Annual Report... covers the 12-month period from January 01 to December 31, 2024."
+        },
+        "business_segments": {
+          "value": "Personal Banking, Corporate Banking, International Operations, Dealing/Treasury, NBFI, Real Estate & Services",
+          "page_number": 422,
+          "source_quote": "The Group has five strategic divisions (operating segments)... Personal Banking, Corporate Banking, International Operations, Dealing/Treasury, NBFI, Real Estate & Services."
+        },
+        "principal_activities": {
+          "value": "Banking and related financial services",
+          "page_number": 312,
+          "source_quote": "Commercial Bank of Ceylon PLC – Banking and related activities such as accepting deposits, personal banking, trade financing..."
+        },
+        "sector_industry": {
+          "value": "Banking and Financial Services",
+          "page_number": 185,
+          "source_quote": "GICS Industry Group Banks"
+        },
+        "subsidiaries_associates": {
+          "value": "Local and foreign subsidiaries including Commercial Development Company PLC, CBC Finance Limited, Commercial Bank of Maldives Private Limited",
+          "page_number": 312,
+          "source_quote": "Local subsidiaries... Foreign subsidiaries..."
+        }
+      },
+      "financial_performance": {
+        "revenue_turnover": null,
+        "gross_profit": null,
+        "operating_profit": null,
+        "profit_before_tax": null,
+        "profit_after_tax": {
+          "value": "Rs. 55,073 million",
+          "page_number": 349,
+          "source_quote": "Profit for the year attributable to equity holders of the Bank (Rs. ’000) 55,073,240"
+        },
+        "eps": {
+          "value": "Rs. 38.44 (Basic EPS)",
+          "page_number": 349,
+          "source_quote": "Basic earnings per ordinary share (Rs.) 38.44"
+        },
+        "ebitda": null,
+        "net_finance_cost": null,
+        "tax_expense": null
+      },
+      "financial_position": {
+        "total_assets": {
+          "value": "Rs. 2.790 trillion",
+          "page_number": 160,
+          "source_quote": "The Bank’s total assets grew... reaching Rs. 2.790 Tn."
+        },
+        "total_liabilities": null,
+        "total_equity": null,
+        "borrowings_debt": null,
+        "cash_and_cash_equivalents": null,
+        "inventory": null,
+        "trade_receivables": null,
+        "trade_payables": null
+      },
+      "cash_flow": {
+        "operating_cash_flow": null,
+        "investing_cash_flow": null,
+        "financing_cash_flow": null,
+        "free_cash_flow": null,
+        "capital_expenditure": null
+      },
+      "investor_ratios": {
+        "gross_profit_margin": null,
+        "net_profit_margin": null,
+        "current_ratio": null,
+        "debt_to_equity_ratio": null,
+        "return_on_equity": null,
+        "return_on_assets": null,
+        "eps_ratio_reference": null,
+        "dividend_payout_ratio": null
+      },
+      "shareholder_information": {
+        "stated_capital": null,
+        "number_of_shares": null,
+        "major_shareholders": null,
+        "public_holding_percentage": null,
+        "dividends": {
+          "value": "Total dividend per share Rs. 9.50 for 2024",
+          "page_number": 188,
+          "source_quote": "Total 9.50"
+        },
+        "market_price_per_share": null
+      },
+      "risk_factors": {
+        "liquidity_risk": null,
+        "credit_risk": null,
+        "market_risk": null,
+        "interest_rate_risk": null,
+        "foreign_exchange_risk": null,
+        "operational_risk": null,
+        "regulatory_risk": null,
+        "going_concern_concerns": null,
+        "litigation_contingencies": null
+      },
+      "management_governance": {
+        "board_changes": null,
+        "auditor_opinion": {
+          "value": "Unqualified opinion",
+          "page_number": 292,
+          "source_quote": "In our opinion, the accompanying financial statements... give a true and fair view..."
+        },
+        "related_party_transactions": null,
+        "corporate_governance_statements": null,
+        "director_responsibility_statement": null
+      },
+      "future_outlook": {
+        "chairman_ceo_outlook": {
+          "value": "Continued focus on resilience, sustainable growth and digital transformation",
+          "page_number": 36,
+          "source_quote": "Commercial Bank has not only reinforced its leadership position but has continued to drive sustainable growth..."
+        },
+        "expansion_plans": null,
+        "expected_challenges": null,
+        "strategy": null,
+        "forward_looking_statements": null
+      }
+    },
+    "investor_friendly_insight": {
+      "summary": "Commercial Bank of Ceylon PLC reported strong profitability in 2024 with total assets reaching Rs. 2.79 trillion and basic EPS of Rs. 38.44. The Bank operates across diversified banking segments and maintains a strong market position in Sri Lanka.",
+      "key_strengths": [
+        "Largest private sector bank in Sri Lanka by assets",
+        "Diversified business segments",
+        "Strong capital and profitability metrics"
+      ],
+      "key_concerns": [
+        "Exposure to macroeconomic volatility",
+        "Credit risk from evolving economic conditions"
+      ],
+      "risk_level_explanation": "The Bank faces typical banking sector risks including credit, market, liquidity and regulatory risks, which are actively managed through established risk frameworks.",
+      "non_advisory_note": "This is an informational summary only and not financial advice."
+    },
+    "source_evidence": [
+      {
+        "field": "total_assets",
+        "value": "Rs. 2.790 Tn.",
+        "page_number": 160,
+        "source_quote": "The Bank’s total assets grew by a healthy 8.12%... reaching Rs. 2.790 Tn."
+      },
+      {
+        "field": "eps",
+        "value": "Rs. 38.44",
+        "page_number": 349,
+        "source_quote": "Basic earnings per ordinary share (Rs.) 38.44"
+      },
+      {
+        "field": "dividends",
+        "value": "Rs. 9.50 per share",
+        "page_number": 188,
+        "source_quote": "Total 9.50"
+      }
+    ],
+    "missing_fields": [
+      "revenue_turnover",
+      "gross_profit",
+      "operating_profit",
+      "profit_before_tax",
+      "ebitda",
+      "net_finance_cost",
+      "tax_expense",
+      "total_liabilities",
+      "total_equity",
+      "borrowings_debt",
+      "cash_and_cash_equivalents",
+      "inventory",
+      "trade_receivables",
+      "trade_payables",
+      "operating_cash_flow",
+      "investing_cash_flow",
+      "financing_cash_flow",
+      "free_cash_flow",
+      "capital_expenditure",
+      "gross_profit_margin",
+      "net_profit_margin",
+      "current_ratio",
+      "debt_to_equity_ratio",
+      "return_on_equity",
+      "return_on_assets",
+      "eps_ratio_reference",
+      "dividend_payout_ratio",
+      "stated_capital",
+      "number_of_shares",
+      "major_shareholders",
+      "public_holding_percentage",
+      "market_price_per_share",
+      "liquidity_risk",
+      "credit_risk",
+      "market_risk",
+      "interest_rate_risk",
+      "foreign_exchange_risk",
+      "operational_risk",
+      "regulatory_risk",
+      "going_concern_concerns",
+      "litigation_contingencies",
+      "board_changes",
+      "related_party_transactions",
+      "corporate_governance_statements",
+      "director_responsibility_statement",
+      "expansion_plans",
+      "expected_challenges",
+      "strategy",
+      "forward_looking_statements"
+    ],
+    "confidence_score": 0.67
+  },
+  "token_usage": {
+    "input_tokens": 51152,
+    "output_tokens": 1306,
+    "total_tokens": 52458
+  },
+  "runtime_seconds": 16.966,
+  "errors": null
+}

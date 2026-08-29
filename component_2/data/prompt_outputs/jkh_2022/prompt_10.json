@@ -1,0 +1,285 @@
+{
+  "pdf_name": "JKH_2022.pdf",
+  "prompt_id": "prompt_10",
+  "prompt_name": "Hybrid Best-Practice Prompt",
+  "model": "gpt-5.2-chat",
+  "full_model_output": "```json\n{\n  \"metadata\": {\n    \"pdf_name\": \"JKH_2022.pdf\",\n    \"company_name\": \"John Keells Holdings PLC\",\n    \"reporting_year\": \"FY ended 31 March 2022\",\n    \"prompt_id\": \"JKH_INVESTOR_SUMMARY_2022\",\n    \"model\": \"GPT-5.2\",\n    \"generated_at\": \"2026-05-08\"\n  },\n  \"extracted_facts\": {\n    \"company_overview\": {\n      \"company_name\": \"John Keells Holdings PLC\",\n      \"reporting_year\": \"FY ended 31 March 2022\",\n      \"business_segments\": [\n        \"Transportation\",\n        \"Consumer Foods\",\n        \"Retail\",\n        \"Leisure\",\n        \"Property\",\n        \"Financial Services\",\n        \"Other (including Information Technology and Plantation Services)\"\n      ],\n      \"principal_activities\": \"Managing a diversified portfolio of investments and providing functional services to subsidiaries, associates and joint ventures.\",\n      \"sector_industry\": \"Diversified Conglomerate\",\n      \"subsidiaries_associates\": \"The Group comprises multiple subsidiaries, associates and joint ventures; material partly-owned subsidiaries include entities within Leisure, Consumer Foods and Retail segments.\"\n    },\n    \"financial_performance\": {\n      \"revenue_turnover\": {\n        \"value\": 218074746,\n        \"unit\": \"LKR '000\",\n        \"page\": 208\n      },\n      \"gross_profit\": {\n        \"value\": 37644738,\n        \"unit\": \"LKR '000\",\n        \"page\": 208\n      },\n      \"operating_profit\": {\n        \"value\": 7308186,\n        \"unit\": \"LKR '000\",\n        \"page\": 208\n      },\n      \"profit_before_tax\": {\n        \"value\": 27324493,\n        \"unit\": \"LKR '000\",\n        \"page\": 208\n      },\n      \"profit_after_tax\": {\n        \"value\": 20442907,\n        \"unit\": \"LKR '000\",\n        \"page\": 208\n      },\n      \"eps\": {\n        \"value\": 15.13,\n        \"unit\": \"LKR\",\n        \"page\": 248\n      },\n      \"ebitda\": {\n        \"value\": 29262,\n        \"unit\": \"LKR million\",\n        \"page\": 46\n      },\n      \"net_finance_cost\": {\n        \"value\": -23771422,\n        \"unit\": \"LKR '000\",\n        \"page\": 247\n      },\n      \"tax_expense\": {\n        \"value\": 6881586,\n        \"unit\": \"LKR '000\",\n        \"page\": 208\n      }\n    },\n    \"financial_position\": {\n      \"total_assets\": {\n        \"value\": 717795693,\n        \"unit\": \"LKR '000\",\n        \"page\": 210\n      },\n      \"total_liabilities\": {\n        \"value\": 387704220,\n        \"unit\": \"LKR '000\",\n        \"page\": 210\n      },\n      \"total_equity\": {\n        \"value\": 330091473,\n        \"unit\": \"LKR '000\",\n        \"page\": 210\n      },\n      \"borrowings_debt\": {\n        \"value\": 268227627,\n        \"unit\": \"LKR '000\",\n        \"page\": 232\n      },\n      \"cash_and_cash_equivalents\": {\n        \"value\": 163098075,\n        \"unit\": \"LKR '000\",\n        \"page\": 52\n      },\n      \"inventory\": {\n        \"value\": 36224887,\n        \"unit\": \"LKR '000\",\n        \"page\": 210\n      },\n      \"trade_receivables\": {\n        \"value\": 25450066,\n        \"unit\": \"LKR '000\",\n        \"page\": 274\n      },\n      \"trade_payables\": {\n        \"value\": null\n      }\n    },\n    \"cash_flow\": {\n      \"operating_cash_flow\": {\n        \"value\": 30439794,\n        \"unit\": \"LKR '000\",\n        \"page\": 211\n      },\n      \"investing_cash_flow\": null,\n      \"financing_cash_flow\": null,\n      \"free_cash_flow\": null,\n      \"capital_expenditure\": {\n        \"value\": 6626776,\n        \"unit\": \"LKR '000\",\n        \"page\": 200\n      }\n    },\n    \"investor_ratios\": {\n      \"gross_profit_margin\": {\n        \"value\": 17.27,\n        \"unit\": \"%\",\n        \"calculation_basis\": \"Gross profit / Revenue\",\n        \"page\": 208\n      },\n      \"net_profit_margin\": {\n        \"value\": 9.38,\n        \"unit\": \"%\",\n        \"calculation_basis\": \"Profit after tax / Revenue\",\n        \"page\": 208\n      },\n      \"current_ratio\": null,\n      \"debt_to_equity_ratio\": {\n        \"value\": 0.81,\n        \"calculation_basis\": \"Total debt / Total equity\",\n        \"page\": 232\n      },\n      \"return_on_equity\": {\n        \"value\": 6.13,\n        \"unit\": \"%\",\n        \"calculation_basis\": \"Profit attributable to equity holders / Total equity\",\n        \"page\": 208\n      },\n      \"return_on_assets\": {\n        \"value\": 2.85,\n        \"unit\": \"%\",\n        \"calculation_basis\": \"Profit after tax / Total assets\",\n        \"page\": 210\n      },\n      \"eps_ratio_reference\": \"Basic EPS as per Note 19.1\",\n      \"dividend_payout_ratio\": {\n        \"value\": 9.92,\n        \"unit\": \"%\",\n        \"calculation_basis\": \"Dividend per share / EPS\",\n        \"page\": 248\n      }\n    },\n    \"shareholder_information\": {\n      \"stated_capital\": {\n        \"value\": 73187861,\n        \"unit\": \"LKR '000\",\n        \"page\": 210\n      },\n      \"number_of_shares\": {\n        \"value\": 1384916632,\n        \"unit\": \"shares\",\n        \"page\": 171\n      },\n      \"major_shareholders\": \"Non-resident and resident institutional investors together held approximately 70% of shares.\",\n      \"public_holding_percentage\": {\n        \"value\": 64,\n        \"unit\": \"%\",\n        \"page\": 171\n      },\n      \"dividends\": {\n        \"value\": 1.50,\n        \"unit\": \"LKR per share\",\n        \"page\": 248\n      },\n      \"market_price_per_share\": {\n        \"value\": 145.00,\n        \"unit\": \"LKR\",\n        \"page\": 168\n      }\n    },\n    \"risk_factors\": {\n      \"liquidity_risk\": \"Managed through a mix of cash flow matching and liquid asset approaches.\",\n      \"credit_risk\": \"Exposure mainly from trade receivables; ECL provisioning applied.\",\n      \"market_risk\": \"Includes interest rate, foreign exchange and equity price risks.\",\n      \"interest_rate_risk\": \"Sensitivity analysis disclosed for rupee and foreign currency borrowings.\",\n      \"foreign_exchange_risk\": \"High exposure due to foreign currency debt and depreciation of LKR in March 2022.\",\n      \"operational_risk\": \"Managed via enterprise risk management framework.\",\n      \"regulatory_risk\": \"Subject to Sri Lankan regulatory and tax changes.\",\n      \"going_concern_concerns\": \"Directors concluded the Group has adequate resources to continue as a going concern.\",\n      \"litigation_contingencies\": \"Disclosed as contingent liabilities where applicable.\"\n    },\n    \"management_governance\": {\n      \"board_changes\": null,\n      \"auditor_opinion\": \"Unmodified opinion stating financial statements give a true and fair view.\",\n      \"related_party_transactions\": \"Conducted in the ordinary course of business on arm’s length terms.\",\n      \"corporate_governance_statements\": \"Company states full compliance with CSE Listing Rules.\",\n      \"director_responsibility_statement\": \"Directors confirm responsibility for preparation and fair presentation of financial statements.\"\n    },\n    \"future_outlook\": {\n      \"chairman_ceo_outlook\": \"Management remains confident in medium- to long-term prospects despite short-term macroeconomic challenges.\",\n      \"expansion_plans\": \"Continued investments in property, retail and logistics infrastructure.\",\n      \"expected_challenges\": \"Macroeconomic instability, foreign exchange shortages, inflationary pressures.\",\n      \"strategy\": \"Focus on resilience, liquidity management, digitisation and portfolio optimisation.\",\n      \"forward_looking_statements\": \"Outlook subject to global and domestic economic conditions.\"\n    }\n  },\n  \"investor_friendly_insight\": {\n    \"summary\": \"For FY 2021/22, John Keells Holdings PLC recorded a strong rebound in profitability, with revenue of LKR 218.1 billion and profit after tax of LKR 20.4 billion, reflecting recovery across most business segments after COVID-19 disruptions.\",\n    \"key_strengths\": [\n      \"Diversified business portfolio across multiple sectors\",\n      \"Strong recovery in EBITDA and profitability\",\n      \"Significant cash and liquid investments providing liquidity buffer\"\n    ],\n    \"key_concerns\": [\n      \"High exposure to foreign currency debt amid exchange rate volatility\",\n      \"Macroeconomic and inflationary pressures in Sri Lanka\",\n      \"Rising finance costs and leverage levels\"\n    ],\n    \"risk_level_explanation\": \"The Group faces moderate to elevated risk due to macroeconomic volatility and foreign exchange exposure, but diversification and liquidity provide some risk mitigation.\",\n    \"non_advisory_note\": \"This is an informational summary only and not financial advice.\"\n  },\n  \"source_evidence\": [\n    {\n      \"page\": 208,\n      \"quote\": \"Total revenue ... 218,074,746; Profit for the year ... 20,442,907.\"\n    },\n    {\n      \"page\": 210,\n      \"quote\": \"Total assets 717,795,693; Total equity 330,091,473.\"\n    },\n    {\n      \"page\": 248,\n      \"quote\": \"Basic earnings per share ... Rs.15.13; Dividend per share ... Rs.1.50.\"\n    },\n    {\n      \"page\": 46,\n      \"quote\": \"Group EBITDA increased by 87 per cent to Rs.29.26 billion.\"\n    }\n  ],\n  \"missing_fields\": [\n    \"current_ratio\",\n    \"free_cash_flow\",\n    \"trade_payables\",\n    \"board_changes\"\n  ],\n  \"confidence_score\": 0.56\n}\n```",
+  "parsed_json": {
+    "metadata": {
+      "pdf_name": "JKH_2022.pdf",
+      "company_name": "John Keells Holdings PLC",
+      "reporting_year": "FY ended 31 March 2022",
+      "prompt_id": "prompt_10",
+      "model": "gpt-5.2-chat",
+      "generated_at": "2026-05-08T15:21:51.285633+00:00"
+    },
+    "extracted_facts": {
+      "company_overview": {
+        "company_name": "John Keells Holdings PLC",
+        "reporting_year": "FY ended 31 March 2022",
+        "business_segments": [
+          "Transportation",
+          "Consumer Foods",
+          "Retail",
+          "Leisure",
+          "Property",
+          "Financial Services",
+          "Other (including Information Technology and Plantation Services)"
+        ],
+        "principal_activities": "Managing a diversified portfolio of investments and providing functional services to subsidiaries, associates and joint ventures.",
+        "sector_industry": "Diversified Conglomerate",
+        "subsidiaries_associates": "The Group comprises multiple subsidiaries, associates and joint ventures; material partly-owned subsidiaries include entities within Leisure, Consumer Foods and Retail segments."
+      },
+      "financial_performance": {
+        "revenue_turnover": {
+          "value": 218074746,
+          "unit": "LKR '000",
+          "page": 208
+        },
+        "gross_profit": {
+          "value": 37644738,
+          "unit": "LKR '000",
+          "page": 208
+        },
+        "operating_profit": {
+          "value": 7308186,
+          "unit": "LKR '000",
+          "page": 208
+        },
+        "profit_before_tax": {
+          "value": 27324493,
+          "unit": "LKR '000",
+          "page": 208
+        },
+        "profit_after_tax": {
+          "value": 20442907,
+          "unit": "LKR '000",
+          "page": 208
+        },
+        "eps": {
+          "value": 15.13,
+          "unit": "LKR",
+          "page": 248
+        },
+        "ebitda": {
+          "value": 29262,
+          "unit": "LKR million",
+          "page": 46
+        },
+        "net_finance_cost": {
+          "value": -23771422,
+          "unit": "LKR '000",
+          "page": 247
+        },
+        "tax_expense": {
+          "value": 6881586,
+          "unit": "LKR '000",
+          "page": 208
+        }
+      },
+      "financial_position": {
+        "total_assets": {
+          "value": 717795693,
+          "unit": "LKR '000",
+          "page": 210
+        },
+        "total_liabilities": {
+          "value": 387704220,
+          "unit": "LKR '000",
+          "page": 210
+        },
+        "total_equity": {
+          "value": 330091473,
+          "unit": "LKR '000",
+          "page": 210
+        },
+        "borrowings_debt": {
+          "value": 268227627,
+          "unit": "LKR '000",
+          "page": 232
+        },
+        "cash_and_cash_equivalents": {
+          "value": 163098075,
+          "unit": "LKR '000",
+          "page": 52
+        },
+        "inventory": {
+          "value": 36224887,
+          "unit": "LKR '000",
+          "page": 210
+        },
+        "trade_receivables": {
+          "value": 25450066,
+          "unit": "LKR '000",
+          "page": 274
+        },
+        "trade_payables": {
+          "value": null
+        }
+      },
+      "cash_flow": {
+        "operating_cash_flow": {
+          "value": 30439794,
+          "unit": "LKR '000",
+          "page": 211
+        },
+        "investing_cash_flow": null,
+        "financing_cash_flow": null,
+        "free_cash_flow": null,
+        "capital_expenditure": {
+          "value": 6626776,
+          "unit": "LKR '000",
+          "page": 200
+        }
+      },
+      "investor_ratios": {
+        "gross_profit_margin": {
+          "value": 17.27,
+          "unit": "%",
+          "calculation_basis": "Gross profit / Revenue",
+          "page": 208
+        },
+        "net_profit_margin": {
+          "value": 9.38,
+          "unit": "%",
+          "calculation_basis": "Profit after tax / Revenue",
+          "page": 208
+        },
+        "current_ratio": null,
+        "debt_to_equity_ratio": {
+          "value": 0.81,
+          "calculation_basis": "Total debt / Total equity",
+          "page": 232
+        },
+        "return_on_equity": {
+          "value": 6.13,
+          "unit": "%",
+          "calculation_basis": "Profit attributable to equity holders / Total equity",
+          "page": 208
+        },
+        "return_on_assets": {
+          "value": 2.85,
+          "unit": "%",
+          "calculation_basis": "Profit after tax / Total assets",
+          "page": 210
+        },
+        "eps_ratio_reference": "Basic EPS as per Note 19.1",
+        "dividend_payout_ratio": {
+          "value": 9.92,
+          "unit": "%",
+          "calculation_basis": "Dividend per share / EPS",
+          "page": 248
+        }
+      },
+      "shareholder_information": {
+        "stated_capital": {
+          "value": 73187861,
+          "unit": "LKR '000",
+          "page": 210
+        },
+        "number_of_shares": {
+          "value": 1384916632,
+          "unit": "shares",
+          "page": 171
+        },
+        "major_shareholders": "Non-resident and resident institutional investors together held approximately 70% of shares.",
+        "public_holding_percentage": {
+          "value": 64,
+          "unit": "%",
+          "page": 171
+        },
+        "dividends": {
+          "value": 1.5,
+          "unit": "LKR per share",
+          "page": 248
+        },
+        "market_price_per_share": {
+          "value": 145.0,
+          "unit": "LKR",
+          "page": 168
+        }
+      },
+      "risk_factors": {
+        "liquidity_risk": "Managed through a mix of cash flow matching and liquid asset approaches.",
+        "credit_risk": "Exposure mainly from trade receivables; ECL provisioning applied.",
+        "market_risk": "Includes interest rate, foreign exchange and equity price risks.",
+        "interest_rate_risk": "Sensitivity analysis disclosed for rupee and foreign currency borrowings.",
+        "foreign_exchange_risk": "High exposure due to foreign currency debt and depreciation of LKR in March 2022.",
+        "operational_risk": "Managed via enterprise risk management framework.",
+        "regulatory_risk": "Subject to Sri Lankan regulatory and tax changes.",
+        "going_concern_concerns": "Directors concluded the Group has adequate resources to continue as a going concern.",
+        "litigation_contingencies": "Disclosed as contingent liabilities where applicable."
+      },
+      "management_governance": {
+        "board_changes": null,
+        "auditor_opinion": "Unmodified opinion stating financial statements give a true and fair view.",
+        "related_party_transactions": "Conducted in the ordinary course of business on arm’s length terms.",
+        "corporate_governance_statements": "Company states full compliance with CSE Listing Rules.",
+        "director_responsibility_statement": "Directors confirm responsibility for preparation and fair presentation of financial statements."
+      },
+      "future_outlook": {
+        "chairman_ceo_outlook": "Management remains confident in medium- to long-term prospects despite short-term macroeconomic challenges.",
+        "expansion_plans": "Continued investments in property, retail and logistics infrastructure.",
+        "expected_challenges": "Macroeconomic instability, foreign exchange shortages, inflationary pressures.",
+        "strategy": "Focus on resilience, liquidity management, digitisation and portfolio optimisation.",
+        "forward_looking_statements": "Outlook subject to global and domestic economic conditions."
+      }
+    },
+    "investor_friendly_insight": {
+      "summary": "For FY 2021/22, John Keells Holdings PLC recorded a strong rebound in profitability, with revenue of LKR 218.1 billion and profit after tax of LKR 20.4 billion, reflecting recovery across most business segments after COVID-19 disruptions.",
+      "key_strengths": [
+        "Diversified business portfolio across multiple sectors",
+        "Strong recovery in EBITDA and profitability",
+        "Significant cash and liquid investments providing liquidity buffer"
+      ],
+      "key_concerns": [
+        "High exposure to foreign currency debt amid exchange rate volatility",
+        "Macroeconomic and inflationary pressures in Sri Lanka",
+        "Rising finance costs and leverage levels"
+      ],
+      "risk_level_explanation": "The Group faces moderate to elevated risk due to macroeconomic volatility and foreign exchange exposure, but diversification and liquidity provide some risk mitigation.",
+      "non_advisory_note": "This is an informational summary only and not financial advice."
+    },
+    "source_evidence": [
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": ""
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": ""
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": ""
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": ""
+      }
+    ],
+    "missing_fields": [
+      "investing_cash_flow",
+      "financing_cash_flow",
+      "free_cash_flow",
+      "current_ratio",
+      "board_changes"
+    ],
+    "confidence_score": 0.56
+  },
+  "token_usage": {
+    "input_tokens": 41155,
+    "output_tokens": 2281,
+    "total_tokens": 43436
+  },
+  "runtime_seconds": 23.931,
+  "errors": null
+}

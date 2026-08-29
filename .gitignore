@@ -4,3 +4,10 @@ dist
 server/uploads
 client/.env
 .DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+tmp/
+Research-harithra/
+assets.zip

@@ -1,0 +1,227 @@
+{
+  "schema_version": "1.0",
+  "symbol": "BIL.N0000",
+  "as_of_date": "2026-08-28",
+  "generated_at": "2026-08-29T20:14:49.992853+00:00",
+  "source_file": "BIL_actual_through_2026-08-28.csv",
+  "current_price_lkr": 5.0,
+  "horizons": [
+    {
+      "key": "4d",
+      "label": "4 trading days",
+      "sessions": 4,
+      "target_date": "2026-09-03",
+      "estimated_close_lkr": 4.9791,
+      "change_from_latest_pct": -0.418,
+      "direction": "broadly stable",
+      "lower_80_lkr": 4.5258,
+      "upper_80_lkr": 5.4324,
+      "lower_95_lkr": 4.138,
+      "upper_95_lkr": 5.8202,
+      "status": "available_with_caution"
+    },
+    {
+      "key": "1m",
+      "label": "1 month",
+      "sessions": 21,
+      "target_date": "2026-09-28",
+      "estimated_close_lkr": 4.8843,
+      "change_from_latest_pct": -2.3144,
+      "direction": "lower",
+      "lower_80_lkr": 3.8456,
+      "upper_80_lkr": 5.923,
+      "lower_95_lkr": 2.957,
+      "upper_95_lkr": 6.8116,
+      "status": "available_with_caution"
+    },
+    {
+      "key": "3m",
+      "label": "3 months",
+      "sessions": 60,
+      "target_date": "2026-11-20",
+      "estimated_close_lkr": 4.6536,
+      "change_from_latest_pct": -6.9282,
+      "direction": "lower",
+      "lower_80_lkr": 2.8978,
+      "upper_80_lkr": 6.4093,
+      "lower_95_lkr": 1.3958,
+      "upper_95_lkr": 7.9113,
+      "status": "available_with_caution"
+    },
+    {
+      "key": "6m",
+      "label": "6 months",
+      "sessions": 120,
+      "status": "not_validated",
+      "message": "A validated six-month model is not available yet, so no price is estimated."
+    }
+  ],
+  "anomaly": {
+    "detected": false,
+    "type": "Normal movement",
+    "actual_price_lkr": 5.0,
+    "expected_price_lkr": 5.0278,
+    "signed_deviation_lkr": -0.0278,
+    "absolute_deviation_lkr": 0.0278,
+    "liquidity_aware_score": 0.01427,
+    "threshold": 0.313824,
+    "side": "none",
+    "risk_level": "Low",
+    "explanation": "The latest movement is within the model's normal range. The score behaviour was mainly influenced by lower trading volume, a lower average true range, and a wider moving-average gap."
+  },
+  "deviation_history": {
+    "window_start": "2026-04-17",
+    "window_end": "2026-08-28",
+    "observations": 90,
+    "detected_count": 4,
+    "detected_events": [
+      {
+        "date": "2026-05-14",
+        "actual_price_lkr": 6.2,
+        "expected_price_lkr": 6.4095,
+        "signed_deviation_lkr": -0.2095,
+        "deviation_pct": -3.2679,
+        "anomaly_score": 0.353009,
+        "threshold": 0.313824,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-05-26",
+        "actual_price_lkr": 6.0,
+        "expected_price_lkr": 6.378,
+        "signed_deviation_lkr": -0.378,
+        "deviation_pct": -5.9266,
+        "anomaly_score": 0.388821,
+        "threshold": 0.313824,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-06-26",
+        "actual_price_lkr": 5.7,
+        "expected_price_lkr": 5.82,
+        "signed_deviation_lkr": -0.12,
+        "deviation_pct": -2.0626,
+        "anomaly_score": 0.594599,
+        "threshold": 0.313824,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-07-27",
+        "actual_price_lkr": 5.4,
+        "expected_price_lkr": 5.2464,
+        "signed_deviation_lkr": 0.1536,
+        "deviation_pct": 2.9274,
+        "anomaly_score": 0.689867,
+        "threshold": 0.313824,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      }
+    ],
+    "largest_recent_deviations": [
+      {
+        "date": "2026-04-20",
+        "actual_price_lkr": 6.5,
+        "expected_price_lkr": 7.0305,
+        "signed_deviation_lkr": -0.5305,
+        "deviation_pct": -7.5456,
+        "anomaly_score": 0.148414,
+        "threshold": 0.313824,
+        "detected": false,
+        "side": "none",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-05-11",
+        "actual_price_lkr": 6.3,
+        "expected_price_lkr": 6.6766,
+        "signed_deviation_lkr": -0.3766,
+        "deviation_pct": -5.6405,
+        "anomaly_score": 0.300631,
+        "threshold": 0.313824,
+        "detected": false,
+        "side": "none",
+        "risk_level": "Low"
+      },
+      {
+        "date": "2026-05-20",
+        "actual_price_lkr": 5.9,
+        "expected_price_lkr": 6.232,
+        "signed_deviation_lkr": -0.332,
+        "deviation_pct": -5.3269,
+        "anomaly_score": 0.11357,
+        "threshold": 0.313824,
+        "detected": false,
+        "side": "none",
+        "risk_level": "Low"
+      },
+      {
+        "date": "2026-05-26",
+        "actual_price_lkr": 6.0,
+        "expected_price_lkr": 6.378,
+        "signed_deviation_lkr": -0.378,
+        "deviation_pct": -5.9266,
+        "anomaly_score": 0.388821,
+        "threshold": 0.313824,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-08-03",
+        "actual_price_lkr": 5.1,
+        "expected_price_lkr": 5.3536,
+        "signed_deviation_lkr": -0.2536,
+        "deviation_pct": -4.7374,
+        "anomaly_score": 0.060004,
+        "threshold": 0.313824,
+        "detected": false,
+        "side": "none",
+        "risk_level": "Low"
+      }
+    ],
+    "interpretation": "Dates can be compared with dated external events, but timing overlap alone does not prove causation."
+  },
+  "model_quality": {
+    "forecast_reliability_score": 9.194586,
+    "forecast_reliability_interpretation": "High",
+    "test_mae_lkr": 0.152961,
+    "test_mape_pct": 2.365562,
+    "naive_test_mae_lkr": 0.103416,
+    "advanced_model_beats_naive_mae": false,
+    "comparative_assessment": "baseline_not_beaten_use_forecast_with_caution"
+  },
+  "top_factors": [
+    {
+      "feature": "Trading Volume",
+      "contribution": 0.969747
+    },
+    {
+      "feature": "ATR 14D",
+      "contribution": 0.014133
+    },
+    {
+      "feature": "Moving Average Gap",
+      "contribution": 0.006623
+    }
+  ],
+  "limitations": [
+    "Anomaly labels are proxy labels, not manually verified CSE event labels.",
+    "The test split contains only 2 proxy-positive anomaly cases, so anomaly F1 estimates should be interpreted cautiously.",
+    "The CSV source column indicates tradingview_cselk_fallback, so this is not a pure Ideabeam-only dataset. Historical OHLCV was recovered through the TradingView CSELK fallback path when the Ideabeam workflow was unavailable.",
+    "Low MAPE does not guarantee profitable trading performance.",
+    "Directional prediction is evaluated as classification quality only; it should not be presented as guaranteed trading accuracy.",
+    "SHAP explains a surrogate anomaly-score model, not internal LSTM gates.",
+    "The forecast is scenario-based, interval-calibrated, not guaranteed, and not financial advice.",
+    "The following optional external/proxy inputs were unavailable: market_return_proxy, sector_return_proxy, news_sentiment_score, external_pressure_proxy. Shock-adjusted interpretation therefore relies on stock-level anomaly and stress proxies only.",
+    "Counterfactual structural suppression is model-based and should be validated with external market, news, and fundamental evidence.",
+    "Data source should be validated against official CSE/MyCSE when possible."
+  ],
+  "non_advisory_note": "This is a model-based research estimate for decision support, not buying or selling advice."
+}

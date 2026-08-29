@@ -1,0 +1,157 @@
+{
+  "metadata": {
+    "pdf_name": "JKH_2023.pdf",
+    "company_name": "John Keells PLC",
+    "reporting_year": "Year ended 31 March 2023",
+    "prompt_id": "prompt_08",
+    "model": "gpt-5.2-chat",
+    "generated_at": "2026-05-08T15:15:17.637451+00:00"
+  },
+  "extracted_facts": {
+    "company_overview": {
+      "company_name": "John Keells PLC",
+      "reporting_year": "Year ended 31 March 2023",
+      "business_segments": [
+        "Produce Broking (tea and rubber)",
+        "Warehousing (tea)",
+        "Share Broking"
+      ],
+      "principal_activities": "Produce broking services, stock broking services, and warehousing services",
+      "sector_industry": "Plantation services / Financial services support",
+      "subsidiaries_associates": [
+        "John Keells Stock Brokers (Pvt) Ltd – 76%",
+        "John Keells Warehousing (Pvt) Ltd – 100%",
+        "Associate: Keells Realtors Ltd – 32%"
+      ]
+    },
+    "financial_performance": {
+      "revenue_turnover": "Rs. 1,024.6 million (Group)",
+      "gross_profit": "Rs. 659.6 million (Group)",
+      "operating_profit": "Rs. 370.2 million (Group)",
+      "profit_before_tax": "Rs. 495.4 million (Group)",
+      "profit_after_tax": "Rs. 309.5 million (Group)",
+      "eps": "Rs. 5.03 per share (Group)",
+      "ebitda": null,
+      "net_finance_cost": "Net finance income of Rs. 64.4 million",
+      "tax_expense": "Rs. 185.9 million (Group)"
+    },
+    "financial_position": {
+      "total_assets": "Rs. 5,965.6 million (Group)",
+      "total_liabilities": "Rs. 1,740.7 million (Group)",
+      "total_equity": "Rs. 4,224.9 million (Group)",
+      "borrowings_debt": "Rs. 84.1 million (bank overdrafts)",
+      "cash_and_cash_equivalents": "Rs. 509.9 million (Group)",
+      "inventory": "Rs. 1.6 million (Group)",
+      "trade_receivables": "Rs. 751.6 million (Group)",
+      "trade_payables": "Rs. 1,127.7 million (Group)"
+    },
+    "cash_flow": {
+      "operating_cash_flow": "Positive net increase in cash of Rs. 151.8 million",
+      "investing_cash_flow": "Net outflow of Rs. 15.7 million",
+      "financing_cash_flow": "Net outflow of Rs. 195.3 million",
+      "free_cash_flow": null,
+      "capital_expenditure": "Rs. 20.9 million on property, plant and equipment (Group)"
+    },
+    "investor_ratios": {
+      "gross_profit_margin": "Approximately 64% (gross profit divided by revenue)",
+      "net_profit_margin": "Approximately 30%",
+      "current_ratio": "1.26 times (Group)",
+      "debt_to_equity_ratio": "2.02%",
+      "return_on_equity": "7.29%",
+      "return_on_assets": null,
+      "eps_ratio_reference": "EPS increased from Rs. 3.78 to Rs. 5.03",
+      "dividend_payout_ratio": "58.64%"
+    },
+    "shareholder_information": {
+      "stated_capital": "Rs. 152.0 million",
+      "number_of_shares": "60.8 million ordinary shares",
+      "major_shareholders": "John Keells Holdings PLC – 86.90%",
+      "public_holding_percentage": "13.10%",
+      "dividends": "Rs. 2.95 per share (total Rs. 179.4 million)",
+      "market_price_per_share": "Rs. 68.80 as at 31 March 2023"
+    },
+    "risk_factors": {
+      "liquidity_risk": "Managed through daily cash monitoring and maintaining cash buffers",
+      "credit_risk": "Exposure mainly from trade receivables and advances to tea sellers",
+      "market_risk": "Exposure to interest rate and equity price movements",
+      "interest_rate_risk": "Affected by changes in Sri Lankan interest rates",
+      "foreign_exchange_risk": "Limited, mainly indirect through investments",
+      "operational_risk": "Risks from disruptions in tea and rubber supply chains",
+      "regulatory_risk": "Subject to Colombo Stock Exchange and SEC regulations",
+      "going_concern_concerns": "Directors confirmed the going concern basis is appropriate",
+      "litigation_contingencies": "No material litigation contingencies disclosed"
+    },
+    "management_governance": {
+      "board_changes": "Directors re-election proposed at the 76th AGM",
+      "auditor_opinion": "Unqualified audit opinion – true and fair view",
+      "related_party_transactions": "Conducted at arm’s length; no material non-recurrent transactions",
+      "corporate_governance_statements": "Company states compliance with SEC and CA Sri Lanka governance codes",
+      "director_responsibility_statement": "Directors confirmed responsibility for financial statements"
+    },
+    "future_outlook": {
+      "chairman_ceo_outlook": "Plantation services sector outlook described as positive",
+      "expansion_plans": "Continued investment in warehousing capacity and process efficiency",
+      "expected_challenges": "Industry volatility, supply chain disruptions, macroeconomic conditions",
+      "strategy": "Focus on core broking services, governance, and operational efficiency",
+      "forward_looking_statements": "Future performance dependent on market and economic conditions"
+    }
+  },
+  "investor_friendly_insight": {
+    "summary": "John Keells PLC reported higher revenue and profits in 2022/23, mainly driven by improved produce broking performance and higher interest income. The Group remains lightly leveraged with low debt and a stable cash position.",
+    "key_strengths": [
+      "Revenue growth of 8% year-on-year",
+      "Low debt and strong liquidity",
+      "Diversified services across broking and warehousing"
+    ],
+    "key_concerns": [
+      "Dependence on tea and rubber industry conditions",
+      "Exposure to economic and interest rate volatility in Sri Lanka"
+    ],
+    "risk_level_explanation": "The Company operates with relatively low financial risk due to low borrowing, but business results can fluctuate with commodity markets and economic conditions.",
+    "non_advisory_note": "This is an informational summary only and not financial advice."
+  },
+  "source_evidence": [
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Income Statement – Page 88"
+    },
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Statement of Financial Position – Page 90"
+    },
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Statement of Cash Flow – Page 94"
+    },
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Performance Highlights – Page 8"
+    },
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Chairperson’s Statement – Page 14"
+    },
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Key Ratios & Information – Page 145"
+    }
+  ],
+  "missing_fields": [
+    "ebitda",
+    "free_cash_flow",
+    "return_on_assets"
+  ],
+  "confidence_score": 0.79
+}

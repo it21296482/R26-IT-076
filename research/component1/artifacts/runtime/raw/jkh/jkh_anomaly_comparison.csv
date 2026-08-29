@@ -1,0 +1,4 @@
+method,purpose,threshold,prediction_band_threshold,accuracy,precision,recall,f1_score,predicted_positive_rate,tn,fp,fn,tp,support_positive,support_negative,predicted_positive_count
+Z-score baseline,Simple statistical anomaly detection,3.0,,0.9939577039274925,0.8,0.5714285714285714,0.6666666666666666,0.0075528700906344415,654,1,3,4,7,655,5
+Isolation Forest,Machine-learning anomaly detection,0.5471432184948338,,0.9682779456193353,0.18181818181818182,0.5714285714285714,0.27586206896551724,0.03323262839879154,637,18,3,4,7,655,22
+LSTM deviation method,Time-series expected-vs-actual anomaly detection,2.5658329770229638,1.05,0.9033232628398792,0.047619047619047616,0.42857142857142855,0.08571428571428572,0.09516616314199396,595,60,4,3,7,655,63

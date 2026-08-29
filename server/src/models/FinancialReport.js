@@ -42,7 +42,7 @@ const financialReportSchema = new mongoose.Schema(
     },
     processingStatus: {
       type: String,
-      enum: ["uploaded", "queued", "processed", "failed"],
+      enum: ["uploaded", "queued", "processing", "processed", "needs_review", "rejected", "failed"],
       default: "uploaded",
       index: true,
     },

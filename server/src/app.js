@@ -8,6 +8,7 @@ const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const reportRoutes = require("./routes/reportRoutes");
 const stockRoutes = require("./routes/stockRoutes");
+const analysisRoutes = require("./routes/analysisRoutes");
 const errorHandler = require("./middleware/errorHandler");
 const newsRoutes = require("./routes/newsRoutes");
 
@@ -57,7 +58,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/stocks", stockRoutes);
-app.use(errorHandler);
+app.use("/api/analysis", analysisRoutes);
 app.use("/api/news", newsRoutes);
+app.use(errorHandler);
 
 module.exports = app;

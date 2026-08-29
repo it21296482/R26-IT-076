@@ -1,0 +1,1189 @@
+{
+  "pdf_name": "DIAL_2024.pdf",
+  "discovery_summary": {
+    "company_overview": [
+      {
+        "field": "company_name",
+        "found": true,
+        "candidate_pages": [
+          9,
+          92
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 9",
+          "DIAL_2024 page 92"
+        ]
+      },
+      {
+        "field": "reporting_year",
+        "found": true,
+        "candidate_pages": [
+          132,
+          260
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 132",
+          "DIAL_2024 page 260"
+        ]
+      },
+      {
+        "field": "business_segments",
+        "found": true,
+        "candidate_pages": [
+          174,
+          22
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 174",
+          "DIAL_2024 page 22"
+        ]
+      },
+      {
+        "field": "principal_activities",
+        "found": true,
+        "candidate_pages": [
+          132,
+          98
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 132",
+          "DIAL_2024 page 98"
+        ]
+      },
+      {
+        "field": "sector_industry",
+        "found": true,
+        "candidate_pages": [
+          46,
+          47
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 46",
+          "DIAL_2024 page 47"
+        ]
+      },
+      {
+        "field": "subsidiaries_associates",
+        "found": true,
+        "candidate_pages": [
+          136,
+          153
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 136",
+          "DIAL_2024 page 153"
+        ]
+      }
+    ],
+    "financial_performance": [
+      {
+        "field": "revenue_turnover",
+        "found": true,
+        "candidate_pages": [
+          139,
+          163
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 139",
+          "DIAL_2024 page 163"
+        ]
+      },
+      {
+        "field": "gross_profit",
+        "found": true,
+        "candidate_pages": [
+          237,
+          146
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 237",
+          "DIAL_2024 page 146"
+        ]
+      },
+      {
+        "field": "operating_profit",
+        "found": true,
+        "candidate_pages": [
+          237,
+          146
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 237",
+          "DIAL_2024 page 146"
+        ]
+      },
+      {
+        "field": "profit_before_tax",
+        "found": true,
+        "candidate_pages": [
+          225,
+          56
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 225",
+          "DIAL_2024 page 56"
+        ]
+      },
+      {
+        "field": "profit_after_tax",
+        "found": true,
+        "candidate_pages": [
+          63,
+          223
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 63",
+          "DIAL_2024 page 223"
+        ]
+      },
+      {
+        "field": "eps",
+        "found": true,
+        "candidate_pages": [
+          224,
+          223
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 224",
+          "DIAL_2024 page 223"
+        ]
+      },
+      {
+        "field": "ebitda",
+        "found": true,
+        "candidate_pages": [
+          23,
+          64
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 23",
+          "DIAL_2024 page 64"
+        ]
+      },
+      {
+        "field": "net_finance_cost",
+        "found": true,
+        "candidate_pages": [
+          237,
+          55
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 237",
+          "DIAL_2024 page 55"
+        ]
+      },
+      {
+        "field": "tax_expense",
+        "found": true,
+        "candidate_pages": [
+          223,
+          160
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 223",
+          "DIAL_2024 page 160"
+        ]
+      }
+    ],
+    "financial_position": [
+      {
+        "field": "total_assets",
+        "found": true,
+        "candidate_pages": [
+          144,
+          236
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 144",
+          "DIAL_2024 page 236"
+        ]
+      },
+      {
+        "field": "total_liabilities",
+        "found": true,
+        "candidate_pages": [
+          236,
+          145
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 236",
+          "DIAL_2024 page 145"
+        ]
+      },
+      {
+        "field": "total_equity",
+        "found": true,
+        "candidate_pages": [
+          144,
+          236
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 144",
+          "DIAL_2024 page 236"
+        ]
+      },
+      {
+        "field": "borrowings_debt",
+        "found": true,
+        "candidate_pages": [
+          209,
+          114
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 209",
+          "DIAL_2024 page 114"
+        ]
+      },
+      {
+        "field": "cash_and_cash_equivalents",
+        "found": true,
+        "candidate_pages": [
+          159,
+          166
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 159",
+          "DIAL_2024 page 166"
+        ]
+      },
+      {
+        "field": "inventory",
+        "found": true,
+        "candidate_pages": [
+          225,
+          159
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 225",
+          "DIAL_2024 page 159"
+        ]
+      },
+      {
+        "field": "trade_receivables",
+        "found": true,
+        "candidate_pages": [
+          201,
+          199
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 201",
+          "DIAL_2024 page 199"
+        ]
+      },
+      {
+        "field": "trade_payables",
+        "found": true,
+        "candidate_pages": [
+          159,
+          196
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 159",
+          "DIAL_2024 page 196"
+        ]
+      }
+    ],
+    "cash_flow": [
+      {
+        "field": "operating_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          150,
+          23
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 150",
+          "DIAL_2024 page 23"
+        ]
+      },
+      {
+        "field": "investing_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          150,
+          240
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 150",
+          "DIAL_2024 page 240"
+        ]
+      },
+      {
+        "field": "financing_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          150,
+          240
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 150",
+          "DIAL_2024 page 240"
+        ]
+      },
+      {
+        "field": "free_cash_flow",
+        "found": true,
+        "candidate_pages": [
+          64,
+          181
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 64",
+          "DIAL_2024 page 181"
+        ]
+      },
+      {
+        "field": "capital_expenditure",
+        "found": true,
+        "candidate_pages": [
+          64,
+          66
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 64",
+          "DIAL_2024 page 66"
+        ]
+      }
+    ],
+    "investor_ratios": [
+      {
+        "field": "gross_profit_margin",
+        "found": true,
+        "candidate_pages": [
+          12,
+          237
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 12",
+          "DIAL_2024 page 237"
+        ]
+      },
+      {
+        "field": "net_profit_margin",
+        "found": true,
+        "candidate_pages": [
+          12,
+          146
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 12",
+          "DIAL_2024 page 146"
+        ]
+      },
+      {
+        "field": "current_ratio",
+        "found": true,
+        "candidate_pages": [
+          12,
+          240
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 12",
+          "DIAL_2024 page 240"
+        ]
+      },
+      {
+        "field": "debt_to_equity_ratio",
+        "found": true,
+        "candidate_pages": [
+          12,
+          114
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 12",
+          "DIAL_2024 page 114"
+        ]
+      },
+      {
+        "field": "return_on_equity",
+        "found": true,
+        "candidate_pages": [
+          12,
+          158
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 12",
+          "DIAL_2024 page 158"
+        ]
+      },
+      {
+        "field": "return_on_assets",
+        "found": true,
+        "candidate_pages": [
+          242,
+          56
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 242",
+          "DIAL_2024 page 56"
+        ]
+      },
+      {
+        "field": "eps_ratio_reference",
+        "found": true,
+        "candidate_pages": [
+          223,
+          59
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 223",
+          "DIAL_2024 page 59"
+        ]
+      },
+      {
+        "field": "dividend_payout_ratio",
+        "found": true,
+        "candidate_pages": [
+          12,
+          64
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 12",
+          "DIAL_2024 page 64"
+        ]
+      }
+    ],
+    "shareholder_information": [
+      {
+        "field": "stated_capital",
+        "found": true,
+        "candidate_pages": [
+          203,
+          159
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 203",
+          "DIAL_2024 page 159"
+        ]
+      },
+      {
+        "field": "number_of_shares",
+        "found": true,
+        "candidate_pages": [
+          224,
+          140
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 224",
+          "DIAL_2024 page 140"
+        ]
+      },
+      {
+        "field": "major_shareholders",
+        "found": true,
+        "candidate_pages": [
+          91,
+          238
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 91",
+          "DIAL_2024 page 238"
+        ]
+      },
+      {
+        "field": "public_holding_percentage",
+        "found": true,
+        "candidate_pages": [
+          60,
+          133
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 60",
+          "DIAL_2024 page 133"
+        ]
+      },
+      {
+        "field": "dividends",
+        "found": true,
+        "candidate_pages": [
+          64,
+          59
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 64",
+          "DIAL_2024 page 59"
+        ]
+      },
+      {
+        "field": "market_price_per_share",
+        "found": true,
+        "candidate_pages": [
+          60,
+          17
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 60",
+          "DIAL_2024 page 17"
+        ]
+      }
+    ],
+    "risk_factors": [
+      {
+        "field": "liquidity_risk",
+        "found": true,
+        "candidate_pages": [
+          166,
+          165
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 166",
+          "DIAL_2024 page 165"
+        ]
+      },
+      {
+        "field": "credit_risk",
+        "found": true,
+        "candidate_pages": [
+          166,
+          158
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 166",
+          "DIAL_2024 page 158"
+        ]
+      },
+      {
+        "field": "market_risk",
+        "found": true,
+        "candidate_pages": [
+          165,
+          111
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 165",
+          "DIAL_2024 page 111"
+        ]
+      },
+      {
+        "field": "interest_rate_risk",
+        "found": true,
+        "candidate_pages": [
+          165,
+          166
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 165",
+          "DIAL_2024 page 166"
+        ]
+      },
+      {
+        "field": "foreign_exchange_risk",
+        "found": true,
+        "candidate_pages": [
+          114,
+          166
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 114",
+          "DIAL_2024 page 166"
+        ]
+      },
+      {
+        "field": "operational_risk",
+        "found": true,
+        "candidate_pages": [
+          111,
+          126
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 111",
+          "DIAL_2024 page 126"
+        ]
+      },
+      {
+        "field": "regulatory_risk",
+        "found": true,
+        "candidate_pages": [
+          111,
+          113
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 111",
+          "DIAL_2024 page 113"
+        ]
+      },
+      {
+        "field": "going_concern_concerns",
+        "found": true,
+        "candidate_pages": [
+          173,
+          142
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 173",
+          "DIAL_2024 page 142"
+        ]
+      },
+      {
+        "field": "litigation_contingencies",
+        "found": true,
+        "candidate_pages": [
+          162,
+          227
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 162",
+          "DIAL_2024 page 227"
+        ]
+      }
+    ],
+    "management_governance": [
+      {
+        "field": "board_changes",
+        "found": true,
+        "candidate_pages": [
+          101,
+          95
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 101",
+          "DIAL_2024 page 95"
+        ]
+      },
+      {
+        "field": "auditor_opinion",
+        "found": true,
+        "candidate_pages": [
+          137,
+          136
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 137",
+          "DIAL_2024 page 136"
+        ]
+      },
+      {
+        "field": "related_party_transactions",
+        "found": true,
+        "candidate_pages": [
+          100,
+          134
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 100",
+          "DIAL_2024 page 134"
+        ]
+      },
+      {
+        "field": "corporate_governance_statements",
+        "found": true,
+        "candidate_pages": [
+          244,
+          245
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 244",
+          "DIAL_2024 page 245"
+        ]
+      },
+      {
+        "field": "director_responsibility_statement",
+        "found": true,
+        "candidate_pages": [
+          131,
+          4
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 131",
+          "DIAL_2024 page 4"
+        ]
+      }
+    ],
+    "future_outlook": [
+      {
+        "field": "chairman_ceo_outlook",
+        "found": true,
+        "candidate_pages": [
+          25,
+          17
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 25",
+          "DIAL_2024 page 17"
+        ]
+      },
+      {
+        "field": "expansion_plans",
+        "found": true,
+        "candidate_pages": [
+          20,
+          47
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 20",
+          "DIAL_2024 page 47"
+        ]
+      },
+      {
+        "field": "expected_challenges",
+        "found": true,
+        "candidate_pages": [
+          47,
+          202
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 47",
+          "DIAL_2024 page 202"
+        ]
+      },
+      {
+        "field": "strategy",
+        "found": true,
+        "candidate_pages": [
+          35,
+          48
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 35",
+          "DIAL_2024 page 48"
+        ]
+      },
+      {
+        "field": "forward_looking_statements",
+        "found": true,
+        "candidate_pages": [
+          7,
+          25
+        ],
+        "sample_source_refs": [
+          "DIAL_2024 page 7",
+          "DIAL_2024 page 25"
+        ]
+      }
+    ]
+  },
+  "expected_outputs": {
+    "company_name": {
+      "category": "company_overview",
+      "expected_value": "Dialog Axiata PLC    Annual Report 2024",
+      "source_text": "Dialog Axiata PLC  Annual Report 2024",
+      "page_number": 9,
+      "confidence": 0.85
+    },
+    "reporting_year": {
+      "category": "company_overview",
+      "expected_value": "2024",
+      "source_text": "Management Discussion and Analysis Governance and Risk Management Financial Statements Supplementary Information Dialog Axiata PLC  Annual Report 2024 130 Annual Report of the Board of Directors for the year ended 31 December 2024 The Board of Directors (‘the Board’) of Dialog Axiata PLC",
+      "page_number": 132,
+      "confidence": 0.85
+    },
+    "business_segments": {
+      "category": "company_overview",
+      "expected_value": "n transmission services, provision of other data services and digital services. At 31 December 2024, the Group is organised into three main business segments: • Mobile operation • Fixed telephony and broadband operation • Television operation 5 Critical accounting estimates and judgments (Co",
+      "source_text": "n transmission services, provision of other data services and digital services. At 31 December 2024, the Group is organised into three main business segments: • Mobile operation • Fixed telephony and broadband operation • Television operation 5 Critical accounting estimates and judgments (Co",
+      "page_number": 174,
+      "confidence": 0.85
+    },
+    "principal_activities": {
+      "category": "company_overview",
+      "expected_value": "tered into a number of agreements with the Board of Investment of Sri Lanka (‘BOI’) and enjoy concessions under Section 17 of the BOI Act. PRINCIPAL ACTIVITIES The principal activities of the Group are to provide communication services (mobile, fixed, broadband International services, telecommunic",
+      "source_text": "tered into a number of agreements with the Board of Investment of Sri Lanka (‘BOI’) and enjoy concessions under Section 17 of the BOI Act. PRINCIPAL ACTIVITIES The principal activities of the Group are to provide communication services (mobile, fixed, broadband International services, telecommunic",
+      "page_number": 132,
+      "confidence": 0.85
+    },
+    "sector_industry": {
+      "category": "company_overview",
+      "expected_value": "ontinued reductions in market interest rates. The successful completion of the debt restructuring process, along with a stronger external sector, contributed to improved external reserves, reinforcing the stability of the Sri Lankan Rupee. Telecommunications Sector Growth • The gra",
+      "source_text": "ontinued reductions in market interest rates. The successful completion of the debt restructuring process, along with a stronger external sector, contributed to improved external reserves, reinforcing the stability of the Sri Lankan Rupee. Telecommunications Sector Growth • The gra",
+      "page_number": 46,
+      "confidence": 0.85
+    },
+    "subsidiaries_associates": {
+      "category": "company_overview",
+      "expected_value": "relation to the financial statements of Dialog Axiata PLC (“the Company”) and the Consolidated Financial Statements of the Company and its Subsidiaries and the Associates (“the Group”) is set out in the following statement. The responsibilities of the independent Auditor in relation to the",
+      "source_text": "relation to the financial statements of Dialog Axiata PLC (“the Company”) and the Consolidated Financial Statements of the Company and its Subsidiaries and the Associates (“the Group”) is set out in the following statement. The responsibilities of the independent Auditor in relation to the",
+      "page_number": 136,
+      "confidence": 0.85
+    },
+    "revenue_turnover": {
+      "category": "financial_performance",
+      "expected_value": "2.25",
+      "source_text": "cial Statements (Contd) Key Audit Matters (Contd) The Group and Company: Key audit matter How our audit addressed the Key audit matter (b) Revenue recognition - Accuracy of mobile service revenues recorded given the complexity of systems and the inherent nature of the revenue. (Refer",
+      "page_number": 139,
+      "confidence": 0.85
+    },
+    "gross_profit": {
+      "category": "financial_performance",
+      "expected_value": "241,564 200,602 186,254 148,593",
+      "source_text": "2024 2023 Restated 2024 2023 Revenue 568,798 554,352 384,379 313,999 Direct costs (327,234) (353,751) (198,125) (165,406) Gross profit 241,564 200,602 186,254 148,593 Distribution costs (61,608) (54,915) (51,784) (46,203) Administrative costs (106,316) (81,152",
+      "page_number": 237,
+      "confidence": 0.85
+    },
+    "operating_profit": {
+      "category": "financial_performance",
+      "expected_value": "69,046 63,677 56,946 34,782",
+      "source_text": "2) (75,357) (66,223) Net impairment losses on financial assets (5,462) (2,742) (2,682) (1,798) Other income 868 1,884 515 413 Operating profit 69,046 63,677 56,946 34,782 Finance income 4,865 6,039 5,550 6,702 Finance costs (32,751) (30,662) (28,784) (27,085) N",
+      "page_number": 237,
+      "confidence": 0.85
+    },
+    "profit_before_tax": {
+      "category": "financial_performance",
+      "expected_value": "16,140,326 22,945,108 13,709,693 14,711,435",
+      "source_text": "k Management Financial Statements Supplementary Information Dialog Axiata PLC  Annual Report 2024 223 Group Company 2024 2023 2024 2023 Profit before tax 16,140,326 22,945,108 13,709,693 14,711,435 Adjustments for: Unrealised exchange gain (3,755,573) (7,873,506) (3,950,443) (8,135,362",
+      "page_number": 225,
+      "confidence": 0.85
+    },
+    "profit_after_tax": {
+      "category": "financial_performance",
+      "expected_value": "2024",
+      "source_text": ". The Group EBITDA margin increased to 38.7% in FY 2024 from 33.3% in FY 2023, reflecting improved operating leverage and efficiency. Net Profit After Tax The Group Net Profit After Tax (NPAT) in FY 2024 was Rs. 12.4 billion compared to the record high NPAT of Rs. 20.1 billion in FY 2023 (o",
+      "page_number": 63,
+      "confidence": 0.85
+    },
+    "eps": {
+      "category": "financial_performance",
+      "expected_value": "1.43",
+      "source_text": "ers 12,458,581 20,124,094 11,092,547 11,997,955 Weighted average number of ordinary shares 8,740,953 8,247,640 8,740,953 8,247,640 Diluted earnings per share (Rs.) 1.43 2.44 1.27 1.45 32 Earnings per share and Dividends (Contd.) (ii) Diluted earnings per share Diluted earnings per share is cal",
+      "page_number": 224,
+      "confidence": 0.85
+    },
+    "ebitda": {
+      "category": "financial_performance",
+      "expected_value": "19%",
+      "source_text": "was achieved through a combination of broad-based revenue growth and the aggressive cost rescaling described above, which boosted Group EBITDA by 19% in 2023. Building on that recovery, we sustained profitability in 2024 with a net profit of Rs. 12.4 billion (or ~Rs. 8.7 billion",
+      "page_number": 23,
+      "confidence": 0.85
+    },
+    "net_finance_cost": {
+      "category": "financial_performance",
+      "expected_value": "32,751",
+      "source_text": "Other income 868 1,884 515 413 Operating profit 69,046 63,677 56,946 34,782 Finance income 4,865 6,039 5,550 6,702 Finance costs (32,751) (30,662) (28,784) (27,085) Net foreign exchange gain 12,588 31,157 11,846 30,479 Finance costs - net (15,298) 6,534 (11,",
+      "page_number": 237,
+      "confidence": 0.85
+    },
+    "tax_expense": {
+      "category": "financial_performance",
+      "expected_value": "3,705,458 2,832,251 2,617,146 2,713,480",
+      "source_text": "Rate differentials (Note b and c) (141,809) (922,624) - - Deferred income tax credited to comprehensive income 1,011,919 20,690 - - Income tax expense 3,705,458 2,832,251 2,617,146 2,713,480 Group Company 2024 2023 2024 2023 Profit for the year attributable to ordinary shareholders 12,458,",
+      "page_number": 223,
+      "confidence": 0.85
+    },
+    "total_assets": {
+      "category": "financial_position",
+      "expected_value": "309,147,354 286,247,117 268,993,555 239,900,871",
+      "source_text": "921,664 2,469,869 - - Cash and cash equivalents 16 33,785,614 40,613,115 27,776,009 28,494,858 86,891,525 93,652,888 62,592,272 64,957,417 Total assets 309,147,354 286,247,117 268,993,555 239,900,871 EQUITY Capital and reserves attributable to equity holders Stated capital 17 39,905,563 29,",
+      "page_number": 144,
+      "confidence": 0.85
+    },
+    "total_liabilities": {
+      "category": "financial_position",
+      "expected_value": "786,959 678,784 685,980 564,242",
+      "source_text": "45,839 20,582 40,245 16,939 Current income tax liabilities 4,258 4,384 4,154 3,945 579,875 408,721 503,912 314,954 Total liabilities 786,959 678,784 685,980 564,242 Total equity and liabilities 1,053,791 883,541 916,917 740,486 Exchange rate 293.37 323.98",
+      "page_number": 236,
+      "confidence": 0.85
+    },
+    "total_equity": {
+      "category": "financial_position",
+      "expected_value": "78,279,963 66,336,762 67,749,242 57,099,162",
+      "source_text": ",749,456 Equity attributable to Equity holders 78,353,586 66,380,951 67,749,242 57,099,162 Non-controlling interests (73,623) (44,189) - - Total equity 78,279,963 66,336,762 67,749,242 57,099,162",
+      "page_number": 144,
+      "confidence": 0.85
+    },
+    "borrowings_debt": {
+      "category": "financial_position",
+      "expected_value": "1,536,846 6,018,383 1,536,846 6,018,383",
+      "source_text": "PLC  Annual Report 2024 207 Note Group Company 2024 2023 2024 2023 Current Bank overdrafts 22,282,063 32,749,791 20,943,378 28,585,336 Borrowings from ultimate parent 1,536,846 6,018,383 1,536,846 6,018,383 Bank borrowings (a) 48,125,132 16,322,925 38,837,085 10,214,793 At 31 December",
+      "page_number": 209,
+      "confidence": 0.85
+    },
+    "cash_and_cash_equivalents": {
+      "category": "financial_position",
+      "expected_value": "2.12",
+      "source_text": "allowance. Other receivables generally arise from transactions outside the usual operating activities of the Group and the Company. 2.12 Cash and cash equivalents For the purpose of presentation in the statement of cash flows, cash and cash equivalents includes cash on hand, deposits held at call wi",
+      "page_number": 159,
+      "confidence": 0.85
+    },
+    "inventory": {
+      "category": "financial_position",
+      "expected_value": "30,596",
+      "source_text": "ebts written back (86,259) - (58,508) (52,089) Loss/ (gain) on sale of property, plant and equipment (47,784) 21,703 (43,020) 22,398 Inventory write off 30,596 - 1,208 - Interest expense on borrowings 7,870,540 8,838,472 6,726,261 7,783,570 Interest expense on lease liabilities 1",
+      "page_number": 225,
+      "confidence": 0.85
+    },
+    "trade_receivables": {
+      "category": "financial_position",
+      "expected_value": "1,871,156 1,100,766 1,102,963 544,512",
+      "source_text": "Annual Report 2024 199 Group Company 2024 2023 2024 2023 At 1 January 7,117,428 6,049,841 3,393,237 2,881,904 Provision for impairment of trade receivables 1,871,156 1,100,766 1,102,963 544,512 Receivables written off during the year as uncollectible (2,223,072) (33,179) (1,038,679) (33,179) At",
+      "page_number": 201,
+      "confidence": 0.85
+    },
+    "trade_payables": {
+      "category": "financial_position",
+      "expected_value": "2.15",
+      "source_text": "recognition of the original liability, and the difference in the respective carrying amounts is recognised in comprehensive income. 2.15 Trade payables Trade payables represent liabilities for goods and services provided to the Group and the Company prior to the end of financial year whic",
+      "page_number": 159,
+      "confidence": 0.85
+    },
+    "operating_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": "33",
+      "source_text": "Dialog Axiata PLC  Annual Report 2024 148 Statement of Cash Flows For the year ended 31 December Note Group Company 2024 2023 2024 2023 Cash flows from operating activities Cash generated from operations 33(a) 60,235,653 32,630,701 61,330,918 32,010,594 Interest received 1,585,568 3,247,678 1,241,496 2,689,155",
+      "page_number": 150,
+      "confidence": 0.85
+    },
+    "investing_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "financing_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "free_cash_flow": {
+      "category": "cash_flow",
+      "expected_value": "Rs. 23.6 billion",
+      "source_text": "to exhibit a low-geared balance sheet, with the Net Debt to EBITDA ratio being maintained at a healthy 1.0x as of the end 2024. Operating Free Cash Flow The Group’s Operating Free Cash Flow (OFCF) was recorded at Rs. 23.6 billion in FY 2024, driven by stronger business performance and car",
+      "page_number": 64,
+      "confidence": 0.85
+    },
+    "capital_expenditure": {
+      "category": "cash_flow",
+      "expected_value": "2024",
+      "source_text": "licated network infrastructure contributed to notable financial synergies in addition to other benefits. Group Financial Position Group capital expenditure (“Capex”) for FY 2024 amounted to Rs. 30.3 billion and comprised of investments directed towards expanding high-speed broadband infrastru",
+      "page_number": 64,
+      "confidence": 0.85
+    },
+    "gross_profit_margin": {
+      "category": "investor_ratios",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "net_profit_margin": {
+      "category": "investor_ratios",
+      "expected_value": "7.26",
+      "source_text": "6,140 22,945 Taxation Rs. Million 3,705 2,832 Profit for the year Rs. Million 12,435 20,113 GP margin % 42.47 36.19 OP margin % 12.14 11.49 Net profit margin % 7.26 11.07 Return on equity % 15.89 30.32 Return on assets % 4.02 7.03 Return on capital % 13.68 18.98 Financial Position Total assets Rs",
+      "page_number": 12,
+      "confidence": 0.85
+    },
+    "current_ratio": {
+      "category": "investor_ratios",
+      "expected_value": "0.51",
+      "source_text": "ings Rs. Million 107,694 122,765 Debt to equity ratio Times 1.38 1.85 Equity to assets ratio Times 0.25 0.23 Interest cover Times 2.53 2.53 Current ratio Times 0.51 0.71 Investor Information Earnings per share Rs. 1.43 2.44 Dividend per share Rs. 1.00 1.34 Net asset value per share Rs. 8.51 8",
+      "page_number": 12,
+      "confidence": 0.85
+    },
+    "debt_to_equity_ratio": {
+      "category": "investor_ratios",
+      "expected_value": "1.38",
+      "source_text": "2,256 192,594 Current assets Rs. Million 86,892 93,653 Shareholders’ funds Rs. Million 78,354 66,381 Borrowings Rs. Million 107,694 122,765 Debt to equity ratio Times 1.38 1.85 Equity to assets ratio Times 0.25 0.23 Interest cover Times 2.53 2.53 Current ratio Times 0.51 0.71 Investor Information Ea",
+      "page_number": 12,
+      "confidence": 0.85
+    },
+    "return_on_equity": {
+      "category": "investor_ratios",
+      "expected_value": "15.89",
+      "source_text": "on 3,705 2,832 Profit for the year Rs. Million 12,435 20,113 GP margin % 42.47 36.19 OP margin % 12.14 11.49 Net profit margin % 7.26 11.07 Return on equity % 15.89 30.32 Return on assets % 4.02 7.03 Return on capital % 13.68 18.98 Financial Position Total assets Rs. Million 309,147 286,247 Non-",
+      "page_number": 12,
+      "confidence": 0.85
+    },
+    "return_on_assets": {
+      "category": "investor_ratios",
+      "expected_value": "1.92",
+      "source_text": "00 2023 Rs. 000 2024 Rs. '000 PROPERTIES OUTSIDE COLOMBO Dialog Axiata PLC Matara Cable Landing Station 0.24 201,042 206,377 Dialog Broadband Networks (Private) Limited Saliya Mawatha, Anuradhapura 1.92 7,778 7,778 85,690 Vewaykananthapuram, Nawatkuda, Batticaloa 0.2",
+      "page_number": 242,
+      "confidence": 0.85
+    },
+    "eps_ratio_reference": {
+      "category": "investor_ratios",
+      "expected_value": "1.43",
+      "source_text": "ers 12,458,581 20,124,094 11,092,547 11,997,955 Weighted average number of ordinary shares in issue 8,740,953 8,247,640 8,740,953 8,247,640 Earnings per share (Rs.) 1.43 2.44 1.27 1.45 31 Income tax expense (Contd.) 32 Earnings per share and Dividends (a) Earnings per share (i) Basic earni",
+      "page_number": 223,
+      "confidence": 0.85
+    },
+    "dividend_payout_ratio": {
+      "category": "investor_ratios",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "stated_capital": {
+      "category": "shareholder_information",
+      "expected_value": "1",
+      "source_text": "nst imports on documents against acceptance terms - 18,750 - 18,750 805,107 824,750 805,107 824,750 Ordinary shares issued and fully paid Stated capital At 1 January 2024 29,349,706 29,349,706 Share issue during the year [see (d) below] 10,555,857 10,555,857 At 31 December 2024 39,905,563 39",
+      "page_number": 203,
+      "confidence": 0.85
+    },
+    "number_of_shares": {
+      "category": "shareholder_information",
+      "expected_value": "8,740,953 8,247,640 8,740,953 8,247,640",
+      "source_text": "2024 2023 Profit for the year attributable to ordinary shareholders 12,458,581 20,124,094 11,092,547 11,997,955 Weighted average number of ordinary shares 8,740,953 8,247,640 8,740,953 8,247,640 Diluted earnings per share (Rs.) 1.43 2.44 1.27 1.45 32 Earnings per share and Dividends (Contd.",
+      "page_number": 224,
+      "confidence": 0.85
+    },
+    "major_shareholders": {
+      "category": "shareholder_information",
+      "expected_value": "and Ms. Komathi Balakrishnan were considered non- independent, as they were nominees of Axiata Group Berhad and Bharti Airtel Limited, the major shareholders of the Company. Notes: ED Executive Directors NED Non-Executive Directors NID Non-Independent Directors ID Independent Directors",
+      "source_text": "and Ms. Komathi Balakrishnan were considered non- independent, as they were nominees of Axiata Group Berhad and Bharti Airtel Limited, the major shareholders of the Company. Notes: ED Executive Directors NED Non-Executive Directors NID Non-Independent Directors ID Independent Directors",
+      "page_number": 91,
+      "confidence": 0.85
+    },
+    "public_holding_percentage": {
+      "category": "shareholder_information",
+      "expected_value": "15.82%",
+      "source_text": "reholders The total number of Shareholders of DIAL rose to 23,900 as of 31st December 2024 compared to 23,043 during the previous year. The public float of DIAL was 15.82% as of 31st December 2024. In terms of the composition of the public float, foreign investors held 43% of the float, 37%",
+      "page_number": 60,
+      "confidence": 0.85
+    },
+    "dividends": {
+      "category": "shareholder_information",
+      "expected_value": "2024,",
+      "source_text": "iven by stronger business performance and carefully managed capital expenditure throughout the year. Shareholder Returns In line with the dividend policy and financial performance of the Group and taking into account the forward investment requirements to serve the nation's demand fo",
+      "page_number": 64,
+      "confidence": 0.85
+    },
+    "market_price_per_share": {
+      "category": "shareholder_information",
+      "expected_value": "54.9%",
+      "source_text": "ratio of the Group as at 31st December 2024 was 1.4 times, compared to 1.1 times last year, mainly resulting from the steeper increase in share price relative to the increase of Net Assets of the Group. Liquidity The liquidity of the share improved by 54.9% during the year in line with th",
+      "page_number": 60,
+      "confidence": 0.85
+    },
+    "liquidity_risk": {
+      "category": "risk_factors",
+      "expected_value": "each class of financial assets, except for the financial guarantee contracts amounted to Rs. 557 million (2023 Rs. 813 million). (c) Liquidity risk (funding risk) Prudent liquidity risk management implies maintaining sufficient liquid funds to meet its financial obligations. In the man",
+      "source_text": "each class of financial assets, except for the financial guarantee contracts amounted to Rs. 557 million (2023 Rs. 813 million). (c) Liquidity risk (funding risk) Prudent liquidity risk management implies maintaining sufficient liquid funds to meet its financial obligations. In the man",
+      "page_number": 166,
+      "confidence": 0.85
+    },
+    "credit_risk": {
+      "category": "risk_factors",
+      "expected_value": "are periodically contractually repriced and to that extend are also exposed to the risk of future changes in market interest rates. (b) Credit risk Credit risk is managed on the Group and the Company basis. Credit risk arises from cash and cash equivalents, derivative financial instru",
+      "source_text": "are periodically contractually repriced and to that extend are also exposed to the risk of future changes in market interest rates. (b) Credit risk Credit risk is managed on the Group and the Company basis. Credit risk arises from cash and cash equivalents, derivative financial instru",
+      "page_number": 166,
+      "confidence": 0.85
+    },
+    "market_risk": {
+      "category": "risk_factors",
+      "expected_value": "Financial risk management 3.1 Financial risk factors The Group's and the Company's activities are exposed to variety of financial risks: market risk (including currency risk, fair value interest rate risk, cash flow interest rate risk and price risk), credit risk and liquidity risk. Th",
+      "source_text": "Financial risk management 3.1 Financial risk factors The Group's and the Company's activities are exposed to variety of financial risks: market risk (including currency risk, fair value interest rate risk, cash flow interest rate risk and price risk), credit risk and liquidity risk. Th",
+      "page_number": 165,
+      "confidence": 0.85
+    },
+    "interest_rate_risk": {
+      "category": "risk_factors",
+      "expected_value": "tors The Group's and the Company's activities are exposed to variety of financial risks: market risk (including currency risk, fair value interest rate risk, cash flow interest rate risk and price risk), credit risk and liquidity risk. The Group's and the Company’s overall financial risk manage",
+      "source_text": "tors The Group's and the Company's activities are exposed to variety of financial risks: market risk (including currency risk, fair value interest rate risk, cash flow interest rate risk and price risk), credit risk and liquidity risk. The Group's and the Company’s overall financial risk manage",
+      "page_number": 165,
+      "confidence": 0.85
+    },
+    "foreign_exchange_risk": {
+      "category": "risk_factors",
+      "expected_value": "s a tool to lower inflation. The sizeable dependency of foreign exchange for Capex, Opex and Debt servicing exposes the business to foreign currency risk, whilst the sizeable debt portfolio leads to risk exposure to interest rates. Whilst the economy is making a strong recovery as witnessed",
+      "source_text": "s a tool to lower inflation. The sizeable dependency of foreign exchange for Capex, Opex and Debt servicing exposes the business to foreign currency risk, whilst the sizeable debt portfolio leads to risk exposure to interest rates. Whilst the economy is making a strong recovery as witnessed",
+      "page_number": 114,
+      "confidence": 0.85
+    },
+    "operational_risk": {
+      "category": "risk_factors",
+      "expected_value": "ganisation. 1 Strategic and Investment Risk 2 Geopolitical Risk 3 Legal and Regulatory Risk 4 Market Risk 5 Financial Risk 6 People Risk 7 Operational Risk 8 Cyber Risk 9 Technology Risk 10 Governance Risk 11 ESG Risk",
+      "source_text": "ganisation. 1 Strategic and Investment Risk 2 Geopolitical Risk 3 Legal and Regulatory Risk 4 Market Risk 5 Financial Risk 6 People Risk 7 Operational Risk 8 Cyber Risk 9 Technology Risk 10 Governance Risk 11 ESG Risk",
+      "page_number": 111,
+      "confidence": 0.85
+    },
+    "regulatory_risk": {
+      "category": "risk_factors",
+      "expected_value": "(SLT) reinforces these expectations at various levels of the organisation. 1 Strategic and Investment Risk 2 Geopolitical Risk 3 Legal and Regulatory Risk 4 Market Risk 5 Financial Risk 6 People Risk 7 Operational Risk 8 Cyber Risk 9 Technology Risk 10 Governance Risk 11 ESG Risk",
+      "source_text": "(SLT) reinforces these expectations at various levels of the organisation. 1 Strategic and Investment Risk 2 Geopolitical Risk 3 Legal and Regulatory Risk 4 Market Risk 5 Financial Risk 6 People Risk 7 Operational Risk 8 Cyber Risk 9 Technology Risk 10 Governance Risk 11 ESG Risk",
+      "page_number": 111,
+      "confidence": 0.85
+    },
+    "going_concern_concerns": {
+      "category": "risk_factors",
+      "expected_value": "cost assets are assessed at each reporting date whether there is any indication that the subscriber acquisition cost may be impaired. (o) Going concern When preparing financial statements, management shall make an assessment of the Group’s ability to continue as a going concern. Financial s",
+      "source_text": "cost assets are assessed at each reporting date whether there is any indication that the subscriber acquisition cost may be impaired. (o) Going concern When preparing financial statements, management shall make an assessment of the Group’s ability to continue as a going concern. Financial s",
+      "page_number": 173,
+      "confidence": 0.85
+    },
+    "litigation_contingencies": {
+      "category": "risk_factors",
+      "expected_value": "o arises in the extremely rare case where there is a liability that cannot be recognised because it cannot be measured reliably. However, contingent liabilities do not include financial guarantee contracts. A contingent asset is a possible asset that arises from past events whose existence will be",
+      "source_text": "o arises in the extremely rare case where there is a liability that cannot be recognised because it cannot be measured reliably. However, contingent liabilities do not include financial guarantee contracts. A contingent asset is a possible asset that arises from past events whose existence will be",
+      "page_number": 162,
+      "confidence": 0.85
+    },
+    "board_changes": {
+      "category": "management_governance",
+      "expected_value": "ocesses for the nomination of Directors. These include: • Overseeing the identification, evaluation, and recommendation of candidates for appointment to the Board of Directors. The NGC strives to ensure that the candidate pool reflects a diversity of experience, skills, gender, ethnicit",
+      "source_text": "ocesses for the nomination of Directors. These include: • Overseeing the identification, evaluation, and recommendation of candidates for appointment to the Board of Directors. The NGC strives to ensure that the candidate pool reflects a diversity of experience, skills, gender, ethnicit",
+      "page_number": 101,
+      "confidence": 0.85
+    },
+    "auditor_opinion": {
+      "category": "management_governance",
+      "expected_value": "rmation. In our opinion, the accompanying financial statements of the Company and the consolidated financial statements of the Group give a true and fair view of the financial position of the Company and the Group as at 31 December 2024, and of their financial performance and their cash flows for",
+      "source_text": "rmation. In our opinion, the accompanying financial statements of the Company and the consolidated financial statements of the Group give a true and fair view of the financial position of the Company and the Group as at 31 December 2024, and of their financial performance and their cash flows for",
+      "page_number": 137,
+      "confidence": 0.85
+    },
+    "related_party_transactions": {
+      "category": "management_governance",
+      "expected_value": "c Report Management Discussion and Analysis Governance and Risk Management Financial Statements Supplementary Information Report of the Related Party Transactions Review Committee Role of the Committee The Related Party Transactions Review Committee (RPTRC) is a formally constituted sub-committee of",
+      "source_text": "c Report Management Discussion and Analysis Governance and Risk Management Financial Statements Supplementary Information Report of the Related Party Transactions Review Committee Role of the Committee The Related Party Transactions Review Committee (RPTRC) is a formally constituted sub-committee of",
+      "page_number": 100,
+      "confidence": 0.85
+    },
+    "corporate_governance_statements": {
+      "category": "management_governance",
+      "expected_value": "Creation Model 2-7 Employees Human Capital 2-8 Workers who are not employees Human Capital 2-9 Governance structure and composition Corporate Governance Report 2-10 Nomination and selection of the highest governance body Corporate Governance Report 2-11 Chair of the highest governance",
+      "source_text": "Creation Model 2-7 Employees Human Capital 2-8 Workers who are not employees Human Capital 2-9 Governance structure and composition Corporate Governance Report 2-10 Nomination and selection of the highest governance body Corporate Governance Report 2-11 Chair of the highest governance",
+      "page_number": 244,
+      "confidence": 0.85
+    },
+    "director_responsibility_statement": {
+      "category": "management_governance",
+      "expected_value": "Financial Statements Annual Report of the Board of Directors 130 Statement of Directors’ Responsibility for Financial Reporting 134 Independent Auditor’s Report 135 Statement of Financial Position 142 Statement of Comprehensiv",
+      "source_text": "Financial Statements Annual Report of the Board of Directors 130 Statement of Directors’ Responsibility for Financial Reporting 134 Independent Auditor’s Report 135 Statement of Financial Position 142 Statement of Comprehensiv",
+      "page_number": 131,
+      "confidence": 0.85
+    },
+    "chairman_ceo_outlook": {
+      "category": "future_outlook",
+      "expected_value": "ket position, advanced technology capabilities, and the dedication of our team to enable long-term, innovation-led growth. The Company’s future outlook is underpinned by a bold yet realistic vision centred on the following pillars: • 5G Leadership and Digital Infrastructure: Dialog is co",
+      "source_text": "ket position, advanced technology capabilities, and the dedication of our team to enable long-term, innovation-led growth. The Company’s future outlook is underpinned by a bold yet realistic vision centred on the following pillars: • 5G Leadership and Digital Infrastructure: Dialog is co",
+      "page_number": 25,
+      "confidence": 0.85
+    },
+    "expansion_plans": {
+      "category": "future_outlook",
+      "expected_value": "ned execution, we have taken meaningful steps toward becoming an agile, more efficient organisation, laying a solid foundation for future expansion. We were especially encouraged by the positive trajectory in the second half of 2024, as momentum built across the business. The broad-b",
+      "source_text": "ned execution, we have taken meaningful steps toward becoming an agile, more efficient organisation, laying a solid foundation for future expansion. We were especially encouraged by the positive trajectory in the second half of 2024, as momentum built across the business. The broad-b",
+      "page_number": 20,
+      "confidence": 0.85
+    },
+    "expected_challenges": {
+      "category": "future_outlook",
+      "expected_value": null,
+      "source_text": null,
+      "page_number": null,
+      "confidence": 0.0,
+      "status": "not_found"
+    },
+    "strategy": {
+      "category": "future_outlook",
+      "expected_value": "rhad in Malaysia in 2013. Before joining back at Dialog Axiata as the Group Chief Technology Officer, Ranga was the Group Head of Network Strategy and Planning at Axiata, managing the Technology Strategy and Planning for its six operating companies. He holds a Bachelor of Science (Fi",
+      "source_text": "rhad in Malaysia in 2013. Before joining back at Dialog Axiata as the Group Chief Technology Officer, Ranga was the Group Head of Network Strategy and Planning at Axiata, managing the Technology Strategy and Planning for its six operating companies. He holds a Bachelor of Science (Fi",
+      "page_number": 35,
+      "confidence": 0.85
+    },
+    "forward_looking_statements": {
+      "category": "future_outlook",
+      "expected_value": "cial Information). The Standards Deloitte has given assurance for are the <IR> Framework, GRI Standards, GSMA, SASB, and SLFRS S1 and S2. Forward-looking Statements This Report contains forward-looking statements based on our current assumptions and expectations about our future performance",
+      "source_text": "cial Information). The Standards Deloitte has given assurance for are the <IR> Framework, GRI Standards, GSMA, SASB, and SLFRS S1 and S2. Forward-looking Statements This Report contains forward-looking statements based on our current assumptions and expectations about our future performance",
+      "page_number": 7,
+      "confidence": 0.85
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "pdf_name": "LOLC_2024.pdf",
+  "prompt_id": "prompt_09",
+  "prompt_name": "Few-Shot Prompt",
+  "model": "gpt-5.2-chat",
+  "full_model_output": "```json\n{\n  \"metadata\": {\n    \"pdf_name\": \"LOLC_2024.pdf\",\n    \"company_name\": \"LOLC Holdings PLC\",\n    \"reporting_year\": \"Year ended 31 March 2025\",\n    \"prompt_id\": \"LOLC_AR_2025_EXTRACT\",\n    \"model\": \"GPT-5.2\",\n    \"generated_at\": \"2026-05-08\"\n  },\n  \"extracted_facts\": {\n    \"company_overview\": {\n      \"company_name\": \"LOLC Holdings PLC\",\n      \"reporting_year\": \"Year ended 31 March 2025\",\n      \"business_segments\": \"Financial services, insurance, manufacturing & trading, leisure & entertainment, plantation & agriculture, IT services, trading and others\",\n      \"principal_activities\": \"Managing a diversified portfolio of investments and providing function-based services to subsidiaries, associates and jointly controlled entities\",\n      \"sector_industry\": \"Diversified conglomerate / Financial services\",\n      \"subsidiaries_associates\": \"Extensive portfolio of subsidiaries and associates across Sri Lanka, Asia and Africa (refer Note 31 and subsidiary listings)\"\n    },\n    \"financial_performance\": {\n      \"revenue_turnover\": \"Rs. 112,200,602,000\",\n      \"gross_profit\": \"Rs. 45,355,544,000\",\n      \"operating_profit\": \"Rs. 45,700,286,000\",\n      \"profit_before_tax\": \"Rs. 52,152,000,000\",\n      \"profit_after_tax\": \"Rs. 50,385,000,000\",\n      \"eps\": \"Rs. 104.61\",\n      \"ebitda\": null,\n      \"net_finance_cost\": \"Rs. 51,788,173,000\",\n      \"tax_expense\": \"Rs. 5,934,000,000\"\n    },\n    \"financial_position\": {\n      \"total_assets\": \"Rs. 2,029,626,151,000\",\n      \"total_liabilities\": \"Rs. 1,425,419,020,000\",\n      \"total_equity\": \"Rs. 604,207,131,000\",\n      \"borrowings_debt\": \"Rs. 601,202,430,000\",\n      \"cash_and_cash_equivalents\": \"Rs. 111,612,970,000\",\n      \"inventory\": \"Rs. 33,296,064,000\",\n      \"trade_receivables\": \"Rs. 25,434,614,000\",\n      \"trade_payables\": \"Rs. 45,231,860,000\"\n    },\n    \"cash_flow\": {\n      \"operating_cash_flow\": \"Rs. 6,673,622,000\",\n      \"investing_cash_flow\": \"(Rs. 22,176,045,000)\",\n      \"financing_cash_flow\": null,\n      \"free_cash_flow\": null,\n      \"capital_expenditure\": \"Rs. 19,927,028,000\"\n    },\n    \"investor_ratios\": {\n      \"gross_profit_margin\": null,\n      \"net_profit_margin\": null,\n      \"current_ratio\": null,\n      \"debt_to_equity_ratio\": \"64.27%\",\n      \"return_on_equity\": \"15.50%\",\n      \"return_on_assets\": null,\n      \"eps_ratio_reference\": \"Basic EPS\",\n      \"dividend_payout_ratio\": null\n    },\n    \"shareholder_information\": {\n      \"stated_capital\": \"Rs. 475,200,000\",\n      \"number_of_shares\": \"475,200,000\",\n      \"major_shareholders\": \"Institutional and individual shareholders as per Investor Information section\",\n      \"public_holding_percentage\": \"15.1023%\",\n      \"dividends\": null,\n      \"market_price_per_share\": \"Rs. 594.75 (as at 31 March 2025)\"\n    },\n    \"risk_factors\": {\n      \"liquidity_risk\": \"Liquidity risk managed through group-wide risk management framework\",\n      \"credit_risk\": \"Significant exposure managed via credit committees, ECL models and collateral\",\n      \"market_risk\": \"Exposure to interest rate, equity price and market movements\",\n      \"interest_rate_risk\": \"Sensitivity to changes in market interest rates disclosed\",\n      \"foreign_exchange_risk\": \"Exposure due to multinational operations\",\n      \"operational_risk\": \"Managed through ERM and internal controls\",\n      \"regulatory_risk\": \"Subject to financial services and multi-jurisdictional regulations\",\n      \"going_concern_concerns\": \"Financial statements prepared on a going concern basis\",\n      \"litigation_contingencies\": \"No material litigation disclosed\"\n    },\n    \"management_governance\": {\n      \"board_changes\": \"Several appointments, retirements and resignations during the year\",\n      \"auditor_opinion\": \"Unqualified opinion – true and fair view\",\n      \"related_party_transactions\": \"Conducted in the ordinary course of business and disclosed\",\n      \"corporate_governance_statements\": \"Compliant with Colombo Stock Exchange Listing Rules\",\n      \"director_responsibility_statement\": \"Provided in the Annual Report\"\n    },\n    \"future_outlook\": {\n      \"chairman_ceo_outlook\": \"Cautiously optimistic with focus on resilience, diversification and growth\",\n      \"expansion_plans\": \"Continued regional and sectoral expansion\",\n      \"expected_challenges\": \"Macroeconomic volatility, regulatory and geopolitical risks\",\n      \"strategy\": \"Diversification, prudent risk management and sustainable value creation\",\n      \"forward_looking_statements\": \"Included with cautionary language\"\n    }\n  },\n  \"investor_friendly_insight\": {\n    \"summary\": \"LOLC Holdings PLC delivered strong growth in revenue and profitability for FY2024/25, supported by diversified operations and international presence.\",\n    \"key_strengths\": [\n      \"Diversified business model\",\n      \"Strong profitability growth\",\n      \"Improving return on equity\"\n    ],\n    \"key_concerns\": [\n      \"High gearing level\",\n      \"Exposure to multiple regulatory and market risks\"\n    ],\n    \"risk_level_explanation\": \"The Group operates across multiple sectors and geographies, resulting in moderate to high risk exposure managed through structured risk frameworks.\",\n    \"non_advisory_note\": \"This is an informational summary only and not financial advice.\"\n  },\n  \"source_evidence\": [\n    {\n      \"field\": \"revenue_turnover\",\n      \"value\": \"Rs. 112,200,602,000\",\n      \"page_number\": 92,\n      \"source_quote\": \"Revenue 4.2 Rs.’000 112,200,602\"\n    },\n    {\n      \"field\": \"profit_after_tax\",\n      \"value\": \"Rs. 50,385,000,000\",\n      \"page_number\": 5,\n      \"source_quote\": \"Net profit after tax - Continuing operations Rs. Mn 50,385\"\n    },\n    {\n      \"field\": \"total_assets\",\n      \"value\": \"Rs. 2,029,626,151,000\",\n      \"page_number\": 317,\n      \"source_quote\": \"Total assets (as at 31 March 2025) Rs.’000 2,029,626,151\"\n    }\n  ],\n  \"missing_fields\": [\n    \"ebitda\",\n    \"free_cash_flow\",\n    \"dividends\",\n    \"current_ratio\",\n    \"net_profit_margin\"\n  ],\n  \"confidence_score\": 0.78\n}\n```",
+  "parsed_json": {
+    "metadata": {
+      "pdf_name": "LOLC_2024.pdf",
+      "company_name": "LOLC Holdings PLC",
+      "reporting_year": "Year ended 31 March 2025",
+      "prompt_id": "prompt_09",
+      "model": "gpt-5.2-chat",
+      "generated_at": "2026-05-08T15:28:25.544071+00:00"
+    },
+    "extracted_facts": {
+      "company_overview": {
+        "company_name": "LOLC Holdings PLC",
+        "reporting_year": "Year ended 31 March 2025",
+        "business_segments": "Financial services, insurance, manufacturing & trading, leisure & entertainment, plantation & agriculture, IT services, trading and others",
+        "principal_activities": "Managing a diversified portfolio of investments and providing function-based services to subsidiaries, associates and jointly controlled entities",
+        "sector_industry": "Diversified conglomerate / Financial services",
+        "subsidiaries_associates": "Extensive portfolio of subsidiaries and associates across Sri Lanka, Asia and Africa (refer Note 31 and subsidiary listings)"
+      },
+      "financial_performance": {
+        "revenue_turnover": "Rs. 112,200,602,000",
+        "gross_profit": "Rs. 45,355,544,000",
+        "operating_profit": "Rs. 45,700,286,000",
+        "profit_before_tax": "Rs. 52,152,000,000",
+        "profit_after_tax": "Rs. 50,385,000,000",
+        "eps": "Rs. 104.61",
+        "ebitda": null,
+        "net_finance_cost": "Rs. 51,788,173,000",
+        "tax_expense": "Rs. 5,934,000,000"
+      },
+      "financial_position": {
+        "total_assets": "Rs. 2,029,626,151,000",
+        "total_liabilities": "Rs. 1,425,419,020,000",
+        "total_equity": "Rs. 604,207,131,000",
+        "borrowings_debt": "Rs. 601,202,430,000",
+        "cash_and_cash_equivalents": "Rs. 111,612,970,000",
+        "inventory": "Rs. 33,296,064,000",
+        "trade_receivables": "Rs. 25,434,614,000",
+        "trade_payables": "Rs. 45,231,860,000"
+      },
+      "cash_flow": {
+        "operating_cash_flow": "Rs. 6,673,622,000",
+        "investing_cash_flow": "(Rs. 22,176,045,000)",
+        "financing_cash_flow": null,
+        "free_cash_flow": null,
+        "capital_expenditure": "Rs. 19,927,028,000"
+      },
+      "investor_ratios": {
+        "gross_profit_margin": null,
+        "net_profit_margin": null,
+        "current_ratio": null,
+        "debt_to_equity_ratio": "64.27%",
+        "return_on_equity": "15.50%",
+        "return_on_assets": null,
+        "eps_ratio_reference": "Basic EPS",
+        "dividend_payout_ratio": null
+      },
+      "shareholder_information": {
+        "stated_capital": "Rs. 475,200,000",
+        "number_of_shares": "475,200,000",
+        "major_shareholders": "Institutional and individual shareholders as per Investor Information section",
+        "public_holding_percentage": "15.1023%",
+        "dividends": null,
+        "market_price_per_share": "Rs. 594.75 (as at 31 March 2025)"
+      },
+      "risk_factors": {
+        "liquidity_risk": "Liquidity risk managed through group-wide risk management framework",
+        "credit_risk": "Significant exposure managed via credit committees, ECL models and collateral",
+        "market_risk": "Exposure to interest rate, equity price and market movements",
+        "interest_rate_risk": "Sensitivity to changes in market interest rates disclosed",
+        "foreign_exchange_risk": "Exposure due to multinational operations",
+        "operational_risk": "Managed through ERM and internal controls",
+        "regulatory_risk": "Subject to financial services and multi-jurisdictional regulations",
+        "going_concern_concerns": "Financial statements prepared on a going concern basis",
+        "litigation_contingencies": "No material litigation disclosed"
+      },
+      "management_governance": {
+        "board_changes": "Several appointments, retirements and resignations during the year",
+        "auditor_opinion": "Unqualified opinion – true and fair view",
+        "related_party_transactions": "Conducted in the ordinary course of business and disclosed",
+        "corporate_governance_statements": "Compliant with Colombo Stock Exchange Listing Rules",
+        "director_responsibility_statement": "Provided in the Annual Report"
+      },
+      "future_outlook": {
+        "chairman_ceo_outlook": "Cautiously optimistic with focus on resilience, diversification and growth",
+        "expansion_plans": "Continued regional and sectoral expansion",
+        "expected_challenges": "Macroeconomic volatility, regulatory and geopolitical risks",
+        "strategy": "Diversification, prudent risk management and sustainable value creation",
+        "forward_looking_statements": "Included with cautionary language"
+      }
+    },
+    "investor_friendly_insight": {
+      "summary": "LOLC Holdings PLC delivered strong growth in revenue and profitability for FY2024/25, supported by diversified operations and international presence.",
+      "key_strengths": [
+        "Diversified business model",
+        "Strong profitability growth",
+        "Improving return on equity"
+      ],
+      "key_concerns": [
+        "High gearing level",
+        "Exposure to multiple regulatory and market risks"
+      ],
+      "risk_level_explanation": "The Group operates across multiple sectors and geographies, resulting in moderate to high risk exposure managed through structured risk frameworks.",
+      "non_advisory_note": "This is an informational summary only and not financial advice."
+    },
+    "source_evidence": [
+      {
+        "field": "revenue_turnover",
+        "value": "Rs. 112,200,602,000",
+        "page_number": 92,
+        "source_quote": "Revenue 4.2 Rs.’000 112,200,602"
+      },
+      {
+        "field": "profit_after_tax",
+        "value": "Rs. 50,385,000,000",
+        "page_number": 5,
+        "source_quote": "Net profit after tax - Continuing operations Rs. Mn 50,385"
+      },
+      {
+        "field": "total_assets",
+        "value": "Rs. 2,029,626,151,000",
+        "page_number": 317,
+        "source_quote": "Total assets (as at 31 March 2025) Rs.’000 2,029,626,151"
+      }
+    ],
+    "missing_fields": [
+      "ebitda",
+      "financing_cash_flow",
+      "free_cash_flow",
+      "gross_profit_margin",
+      "net_profit_margin",
+      "current_ratio",
+      "return_on_assets",
+      "dividend_payout_ratio",
+      "dividends"
+    ],
+    "confidence_score": 0.78
+  },
+  "token_usage": {
+    "input_tokens": 47467,
+    "output_tokens": 1599,
+    "total_tokens": 49066
+  },
+  "runtime_seconds": 14.833,
+  "errors": null
+}

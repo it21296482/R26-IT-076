@@ -1,0 +1,160 @@
+{
+  "metadata": {
+    "pdf_name": "JKH_2022.pdf",
+    "company_name": "John Keells Holdings PLC",
+    "reporting_year": "Year ended 31 March 2022",
+    "prompt_id": "prompt_08",
+    "model": "gpt-5.2-chat",
+    "generated_at": "2026-05-08T15:21:05.306909+00:00"
+  },
+  "extracted_facts": {
+    "company_overview": {
+      "company_name": "John Keells Holdings PLC",
+      "reporting_year": "Year ended 31 March 2022",
+      "business_segments": [
+        "Transportation",
+        "Consumer Foods",
+        "Retail",
+        "Leisure",
+        "Property",
+        "Financial Services",
+        "Other (Information Technology and Plantation Services)"
+      ],
+      "principal_activities": "Acts as the holding company of the John Keells Group, managing a diversified portfolio of businesses and providing functional services to subsidiaries, associates and joint ventures.",
+      "sector_industry": "Diversified Conglomerate",
+      "subsidiaries_associates": "Operates through numerous subsidiaries and associates across multiple industries; includes partly owned subsidiaries such as Rajawella Holdings Ltd (49.85%) and Mack Air Services Maldives (Pte) Ltd (49.0%)."
+    },
+    "financial_performance": {
+      "revenue_turnover": "Rs. 218.07 billion (Group total revenue)",
+      "gross_profit": "Rs. 37.64 billion",
+      "operating_profit": "Rs. 7.31 billion (results from operating activities)",
+      "profit_before_tax": "Rs. 27.32 billion",
+      "profit_after_tax": "Rs. 20.44 billion (Group)",
+      "eps": "Basic EPS Rs. 15.13; Diluted EPS Rs. 15.12",
+      "ebitda": "Rs. 29.26 billion",
+      "net_finance_cost": "Net finance income of Rs. 23.77 billion (finance income exceeded finance costs)",
+      "tax_expense": "Rs. 6.88 billion"
+    },
+    "financial_position": {
+      "total_assets": "Rs. 717.80 billion",
+      "total_liabilities": "Rs. 387.70 billion (derived from total assets less total equity)",
+      "total_equity": "Rs. 330.09 billion",
+      "borrowings_debt": "Rs. 268.23 billion total liabilities related to interest-bearing loans, borrowings and overdrafts",
+      "cash_and_cash_equivalents": "Rs. 163.10 billion (cash and short-term investments)",
+      "inventory": "Rs. 36.22 billion",
+      "trade_receivables": "Rs. 27.50 billion",
+      "trade_payables": "Not separately quantified in summary tables"
+    },
+    "cash_flow": {
+      "operating_cash_flow": "Rs. 30.44 billion",
+      "investing_cash_flow": "Negative (capital expenditure and investments made during the year)",
+      "financing_cash_flow": "Not specifically quantified in summary context",
+      "free_cash_flow": "Not disclosed",
+      "capital_expenditure": "Rs. 6.63 billion (Group)"
+    },
+    "investor_ratios": {
+      "gross_profit_margin": "Approximately 17.3% (gross profit divided by total revenue)",
+      "net_profit_margin": "Approximately 9.4% (profit after tax divided by total revenue)",
+      "current_ratio": "Not disclosed",
+      "debt_to_equity_ratio": "Debt increased significantly; exact ratio not stated",
+      "return_on_equity": "Not explicitly stated",
+      "return_on_assets": "Not explicitly stated",
+      "eps_ratio_reference": "EPS increased significantly compared to prior year",
+      "dividend_payout_ratio": "Not disclosed"
+    },
+    "shareholder_information": {
+      "stated_capital": "Rs. 73.19 billion",
+      "number_of_shares": "1,384,916,632 ordinary shares",
+      "major_shareholders": "Asian Development Bank (via private placement) and institutional investors",
+      "public_holding_percentage": "Approximately 36%",
+      "dividends": "Total dividend of Rs. 1.50 per share",
+      "market_price_per_share": "Rs. 145.00 as at 31 March 2022"
+    },
+    "risk_factors": {
+      "liquidity_risk": "Managed through maintaining significant cash balances and committed facilities.",
+      "credit_risk": "Arises mainly from trade receivables; monitored through credit policies and provisions.",
+      "market_risk": "Exposure to interest rate, currency, equity price and commodity price risks.",
+      "interest_rate_risk": "Sensitivity analysis shows profit is affected by changes in borrowing rates.",
+      "foreign_exchange_risk": "Significant exposure due to foreign currency borrowings and operations.",
+      "operational_risk": "Managed through enterprise risk management framework.",
+      "regulatory_risk": "Subject to Sri Lankan regulatory and tax environment.",
+      "going_concern_concerns": "Directors stated the Group has adequate resources to continue operations.",
+      "litigation_contingencies": "Contingent liabilities disclosed; no material unprovided litigation noted."
+    },
+    "management_governance": {
+      "board_changes": "Board and committee structures disclosed; no major disruptions noted.",
+      "auditor_opinion": "Unqualified audit opinion; financial statements give a true and fair view.",
+      "related_party_transactions": "Conducted in the ordinary course of business on arm’s length terms.",
+      "corporate_governance_statements": "Complies with Colombo Stock Exchange governance requirements.",
+      "director_responsibility_statement": "Directors confirmed responsibility for preparation and integrity of financial statements."
+    },
+    "future_outlook": {
+      "chairman_ceo_outlook": "Management expects medium- to long-term growth despite short-term macroeconomic challenges.",
+      "expansion_plans": "Continued investment in property, retail, logistics and infrastructure projects.",
+      "expected_challenges": "Macroeconomic instability, inflation, currency volatility and supply chain constraints.",
+      "strategy": "Focus on portfolio resilience, liquidity management, governance and long-term value creation.",
+      "forward_looking_statements": "Outlook subject to economic, political and global uncertainties."
+    }
+  },
+  "investor_friendly_insight": {
+    "summary": "John Keells Holdings PLC is a large, diversified Sri Lankan conglomerate. In 2021/22, the Group recorded a strong recovery in revenue and profitability compared to the prior year, supported by multiple business segments and improved operating conditions after COVID-19 disruptions.",
+    "key_strengths": [
+      "Highly diversified business portfolio across several industries",
+      "Strong improvement in profit and earnings per share during the year",
+      "Large cash and short-term investment balance supporting liquidity"
+    ],
+    "key_concerns": [
+      "High level of debt, partly impacted by currency depreciation",
+      "Exposure to macroeconomic and foreign exchange volatility",
+      "Operating environment affected by inflation and supply constraints"
+    ],
+    "risk_level_explanation": "The Group faces moderate to high risk mainly from economic conditions, interest rates and currency movements, but these are partly mitigated by diversification and liquidity management.",
+    "non_advisory_note": "This is an informational summary only and not financial advice."
+  },
+  "source_evidence": [
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Income Statement and Notes – Pages 206–209"
+    },
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Statement of Financial Position – Page 210"
+    },
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Cash Flow Statement – Page 209"
+    },
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Capital Management Review – Pages 46–52"
+    },
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Share Information – Pages 167–171"
+    },
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Risk Management Notes – Pages 227–235"
+    },
+    {
+      "field": "",
+      "value": "",
+      "page_number": "",
+      "source_quote": "Auditors’ Report – Page 203"
+    }
+  ],
+  "missing_fields": [],
+  "confidence_score": 0.87
+}

@@ -1,0 +1,7 @@
+{
+  "base_band": 0.7170366048812865,
+  "downside_band": 0.7170366048812865,
+  "upside_band": 0.7170366048812865,
+  "structural_gap_threshold_pct": 0.10623344506542952,
+  "prediction_band_threshold": 1.05
+}

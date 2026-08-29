@@ -1,0 +1,166 @@
+{
+  "pdf_name": "369_1741169817422.pdf",
+  "prompt_id": "prompt_07",
+  "prompt_name": "Risk-Focused Investor Prompt",
+  "model": "gpt-5.2-chat",
+  "full_model_output": "```json\n{\n  \"metadata\": {\n    \"pdf_name\": \"369_1741169817422.pdf\",\n    \"company_name\": \"Commercial Bank of Ceylon PLC\",\n    \"reporting_year\": \"2024\",\n    \"prompt_id\": \"risk_liability_governance_focus\",\n    \"model\": \"GPT-5.2\",\n    \"generated_at\": \"2026-05-08\"\n  },\n  \"extracted_facts\": {\n    \"company_overview\": {\n      \"company_name\": \"Commercial Bank of Ceylon PLC\",\n      \"reporting_year\": \"2024\",\n      \"business_segments\": [\n        \"Personal Banking\",\n        \"Corporate Banking\",\n        \"International Operations\",\n        \"Dealing/Treasury\",\n        \"NBFI, Real Estate & Services\"\n      ],\n      \"principal_activities\": \"Banking and related activities including deposit taking, lending, trade finance, treasury operations, digital banking, and international banking services\",\n      \"sector_industry\": \"Banking / Financial Services\",\n      \"subsidiaries_associates\": \"Local and foreign subsidiaries including Commercial Development Company PLC, CBC Finance Limited, CBC Tech Solutions Limited, Commercial Bank of Maldives Private Limited, and others\"\n    },\n    \"financial_performance\": {\n      \"revenue_turnover\": null,\n      \"gross_profit\": null,\n      \"operating_profit\": \"Operating profit before income tax (Group): Rs. 42.12 Bn.\",\n      \"profit_before_tax\": \"Rs. 42.12 Bn. (Group)\",\n      \"profit_after_tax\": \"Rs. 55.69 Bn. profit attributable to equity holders (Group)\",\n      \"eps\": \"Basic EPS: Rs. 38.44 (Group)\",\n      \"ebitda\": null,\n      \"net_finance_cost\": null,\n      \"tax_expense\": \"Income tax expense: Rs. 55.69 Bn. (Group)\"\n    },\n    \"financial_position\": {\n      \"total_assets\": \"Rs. 2.79 Tn.\",\n      \"total_liabilities\": null,\n      \"total_equity\": null,\n      \"borrowings_debt\": \"Subordinated liabilities: Rs. 57.71 Bn.; Other borrowings: Rs. 14.27 Bn.\",\n      \"cash_and_cash_equivalents\": \"Rs. 86.85 Bn.\",\n      \"inventory\": null,\n      \"trade_receivables\": null,\n      \"trade_payables\": null\n    },\n    \"cash_flow\": {\n      \"operating_cash_flow\": \"Net cash used in operating activities: Rs. (92.35) Bn.\",\n      \"investing_cash_flow\": null,\n      \"financing_cash_flow\": null,\n      \"free_cash_flow\": null,\n      \"capital_expenditure\": \"Purchase of property, plant and equipment: Rs. 3.40 Bn.\"\n    },\n    \"investor_ratios\": {\n      \"gross_profit_margin\": null,\n      \"net_profit_margin\": null,\n      \"current_ratio\": null,\n      \"debt_to_equity_ratio\": null,\n      \"return_on_equity\": \"22.06%\",\n      \"return_on_assets\": \"3.56% (before tax)\",\n      \"eps_ratio_reference\": \"EPS per share\",\n      \"dividend_payout_ratio\": \"28.29% (cash and scrip)\"\n    },\n    \"shareholder_information\": {\n      \"stated_capital\": \"Rs. 88.02 Bn.\",\n      \"number_of_shares\": \"1,432,678,752 ordinary shares (weighted average)\",\n      \"major_shareholders\": \"Top 20 voting shareholders hold 77.08% of voting shares\",\n      \"public_holding_percentage\": null,\n      \"dividends\": \"Total dividend per share for 2024: Rs. 9.50 (cash Rs. 7.50; scrip Rs. 2.00)\",\n      \"market_price_per_share\": \"Rs. 144.75 (voting share at end 2024)\"\n    },\n    \"risk_factors\": {\n      \"liquidity_risk\": \"Managed through diversified deposit base, liquidity coverage ratios well above regulatory minimums, and contingency funding plans\",\n      \"credit_risk\": \"Exposure to credit risk from loans and advances; Stage 3 loan ratio reduced to 2.76% with impairment coverage of 64.61%\",\n      \"market_risk\": \"Exposure to interest rate, equity price, and FX risks; stress testing conducted regularly\",\n      \"interest_rate_risk\": \"Interest rate sensitivity monitored via IRRBB stress testing on NII and EVE\",\n      \"foreign_exchange_risk\": \"FX risk monitored through Net Open Position limits and sensitivity analysis\",\n      \"operational_risk\": \"Includes IT, fraud, process, and business continuity risks; managed through structured operational risk framework\",\n      \"regulatory_risk\": \"Subject to Banking Act Directions, Basel III capital requirements, and evolving regulatory frameworks\",\n      \"going_concern_concerns\": \"No material going concern uncertainty reported; financial statements prepared on going concern basis\",\n      \"litigation_contingencies\": \"Outstanding tax assessments under dispute with Inland Revenue Department; disclosed as contingent liabilities\"\n    },\n    \"management_governance\": {\n      \"board_changes\": \"Director appointments and changes during 2024 disclosed and approved through formal nomination process\",\n      \"auditor_opinion\": \"Unmodified opinion – financial statements give a true and fair view in accordance with Sri Lanka Accounting Standards\",\n      \"related_party_transactions\": \"Related party transactions disclosed; policy prohibits preferential treatment\",\n      \"corporate_governance_statements\": \"Compliance with CSE Listing Rules and Code of Best Practice on Corporate Governance 2023\",\n      \"director_responsibility_statement\": \"Directors confirmed responsibility for preparation and integrity of financial statements\"\n    },\n    \"future_outlook\": {\n      \"chairman_ceo_outlook\": \"Outlook cautious but optimistic, with focus on stability, sustainability, and digital transformation amid macroeconomic recovery\",\n      \"expansion_plans\": \"Potential issuance of Green Bonds and continued regional expansion\",\n      \"expected_challenges\": \"Macroeconomic volatility, credit risk from regional operations, regulatory and capital requirements\",\n      \"strategy\": \"Balanced growth with strong risk management, ESG integration, and capital adequacy\",\n      \"forward_looking_statements\": \"Future plans subject to economic conditions, regulatory changes, and market risks\"\n    }\n  },\n  \"investor_friendly_insight\": {\n    \"summary\": \"Commercial Bank of Ceylon PLC reported strong profitability and asset growth in 2024, supported by improved asset quality and robust capital adequacy. The Bank operates with diversified business segments and maintains a strong governance framework.\",\n    \"key_strengths\": [\n      \"Strong capital adequacy ratios above regulatory minimums\",\n      \"Improved asset quality with reduced Stage 3 loans\",\n      \"Unmodified auditor opinion and comprehensive governance disclosures\"\n    ],\n    \"key_concerns\": [\n      \"Negative operating cash flow in 2024\",\n      \"Exposure to macroeconomic and interest rate volatility\",\n      \"Ongoing tax-related contingent liabilities\"\n    ],\n    \"risk_level_explanation\": \"The Bank faces typical banking sector risks including credit, liquidity, and market risks, but disclosures indicate active monitoring, stress testing, and capital buffers to manage these exposures.\",\n    \"non_advisory_note\": \"This is an informational summary only and not financial advice.\"\n  },\n  \"source_evidence\": [\n    \"Independent Auditor’s Report – Opinion section\",\n    \"Notes to the Financial Statements on risk management and contingencies\",\n    \"Statement of Cash Flows – Group\"\n  ],\n  \"missing_fields\": [\n    \"Detailed current ratio\",\n    \"Exact total liabilities and equity figures\",\n    \"Free cash flow calculation\"\n  ],\n  \"confidence_score\": 0.55\n}\n```",
+  "parsed_json": {
+    "metadata": {
+      "pdf_name": "369_1741169817422.pdf",
+      "company_name": "Commercial Bank of Ceylon PLC",
+      "reporting_year": "2024",
+      "prompt_id": "prompt_07",
+      "model": "gpt-5.2-chat",
+      "generated_at": "2026-05-08T12:11:13.258562+00:00"
+    },
+    "extracted_facts": {
+      "company_overview": {
+        "company_name": "Commercial Bank of Ceylon PLC",
+        "reporting_year": "2024",
+        "business_segments": [
+          "Personal Banking",
+          "Corporate Banking",
+          "International Operations",
+          "Dealing/Treasury",
+          "NBFI, Real Estate & Services"
+        ],
+        "principal_activities": "Banking and related activities including deposit taking, lending, trade finance, treasury operations, digital banking, and international banking services",
+        "sector_industry": "Banking / Financial Services",
+        "subsidiaries_associates": "Local and foreign subsidiaries including Commercial Development Company PLC, CBC Finance Limited, CBC Tech Solutions Limited, Commercial Bank of Maldives Private Limited, and others"
+      },
+      "financial_performance": {
+        "revenue_turnover": null,
+        "gross_profit": null,
+        "operating_profit": "Operating profit before income tax (Group): Rs. 42.12 Bn.",
+        "profit_before_tax": "Rs. 42.12 Bn. (Group)",
+        "profit_after_tax": "Rs. 55.69 Bn. profit attributable to equity holders (Group)",
+        "eps": "Basic EPS: Rs. 38.44 (Group)",
+        "ebitda": null,
+        "net_finance_cost": null,
+        "tax_expense": "Income tax expense: Rs. 55.69 Bn. (Group)"
+      },
+      "financial_position": {
+        "total_assets": "Rs. 2.79 Tn.",
+        "total_liabilities": null,
+        "total_equity": null,
+        "borrowings_debt": "Subordinated liabilities: Rs. 57.71 Bn.; Other borrowings: Rs. 14.27 Bn.",
+        "cash_and_cash_equivalents": "Rs. 86.85 Bn.",
+        "inventory": null,
+        "trade_receivables": null,
+        "trade_payables": null
+      },
+      "cash_flow": {
+        "operating_cash_flow": "Net cash used in operating activities: Rs. (92.35) Bn.",
+        "investing_cash_flow": null,
+        "financing_cash_flow": null,
+        "free_cash_flow": null,
+        "capital_expenditure": "Purchase of property, plant and equipment: Rs. 3.40 Bn."
+      },
+      "investor_ratios": {
+        "gross_profit_margin": null,
+        "net_profit_margin": null,
+        "current_ratio": null,
+        "debt_to_equity_ratio": null,
+        "return_on_equity": "22.06%",
+        "return_on_assets": "3.56% (before tax)",
+        "eps_ratio_reference": "EPS per share",
+        "dividend_payout_ratio": "28.29% (cash and scrip)"
+      },
+      "shareholder_information": {
+        "stated_capital": "Rs. 88.02 Bn.",
+        "number_of_shares": "1,432,678,752 ordinary shares (weighted average)",
+        "major_shareholders": "Top 20 voting shareholders hold 77.08% of voting shares",
+        "public_holding_percentage": null,
+        "dividends": "Total dividend per share for 2024: Rs. 9.50 (cash Rs. 7.50; scrip Rs. 2.00)",
+        "market_price_per_share": "Rs. 144.75 (voting share at end 2024)"
+      },
+      "risk_factors": {
+        "liquidity_risk": "Managed through diversified deposit base, liquidity coverage ratios well above regulatory minimums, and contingency funding plans",
+        "credit_risk": "Exposure to credit risk from loans and advances; Stage 3 loan ratio reduced to 2.76% with impairment coverage of 64.61%",
+        "market_risk": "Exposure to interest rate, equity price, and FX risks; stress testing conducted regularly",
+        "interest_rate_risk": "Interest rate sensitivity monitored via IRRBB stress testing on NII and EVE",
+        "foreign_exchange_risk": "FX risk monitored through Net Open Position limits and sensitivity analysis",
+        "operational_risk": "Includes IT, fraud, process, and business continuity risks; managed through structured operational risk framework",
+        "regulatory_risk": "Subject to Banking Act Directions, Basel III capital requirements, and evolving regulatory frameworks",
+        "going_concern_concerns": "No material going concern uncertainty reported; financial statements prepared on going concern basis",
+        "litigation_contingencies": "Outstanding tax assessments under dispute with Inland Revenue Department; disclosed as contingent liabilities"
+      },
+      "management_governance": {
+        "board_changes": "Director appointments and changes during 2024 disclosed and approved through formal nomination process",
+        "auditor_opinion": "Unmodified opinion – financial statements give a true and fair view in accordance with Sri Lanka Accounting Standards",
+        "related_party_transactions": "Related party transactions disclosed; policy prohibits preferential treatment",
+        "corporate_governance_statements": "Compliance with CSE Listing Rules and Code of Best Practice on Corporate Governance 2023",
+        "director_responsibility_statement": "Directors confirmed responsibility for preparation and integrity of financial statements"
+      },
+      "future_outlook": {
+        "chairman_ceo_outlook": "Outlook cautious but optimistic, with focus on stability, sustainability, and digital transformation amid macroeconomic recovery",
+        "expansion_plans": "Potential issuance of Green Bonds and continued regional expansion",
+        "expected_challenges": "Macroeconomic volatility, credit risk from regional operations, regulatory and capital requirements",
+        "strategy": "Balanced growth with strong risk management, ESG integration, and capital adequacy",
+        "forward_looking_statements": "Future plans subject to economic conditions, regulatory changes, and market risks"
+      }
+    },
+    "investor_friendly_insight": {
+      "summary": "Commercial Bank of Ceylon PLC reported strong profitability and asset growth in 2024, supported by improved asset quality and robust capital adequacy. The Bank operates with diversified business segments and maintains a strong governance framework.",
+      "key_strengths": [
+        "Strong capital adequacy ratios above regulatory minimums",
+        "Improved asset quality with reduced Stage 3 loans",
+        "Unmodified auditor opinion and comprehensive governance disclosures"
+      ],
+      "key_concerns": [
+        "Negative operating cash flow in 2024",
+        "Exposure to macroeconomic and interest rate volatility",
+        "Ongoing tax-related contingent liabilities"
+      ],
+      "risk_level_explanation": "The Bank faces typical banking sector risks including credit, liquidity, and market risks, but disclosures indicate active monitoring, stress testing, and capital buffers to manage these exposures.",
+      "non_advisory_note": "This is an informational summary only and not financial advice."
+    },
+    "source_evidence": [
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Independent Auditor’s Report – Opinion section"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Notes to the Financial Statements on risk management and contingencies"
+      },
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "Statement of Cash Flows – Group"
+      }
+    ],
+    "missing_fields": [
+      "revenue_turnover",
+      "gross_profit",
+      "ebitda",
+      "net_finance_cost",
+      "total_liabilities",
+      "total_equity",
+      "inventory",
+      "trade_receivables",
+      "trade_payables",
+      "investing_cash_flow",
+      "financing_cash_flow",
+      "free_cash_flow",
+      "gross_profit_margin",
+      "net_profit_margin",
+      "current_ratio",
+      "debt_to_equity_ratio",
+      "public_holding_percentage"
+    ],
+    "confidence_score": 0.55
+  },
+  "token_usage": {
+    "input_tokens": 51094,
+    "output_tokens": 1657,
+    "total_tokens": 52751
+  },
+  "runtime_seconds": 23.082,
+  "errors": null
+}

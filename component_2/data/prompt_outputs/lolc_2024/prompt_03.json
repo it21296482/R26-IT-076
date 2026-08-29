@@ -1,0 +1,151 @@
+{
+  "pdf_name": "LOLC_2024.pdf",
+  "prompt_id": "prompt_03",
+  "prompt_name": "JSON Schema-Constrained Prompt",
+  "model": "gpt-5.2-chat",
+  "full_model_output": "{\n  \"metadata\": {\n    \"pdf_name\": \"LOLC_2024.pdf\",\n    \"company_name\": \"LOLC Holdings PLC\",\n    \"reporting_year\": \"2024/25\",\n    \"prompt_id\": \"LOLC_INVESTOR_EXTRACTION_001\",\n    \"model\": \"GPT-5.2\",\n    \"generated_at\": \"2026-05-08T00:00:00Z\"\n  },\n  \"extracted_facts\": {\n    \"company_overview\": {\n      \"company_name\": \"LOLC Holdings PLC\",\n      \"reporting_year\": \"2024/25\",\n      \"business_segments\": [\n        \"Financial services\",\n        \"Insurance\",\n        \"Manufacturing & trading\",\n        \"Leisure & entertainment\",\n        \"Plantation & agriculture\",\n        \"Technology & IT services\",\n        \"Construction & engineering\",\n        \"Real estate development\"\n      ],\n      \"principal_activities\": \"Managing a diversified portfolio of investments and providing centralized services to subsidiaries, associates and jointly controlled entities across multiple sectors.\",\n      \"sector_industry\": \"Diversified conglomerate\",\n      \"subsidiaries_associates\": \"Extensive portfolio of subsidiaries and associates across Sri Lanka, Asia and Africa including banks, finance companies, plantations, leisure and manufacturing entities.\"\n    },\n    \"financial_performance\": {\n      \"revenue_turnover\": 112200602000,\n      \"gross_profit\": 45355544000,\n      \"operating_profit\": 45700286000,\n      \"profit_before_tax\": 52152000000,\n      \"profit_after_tax\": 50385000000,\n      \"eps\": 104.61,\n      \"ebitda\": null,\n      \"net_finance_cost\": 51788173000,\n      \"tax_expense\": 1767000000\n    },\n    \"financial_position\": {\n      \"total_assets\": 2029626151000,\n      \"total_liabilities\": 1425419020000,\n      \"total_equity\": 604207131000,\n      \"borrowings_debt\": 601202430000,\n      \"cash_and_cash_equivalents\": 111612970000,\n      \"inventory\": 33296064000,\n      \"trade_receivables\": 25434614000,\n      \"trade_payables\": 45231860000\n    },\n    \"cash_flow\": {\n      \"operating_cash_flow\": 6673622000,\n      \"investing_cash_flow\": -22176045000,\n      \"financing_cash_flow\": null,\n      \"free_cash_flow\": null,\n      \"capital_expenditure\": 19927028000\n    },\n    \"investor_ratios\": {\n      \"gross_profit_margin\": null,\n      \"net_profit_margin\": null,\n      \"current_ratio\": null,\n      \"debt_to_equity_ratio\": null,\n      \"return_on_equity\": 15.5,\n      \"return_on_assets\": null,\n      \"eps_ratio_reference\": \"Basic EPS for the year ended 31 March 2025\",\n      \"dividend_payout_ratio\": null\n    },\n    \"shareholder_information\": {\n      \"stated_capital\": 475200000,\n      \"number_of_shares\": 475200000,\n      \"major_shareholders\": null,\n      \"public_holding_percentage\": 15.1023,\n      \"dividends\": null,\n      \"market_price_per_share\": 594.75\n    },\n    \"risk_factors\": {\n      \"liquidity_risk\": \"Liquidity risk managed through asset-liability management, monitoring of cash flows and maintaining access to diversified funding sources.\",\n      \"credit_risk\": \"Exposure from lending and receivables managed via credit committees, credit policies, collateral requirements and expected credit loss models.\",\n      \"market_risk\": \"Exposure to interest rate, equity price and other market risks monitored through sensitivity analysis and value-at-risk measures.\",\n      \"interest_rate_risk\": \"Interest rate fluctuations may impact net interest income; sensitivity analysis disclosed for parallel rate changes.\",\n      \"foreign_exchange_risk\": \"Arises from foreign operations and assets; managed through hedging instruments and natural hedges.\",\n      \"operational_risk\": \"Managed through internal controls, audits and the three-lines-of-defence model.\",\n      \"regulatory_risk\": \"Operations subject to financial services, insurance and capital market regulations across jurisdictions.\",\n      \"going_concern_concerns\": \"No material going concern issues identified; financial statements prepared on a going concern basis.\",\n      \"litigation_contingencies\": \"No material litigation losses anticipated; contingent liabilities disclosed in the notes.\"\n    },\n    \"management_governance\": {\n      \"board_changes\": \"Several appointments and retirements during the year including new independent and non-executive directors.\",\n      \"auditor_opinion\": \"Unqualified opinion stating the financial statements give a true and fair view in accordance with Sri Lanka Accounting Standards.\",\n      \"related_party_transactions\": \"Recurrent related party transactions conducted in the ordinary course of business; no material non-recurrent transactions exceeding disclosure thresholds.\",\n      \"corporate_governance_statements\": \"Company reports compliance with Colombo Stock Exchange Listing Rules and corporate governance best practices.\",\n      \"director_responsibility_statement\": \"Directors acknowledge responsibility for preparation and fair presentation of financial statements.\"\n    },\n    \"future_outlook\": {\n      \"chairman_ceo_outlook\": \"Management highlighted cautious optimism, focus on resilience, diversification and sustainable value creation amid global and local economic uncertainty.\",\n      \"expansion_plans\": \"Continued expansion across financial services, plantations, leisure, technology platforms and international markets.\",\n      \"expected_challenges\": \"Macroeconomic volatility, interest rate movements, regulatory changes and geopolitical risks.\",\n      \"strategy\": \"Diversification across sectors and geographies, prudent risk management, digital transformation and capital discipline.\",\n      \"forward_looking_statements\": \"Statements on growth prospects and strategies are subject to risks and uncertainties.\"\n    }\n  },\n  \"investor_friendly_insight\": {\n    \"summary\": \"LOLC Holdings PLC reported strong growth in 2024/25 with significant increases in revenue and profitability, supported by diversification across financial services, plantations, leisure and technology, alongside disciplined risk management.\",\n    \"key_strengths\": [\n      \"Diversified business model across multiple sectors and geographies\",\n      \"Strong profit growth and improved return on equity\",\n      \"Robust governance and risk management frameworks\"\n    ],\n    \"key_concerns\": [\n      \"High leverage inherent in financial services operations\",\n      \"Exposure to macroeconomic and interest rate volatility\",\n      \"Complexity from wide geographic footprint\"\n    ],\n    \"risk_level_explanation\": \"The Group operates in regulated and capital-intensive sectors with exposure to credit, liquidity and market risks, mitigated through established risk management structures.\",\n    \"non_advisory_note\": \"This is an informational summary only and not financial advice.\"\n  },\n  \"source_evidence\": [\n    \"LOLC Holdings PLC Annual Report 2024/25 pages 12, 14, 90-95, 315-317, 359-361\"\n  ],\n  \"missing_fields\": [\n    \"ebitda\",\n    \"gross_profit_margin\",\n    \"net_profit_margin\",\n    \"current_ratio\",\n    \"debt_to_equity_ratio\",\n    \"return_on_assets\",\n    \"dividend_payout_ratio\",\n    \"major_shareholders\",\n    \"dividends\",\n    \"financing_cash_flow\",\n    \"free_cash_flow\"\n  ],\n  \"confidence_score\": 0.64\n}",
+  "parsed_json": {
+    "metadata": {
+      "pdf_name": "LOLC_2024.pdf",
+      "company_name": "LOLC Holdings PLC",
+      "reporting_year": "2024/25",
+      "prompt_id": "prompt_03",
+      "model": "gpt-5.2-chat",
+      "generated_at": "2026-05-08T15:26:15.165845+00:00"
+    },
+    "extracted_facts": {
+      "company_overview": {
+        "company_name": "LOLC Holdings PLC",
+        "reporting_year": "2024/25",
+        "business_segments": [
+          "Financial services",
+          "Insurance",
+          "Manufacturing & trading",
+          "Leisure & entertainment",
+          "Plantation & agriculture",
+          "Technology & IT services",
+          "Construction & engineering",
+          "Real estate development"
+        ],
+        "principal_activities": "Managing a diversified portfolio of investments and providing centralized services to subsidiaries, associates and jointly controlled entities across multiple sectors.",
+        "sector_industry": "Diversified conglomerate",
+        "subsidiaries_associates": "Extensive portfolio of subsidiaries and associates across Sri Lanka, Asia and Africa including banks, finance companies, plantations, leisure and manufacturing entities."
+      },
+      "financial_performance": {
+        "revenue_turnover": 112200602000,
+        "gross_profit": 45355544000,
+        "operating_profit": 45700286000,
+        "profit_before_tax": 52152000000,
+        "profit_after_tax": 50385000000,
+        "eps": 104.61,
+        "ebitda": null,
+        "net_finance_cost": 51788173000,
+        "tax_expense": 1767000000
+      },
+      "financial_position": {
+        "total_assets": 2029626151000,
+        "total_liabilities": 1425419020000,
+        "total_equity": 604207131000,
+        "borrowings_debt": 601202430000,
+        "cash_and_cash_equivalents": 111612970000,
+        "inventory": 33296064000,
+        "trade_receivables": 25434614000,
+        "trade_payables": 45231860000
+      },
+      "cash_flow": {
+        "operating_cash_flow": 6673622000,
+        "investing_cash_flow": -22176045000,
+        "financing_cash_flow": null,
+        "free_cash_flow": null,
+        "capital_expenditure": 19927028000
+      },
+      "investor_ratios": {
+        "gross_profit_margin": null,
+        "net_profit_margin": null,
+        "current_ratio": null,
+        "debt_to_equity_ratio": null,
+        "return_on_equity": 15.5,
+        "return_on_assets": null,
+        "eps_ratio_reference": "Basic EPS for the year ended 31 March 2025",
+        "dividend_payout_ratio": null
+      },
+      "shareholder_information": {
+        "stated_capital": 475200000,
+        "number_of_shares": 475200000,
+        "major_shareholders": null,
+        "public_holding_percentage": 15.1023,
+        "dividends": null,
+        "market_price_per_share": 594.75
+      },
+      "risk_factors": {
+        "liquidity_risk": "Liquidity risk managed through asset-liability management, monitoring of cash flows and maintaining access to diversified funding sources.",
+        "credit_risk": "Exposure from lending and receivables managed via credit committees, credit policies, collateral requirements and expected credit loss models.",
+        "market_risk": "Exposure to interest rate, equity price and other market risks monitored through sensitivity analysis and value-at-risk measures.",
+        "interest_rate_risk": "Interest rate fluctuations may impact net interest income; sensitivity analysis disclosed for parallel rate changes.",
+        "foreign_exchange_risk": "Arises from foreign operations and assets; managed through hedging instruments and natural hedges.",
+        "operational_risk": "Managed through internal controls, audits and the three-lines-of-defence model.",
+        "regulatory_risk": "Operations subject to financial services, insurance and capital market regulations across jurisdictions.",
+        "going_concern_concerns": "No material going concern issues identified; financial statements prepared on a going concern basis.",
+        "litigation_contingencies": "No material litigation losses anticipated; contingent liabilities disclosed in the notes."
+      },
+      "management_governance": {
+        "board_changes": "Several appointments and retirements during the year including new independent and non-executive directors.",
+        "auditor_opinion": "Unqualified opinion stating the financial statements give a true and fair view in accordance with Sri Lanka Accounting Standards.",
+        "related_party_transactions": "Recurrent related party transactions conducted in the ordinary course of business; no material non-recurrent transactions exceeding disclosure thresholds.",
+        "corporate_governance_statements": "Company reports compliance with Colombo Stock Exchange Listing Rules and corporate governance best practices.",
+        "director_responsibility_statement": "Directors acknowledge responsibility for preparation and fair presentation of financial statements."
+      },
+      "future_outlook": {
+        "chairman_ceo_outlook": "Management highlighted cautious optimism, focus on resilience, diversification and sustainable value creation amid global and local economic uncertainty.",
+        "expansion_plans": "Continued expansion across financial services, plantations, leisure, technology platforms and international markets.",
+        "expected_challenges": "Macroeconomic volatility, interest rate movements, regulatory changes and geopolitical risks.",
+        "strategy": "Diversification across sectors and geographies, prudent risk management, digital transformation and capital discipline.",
+        "forward_looking_statements": "Statements on growth prospects and strategies are subject to risks and uncertainties."
+      }
+    },
+    "investor_friendly_insight": {
+      "summary": "LOLC Holdings PLC reported strong growth in 2024/25 with significant increases in revenue and profitability, supported by diversification across financial services, plantations, leisure and technology, alongside disciplined risk management.",
+      "key_strengths": [
+        "Diversified business model across multiple sectors and geographies",
+        "Strong profit growth and improved return on equity",
+        "Robust governance and risk management frameworks"
+      ],
+      "key_concerns": [
+        "High leverage inherent in financial services operations",
+        "Exposure to macroeconomic and interest rate volatility",
+        "Complexity from wide geographic footprint"
+      ],
+      "risk_level_explanation": "The Group operates in regulated and capital-intensive sectors with exposure to credit, liquidity and market risks, mitigated through established risk management structures.",
+      "non_advisory_note": "This is an informational summary only and not financial advice."
+    },
+    "source_evidence": [
+      {
+        "field": "",
+        "value": "",
+        "page_number": "",
+        "source_quote": "LOLC Holdings PLC Annual Report 2024/25 pages 12, 14, 90-95, 315-317, 359-361"
+      }
+    ],
+    "missing_fields": [
+      "ebitda",
+      "financing_cash_flow",
+      "free_cash_flow",
+      "gross_profit_margin",
+      "net_profit_margin",
+      "current_ratio",
+      "debt_to_equity_ratio",
+      "return_on_assets",
+      "dividend_payout_ratio",
+      "major_shareholders",
+      "dividends"
+    ],
+    "confidence_score": 0.64
+  },
+  "token_usage": {
+    "input_tokens": 47398,
+    "output_tokens": 1580,
+    "total_tokens": 48978
+  },
+  "runtime_seconds": 17.269,
+  "errors": null
+}

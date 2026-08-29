@@ -1,0 +1,13 @@
+{
+  "mae": 0.15296053590241426,
+  "rmse": 0.19790274180075212,
+  "mape": 0.02365562062858346,
+  "mape_pct": 2.365562062858346,
+  "approximate_price_level_accuracy_pct": 97.63443793714166,
+  "residual_mean": -0.019205315512900025,
+  "residual_std": 0.196968655040098,
+  "residual_min": -0.622222900390625,
+  "residual_max": 1.088632583618164,
+  "latest_prediction_error": -0.02783679962158203,
+  "directional_accuracy": 0.4984472049689441
+}
