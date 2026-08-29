@@ -9,6 +9,7 @@ const adminRoutes = require("./routes/adminRoutes");
 const reportRoutes = require("./routes/reportRoutes");
 const stockRoutes = require("./routes/stockRoutes");
 const errorHandler = require("./middleware/errorHandler");
+const newsRoutes = require("./routes/newsRoutes");
 
 const app = express();
 const allowedOrigins = [
@@ -57,5 +58,6 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/stocks", stockRoutes);
 app.use(errorHandler);
+app.use("/api/news", newsRoutes);
 
 module.exports = app;

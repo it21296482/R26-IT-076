@@ -7,6 +7,7 @@ import InsightPreviewPage from "./pages/InsightPreviewPage";
 import RegisterPage from "./pages/RegisterPage";
 import UserDashboardPage from "./pages/UserDashboardPage";
 import UserLoginPage from "./pages/UserLoginPage";
+import SentimentPage from "./pages/SentimentPage";
 import { ADMIN_DASHBOARD_PATH, ADMIN_ENTRY_PATH } from "./lib/routes";
 
 function App() {
@@ -32,6 +33,16 @@ function App() {
           </ProtectedRoute>
         }
       />
+
+      <Route
+  path="/sentiment"
+  element={
+    <ProtectedRoute role="user">
+      <SentimentPage />
+    </ProtectedRoute>
+  }
+/>
+
       <Route
         path={ADMIN_DASHBOARD_PATH}
         element={
