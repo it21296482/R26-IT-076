@@ -1,9 +1,8 @@
 """Build versioned market-analysis artifacts used by the MERN application.
 
-This script runs the original Component 1 research pipeline against the latest
-available history for each supported stock. It does not silently extend the
-validated 60-session model to six months. Unsupported horizons are represented
-explicitly in the application contract.
+This script runs the Component 1 research pipeline against the latest available
+history for each supported stock and exposes checkpoints through 120 trading
+sessions. Longer-horizon estimates retain uncertainty and caution labels.
 """
 
 from __future__ import annotations
@@ -24,7 +23,12 @@ from src.component1_research import ResearchConfig, run_research_pipeline, save_
 ROOT = Path(__file__).resolve().parent
 DEFAULT_ACTUALS = ROOT / "data" / "actuals"
 DEFAULT_OUTPUT = ROOT / "artifacts" / "runtime"
-HORIZONS = (("4d", 4, "4 trading days"), ("1m", 21, "1 month"), ("3m", 60, "3 months"))
+HORIZONS = (
+    ("4d", 4, "4 trading days"),
+    ("1m", 21, "1 month"),
+    ("3m", 60, "3 months"),
+    ("6m", 120, "6 months"),
+)
 
 
 def json_value(value: Any) -> Any:
@@ -121,16 +125,6 @@ def build_contract(stock: str, results: dict[str, Any], source_file: Path) -> di
         horizon_summary(forecast, key, step, label, current_price, advanced_model_beats_naive)
         for key, step, label in HORIZONS
     ]
-    supported_horizons.append(
-        {
-            "key": "6m",
-            "label": "6 months",
-            "sessions": 120,
-            "status": "not_validated",
-            "message": "A validated six-month model is not available yet, so no price is estimated.",
-        }
-    )
-
     top_factors = []
     for item in dashboard.get("top_shap_factors", []):
         if isinstance(item, dict):
@@ -192,7 +186,7 @@ def build_one(stock: str, actuals_dir: Path, output_dir: Path, epochs: int) -> P
             data_dir=temp_dir,
             artifact_dir=str(raw_output_dir),
             epochs=epochs,
-            forecast_horizon_days=60,
+            forecast_horizon_days=120,
             verbose=False,
         )
         results = run_research_pipeline(config)

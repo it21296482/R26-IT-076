@@ -53,7 +53,7 @@ def main() -> None:
                 data_dir=temp_dir,
                 artifact_dir=str(Path(temp_dir) / "artifacts"),
                 epochs=max(1, args.epochs),
-                forecast_horizon_days=60,
+                forecast_horizon_days=120,
                 verbose=False,
             )
         )

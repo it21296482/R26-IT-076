@@ -49,10 +49,10 @@ private temporary CSV, runs the pipeline again, returns a unique run ID and
 data cut-off date, and deletes the temporary files. The locked May forecasts
 above are never loaded as a live user result.
 
-The 4-day, 1-month, and 3-month values are checkpoints on the validated
-60-trading-session path. Favourable and adverse values are uncertainty bounds,
-not guaranteed best/worst targets. Six months remains unavailable until that
-horizon is separately developed and validated.
+The 4-day, 1-month, 3-month, and 6-month values are checkpoints on a fresh
+120-trading-session path. Favourable and adverse values are uncertainty bounds,
+not guaranteed best/worst targets. The longer six-month checkpoint is presented
+with the same baseline comparison and caution labels as the shorter horizons.
 
 ## Interpretation boundary
 

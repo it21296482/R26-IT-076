@@ -21,7 +21,7 @@ The API entry point is `server/src/controllers/analysisController.js`. It coordi
 
 **Input:** all historical OHLC price and trading-volume rows currently stored in MongoDB for the selected symbol.
 
-**What runs:** every Analyze click exports a fresh database snapshot to a private temporary CSV and runs the market research pipeline again. It estimates one 60-trading-session path and reports checkpoints at 4 trading days, 1 month, and 3 months. For every checkpoint it returns a central estimate, favourable side of the measured 80% range, adverse side of the measured 80% range, and a wider 95% uncertainty range. Six months remains explicitly unavailable because that horizon has not been validated.
+**What runs:** every Analyze click exports a fresh database snapshot to a private temporary CSV and runs the market research pipeline again. It estimates one 120-trading-session path and reports checkpoints at 4 trading days, 1 month, 3 months, and 6 months. For every checkpoint it returns a central estimate, favourable side of the measured 80% range, adverse side of the measured 80% range, and a wider 95% uncertainty range. The longer checkpoint is shown with explicit uncertainty and baseline caution.
 
 The stage also compares actual and expected prices, calculates signed deviation, scores unusual behaviour while accounting for market liquidity, identifies whether the deviation is above or below expectation, and reports the selected warning threshold.
 
@@ -89,8 +89,9 @@ No. They are the upper and lower sides of a measured 80% uncertainty range. The 
 **Can a war or news event be claimed as the cause of an anomaly?**  
 Only when there is direct evidence can the event be described as business impact. Date overlap and correlation provide relevant context but do not prove how much of a share-price move the event caused.
 
-**Why is there no six-month price?**  
-The supplied research validates a 60-session path. Showing an unsupported six-month number would be misleading, so the system clearly marks it unavailable.
+**How should the six-month price be explained?**
+
+It is the 120th trading-session checkpoint of the freshly calculated path. It is a research estimate with favourable and adverse uncertainty ranges, not a guaranteed target, and should be interpreted more cautiously than a shorter horizon.
 
 **How is hallucination controlled?**  
 Missing evidence is labelled missing, report claims retain source pages and quotes, stale/mismatched reports are rejected, external relationships are described as associations, and the integration layer receives structured evidence rather than permission to invent facts.

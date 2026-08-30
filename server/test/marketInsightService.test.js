@@ -34,13 +34,13 @@ test("runs a fresh market analysis from current database history", async () => {
       symbol: "JKH.N0000",
       run_mode: "fresh_on_demand",
       run_id: "test-run",
-      horizons: [{ key: "6m", status: "not_validated" }],
+      horizons: [{ key: "6m", status: "available_with_caution", estimated_close_lkr: 22.5 }],
     }));
   };
   const insight = await loadMarketInsight("JKH.N0000", { StockModel, executeAnalysis });
   assert.equal(insight.symbol, "JKH.N0000");
   assert.equal(insight.run_mode, "fresh_on_demand");
-  assert.equal(insight.horizons.at(-1).status, "not_validated");
+  assert.equal(insight.horizons.at(-1).estimated_close_lkr, 22.5);
 });
 
 test("does not fabricate a forecast when history is insufficient", async () => {
