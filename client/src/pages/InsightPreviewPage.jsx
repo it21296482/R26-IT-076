@@ -25,35 +25,48 @@ const formatDate = (value) => (
 function ForecastPath({ market }) {
   const available = (market?.horizons || []).filter((horizon) => horizon.estimated_close_lkr);
   if (!market || !available.length) return null;
-  const values = [market.current_price_lkr, ...available.map((horizon) => horizon.estimated_close_lkr)];
+  const series = [
+    { key: "favourable", label: "Favourable range", color: "#34d399", dash: "8 7", field: "upper_80_lkr" },
+    { key: "central", label: "Central path", color: "#67e8f9", dash: undefined, field: "estimated_close_lkr" },
+    { key: "adverse", label: "Adverse range", color: "#fb7185", dash: "8 7", field: "lower_80_lkr" },
+  ].map((item) => ({
+    ...item,
+    values: [market.current_price_lkr, ...available.map((horizon) => horizon[item.field])],
+  }));
+  const values = series.flatMap((item) => item.values);
   const min = Math.min(...values);
   const max = Math.max(...values);
   const spread = Math.max(max - min, Math.max(max * 0.015, 0.2));
-  const points = values.map((value, index) => {
-    const x = 70 + (index * 580) / Math.max(values.length - 1, 1);
+  const pointsFor = (pathValues) => pathValues.map((value, index) => {
+    const x = 70 + (index * 580) / Math.max(pathValues.length - 1, 1);
     const y = 178 - ((value - min) / spread) * 100;
     return { x, y, value, label: index === 0 ? "Now" : available[index - 1].label };
   });
 
   return (
     <div className="mt-6 overflow-hidden rounded-[26px] border border-white/10 bg-slate-950/25 p-4">
+      <div className="flex flex-wrap justify-center gap-4 text-xs font-semibold text-slate-200">
+        {series.map((item) => <span className="flex items-center gap-2" key={item.key}><i className="h-0.5 w-7 rounded-full" style={{ backgroundColor: item.color }} />{item.label}</span>)}
+      </div>
       <svg aria-label="Forecast path" className="h-auto w-full" role="img" viewBox="0 0 720 230">
-        <defs>
-          <linearGradient id="forecastLine" x1="0" x2="1">
-            <stop offset="0%" stopColor="#67e8f9" />
-            <stop offset="100%" stopColor="#fbbf24" />
-          </linearGradient>
-        </defs>
         {[80, 130, 180].map((y) => <line key={y} stroke="rgba(255,255,255,.08)" x1="45" x2="680" y1={y} y2={y} />)}
-        <polyline fill="none" points={points.map((point) => `${point.x},${point.y}`).join(" ")} stroke="url(#forecastLine)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" />
-        {points.map((point) => (
+        {series.map((item) => {
+          const points = pointsFor(item.values);
+          return (
+            <g key={item.key}>
+              <polyline className="forecast-path-line" fill="none" points={points.map((point) => `${point.x},${point.y}`).join(" ")} stroke={item.color} strokeDasharray={item.dash} strokeLinecap="round" strokeLinejoin="round" strokeWidth={item.key === "central" ? 5 : 3} />
+              {points.slice(1).map((point) => <circle cx={point.x} cy={point.y} fill="#0f172a" key={`${item.key}-${point.label}`} r={item.key === "central" ? 6 : 4} stroke={item.color} strokeWidth="3" />)}
+            </g>
+          );
+        })}
+        {pointsFor(series[1].values).map((point) => (
           <g key={point.label}>
-            <circle cx={point.x} cy={point.y} fill="#0f172a" r="7" stroke="#a5f3fc" strokeWidth="4" />
-            <text fill="#fff" fontSize="12" fontWeight="700" textAnchor="middle" x={point.x} y={point.y - 17}>{point.value.toFixed(2)}</text>
+            <text fill="#fff" fontSize="12" fontWeight="700" textAnchor="middle" x={point.x} y={point.y - 15}>{point.value.toFixed(2)}</text>
             <text fill="#94a3b8" fontSize="11" textAnchor="middle" x={point.x} y="210">{point.label}</text>
           </g>
         ))}
       </svg>
+      <p className="px-3 pb-2 text-center text-xs leading-5 text-slate-400">Favourable and adverse lines show the measured 80% range, not guaranteed best or worst prices.</p>
     </div>
   );
 }
@@ -223,8 +236,13 @@ function InsightPreviewPage() {
                             <p className={`mt-2 text-sm font-semibold ${horizon.change_from_latest_pct >= 0 ? "text-emerald-700" : "text-rose-700"}`}>
                               {formatPercent(horizon.change_from_latest_pct)} from latest
                             </p>
+                            <div className="mt-4 grid gap-2 border-t border-slate-200 pt-4 text-xs">
+                              <p className="flex justify-between gap-3 text-emerald-700"><span>Favourable range</span><strong>{formatMoney(horizon.upper_80_lkr)} · {formatPercent(((horizon.upper_80_lkr / market.current_price_lkr) - 1) * 100)}</strong></p>
+                              <p className="flex justify-between gap-3 text-slate-700"><span>Central path</span><strong>{formatMoney(horizon.estimated_close_lkr)} · {formatPercent(horizon.change_from_latest_pct)}</strong></p>
+                              <p className="flex justify-between gap-3 text-rose-700"><span>Adverse range</span><strong>{formatMoney(horizon.lower_80_lkr)} · {formatPercent(((horizon.lower_80_lkr / market.current_price_lkr) - 1) * 100)}</strong></p>
+                            </div>
                             <p className="mt-3 text-xs leading-5 text-slate-500">Expected around {formatDate(horizon.target_date)} · {horizon.direction}</p>
-                            {horizon.status === "available_with_caution" && <p className="mt-3 rounded-xl bg-amber-50 p-3 text-xs leading-5 text-amber-800">Treat cautiously: the advanced estimate did not beat a simple benchmark in its latest test.</p>}
+                            {horizon.status === "available_with_caution" && <p className="mt-3 rounded-xl bg-amber-50 p-3 text-xs leading-5 text-amber-800">Treat cautiously: this estimate did not beat a simple unchanged-price comparison in its latest test.</p>}
                           </>
                         ) : (
                           <p className="mt-4 text-sm leading-7 text-slate-600">{horizon.message}</p>
@@ -233,6 +251,7 @@ function InsightPreviewPage() {
                     ))}
                   </div>
                   <div className="market-hero mt-6 p-4 md:p-6"><ForecastPath market={market} /></div>
+                  {market.run_mode === "fresh_on_demand" && <p className="mt-4 text-center text-xs leading-5 text-slate-500">Freshly calculated from {market.historical_row_count?.toLocaleString()} stored trading sessions through {formatDate(market.as_of_date)} · run {market.run_id?.slice(0, 8)}</p>}
                 </>
               ) : <p className="mt-6 text-slate-600">A supported market estimate was not available for this stock.</p>}
             </section>

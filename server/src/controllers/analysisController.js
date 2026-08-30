@@ -172,14 +172,33 @@ const createAnalysis = async (req, res) => {
   await report.save();
 
   try {
+    const workflow = {};
+    const runStage = async (key, label, task) => {
+      const started = Date.now();
+      console.info(`[analysis:${analysis._id}] ${key}: started`);
+      try {
+        const output = await task();
+        workflow[key] = { label, status: "completed", durationMs: Date.now() - started };
+        console.info(`[analysis:${analysis._id}] ${key}: completed in ${workflow[key].durationMs} ms`);
+        return output;
+      } catch (error) {
+        workflow[key] = { label, status: "unavailable", durationMs: Date.now() - started };
+        console.info(`[analysis:${analysis._id}] ${key}: unavailable after ${workflow[key].durationMs} ms`);
+        throw error;
+      }
+    };
     const [marketResult, reportResult, contextResult] = await Promise.allSettled([
-      loadMarketInsight(stockSymbol),
-      analyzeFinancialReport({
+      runStage("market", "Market behaviour and unusual movement", () => loadMarketInsight(stockSymbol)),
+      runStage("report", "Verified company report", () => analyzeFinancialReport({
         pdfPath: report.storagePath,
         companyName: latestStock.companyName,
         symbol: stockSymbol,
-      }),
-      collectExternalContext({ stockSymbol, symbol: stockSymbol, companyName: latestStock.companyName }),
+      })),
+      runStage("externalContext", "External events and market factors", () => collectExternalContext({
+        stockSymbol,
+        symbol: stockSymbol,
+        companyName: latestStock.companyName,
+      })),
     ]);
 
     const market = resultOrNull(marketResult);
@@ -208,13 +227,13 @@ const createAnalysis = async (req, res) => {
     let unifiedInsight = null;
     if (market || reportOutput || externalContext) {
       try {
-        unifiedInsight = await generateUnifiedInsight(compactFusionEvidence({
+        unifiedInsight = await runStage("integration", "Plain-language integrated stock picture", () => generateUnifiedInsight(compactFusionEvidence({
           stockSymbol,
           companyName: latestStock.companyName,
           market,
           report: reportOutput,
           externalContext,
-        }));
+        })));
         if (Array.isArray(unifiedInsight.warnings)) {
           warnings.push(...unifiedInsight.warnings.map((warning) => `Unified explanation: ${safeWarning(warning)}`));
         }
@@ -232,6 +251,7 @@ const createAnalysis = async (req, res) => {
       report: publicReportOutput(reportOutput),
       externalContext: publicExternalOutput(externalContext),
       unifiedInsight,
+      workflow,
     };
     analysis.warnings = [...new Set(warnings)];
     await analysis.save();

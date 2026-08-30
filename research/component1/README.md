@@ -41,8 +41,20 @@ The executed notebook regenerates the CSV tables and PNG figures under
 The old workspace contains timestamped forecasts for **JKH and BIL only**. A
 third stock forecast was not found, so no third validation result is invented.
 
+## Live application execution
+
+`analyze_market_on_demand.py` is the application entry point. On every Analyze
+request, the backend exports the selected stock's latest MongoDB rows to a
+private temporary CSV, runs the pipeline again, returns a unique run ID and
+data cut-off date, and deletes the temporary files. The locked May forecasts
+above are never loaded as a live user result.
+
+The 4-day, 1-month, and 3-month values are checkpoints on the validated
+60-trading-session path. Favourable and adverse values are uncertainty bounds,
+not guaranteed best/worst targets. Six months remains unavailable until that
+horizon is separately developed and validated.
+
 ## Interpretation boundary
 
 The validation evaluates forecast accuracy, not investment profitability. The
 results are research evidence and are not buying or selling advice.
-

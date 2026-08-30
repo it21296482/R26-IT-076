@@ -73,3 +73,122 @@ Total Equity
     assert len(result["source_evidence"]) == 8
     assert all(item["source_quote"] for item in result["source_evidence"])
 
+
+def test_bil_quarterly_summary_surfaces_operating_cash_and_segment_recovery():
+    extracted = {
+        "pdf_name": "bil-june-2026.pdf",
+        "pages": [
+            {"page_number": 1, "text": "Browns Investments PLC\nThree months ended 30 June 2026"},
+            {"page_number": 4, "text": """Revenue / Income
+28,535,094
+19,670,957
+28,535,094
+19,670,957
+Gross profit
+7,171,985
+3,128,924
+7,171,985
+3,128,924
+Results from operating activities
+4,617,323
+2,291,529
+4,617,323
+2,291,529
+Finance cost
+(10,390,534)
+(9,713,811)
+(10,390,534)
+(9,713,811)
+Profit / (Loss) after tax for the period
+(5,872,957)
+(7,051,013)
+(5,872,957)
+(7,051,013)
+Basic / diluted earnings per share (Rs.)
+(0.34)
+(0.45)
+(0.34)
+(0.45)"""},
+            {"page_number": 7, "text": """Cash generated from / (used in) operations
+3,618,350
+(9,749,833)
+Net cash generated from / (used in) operating activities
+(409,056)
+(13,679,196)
+Acquisition and construction of property, plant and equipment
+(4,929,552)
+(1,265,626)"""},
+            {"page_number": 10, "text": """Segment Information - Group
+Leisure
+Plantation
+Revenue / income
+1
+1
+2
+2
+3
+3
+18,952,989
+12,735,646
+5
+5
+6
+6
+7
+7
+Gross profit
+1
+1
+2
+2
+3
+3
+3,374,863
+710,028
+5
+5
+6
+6
+7
+7
+Results from Operating Activities
+1
+1
+2,089,410
+(128,796)
+885,713
+(435,314)
+4
+4
+5
+5
+6
+6
+7
+7
+Profit after taxation from continuing operations
+1
+1
+2
+2
+125,445
+(970,448)
+4
+4
+5
+5
+6
+6
+7
+7"""},
+        ],
+    }
+
+    result = build_local_report_insight(extracted, "Browns Investments PLC", "BIL.N0000", "prompt_08")
+    strengths = " ".join(result["investor_friendly_insight"]["key_strengths"])
+
+    assert "Gross profit increased by about 129%" in strengths
+    assert "group loss after tax narrowed by about 17%" in strengths
+    assert "Cash generated from operations" in strengths
+    assert "Leisure and Travel moved" in strengths
+    assert "Plantation revenue increased 49%" in strengths

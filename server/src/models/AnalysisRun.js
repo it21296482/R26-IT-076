@@ -36,6 +36,7 @@ const analysisRunSchema = new mongoose.Schema(
       report: { type: mongoose.Schema.Types.Mixed, default: null },
       externalContext: { type: mongoose.Schema.Types.Mixed, default: null },
       unifiedInsight: { type: mongoose.Schema.Types.Mixed, default: null },
+      workflow: { type: mongoose.Schema.Types.Mixed, default: null },
     },
     warnings: {
       type: [String],
@@ -55,4 +56,3 @@ const analysisRunSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("AnalysisRun", analysisRunSchema);
-

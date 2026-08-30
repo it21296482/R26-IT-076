@@ -271,6 +271,23 @@
   }
 }
 
+.forecast-path-line {
+  animation: drawForecastPath 1.4s ease-out both;
+  stroke-dashoffset: 0;
+}
+
+@keyframes drawForecastPath {
+  from {
+    opacity: 0;
+    stroke-dashoffset: 220;
+  }
+
+  to {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

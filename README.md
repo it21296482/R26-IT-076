@@ -8,10 +8,11 @@ This repository contains the MERN application and reproducible research packages
 - `server/`: Express + MongoDB backend
 - `assets/`: source visuals
 - `client/public/assets/`: web-ready copies of the visuals used by the UI
-- `research/component1/`: preserved market research, fresh runtime artifacts, and the executed forecast-validation notebook
+- `research/component1/`: preserved market research, fresh on-demand runtime entry point, locked validation artifacts, and the executed forecast-validation notebook
 - `component_2/`: financial-report research, prompt benchmark, verified runtime adapter, and tests
 - `research/component3/`: preserved external-context research source and integration notes
 - `research/PROPOSAL_AND_IMPLEMENTATION_AUDIT.md`: requirements and evidence audit across all four proposals
+- `research/INTEGRATED_SYSTEM_DEMONSTRATION.md`: exact backend flow, research novelty, viva script, and honest limitations
 
 ## Current product flow
 
@@ -21,6 +22,7 @@ This repository contains the MERN application and reproducible research packages
 - secure role-based sessions
 - user workspace requiring a supported stock and its latest quarterly or annual PDF report
 - report company and period verification both when the PDF is uploaded and immediately before analysis; stale or mismatched reports are rejected
+- every Analyze click reruns the market workflow from the latest MongoDB history; locked forecasts are never used as live output
 - one evidence-aware result containing forecast horizons, deviation/anomaly context, favourable and adverse price ranges, page-verified report strengths and concerns, dated news, stock-specific external-factor associations, risks, limitations, and a non-advisory statement
 - short-lived analysis storage with automatic expiry after 24 hours
 - admin console for:
@@ -85,7 +87,7 @@ Open `http://127.0.0.1:5173`.
 - frontend env file: `client/.env`
 - default backend port in the current local setup: `5001`
 - copy values from the two `.env.example` files and replace every placeholder
-- set `PYTHON_BIN=python` in this local workspace
+- set `PYTHON_BIN=python` (or the path to the project Python environment) and allow up to six minutes for a fresh market run
 - report extraction and the combined explanation work locally from verified evidence by default (`USE_AZURE_OPENAI=false`)
 - Azure wording enhancement is optional; enable it only with `USE_AZURE_OPENAI=true` and a valid rotated credential that matches the endpoint and deployment
 - oil, gold, and USD/LKR relationships use overlapping one-year daily returns and are presented as associations with business context, never as proof of cause

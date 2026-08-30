@@ -381,17 +381,22 @@ function AdminDashboardPage() {
           </p>
           <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {[
-              ["01", "Price behaviour", "Checks historical price and volume, expected ranges, recent deviations, and unusual movement signals."],
-              ["02", "Company report", "Confirms the company and latest reporting period, then finds page-backed strengths, concerns, and operational changes."],
-              ["03", "Outside conditions", "Reviews relevant company, local, and global news together with oil, gold, and USD/LKR movements and their business meaning."],
-              ["04", "Clear stock picture", "Combines potential, downside ranges, company performance, external pressure, and uncertainty into one plain-language explanation."],
-            ].map(([number, title, description]) => (
+              ["01", "Price behaviour", "Input: every stored price and volume row for the selected stock.", "Freshly estimates 4-day, 1-month, and 3-month central and uncertainty paths, then measures expected-price deviation and unusual-movement score.", "Novelty: combines forecast potential, liquidity-aware deviation, anomaly direction, and honest comparison against a simple baseline."],
+              ["02", "Company report", "Input: the latest company-matched quarterly or annual PDF.", "Verifies the company and reporting date, then extracts page-backed growth, margin, cash-flow, segment, balance-sheet, and risk evidence.", "Novelty: turns an unstructured report into decision-relevant claims while retaining the source page and quote for verification."],
+              ["03", "Outside conditions", "Input: dated stock-specific, local, and global coverage plus gold, crude oil, and USD/LKR histories.", "Finds relevant events, language tone, factor movement, stock association, and the practical business channel for the selected company.", "Novelty: links external context to stock-specific business exposure while clearly separating association from proven cause."],
+              ["04", "Clear stock picture", "Input: the three evidence packages produced above.", "Balances price potential, adverse ranges, company performance, external pressure, uncertainty, and change conditions in plain language.", "Novelty: one evidence-grounded explanation designed for comprehension rather than a disconnected collection of charts."],
+            ].map(([number, title, input, action, novelty]) => (
               <article className="rounded-[24px] border border-slate-200 bg-slate-50 p-5" key={number}>
                 <p className="text-xs font-semibold tracking-[0.2em] text-sky-700">{number}</p>
                 <h3 className="mt-3 text-xl font-semibold text-slate-950">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{description}</p>
+                <p className="mt-3 text-sm font-semibold leading-6 text-slate-800">{input}</p>
+                <p className="mt-3 text-sm leading-7 text-slate-600">{action}</p>
+                <p className="mt-4 border-t border-slate-200 pt-4 text-xs leading-6 text-sky-800">{novelty}</p>
               </article>
             ))}
+          </div>
+          <div className="mt-6 rounded-[22px] border border-sky-100 bg-sky-50 p-5 text-sm leading-7 text-slate-700">
+            <strong className="text-slate-950">Live demonstration:</strong> select BIL or JKH, upload its latest matching report, and click Analyze once. The server starts stages 01-03 together, waits for their evidence, passes only verified outputs to stage 04, and stores the result for 24 hours. A new click starts a new price run from the latest database history rather than reopening an old forecast file.
           </div>
         </section>
 
