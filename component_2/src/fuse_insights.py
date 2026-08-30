@@ -230,6 +230,41 @@ def _external_takeaway(context: dict[str, Any] | None) -> tuple[str, list[str], 
     return explanation, factor_notes, risks, changes
 
 
+def _market_comparison_takeaway(context: dict[str, Any] | None) -> str:
+    comparison = ((context or {}).get("external_factors") or {}).get("marketComparison") or {}
+    if comparison.get("classification") in {None, "unavailable"}:
+        return "A same-session ASPI comparison was unavailable, so this run cannot confirm whether the latest move was stock-specific or market-wide."
+    stock_change = _percent(comparison.get("stockChangePct"))
+    aspi_change = _percent(comparison.get("aspiChangePct"))
+    return (
+        f"On the latest comparable session, this stock changed {stock_change} while the ASPI changed {aspi_change}. "
+        f"{_sentence(comparison.get('interpretation'), 'The broader-market comparison was inconclusive')}"
+    )
+
+
+def _conditional_upside_takeaway(
+    price_scenarios: dict[str, Any] | None,
+    context: dict[str, Any] | None,
+) -> str:
+    if not price_scenarios or price_scenarios.get("favourable_80_lkr") is None:
+        return "Positive company news and a stronger ASPI could improve investor confidence, but no verified price range was available to quantify that possibility."
+    positive_news = sum(
+        1 for item in (context or {}).get("articles", [])
+        if (item.get("sentiment") or {}).get("label") == "positive"
+    )
+    news_context = (
+        f"The collected evidence already includes {positive_news} positively worded relevant "
+        f"{'article' if positive_news == 1 else 'articles'}. "
+        if positive_news else ""
+    )
+    return (
+        f"{news_context}If company-specific news becomes more positive and the ASPI strengthens, improved confidence could support "
+        f"movement toward the favourable {price_scenarios['horizon']} range of "
+        f"{_money(price_scenarios['favourable_80_lkr'])} ({_percent(price_scenarios.get('favourable_change_pct'))} from today). "
+        "That is a conditional uncertainty scenario, not a prediction that good news or a rising ASPI will cause the price to reach it."
+    )
+
+
 def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
     """Create a complete plain-language result from verified upstream evidence."""
     selected = evidence.get("selected_stock") or {}
@@ -241,6 +276,8 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
     price_scenarios = _price_scenarios(market)
     report_text, strengths, report_risks = _report_takeaway(report)
     external_text, factors, external_risks, changes = _external_takeaway(context)
+    market_comparison_text = _market_comparison_takeaway(context)
+    conditional_upside_text = _conditional_upside_takeaway(price_scenarios, context)
     external_text += _nearby_event_context(market, context)
     middle_east_report_risk = next((item for item in report_risks if "middle east" in item.lower()), None)
     if middle_east_report_risk:
@@ -251,12 +288,14 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
     anomaly = (market or {}).get("anomaly") or {}
     direction = "showed an unusual departure from its expected level" if anomaly.get("detected") else "remained within its expected movement range"
     headline = f"{company} {direction}; verified business strengths and external risks pull the picture in different directions."
-    overview = f"{market_text} {price_scenarios.get('narrative', '') if price_scenarios else ''} {report_text} {external_text}"
+    overview = (
+        f"{market_text} {market_comparison_text} {conditional_upside_text} "
+        f"{price_scenarios.get('narrative', '') if price_scenarios else ''} {report_text} {external_text} "
+        "Together, this covers the available price, company-report, news, ASPI, commodity, currency, risk, and uncertainty evidence; unknown future events can still change the picture."
+    )
     potential = []
     if price_scenarios:
-        potential.append(
-            f"A favourable {price_scenarios['horizon']} outcome within the measured 80% range reaches about {_money(price_scenarios['favourable_80_lkr'])}; this is a scenario, not a target."
-        )
+        potential.append(conditional_upside_text)
     elif paths:
         potential.append(f"The observed price pattern currently points to {paths[0].lower()}.")
     potential.extend(strengths[:5])
@@ -290,6 +329,8 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
         "The central path is close to today's price. Verified operating improvements support potential, but the downside range, currency and finance-cost exposure, and external uncertainty remain important."
     )
     change_items = changes[:4]
+    if conditional_upside_text not in change_items:
+        change_items.insert(0, conditional_upside_text)
     change_items.append("A newer company report could materially change the financial picture.")
     factor_impacts = []
     for item in ((context or {}).get("external_factors") or {}).get("factors") or []:
@@ -310,7 +351,9 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
         "plain_language_overview": overview,
         "market_outlook": market_text,
         "company_report_takeaway": report_text,
-        "external_context": external_text + (f" Wider factors: {' '.join(factors)}" if factors else ""),
+        "external_context": f"{market_comparison_text} {external_text}" + (f" Wider factors: {' '.join(factors)}" if factors else ""),
+        "market_comparison": market_comparison_text,
+        "conditional_upside": conditional_upside_text,
         "price_scenarios": price_scenarios,
         "decision_balance": {
             "label": balance_label,
@@ -327,6 +370,7 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
             "Historical prices, trading volume, expected price, deviation, and unusual-movement score",
             "Page-verified figures from the uploaded company report",
             "Dated company and market news plus observed gold, oil, and currency relationships",
+            "Same-session selected-stock performance compared with the official CSE ASPI snapshot",
         ],
         "non_advisory_note": "This is an informational research summary, not buying or selling advice.",
     }
@@ -352,10 +396,11 @@ Required JSON object:
 }}
 
 Rules:
-- Never turn a six-month unavailable status into a forecast.
 - If the advanced market model did not beat its baseline, say the estimates should be treated cautiously.
 - Use report facts only when their evidence passed page-quote verification.
 - Mention only news supplied in the evidence and avoid saying an event caused a price move.
+- Explain whether the latest stock move was shared with the ASPI or specific to the stock when same-session evidence exists.
+- Use favourable price bounds only as conditional uncertainty scenarios if news and broader-market conditions improve.
 - Do not assign an overall confidence percentage.
 
 Evidence JSON:
@@ -415,6 +460,13 @@ def fuse(evidence: dict[str, Any]) -> dict[str, Any]:
     insight["price_scenarios"] = local_insight.get("price_scenarios")
     insight["decision_balance"] = local_insight.get("decision_balance")
     insight["factor_impacts"] = local_insight.get("factor_impacts")
+    insight["plain_language_overview"] = local_insight.get("plain_language_overview")
+    insight["market_outlook"] = local_insight.get("market_outlook")
+    insight["external_context"] = local_insight.get("external_context")
+    insight["potential"] = local_insight.get("potential")
+    insight["what_could_change_the_picture"] = local_insight.get("what_could_change_the_picture")
+    insight["market_comparison"] = local_insight.get("market_comparison")
+    insight["conditional_upside"] = local_insight.get("conditional_upside")
     return {
         "status": "completed",
         "insight": insight,

@@ -107,6 +107,42 @@ const fetchText = async (url, timeoutMs = 12000) => {
   }
 };
 
+const fetchCseAspiSnapshot = async (timeoutMs = 12000) => {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch("https://www.cse.lk/api/aspiData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "User-Agent": "CSE-Insight-Research/1.0",
+      },
+      body: "",
+      signal: controller.signal,
+    });
+    if (!response.ok) throw new Error(`CSE ASPI source returned HTTP ${response.status}.`);
+    const payload = await response.json();
+    const value = Number(payload.value);
+    const change = Number(payload.change);
+    const changePct = Number(payload.percentage);
+    if (![value, change, changePct].every(Number.isFinite)) {
+      throw new Error("CSE ASPI source returned an incomplete snapshot.");
+    }
+    return {
+      label: "All Share Price Index (ASPI)",
+      source: "Colombo Stock Exchange",
+      value: Number(value.toFixed(4)),
+      change: Number(change.toFixed(4)),
+      changePct: Number(changePct.toFixed(4)),
+      date: Number.isFinite(Number(payload.timestamp))
+        ? new Date(Number(payload.timestamp)).toISOString().slice(0, 10)
+        : null,
+    };
+  } finally {
+    clearTimeout(timeout);
+  }
+};
+
 const buildGoogleNewsUrl = (query) => (
   `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=en-LK&gl=LK&ceid=LK:en`
 );
@@ -224,6 +260,71 @@ const describeAssociation = (correlation) => {
   return `The observed daily relationship was ${strength} and ${direction}. This is correlation, not proof of cause.`;
 };
 
+const classifyMarketComparison = ({ stockChangePct, aspiChangePct }) => {
+  if (![stockChangePct, aspiChangePct].every(Number.isFinite)) {
+    return {
+      classification: "unavailable",
+      interpretation: "There was not enough same-session evidence to compare this stock with the wider market.",
+    };
+  }
+  if (stockChangePct < 0 && aspiChangePct < 0) {
+    return {
+      classification: "broader_market_weakness",
+      interpretation: "The stock and the ASPI both declined, so the weakness was shared with the broader market rather than isolated to this company. This does not mean every listed stock declined.",
+    };
+  }
+  if (stockChangePct < 0 && aspiChangePct >= 0) {
+    return {
+      classification: "stock_specific_weakness",
+      interpretation: "The stock declined while the ASPI was flat or higher, so the latest weakness was specific to this stock relative to the broader market.",
+    };
+  }
+  if (stockChangePct >= 0 && aspiChangePct < 0) {
+    return {
+      classification: "resilient_in_weak_market",
+      interpretation: "The stock held up or rose while the ASPI declined, so it showed relative strength against a weaker broader market.",
+    };
+  }
+  return {
+    classification: "broader_market_strength",
+    interpretation: "The stock and the ASPI were both flat or higher, so the stock participated in broader market strength during the latest session.",
+  };
+};
+
+const buildMarketComparison = async (symbol, aspiSnapshot) => {
+  const rows = await Stock.find({ symbol: String(symbol).toUpperCase() })
+    .sort({ tradeDate: -1 })
+    .limit(2)
+    .select("tradeDate close -_id")
+    .lean();
+  if (rows.length < 2 || !Number.isFinite(Number(rows[0].close)) || !Number.isFinite(Number(rows[1].close))) {
+    return classifyMarketComparison({ stockChangePct: null, aspiChangePct: aspiSnapshot.changePct });
+  }
+  const stockChangePct = ((Number(rows[0].close) / Number(rows[1].close)) - 1) * 100;
+  const stockDate = new Date(rows[0].tradeDate).toISOString().slice(0, 10);
+  if (aspiSnapshot.date && stockDate !== aspiSnapshot.date) {
+    return {
+      stockDate,
+      stockChangePct: Number(stockChangePct.toFixed(4)),
+      aspiDate: aspiSnapshot.date,
+      aspiValue: aspiSnapshot.value,
+      aspiChangePct: aspiSnapshot.changePct,
+      relativeToAspiPct: null,
+      classification: "unavailable",
+      interpretation: "The latest stock and ASPI observations were from different dates, so no same-session market comparison was made.",
+    };
+  }
+  return {
+    stockDate,
+    stockChangePct: Number(stockChangePct.toFixed(4)),
+    aspiDate: aspiSnapshot.date,
+    aspiValue: aspiSnapshot.value,
+    aspiChangePct: aspiSnapshot.changePct,
+    relativeToAspiPct: Number((stockChangePct - aspiSnapshot.changePct).toFixed(4)),
+    ...classifyMarketComparison({ stockChangePct, aspiChangePct: aspiSnapshot.changePct }),
+  };
+};
+
 
 const buildFactorMeaning = ({ symbol, factor, correlation, beta, change30dPct }) => {
   const exposure = STOCK_FACTOR_EXPOSURES[String(symbol).toUpperCase()]?.[factor.key];
@@ -306,11 +407,12 @@ const collectExternalContext = async ({ symbol, companyName }) => {
     { scope: "market", query: `(\"Colombo Stock Exchange\" OR \"Sri Lanka economy\") (inflation OR interest OR rupee OR IMF OR oil OR gold OR war) when:45d` },
     { scope: "global", query: `(Iran OR \"Middle East\" OR geopolitical OR war) (oil OR markets OR \"Sri Lanka\") when:45d` },
   ];
-  const [companyNews, marketNews, globalNews, factorResult] = await Promise.allSettled([
+  const [companyNews, marketNews, globalNews, factorResult, aspiResult] = await Promise.allSettled([
     fetchNewsFeed({ ...queries[0], companyName }),
     fetchNewsFeed({ ...queries[1], companyName }),
     fetchNewsFeed({ ...queries[2], companyName }),
     analyzeExternalFactors(symbol),
+    fetchCseAspiSnapshot(),
   ]);
   const warnings = [];
   const articles = [];
@@ -325,6 +427,18 @@ const collectExternalContext = async ({ symbol, companyName }) => {
     ? factorResult.value
     : { factors: [], warnings: [`External factor data failed: ${factorResult.reason.message}`], method: "Unavailable" };
   warnings.push(...externalFactors.warnings);
+  let marketComparison = null;
+  let aspiSnapshot = null;
+  if (aspiResult.status === "fulfilled") {
+    aspiSnapshot = aspiResult.value;
+    try {
+      marketComparison = await buildMarketComparison(symbol, aspiSnapshot);
+    } catch (error) {
+      warnings.push(`The selected stock could not be compared with the ASPI: ${error.message}`);
+    }
+  } else {
+    warnings.push(`ASPI data was unavailable: ${aspiResult.reason.message}`);
+  }
 
   return {
     collectedAt: new Date().toISOString(),
@@ -333,6 +447,8 @@ const collectExternalContext = async ({ symbol, companyName }) => {
     articles: uniqueArticles,
     externalFactors: {
       factors: externalFactors.factors,
+      aspiSnapshot,
+      marketComparison,
       method: externalFactors.method,
       causalWarning: "Observed associations do not prove that a global factor caused the stock movement.",
     },
@@ -350,4 +466,5 @@ module.exports = {
   pearsonCorrelation,
   regressionSensitivity,
   buildFactorMeaning,
+  classifyMarketComparison,
 };

@@ -121,3 +121,48 @@ def test_local_fusion_marks_downside_heavy_price_range_as_risk_heavy():
 
     assert insight["decision_balance"]["label"] == "Risk-heavy despite upside possibilities"
     assert "measured downside is larger" in insight["decision_balance"]["plain_conclusion"]
+
+
+def test_summary_explains_aspi_comparison_and_conditional_upside():
+    evidence = {
+        "selected_stock": {"symbol": "BIL.N0000", "company_name": "Browns Investments PLC"},
+        "market_evidence": {
+            "current_price_lkr": 5.0,
+            "horizons": [{
+                "label": "3 months",
+                "key": "3m",
+                "estimated_close_lkr": 4.65,
+                "change_from_latest_pct": -7.0,
+                "lower_80_lkr": 2.9,
+                "upper_80_lkr": 6.4,
+                "lower_95_lkr": 1.4,
+                "upper_95_lkr": 7.9,
+            }],
+            "anomaly": {"detected": False},
+            "model_quality": {},
+        },
+        "report_evidence": {
+            "status": "completed",
+            "insight": {"investor_friendly_insight": {
+                "summary": "Revenue and operating profit improved.",
+                "key_strengths": ["Revenue increased."],
+                "key_concerns": ["Finance costs remain high."],
+            }},
+        },
+        "external_context": {
+            "articles": [{"title": "BIL reports growth", "sentiment": {"label": "positive"}}],
+            "external_factors": {"factors": [], "marketComparison": {
+                "stockChangePct": -2.0,
+                "aspiChangePct": 0.5,
+                "classification": "stock_specific_weakness",
+                "interpretation": "The stock declined while the ASPI increased, so the weakness was specific to this stock.",
+            }},
+        },
+    }
+
+    insight = build_local_fusion(evidence)
+
+    assert "stock changed -2.0% while the ASPI changed +0.5%" in insight["plain_language_overview"]
+    assert "specific to this stock" in insight["plain_language_overview"]
+    assert "favourable 3 months range of LKR 6.40 (+28.0% from today)" in insight["plain_language_overview"]
+    assert "not a prediction" in insight["conditional_upside"]

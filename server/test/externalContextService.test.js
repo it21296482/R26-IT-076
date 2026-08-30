@@ -9,12 +9,23 @@ const {
   pearsonCorrelation,
   regressionSensitivity,
   buildFactorMeaning,
+  classifyMarketComparison,
 } = require("../src/services/externalContextService");
 
 test("financial language receives a transparent sentiment label", () => {
   assert.equal(analyzeSentiment("Record profit and strong revenue growth").label, "positive");
   assert.equal(analyzeSentiment("Losses increased during a weak and volatile period").label, "negative");
   assert.equal(analyzeSentiment("The company published its report").label, "neutral");
+});
+
+test("market comparison distinguishes broad weakness from stock-specific decline", () => {
+  const broad = classifyMarketComparison({ stockChangePct: -2.1, aspiChangePct: -0.8 });
+  assert.equal(broad.classification, "broader_market_weakness");
+  assert.match(broad.interpretation, /does not mean every listed stock declined/i);
+
+  const specific = classifyMarketComparison({ stockChangePct: -2.1, aspiChangePct: 0.5 });
+  assert.equal(specific.classification, "stock_specific_weakness");
+  assert.match(specific.interpretation, /specific to this stock/i);
 });
 
 test("event categories include macro and geopolitical context", () => {
