@@ -14,7 +14,7 @@ language rather than four disconnected technical outputs.
 | Market behaviour | Combines fresh multi-horizon price ranges with signed expected-price deviation, liquidity-aware anomaly direction, factor contribution, and explanation stability for the CSE. | Fresh forecasts, uncertainty, deviation, anomaly, baseline comparison, factor evidence, and stability evidence run in the live pipeline. Formal factor-interaction validation and broader multi-stock evaluation remain research work. |
 | Financial-report understanding | Converts local quarterly or annual disclosures into structured growth, financial-health, and risk evidence while preserving page-level traceability and contextual meaning. | Company/date validation, report extraction, structured findings, and verified page quotes run in the live pipeline. Proposal-scale document accuracy and grounding targets still require a labelled evaluation set. |
 | External context | Goes beyond a generic news feed by connecting dated company, market, and global events to sentiment, wider-market direction, measured factor association, and the selected company's practical exposure. | News, event labels, ASPI comparison, and gold, crude-oil, VIX, and USD/LKR context run in the live pipeline. A labelled CSE sentiment/event evaluation remains outstanding. |
-| Explainable global-market risk | Combines stock behaviour with gold, oil, and VIX conditions to classify financial-market risk and explain which inputs supported or reduced that risk assessment. | The preserved Random Forest model and corrected multiclass SHAP explanation run in the main Analyze workflow for model-supported stocks. BIL is not in the supplied encoder and is reported as unsupported rather than being mapped to another company. Training labels, split method, and held-out performance evidence were not supplied and remain research obligations. |
+| Explainable global-market risk | Combines stock behaviour with gold, oil, and VIX conditions to classify current financial-market risk and explain which inputs supported or reduced that assessment. | A reproducible BIL/JKH Random Forest and corrected multiclass SHAP explanation run in the main Analyze workflow. The chronological holdout achieved 85.98% accuracy and 0.859 macro-F1; global indicators improved macro-F1 by 0.031 over the stock-only ablation. These metrics measure current-risk label fidelity, not future returns. |
 
 ## Exact user and backend flow
 
@@ -121,14 +121,15 @@ freshness metrics still require a manually labelled CSE-oriented test set.
 
 ## Stage 4: explainable global-market risk impact
 
-**Input:** the selected stock's latest close, volume, 10-session average,
-50-session average, recent volatility, stock identity, and the dated gold, oil,
-and VIX values collected in stage 3.
+**Input:** the selected stock's latest close, volume, 10-session and 50-session
+averages, recent return, drawdown, relative variability, unusual volume, stock
+identity, and dated Gold, Oil, and VIX levels and recent changes from stage 3.
 
-**What runs:** the preserved Random Forest classifier returns LOW, MEDIUM, or
-HIGH risk. The SHAP adapter then evaluates feature contributions for the
-predicted class using the correct multiclass output axis. It identifies the
-strongest overall drivers and separately explains whether gold, oil, and VIX
+**What runs:** the reproducible CSE Random Forest returns LOW, MEDIUM, or HIGH
+current risk for BIL or JKH. The transparent target combines observable price
+variability, recent return and drawdown, unusual volume, VIX, and Gold/Oil
+movement. The SHAP adapter evaluates contributions for the predicted class using
+the correct multiclass output axis and explains whether global indicators
 supported or partly offset the classification.
 
 **Output:** risk level, plain explanation, main driver meanings, global-factor
@@ -139,11 +140,13 @@ internals remain in the research layer and are not exposed to investors.
 stock behaviour with global financial conditions and explains why the model
 produced that classification.
 
-**Validation boundary:** the supplied encoder supports JKH but not BIL. The
-runtime refuses to substitute a proxy for an unsupported company. The supplied
-branch did not contain the risk-label construction method, training script,
-data split, confusion matrix, or held-out metrics, so predictive accuracy must
-not be claimed until those artifacts are produced.
+**Validation boundary:** both BIL and JKH are supported without a proxy. The
+chronological 80/20 holdout contains 1,320 observations and reports 85.98%
+accuracy, 0.867 balanced accuracy, and 0.859 macro-F1. The majority baseline
+macro-F1 is 0.125; removing Gold/Oil/VIX lowers macro-F1 to 0.828. These results
+validate fidelity to the documented current-risk categories, not future-loss or
+investment-return prediction. Broader CSE coverage and temporal stability across
+additional regimes remain future research.
 
 ## Shared integration layer: one plain-language outlook
 
@@ -183,10 +186,9 @@ research component or as a replacement for any of the four contributions.
     explainable LOW/MEDIUM/HIGH risk card.
 11. Finish with uncertainty, evidence limitations, and the non-advisory statement.
 
-Use JKH for a complete four-stage demonstration because it is present in the
-supplied risk-model encoder. BIL can demonstrate the other stages and the
-system's honest unsupported-model handling; it must not be presented as a
-complete risk-model case until BIL is trained and evaluated.
+Either BIL or JKH can now demonstrate all four stages. Show that the risk card
+describes current observable conditions and is separate from the future price
+paths produced by stage 1.
 
 ## Questions likely to be asked
 
@@ -224,7 +226,7 @@ No. It explains how those feature values influenced this classifier's output.
 Historical association, model contribution, and real-world causation are
 different claims and remain clearly separated.
 
-**How is hallucination controlled?**  
+**How is hallucination controlled?**
 Missing evidence is labelled missing, report claims retain pages and quotes,
 stale or mismatched reports are rejected, external relationships are described
 as associations, unsupported risk stocks are refused, and the final layer may
@@ -239,5 +241,5 @@ only use structured upstream evidence.
 - The CSE refresh reports the current trade date or an explicit warning.
 - The result has a fresh run ID and current market-data cut-off date.
 - Report claims shown in the viva have page-level source evidence.
-- JKH is used when demonstrating the supplied risk model.
+- BIL or JKH is used because both are included in the evaluated CSE risk model.
 - Uncertainty and the non-advisory statement remain visible.

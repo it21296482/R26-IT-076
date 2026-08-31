@@ -36,7 +36,7 @@ screen therefore contains only stock selection, PDF upload, and Analyze.
 | Market behaviour | Explainable, anomaly-aware CSE modelling that combines expected movement, liquidity-aware deviation, factor contribution, interaction analysis, and consistency over time. | Fresh 4-day, 1-month, 3-month, and 6-month paths; uncertainty ranges; signed deviation; anomaly score and direction; baseline comparison; factor contribution and explanation-stability outputs. | Explicit factor-interaction validation, broader multi-stock/regime testing, and formal usability evidence. |
 | Financial reports | Localized, retrieval-enhanced interpretation that converts unstructured reports into grounded financial-health, growth, and risk signals. | Annual/quarterly PDF handling, company/date checks, structured findings, contextual extraction, and page-verified quotes in the Analyze workflow. | Proposal-scale document corpus and labelled extraction, grounding, and reliability results. |
 | External context | Event-driven sentiment and news understanding integrated with market context rather than presented as a generic feed. | Selected-company, local, and global news; deduplication; event/sentiment labels; ASPI comparison; gold, oil, VIX, and USD/LKR associations and business channels. | Labelled CSE sentiment/event metrics, source-coverage evidence, and monitored provider reliability. |
-| Explainable global-market risk | A stock-risk classifier that combines stock behaviour with Gold, Oil, and VIX and explains why the selected risk level was produced. | The supplied Random Forest and stock encoder run through an isolated adapter; corrected multiclass SHAP values produce main and global driver meanings inside the unified Analyze result. | Risk-label construction, training script, split method, confusion matrix, held-out metrics, broader CSE stock coverage, and stability evaluation. |
+| Explainable global-market risk | A stock-risk classifier that combines stock behaviour with Gold, Oil, and VIX and explains why the selected risk level was produced. | A reproducible BIL/JKH Random Forest, chronological holdout, stock-only ablation, and corrected multiclass SHAP adapter produce current-risk and driver meanings inside the unified Analyze result. | Broader CSE stock coverage, rolling-window temporal stability, and independent validation of the current-risk definition. |
 
 ## Fourth-branch integration decision
 
@@ -203,28 +203,32 @@ dashboard rather than becoming a separate recommendation page.
 
 ### Current evidence
 
-- The preserved model is a `RandomForestClassifier` with 200 trees, maximum
-  depth 10, and classes 0/1/2 mapped to LOW/MEDIUM/HIGH.
-- Runtime inputs match the model's exact nine-feature contract: Close, Volume,
-  MA10, MA50, Volatility, Gold, Oil, VIX, and encoded stock identity.
+- The preserved branch artifact remains available for provenance, while the live
+  model is a reproducible 300-tree `RandomForestClassifier` supporting BIL and
+  JKH with classes 0/1/2 mapped to LOW/MEDIUM/HIGH.
+- Runtime inputs include price, volume, averages, recent return, drawdown,
+  relative variability, unusual volume, Gold, Oil, VIX, their recent changes,
+  and encoded stock identity.
 - The risk stage consumes the selected stock's latest MongoDB history and reuses
   the dated global indicators returned by the external-context stage.
 - The corrected SHAP adapter returns top overall drivers and separately explains
   whether Gold, Oil, and VIX supported or partly offset the predicted class.
+- A chronological 80/20 holdout achieved 85.98% accuracy, 0.867 balanced
+  accuracy, and 0.859 macro-F1 across 1,320 BIL/JKH test observations.
+- The majority baseline macro-F1 was 0.125. A stock-only ablation reached 0.828,
+  so global indicators added 0.031 macro-F1 in this experiment.
 - Risk is displayed inside the same first-page plain-language result and is also
   passed into final evidence fusion. Technical model terminology is restricted
   to the protected research demonstration and documentation.
 
 ### Missing or incorrect
 
-- The supplied encoder contains JKH but not BIL, so BIL cannot receive a valid
-  risk classification from this model yet.
-- The branch contains a prepared dataset but no reproducible risk-label creation,
-  training script, train/test split record, confusion matrix, class-level
-  precision/recall/F1, or held-out performance report.
-- Current model feature importance is dominated by volatility. This may be valid,
-  but the intended contribution of global indicators needs ablation and stability
-  testing rather than being assumed from their presence.
+- The risk labels describe a documented current observable market-risk index;
+  they are not ground-truth future losses or investment-return outcomes.
+- Holdout metrics measure classification fidelity to that risk definition, not
+  future-price forecasting skill.
+- Only BIL and JKH are evaluated. Other stocks remain unsupported until they are
+  added to training and chronological validation.
 - SHAP explains model behaviour; it does not establish that a factor caused the
   real-world stock risk.
 
@@ -238,7 +242,8 @@ dashboard rather than becoming a separate recommendation page.
   class balance, baseline comparison, confusion matrix, precision, recall, F1,
   and out-of-sample performance.
 - Ablation and temporal-stability tests demonstrate whether Gold, Oil, and VIX
-  add measurable value beyond stock-only inputs.
+  add measurable value beyond stock-only inputs. The first ablation is complete;
+  rolling regime-specific stability remains outstanding.
 - Model contribution is described as explanation, not causal proof or investment
   advice.
 
@@ -266,8 +271,9 @@ their distinct novelty is documented without exposing member ownership or model
 internals in the investor interface. Integration is not the same as research
 validation. Stage 1 has implementation and honest out-of-sample evidence but
 still needs broader and interaction-specific validation. Stages 2 and 3 need
-labelled, source-grounded evaluation. Stage 4 now runs the supplied explainable
-risk model for supported stocks but still needs reproducible training,
-performance, ablation, stability, and broader CSE coverage evidence. The shared
+labelled, source-grounded evaluation. Stage 4 now has reproducible BIL/JKH
+training, chronological performance, ablation evidence, and explainable live
+output, but still needs independent risk-definition validation, rolling
+stability, and broader CSE coverage. The shared
 plain-language integration layer remains product behaviour rather than a fifth
 research contribution.

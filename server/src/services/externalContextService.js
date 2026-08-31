@@ -101,21 +101,37 @@ const eventTags = (value) => {
     .map(([key]) => key);
 };
 
-const fetchText = async (url, timeoutMs = 12000) => {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    const response = await fetch(url, {
-      headers: { "User-Agent": "CSE-Insight-Research/1.0" },
-      signal: controller.signal,
-    });
-    if (!response.ok) {
-      throw new Error(`Source returned HTTP ${response.status}.`);
+const pause = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+
+const fetchText = async (url, timeoutMs = 20000, attempts = 3) => {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const response = await fetch(url, {
+        headers: { "User-Agent": "CSE-Insight-Research/1.0" },
+        signal: controller.signal,
+      });
+      if (!response.ok) {
+        const error = new Error(`Source returned HTTP ${response.status}.`);
+        error.status = response.status;
+        throw error;
+      }
+      return await response.text();
+    } catch (error) {
+      lastError = error;
+      const retryable = error.name === "AbortError"
+        || error instanceof TypeError
+        || error.status === 429
+        || error.status >= 500;
+      if (!retryable || attempt === attempts) throw error;
+      await pause(500 * attempt);
+    } finally {
+      clearTimeout(timeout);
     }
-    return await response.text();
-  } finally {
-    clearTimeout(timeout);
   }
+  throw lastError;
 };
 
 const fetchCseAspiSnapshot = async (timeoutMs = 12000) => {
@@ -195,20 +211,41 @@ const deduplicateNews = (articles) => {
   return [...unique.values()].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
 };
 
+const newsCoverageStatus = (results, articleCount) => {
+  const sourcesResponded = results.filter((result) => result.status === "fulfilled").length;
+  return {
+    sourcesAttempted: results.length,
+    sourcesResponded,
+    partialSourceFailure: sourcesResponded < results.length,
+    articleCount,
+    warning: articleCount === 0
+      ? "Current dated news coverage was unavailable, so no news-based conclusion was added."
+      : null,
+  };
+};
+
 const fetchYahooSeries = async (factor) => {
-  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(factor.symbol)}?range=1y&interval=1d`;
-  const payload = JSON.parse(await fetchText(url));
-  const result = payload.chart?.result?.[0];
-  const timestamps = result?.timestamp || [];
-  const closes = result?.indicators?.quote?.[0]?.close || [];
-  const observations = timestamps.map((timestamp, index) => ({
-    date: new Date(timestamp * 1000).toISOString().slice(0, 10),
-    close: Number(closes[index]),
-  })).filter((row) => Number.isFinite(row.close) && row.close > 0);
-  if (observations.length < 30) {
-    throw new Error(`Not enough ${factor.label} observations were returned.`);
+  let lastError;
+  for (const host of ["query2.finance.yahoo.com", "query1.finance.yahoo.com"]) {
+    try {
+      const url = `https://${host}/v8/finance/chart/${encodeURIComponent(factor.symbol)}?range=1y&interval=1d`;
+      const payload = JSON.parse(await fetchText(url, 20000, 2));
+      const result = payload.chart?.result?.[0];
+      const timestamps = result?.timestamp || [];
+      const closes = result?.indicators?.quote?.[0]?.close || [];
+      const observations = timestamps.map((timestamp, index) => ({
+        date: new Date(timestamp * 1000).toISOString().slice(0, 10),
+        close: Number(closes[index]),
+      })).filter((row) => Number.isFinite(row.close) && row.close > 0);
+      if (observations.length < 30) {
+        throw new Error(`Not enough ${factor.label} observations were returned.`);
+      }
+      return { ...factor, observations };
+    } catch (error) {
+      lastError = error;
+    }
   }
-  return { ...factor, observations };
+  throw lastError;
 };
 
 const percentChange = (observations, sessions) => {
@@ -427,11 +464,13 @@ const collectExternalContext = async ({ symbol, companyName }) => {
   ]);
   const warnings = [];
   const articles = [];
-  for (const result of [companyNews, marketNews, globalNews]) {
+  const newsResults = [companyNews, marketNews, globalNews];
+  for (const result of newsResults) {
     if (result.status === "fulfilled") articles.push(...result.value);
-    else warnings.push(`A news source request failed: ${result.reason.message}`);
   }
   const uniqueArticles = deduplicateNews(articles).slice(0, 30);
+  const newsCoverage = newsCoverageStatus(newsResults, uniqueArticles.length);
+  if (newsCoverage.warning) warnings.push(newsCoverage.warning);
   const sentimentCounts = { positive: 0, neutral: 0, negative: 0 };
   uniqueArticles.forEach((article) => { sentimentCounts[article.sentiment.label] += 1; });
   const externalFactors = factorResult.status === "fulfilled"
@@ -456,6 +495,7 @@ const collectExternalContext = async ({ symbol, companyName }) => {
     articleCount: uniqueArticles.length,
     sentimentCounts,
     articles: uniqueArticles,
+    newsCoverage,
     externalFactors: {
       factors: externalFactors.factors,
       aspiSnapshot,
@@ -478,4 +518,6 @@ module.exports = {
   regressionSensitivity,
   buildFactorMeaning,
   classifyMarketComparison,
+  fetchText,
+  newsCoverageStatus,
 };

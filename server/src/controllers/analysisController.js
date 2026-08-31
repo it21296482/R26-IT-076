@@ -94,6 +94,8 @@ const publicRiskOutput = (riskImpact) => {
   const output = structuredClone(riskImpact);
   delete output.class_probabilities;
   delete output.explanation_method;
+  delete output.model_scope;
+  delete output.model_validation;
   output.top_drivers = (output.top_drivers || []).map(({ impact, factor, ...driver }) => driver);
   output.global_drivers = (output.global_drivers || []).map(({ impact, factor, ...driver }) => driver);
   return output;
@@ -107,6 +109,25 @@ const warningsFrom = (settledResult, label) => {
     ? settledResult.value.warnings.map((warning) => `${label}: ${safeWarning(warning)}`)
     : [];
 };
+
+const compactRiskEvidence = (riskImpact) => riskImpact
+  ? {
+      status: riskImpact.status,
+      risk_level: riskImpact.risk_level,
+      plain_explanation: riskImpact.plain_explanation,
+      top_drivers: (riskImpact.top_drivers || []).map(({ label, meaning, supports_classification }) => ({
+        label,
+        meaning,
+        supports_classification,
+      })),
+      global_drivers: (riskImpact.global_drivers || []).map(({ label, meaning, supports_classification }) => ({
+        label,
+        meaning,
+        supports_classification,
+      })),
+      factor_dates: riskImpact.factor_dates,
+    }
+  : { status: "unavailable" };
 
 const compactFusionEvidence = ({ stockSymbol, companyName, market, report, externalContext, riskImpact }) => ({
   selected_stock: { symbol: stockSymbol, company_name: companyName },
@@ -137,7 +158,7 @@ const compactFusionEvidence = ({ stockSymbol, companyName, market, report, exter
         warnings: externalContext.warnings,
       }
     : { status: "unavailable" },
-  risk_evidence: riskImpact || { status: "unavailable" },
+  risk_evidence: compactRiskEvidence(riskImpact),
 });
 
 const createAnalysis = async (req, res) => {

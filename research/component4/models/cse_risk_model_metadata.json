@@ -1,0 +1,143 @@
+{
+  "model_version": "cse-current-risk-rf-v1",
+  "created_at": "2026-08-31T16:52:10.358718+00:00",
+  "supported_stocks": [
+    "BIL",
+    "JKH"
+  ],
+  "features": [
+    "Close",
+    "Volume",
+    "MA10",
+    "MA50",
+    "Volatility",
+    "Return20Pct",
+    "Drawdown20Pct",
+    "VolatilityPct",
+    "VolumeRatio20",
+    "Gold",
+    "Oil",
+    "VIX",
+    "GoldChange30dPct",
+    "OilChange30dPct",
+    "VIXChange30dPct",
+    "Stock_encoded"
+  ],
+  "target_definition": "LOW/MEDIUM/HIGH tertiles within each stock's chronological training period. The transparent current-risk index combines recent price variability, 20-session return and drawdown, unusual volume, VIX level, and 30-day Gold and Oil movement.",
+  "classification_scope": "Current observable financial-market risk state; not a future-loss forecast.",
+  "split_method": "Chronological 80/20 split within each stock.",
+  "split_details": {
+    "BIL": {
+      "train_rows": 2612,
+      "test_rows": 653,
+      "train_start": "2012-05-18",
+      "train_end": "2023-12-05",
+      "test_start": "2023-12-06",
+      "test_end": "2026-08-31",
+      "low_medium_threshold": 0.26793215,
+      "medium_high_threshold": 0.40486344
+    },
+    "JKH": {
+      "train_rows": 2668,
+      "test_rows": 667,
+      "train_start": "2012-05-17",
+      "train_end": "2023-11-08",
+      "test_start": "2023-11-09",
+      "test_end": "2026-08-31",
+      "low_medium_threshold": 0.1356978,
+      "medium_high_threshold": 0.21307387
+    }
+  },
+  "training_class_counts": {
+    "LOW": 1760,
+    "MEDIUM": 1759,
+    "HIGH": 1761
+  },
+  "test_class_counts": {
+    "LOW": 588,
+    "MEDIUM": 428,
+    "HIGH": 304
+  },
+  "test_metrics": {
+    "accuracy": 0.859848,
+    "balanced_accuracy": 0.866837,
+    "macro_f1": 0.859486,
+    "confusion_matrix": [
+      [
+        511,
+        77,
+        0
+      ],
+      [
+        44,
+        337,
+        47
+      ],
+      [
+        0,
+        17,
+        287
+      ]
+    ],
+    "class_report": {
+      "LOW": {
+        "precision": 0.9207207207207208,
+        "recall": 0.8690476190476191,
+        "f1-score": 0.8941382327209099,
+        "support": 588.0
+      },
+      "MEDIUM": {
+        "precision": 0.7819025522041764,
+        "recall": 0.7873831775700935,
+        "f1-score": 0.7846332945285215,
+        "support": 428.0
+      },
+      "HIGH": {
+        "precision": 0.8592814371257484,
+        "recall": 0.944078947368421,
+        "f1-score": 0.8996865203761756,
+        "support": 304.0
+      },
+      "accuracy": 0.8598484848484849,
+      "macro avg": {
+        "precision": 0.8539682366835485,
+        "recall": 0.8668365813287112,
+        "f1-score": 0.8594860158752023,
+        "support": 1320.0
+      },
+      "weighted avg": {
+        "precision": 0.8615603280404537,
+        "recall": 0.8598484848484849,
+        "f1-score": 0.8599098735548937,
+        "support": 1320.0
+      }
+    }
+  },
+  "majority_baseline_macro_f1": 0.124795,
+  "stock_only_ablation_macro_f1": 0.828456,
+  "global_indicator_macro_f1_change": 0.03103,
+  "feature_importance": {
+    "Return20Pct": 0.20869165,
+    "Drawdown20Pct": 0.16641092,
+    "VolatilityPct": 0.14449809,
+    "Volatility": 0.12752354,
+    "VIX": 0.06339598,
+    "MA50": 0.04134236,
+    "MA10": 0.03757235,
+    "Close": 0.03416309,
+    "VolumeRatio20": 0.03192458,
+    "OilChange30dPct": 0.02544816,
+    "Oil": 0.02425674,
+    "Volume": 0.02409793,
+    "Gold": 0.01963385,
+    "VIXChange30dPct": 0.01810224,
+    "GoldChange30dPct": 0.01751699,
+    "Stock_encoded": 0.01542152
+  },
+  "limitations": [
+    "The model is evaluated only on BIL and JKH and must not be used for an unseen stock.",
+    "Risk labels are research-derived current market-risk categories, not future-loss predictions or advice.",
+    "Test metrics measure fidelity to the documented risk-index labels, not investment-return forecasting accuracy.",
+    "SHAP explains model contribution and does not establish real-world causation."
+  ]
+}

@@ -10,6 +10,7 @@ const {
   regressionSensitivity,
   buildFactorMeaning,
   classifyMarketComparison,
+  newsCoverageStatus,
 } = require("../src/services/externalContextService");
 
 test("financial language receives a transparent sentiment label", () => {
@@ -39,6 +40,25 @@ test("duplicate headlines are removed", () => {
     { title: "CSE closes higher!", publishedAt: "2026-08-21", url: "two" },
   ]);
   assert.equal(rows.length, 1);
+});
+
+test("a redundant news-source failure is diagnostic rather than a user-facing error", () => {
+  const coverage = newsCoverageStatus([
+    { status: "fulfilled", value: [] },
+    { status: "rejected", reason: new Error("fetch failed") },
+    { status: "rejected", reason: new Error("This operation was aborted") },
+  ], 12);
+  assert.equal(coverage.partialSourceFailure, true);
+  assert.equal(coverage.warning, null);
+  assert.equal(coverage.articleCount, 12);
+});
+
+test("missing news is reported without exposing transport errors", () => {
+  const coverage = newsCoverageStatus([
+    { status: "rejected", reason: new Error("fetch failed") },
+  ], 0);
+  assert.match(coverage.warning, /coverage was unavailable/i);
+  assert.doesNotMatch(coverage.warning, /fetch|abort/i);
 });
 
 test("correlation calculation and wording avoid causal claims", () => {

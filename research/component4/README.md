@@ -2,45 +2,76 @@
 
 ## Integrated contribution
 
-This package preserves the supplied Random Forest classifier and stock encoder
-while integrating them through the existing Express analysis workflow. It does
-not start the branch's separate Flask server or add a separate investor page.
+This package preserves the member branch artifacts for provenance and adds a
+reproducible CSE-specific current-risk model for the two stocks available in the
+product, BIL and JKH. It runs through the existing Express workflow; it does not
+start a second Flask server or create a separate investor page.
 
-The adapter receives:
+The live model combines:
 
-- the latest selected-stock close and volume;
-- averages from the previous 10 and 50 stored sessions;
-- recent price variability;
-- the same latest gold, crude-oil, and VIX observations collected for the
-  integrated analysis.
+- latest price and volume;
+- 10-session and 50-session price references;
+- recent return, drawdown, relative variability, and unusual trading activity;
+- current Gold, Oil, and VIX levels and their recent changes;
+- the selected stock identity.
 
-It returns LOW, MEDIUM, or HIGH risk plus per-feature contributions for the
-predicted class. The original branch indexed the three-dimensional multiclass
-explanation array on the feature axis. `predict_risk.py` corrects this by
-selecting all features for the predicted class before ranking the drivers.
+It returns LOW, MEDIUM, or HIGH current financial-market risk plus per-feature
+SHAP contributions for the predicted class. This risk state is separate from
+the future price paths produced by the market-forecasting research.
+
+## Reproducible method
+
+1. `server/scripts/exportRiskTrainingData.js` exports BIL and JKH price/volume
+   history from MongoDB without credentials or user data.
+2. `train_cse_risk_model.py --refresh-factors` collects dated Gold, Oil, and VIX
+   histories, calculates the documented current-risk index, and assigns
+   stock-specific LOW/MEDIUM/HIGH tertiles from each training period.
+3. Data is split chronologically 80/20 within each stock.
+4. A 300-tree Random Forest is trained on the first period and evaluated only on
+   the later period.
+5. A second stock-only model provides an ablation comparison for the incremental
+   value of Gold, Oil, and VIX.
+6. `predict_risk.py` loads the evaluated artifact and uses the correct
+   instance-by-feature-by-class SHAP axis before ranking explanations.
+
+The target index combines observable price variability, 20-session return and
+drawdown, unusual volume, VIX level, and recent Gold/Oil movement. It measures a
+current risk state, not a future loss.
+
+## Evaluation
+
+The stored chronological holdout contains 1,320 later BIL/JKH observations:
+
+- accuracy: `0.859848`;
+- balanced accuracy: `0.866837`;
+- macro-F1: `0.859486`;
+- majority baseline macro-F1: `0.124795`;
+- stock-only ablation macro-F1: `0.828456`;
+- macro-F1 improvement from global indicators: `0.031030`.
+
+The full class report, confusion matrix, dates, target thresholds, feature
+importance, and limitations are stored in
+`models/cse_risk_model_metadata.json`.
 
 ## Honest scope
 
-- The supplied encoder contains three CSE stock codes: `HHL`, `JKH`, and
-  `LLUB`. The current product database contains `JKH.N0000` and `BIL.N0000`.
-  Therefore JKH receives this risk assessment, while BIL is explicitly marked
-  unsupported instead of being mapped to another company.
-- `data/final_updated_dataset.xlsx` is the supplied 33-security dataset with
-  gold, oil, and VIX columns. It has no saved risk-label column.
-- The branch does not include the training script, label-construction method,
-  train/test split, confusion matrix, or held-out performance report. The model
-  can be integrated and demonstrated, but its accuracy must not be claimed as
-  validated until those artifacts are supplied or the experiment is reproduced.
-- Feature contribution explains the trained classifier's output; it does not
-  prove that a global factor caused the stock's real-world risk or price move.
+- The evaluated runtime scope is BIL and JKH only. An unseen stock is rejected;
+  no proxy classification is invented.
+- Metrics measure fidelity to the documented current-risk labels. They are not
+  evidence of future-return or loss prediction.
+- SHAP explains how the classifier used its inputs; it does not prove that a
+  global factor caused the stock's real-world risk or price movement.
+- Independent validation of the risk definition, rolling regime tests, and
+  broader CSE stock coverage remain future research.
 
-## Runtime
-
-The Node adapter is `server/src/services/riskImpactService.js`. It invokes:
+## Reproduce
 
 ```bash
-python research/component4/predict_risk.py --input prepared-risk-input.json
-```
+cd server
+npm run export:risk-data
 
-The Python environment already used by the market research package supplies
-`pandas`, `scikit-learn`, `joblib`, and `shap`.
+cd ../research/component4
+python -m pip install -r requirements.txt
+python train_cse_risk_model.py --refresh-factors
+python -m pytest -q
+```

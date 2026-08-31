@@ -16,9 +16,9 @@ const rows = Array.from({ length: 51 }, (_, index) => ({
 const externalContext = {
   externalFactors: {
     factors: [
-      { key: "gold", latestValue: 3400, latestDate: "2026-08-28" },
-      { key: "oil", latestValue: 70, latestDate: "2026-08-28" },
-      { key: "vix", latestValue: 21, latestDate: "2026-08-28" },
+      { key: "gold", latestValue: 3400, change30dPct: 3.2, latestDate: "2026-08-28" },
+      { key: "oil", latestValue: 70, change30dPct: -4.1, latestDate: "2026-08-28" },
+      { key: "vix", latestValue: 21, change30dPct: 8, latestDate: "2026-08-28" },
     ],
   },
 };
@@ -27,13 +27,18 @@ test("calculates sample standard deviation consistently with the supplied compon
   assert.ok(Math.abs(sampleStandardDeviation([1, 2, 3]) - 1) < 0.000001);
 });
 
-test("builds the nine risk inputs from stored history and shared global factors", () => {
+test("builds the live risk inputs from stored history and shared global factors", () => {
   const features = buildRiskFeatures({ symbol: "JKH.N0000", rows, externalContext });
   assert.equal(features.stock, "JKH");
   assert.equal(features.close, 20);
   assert.equal(features.gold, 3400);
   assert.equal(features.oil, 70);
   assert.equal(features.vix, 21);
+  assert.equal(features.gold_change30d_pct, 3.2);
+  assert.ok(Number.isFinite(features.return20_pct));
+  assert.ok(Number.isFinite(features.drawdown20_pct));
+  assert.ok(Number.isFinite(features.volatility_pct));
+  assert.ok(Number.isFinite(features.volume_ratio20));
   assert.ok(Number.isFinite(features.ma10));
   assert.ok(Number.isFinite(features.ma50));
   assert.ok(Number.isFinite(features.volatility));
@@ -61,21 +66,21 @@ test("runs the risk adapter with the prepared evidence", async () => {
   assert.equal(result.risk_level, "MEDIUM");
 });
 
-test("does not invent a risk category for an unsupported stock", async () => {
+test("does not invent a risk category for a stock outside the trained BIL and JKH scope", async () => {
   const StockModel = {
     find() {
       return { sort: () => ({ limit: () => ({ lean: async () => rows }) }) };
     },
   };
   await assert.rejects(() => assessRiskImpact(
-    { symbol: "BIL.N0000", externalContext },
+    { symbol: "HHL.N0000", externalContext },
     {
       StockModel,
       executeRisk: async () => ({
         status: "unavailable",
         code: "RISK_STOCK_NOT_SUPPORTED",
-        message: "The supplied risk model was not trained for BIL.",
+        message: "The evaluated CSE risk model was not trained for HHL.",
       }),
     }
-  ), /not trained for BIL/);
+  ), /not trained for HHL/);
 });

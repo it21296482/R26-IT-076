@@ -94,7 +94,7 @@ Open `http://127.0.0.1:5173`.
 - Azure wording enhancement is optional; enable it only with `USE_AZURE_OPENAI=true` and a valid rotated credential that matches the endpoint and deployment
 - oil, gold, VIX, and USD/LKR relationships use overlapping one-year daily returns and are presented as associations with business context, never as proof of cause
 - set `RISK_ANALYSIS_TIMEOUT_MS` if the local Python risk adapter needs more than its default two-minute limit
-- the supplied risk-model encoder supports JKH but not BIL; unsupported symbols are reported honestly rather than mapped to a proxy
+- the reproducible CSE risk model supports BIL and JKH; its chronological test metrics and stock-only ablation are stored with the model artifact
 - the admin console includes a plain-language four-stage workflow demonstration for research review
 - never commit `.env` files or reuse credentials that have appeared in chat or Git history
 
