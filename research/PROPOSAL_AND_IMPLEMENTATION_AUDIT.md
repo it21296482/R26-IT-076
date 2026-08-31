@@ -29,6 +29,29 @@ For the current application milestone, the report upload is treated as required,
 following the latest integrated workflow requirement. The investor-facing input
 screen therefore contains only stock selection, PDF upload, and Analyze.
 
+## Novelty and integration matrix
+
+| Stage | Proposal-level novelty | What is integrated now | Research evidence still required |
+| --- | --- | --- | --- |
+| Market behaviour | Explainable, anomaly-aware CSE modelling that combines expected movement, liquidity-aware deviation, factor contribution, interaction analysis, and consistency over time. | Fresh 4-day, 1-month, 3-month, and 6-month paths; uncertainty ranges; signed deviation; anomaly score and direction; baseline comparison; factor contribution and explanation-stability outputs. | Explicit factor-interaction validation, broader multi-stock/regime testing, and formal usability evidence. |
+| Financial reports | Localized, retrieval-enhanced interpretation that converts unstructured reports into grounded financial-health, growth, and risk signals. | Annual/quarterly PDF handling, company/date checks, structured findings, contextual extraction, and page-verified quotes in the Analyze workflow. | Proposal-scale document corpus and labelled extraction, grounding, and reliability results. |
+| External context | Event-driven sentiment and news understanding integrated with market context rather than presented as a generic feed. | Selected-company, local, and global news; deduplication; event/sentiment labels; ASPI comparison; gold, oil, and USD/LKR associations and business channels. | Labelled CSE sentiment/event metrics, source-coverage evidence, and monitored provider reliability. |
+| Human-centred delivery | A comparative explanation framework that measures comprehension, trust, usability, and cognitive load, then refines how integrated insights are communicated. | One versioned result combines all evidence into a plain-language overview, price/risk views, report evidence, events, factor context, uncertainty, and a non-advisory note. | Multiple explanation-variant experiment, participant data, FICS/SUS/adapted NASA-TLX/task/think-aloud results, statistical comparison, and documented iterative refinement. |
+
+## Fourth-branch integration decision
+
+The unmerged `origin/IT22547088` branch was reviewed against the updated fourth
+proposal. Its `/risk` route and separate Python service implement another
+standalone market-risk predictor with manual indicator inputs and recommendation-
+style output. That is not the proposal's human-centred explanation and
+interpretability contribution, and it duplicates the first research stage.
+
+The branch was therefore not merged into the product. The proposal-aligned part
+is integrated through the existing unified analysis result and protected research
+demonstration. The explanation-variant comparison, participant measurement, and
+iterative refinement remain research evaluation work rather than hidden or
+falsely completed features.
+
 ## Stage 1: Market behaviour, forecasting, and anomaly explanation
 
 ### Proposal requirement
@@ -43,6 +66,9 @@ usability evaluation.
 - The main research pipeline implements expected-price modelling, deviation- and
   liquidity-aware anomaly scores, prediction-band signals, risk levels, factor
   explanations, stability measures, and a forecast ensemble.
+- Every live Analyze request now reruns the market pipeline from the selected
+  stock's latest MongoDB history and returns 4-day, 1-month, 3-month, and
+  6-month checkpoints with central, favourable, and adverse ranges.
 - Timestamped three-month forecasts exist for JKH and BIL.
 - A reproducible out-of-sample validation notebook now compares those locked
   forecasts with 57 later CSE observations per stock.
@@ -53,8 +79,11 @@ usability evaluation.
 ### Missing or incomplete
 
 - A timestamped third-stock forecast was not found.
-- The current locked forecast artifact is 60 business days; separate validated
-  4-day, 1-month, 3-month, and 6-month runtime outputs are not yet available.
+- The live horizons exist, but independent horizon-specific validation is not
+  yet available for all four checkpoints.
+- A reproducible, explicitly reported factor-interaction analysis was not found;
+  factor contribution and stability should not be described as interaction
+  validation.
 - Forecast and anomaly quality has not yet been evaluated across enough stocks,
   regimes, and horizon-specific rolling windows.
 - Explanation consistency and investor usability need formal reported results,
@@ -86,6 +115,8 @@ benchmarking.
 - Its unit tests pass.
 - A runtime adapter now checks that the report matches the selected company and
   verifies each returned quote against a specific extracted PDF page.
+- The report adapter is called directly by the main Analyze workflow, and its
+  structured evidence is passed into the unified explanation.
 
 ### Missing or incorrect
 
@@ -123,15 +154,19 @@ precision/recall/F1, and integration with the other research outputs.
   analysis utilities.
 - Local-market terms cover inflation, interest rates, exchange rates, the IMF,
   oil/fuel, trade, war, and geopolitical events.
+- The main Analyze workflow now calls a failure-aware external-context adapter
+  that returns selected-company, local, and global articles; sentiment and event
+  labels; an ASPI comparison; and stock-aligned gold, oil, and USD/LKR context.
+- Each external factor includes its overlap count, association strength,
+  explanatory share, business channel, and an explicit non-causal warning.
 
 ### Missing or incorrect
 
-- Several controller/service files are empty, and this work is not connected to
-  the main application.
-- The configured external company symbols require verification against the data
-  provider.
-- Keyword detection of oil, gold, inflation, or war is not evidence of how a
-  factor affects a particular stock.
+- The preserved classifier and current production adapter use different
+  sentiment paths; their relationship and selected production method need to be
+  justified in the methodology.
+- Event/keyword detection and statistical association do not prove how much an
+  external factor caused a particular stock movement.
 - No reproducible labelled test report was found for accuracy, precision, recall,
   F1, freshness, source coverage, or company relevance.
 - A quantitative claim of causality between a global factor and a stock would be
@@ -160,18 +195,23 @@ think-aloud analysis followed by iterative refinement.
 
 ### Current evidence
 
-- The current frontend contains an investor workspace and a dashboard-shaped
-  result screen.
+- The main controller runs the first three evidence stages concurrently, passes
+  their structured outputs into one integration stage, and stores one
+  short-lived versioned analysis result.
+- The investor result renders returned price paths, anomaly/deviation evidence,
+  verified report strengths and concerns, dated events, external-factor
+  context, one plain-language conclusion, uncertainty, and a non-advisory note.
+- Internal research ownership and implementation terminology are kept out of
+  the investor-facing workflow; the four-stage explanation is restricted to the
+  protected administration demonstration.
 
 ### Missing or incorrect
 
-- The current result screen contains hard-coded confidence, risk, sentiment, and
-  status text. These are placeholders and must not be presented as generated
-  research results.
-- The screen exposes internal stage names and technical terminology despite the
-  product requirement to present one black-box decision-support experience.
 - No explanation-variant experiment, participant dataset, statistical comparison,
   or iterative evaluation record was found.
+- The current interface presents several evidence views, but this is not the
+  same as a controlled comparison of the proposal's alternative explanation
+  strategies.
 
 ### Acceptance criteria
 
@@ -201,10 +241,11 @@ confident generated statement.
 
 ## Research conclusion
 
-The proposed integrated workflow is supported by the four proposals, but the
-current repository does not yet provide enough evidence to claim that all four
-research stages are validated. Stage 1 has the strongest implementation and now
-has honest out-of-sample forecast evidence. Stages 2 and 3 require labelled,
-source-grounded evaluation, while Stage 4 requires an actual human
-interpretability study. These are research obligations, not only UI tasks.
-
+The four stages are connected in the current end-to-end Analyze workflow, and
+their distinct novelty is now documented without exposing member ownership in
+the investor interface. Integration is not the same as research validation.
+Stage 1 has implementation and honest out-of-sample evidence but still needs
+broader and interaction-specific validation. Stages 2 and 3 need labelled,
+source-grounded evaluation. Stage 4 has a working unified presentation layer but
+still requires the proposed explanation-variant and human-interpretability
+study. These are research obligations, not only UI tasks.
