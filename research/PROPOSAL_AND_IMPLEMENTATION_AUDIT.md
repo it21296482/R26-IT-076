@@ -35,8 +35,8 @@ screen therefore contains only stock selection, PDF upload, and Analyze.
 | --- | --- | --- | --- |
 | Market behaviour | Explainable, anomaly-aware CSE modelling that combines expected movement, liquidity-aware deviation, factor contribution, interaction analysis, and consistency over time. | Fresh 4-day, 1-month, 3-month, and 6-month paths; uncertainty ranges; signed deviation; anomaly score and direction; baseline comparison; factor contribution and explanation-stability outputs. | Explicit factor-interaction validation, broader multi-stock/regime testing, and formal usability evidence. |
 | Financial reports | Localized, retrieval-enhanced interpretation that converts unstructured reports into grounded financial-health, growth, and risk signals. | Annual/quarterly PDF handling, company/date checks, structured findings, contextual extraction, and page-verified quotes in the Analyze workflow. | Proposal-scale document corpus and labelled extraction, grounding, and reliability results. |
-| External context | Event-driven sentiment and news understanding integrated with market context rather than presented as a generic feed. | Selected-company, local, and global news; deduplication; event/sentiment labels; ASPI comparison; gold, oil, VIX, and USD/LKR associations and business channels. | Labelled CSE sentiment/event metrics, source-coverage evidence, and monitored provider reliability. |
-| Explainable global-market risk | A stock-risk classifier that combines stock behaviour with Gold, Oil, and VIX and explains why the selected risk level was produced. | A reproducible BIL/JKH Random Forest, chronological holdout, stock-only ablation, and corrected multiclass SHAP adapter produce current-risk and driver meanings inside the unified Analyze result. | Broader CSE stock coverage, rolling-window temporal stability, and independent validation of the current-risk definition. |
+| News and sentiment | Event-driven financial-news understanding for the selected stock rather than a generic feed. | Selected-company, CSE, economic, and relevant global news; deduplication; event labels; sentiment signals; and source-coverage handling. | Labelled CSE sentiment/event metrics, relevance evidence, and monitored provider reliability. |
+| Explainable external-market risk | A stock-risk classifier that combines stock behaviour with quantitative external-market context and explains why the selected risk level was produced. | ASPI plus Gold, Oil, VIX, and USD/LKR context are collected by this stage. A reproducible BIL/JKH Random Forest uses Gold/Oil/VIX with a chronological holdout, stock-only ablation, and corrected multiclass SHAP adapter. | Broader CSE stock coverage, rolling-window temporal stability, and independent validation of the current-risk definition. |
 
 ## Fourth-branch integration decision
 
@@ -209,8 +209,8 @@ dashboard rather than becoming a separate recommendation page.
 - Runtime inputs include price, volume, averages, recent return, drawdown,
   relative variability, unusual volume, Gold, Oil, VIX, their recent changes,
   and encoded stock identity.
-- The risk stage consumes the selected stock's latest MongoDB history and reuses
-  the dated global indicators returned by the external-context stage.
+- The risk stage consumes the selected stock's latest MongoDB history and
+  collects its own dated external-market indicators.
 - The corrected SHAP adapter returns top overall drivers and separately explains
   whether Gold, Oil, and VIX supported or partly offset the predicted class.
 - A chronological 80/20 holdout achieved 85.98% accuracy, 0.867 balanced

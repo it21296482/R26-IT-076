@@ -13,8 +13,8 @@ language rather than four disconnected technical outputs.
 | --- | --- | --- |
 | Market behaviour | Combines fresh multi-horizon price ranges with signed expected-price deviation, liquidity-aware anomaly direction, factor contribution, and explanation stability for the CSE. | Fresh forecasts, uncertainty, deviation, anomaly, baseline comparison, factor evidence, and stability evidence run in the live pipeline. Formal factor-interaction validation and broader multi-stock evaluation remain research work. |
 | Financial-report understanding | Converts local quarterly or annual disclosures into structured growth, financial-health, and risk evidence while preserving page-level traceability and contextual meaning. | Company/date validation, report extraction, structured findings, and verified page quotes run in the live pipeline. Proposal-scale document accuracy and grounding targets still require a labelled evaluation set. |
-| External context | Goes beyond a generic news feed by connecting dated company, market, and global events to sentiment, wider-market direction, measured factor association, and the selected company's practical exposure. | News, event labels, ASPI comparison, and gold, crude-oil, VIX, and USD/LKR context run in the live pipeline. A labelled CSE sentiment/event evaluation remains outstanding. |
-| Explainable global-market risk | Combines stock behaviour with gold, oil, and VIX conditions to classify current financial-market risk and explain which inputs supported or reduced that assessment. | A reproducible BIL/JKH Random Forest and corrected multiclass SHAP explanation run in the main Analyze workflow. The chronological holdout achieved 85.98% accuracy and 0.859 macro-F1; global indicators improved macro-F1 by 0.031 over the stock-only ablation. These metrics measure current-risk label fidelity, not future returns. |
+| News and sentiment | Goes beyond a generic feed by connecting dated company, CSE, economic, and relevant global news to event and sentiment evidence for the selected stock. | News retrieval, deduplication, event labels, and sentiment signals run in the live pipeline. A labelled CSE sentiment/event evaluation remains outstanding. |
+| Explainable external-market risk | Combines stock behaviour with quantitative external-market conditions to classify current financial-market risk and explain which inputs supported or reduced that assessment. | ASPI and dated Gold, Oil, VIX, and USD/LKR context are collected here. A reproducible BIL/JKH Random Forest uses Gold/Oil/VIX and corrected multiclass SHAP explanation in the main Analyze workflow. The chronological holdout achieved 85.98% accuracy and 0.859 macro-F1; global indicators improved macro-F1 by 0.031 over the stock-only ablation. These metrics measure current-risk label fidelity, not future returns. |
 
 ## Exact user and backend flow
 
@@ -26,11 +26,12 @@ language rather than four disconnected technical outputs.
 4. When the user clicks **Analyze with latest prices**, the server requests the
    current official CSE trade summary once and upserts the latest row for every
    available MongoDB stock symbol.
-5. Market modelling, report understanding, and external-context collection start
-   together. Each returns a structured evidence package; missing evidence is
-   labelled unavailable and is never guessed.
-6. The risk stage receives the selected stock's latest history and the same dated
-   gold, oil, and VIX values collected by the external-context stage.
+5. Market modelling, report understanding, news/sentiment analysis, and
+   external-market risk analysis start together. Each returns a separate
+   structured evidence package; missing evidence is labelled unavailable and is
+   never guessed.
+6. The risk stage combines the selected stock's latest history with its own dated
+   Gold, Oil, and VIX context.
 7. The integration layer combines all four outputs into one plain-language stock
    picture.
 8. The result appears below the inputs on the same `/dashboard` page. It starts
@@ -123,7 +124,8 @@ freshness metrics still require a manually labelled CSE-oriented test set.
 
 **Input:** the selected stock's latest close, volume, 10-session and 50-session
 averages, recent return, drawdown, relative variability, unusual volume, stock
-identity, and dated Gold, Oil, and VIX levels and recent changes from stage 3.
+identity, and dated Gold, Oil, and VIX levels and recent changes collected by
+this stage.
 
 **What runs:** the reproducible CSE Random Forest returns LOW, MEDIUM, or HIGH
 current risk for BIL or JKH. The transparent target combines observable price
@@ -172,10 +174,11 @@ research component or as a replacement for any of the four contributions.
 2. Sign in as a normal user, select `JKH.N0000`, and upload its latest quarterly
    or annual report.
 3. Click **Analyze with latest prices** once and keep the backend terminal visible.
-4. Point out the official CSE refresh log, followed by the market, report, and
-   context stages starting together.
-5. Show the risk-stage log after the shared Gold/Oil/VIX evidence is available,
-   followed by the final integration log.
+4. Point out the official CSE refresh log, followed by all four research stages
+   starting together.
+5. Show that the news/sentiment stage returns event evidence while the separate
+   risk stage returns quantitative external-market context and the explained
+   risk category, followed by the final integration log.
 6. On the same page, start with the single plain-language takeaway.
 7. Show fresh central, favourable, and adverse paths at 4 days, 1 month, 3
    months, and 6 months.

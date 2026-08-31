@@ -1,4 +1,4 @@
-# External Context Research Package
+# News and Sentiment Research Package
 
 ## Preserved source
 
@@ -9,7 +9,7 @@ installed dependencies, uploads, and `.env` secrets are intentionally excluded.
 
 ## Application integration
 
-The production-facing adapter is:
+The production-facing news and sentiment adapter is:
 
 `server/src/services/externalContextService.js`
 
@@ -19,12 +19,11 @@ It integrates the useful research ideas while adding failure-aware behavior:
 - dated source URLs, source names, relevance scope, and event categories;
 - transparent finance-language sentiment labels;
 - duplicate removal;
-- gold, crude-oil, and USD/LKR series;
-- historical daily-return associations with the selected stock;
 - explicit source warnings and a causal-language warning.
 
-The live adapter uses the historical stock rows stored in MongoDB. It requires at
-least 20 overlapping return dates before reporting a factor correlation.
+Gold, Oil, VIX, USD/LKR, ASPI comparison, and quantitative factor relationships
+are not claimed by this contribution. They are collected as external-market risk
+context for Component 4.
 
 ## Verification
 
@@ -40,7 +39,8 @@ npm test
 ```
 
 The current automated tests verify sentiment wording, event categories,
-deduplication, correlation calculation, and non-causal interpretation.
+deduplication, source-failure handling, and non-causal interpretation. Shared
+service tests also verify the separately exposed market-factor calculations.
 
 ## Research limitations
 
@@ -50,7 +50,4 @@ deduplication, correlation calculation, and non-causal interpretation.
   CSE-oriented holdout evaluation reporting precision, recall, F1, class support,
   freshness, and company-relevance error.
 - News search cannot guarantee collection of every possible article.
-- Correlation with gold, oil, or currency is an observed historical association,
-  not evidence that the factor caused a stock movement.
 - Provider symbols and source availability can change and must be monitored.
-

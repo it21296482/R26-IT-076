@@ -34,6 +34,9 @@ const analysisRunSchema = new mongoose.Schema(
     outputs: {
       market: { type: mongoose.Schema.Types.Mixed, default: null },
       report: { type: mongoose.Schema.Types.Mixed, default: null },
+      newsSentiment: { type: mongoose.Schema.Types.Mixed, default: null },
+      marketRiskContext: { type: mongoose.Schema.Types.Mixed, default: null },
+      // Legacy combined field retained so analyses created before the split still load.
       externalContext: { type: mongoose.Schema.Types.Mixed, default: null },
       riskImpact: { type: mongoose.Schema.Types.Mixed, default: null },
       unifiedInsight: { type: mongoose.Schema.Types.Mixed, default: null },

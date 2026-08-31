@@ -2,7 +2,7 @@ const AnalysisRun = require("../models/AnalysisRun");
 const FinancialReport = require("../models/FinancialReport");
 const Stock = require("../models/Stock");
 const { refreshAvailableStockQuotes } = require("../services/cseQuoteService");
-const { collectExternalContext } = require("../services/externalContextService");
+const { collectMarketRiskContext, collectNewsSentiment } = require("../services/externalContextService");
 const { loadMarketInsight } = require("../services/marketInsightService");
 const { analyzeFinancialReport } = require("../services/reportInsightService");
 const { inspectFinancialReport } = require("../services/reportValidationService");
@@ -79,9 +79,13 @@ const publicReportOutput = (reportOutput) => {
   return output;
 };
 
-const publicExternalOutput = (externalContext) => {
-  if (!externalContext) return null;
-  const output = structuredClone(externalContext);
+const publicNewsOutput = (newsSentiment) => (
+  newsSentiment ? structuredClone(newsSentiment) : null
+);
+
+const publicMarketRiskContextOutput = (marketRiskContext) => {
+  if (!marketRiskContext) return null;
+  const output = structuredClone(marketRiskContext);
   if (output.externalFactors) {
     output.externalFactors.method = "Compared one year of shared daily stock and factor movements. Results describe association, not cause.";
     output.externalFactors.factors = (output.externalFactors.factors || []).map(({ sensitivityBeta, ...factor }) => factor);
@@ -129,7 +133,7 @@ const compactRiskEvidence = (riskImpact) => riskImpact
     }
   : { status: "unavailable" };
 
-const compactFusionEvidence = ({ stockSymbol, companyName, market, report, externalContext, riskImpact }) => ({
+const compactFusionEvidence = ({ stockSymbol, companyName, market, report, newsSentiment, marketRiskContext, riskImpact }) => ({
   selected_stock: { symbol: stockSymbol, company_name: companyName },
   market_evidence: market,
   report_evidence: report
@@ -141,11 +145,11 @@ const compactFusionEvidence = ({ stockSymbol, companyName, market, report, exter
         warnings: report.warnings,
       }
     : { status: "unavailable" },
-  external_context: externalContext
+  news_sentiment_evidence: newsSentiment
     ? {
-        article_count: externalContext.articleCount,
-        sentiment_counts: externalContext.sentimentCounts,
-        articles: externalContext.articles.slice(0, 12).map((article) => ({
+        article_count: newsSentiment.articleCount,
+        sentiment_counts: newsSentiment.sentimentCounts,
+        articles: newsSentiment.articles.slice(0, 12).map((article) => ({
           title: article.title,
           source: article.source,
           published_at: article.publishedAt,
@@ -154,8 +158,13 @@ const compactFusionEvidence = ({ stockSymbol, companyName, market, report, exter
           sentiment: article.sentiment,
           event_tags: article.eventTags,
         })),
-        external_factors: externalContext.externalFactors,
-        warnings: externalContext.warnings,
+        warnings: newsSentiment.warnings,
+      }
+    : { status: "unavailable" },
+  market_risk_context: marketRiskContext
+    ? {
+        external_factors: marketRiskContext.externalFactors,
+        warnings: marketRiskContext.warnings,
       }
     : { status: "unavailable" },
   risk_evidence: compactRiskEvidence(riskImpact),
@@ -231,51 +240,45 @@ const createAnalysis = async (req, res) => {
         throw error;
       }
     };
-    const [marketResult, reportResult, contextResult] = await Promise.allSettled([
+    const [marketResult, reportResult, newsResult, riskResult] = await Promise.allSettled([
       runStage("market", "Market behaviour and unusual movement", () => loadMarketInsight(stockSymbol)),
       runStage("report", "Verified company report", () => analyzeFinancialReport({
         pdfPath: report.storagePath,
         companyName: latestStock.companyName,
         symbol: stockSymbol,
       })),
-      runStage("externalContext", "External events and market factors", () => collectExternalContext({
-        stockSymbol,
+      runStage("newsSentiment", "News, events, and sentiment", () => collectNewsSentiment({
         symbol: stockSymbol,
         companyName: latestStock.companyName,
       })),
+      runStage("riskImpact", "External-market risk and explanation", async () => {
+        const marketRiskContext = await collectMarketRiskContext({ symbol: stockSymbol });
+        const riskImpact = await assessRiskImpact({ symbol: stockSymbol, marketRiskContext });
+        return { marketRiskContext, riskImpact, warnings: marketRiskContext.warnings };
+      }),
     ]);
 
     const market = resultOrNull(marketResult);
     const reportOutput = resultOrNull(reportResult);
-    const externalContext = resultOrNull(contextResult);
-    let riskResult = { status: "rejected", reason: new Error("External context was unavailable for the risk assessment.") };
-    if (externalContext) {
-      riskResult = await Promise.allSettled([
-        runStage("riskImpact", "Explainable global-market risk impact", () => assessRiskImpact({
-          symbol: stockSymbol,
-          externalContext,
-        })),
-      ]).then(([result]) => result);
-    } else {
-      workflow.riskImpact = {
-        label: "Explainable global-market risk impact",
-        status: "unavailable",
-        durationMs: 0,
-      };
-    }
-    const riskImpact = resultOrNull(riskResult);
+    const newsSentiment = resultOrNull(newsResult);
+    const riskBundle = resultOrNull(riskResult);
+    const marketRiskContext = riskBundle?.marketRiskContext || null;
+    const riskImpact = riskBundle?.riskImpact || null;
     if (Array.isArray(reportOutput?.warnings)) {
       reportOutput.warnings = reportOutput.warnings.map(safeWarning);
     }
-    if (Array.isArray(externalContext?.warnings)) {
-      externalContext.warnings = externalContext.warnings.map(safeWarning);
+    if (Array.isArray(newsSentiment?.warnings)) {
+      newsSentiment.warnings = newsSentiment.warnings.map(safeWarning);
+    }
+    if (Array.isArray(marketRiskContext?.warnings)) {
+      marketRiskContext.warnings = marketRiskContext.warnings.map(safeWarning);
     }
     const warnings = [
       ...(priceRefreshWarning ? [priceRefreshWarning] : []),
       ...warningsFrom(marketResult, "Market analysis"),
       ...warningsFrom(reportResult, "Financial report"),
-      ...warningsFrom(contextResult, "External context"),
-      ...warningsFrom(riskResult, "Market risk"),
+      ...warningsFrom(newsResult, "News and sentiment"),
+      ...warningsFrom(riskResult, "External-market risk"),
     ];
 
     if (reportOutput) {
@@ -287,14 +290,15 @@ const createAnalysis = async (req, res) => {
     await report.save();
 
     let unifiedInsight = null;
-    if (market || reportOutput || externalContext || riskImpact) {
+    if (market || reportOutput || newsSentiment || marketRiskContext || riskImpact) {
       try {
         unifiedInsight = await runStage("integration", "Plain-language integrated stock picture", () => generateUnifiedInsight(compactFusionEvidence({
           stockSymbol,
           companyName: latestStock.companyName,
           market,
           report: reportOutput,
-          externalContext,
+          newsSentiment,
+          marketRiskContext,
           riskImpact,
         })));
         if (Array.isArray(unifiedInsight.warnings)) {
@@ -306,13 +310,15 @@ const createAnalysis = async (req, res) => {
     }
 
     const requiredInputsComplete = Boolean(
-      market && reportOutput?.status === "completed" && externalContext && riskImpact && unifiedInsight?.status === "completed"
+      market && reportOutput?.status === "completed" && newsSentiment && marketRiskContext && riskImpact && unifiedInsight?.status === "completed"
     );
     analysis.status = requiredInputsComplete ? "completed" : "partial";
     analysis.outputs = {
       market: publicMarketOutput(market),
       report: publicReportOutput(reportOutput),
-      externalContext: publicExternalOutput(externalContext),
+      newsSentiment: publicNewsOutput(newsSentiment),
+      marketRiskContext: publicMarketRiskContextOutput(marketRiskContext),
+      externalContext: null,
       riskImpact: publicRiskOutput(riskImpact),
       unifiedInsight,
       workflow,

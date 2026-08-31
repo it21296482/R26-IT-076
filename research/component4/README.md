@@ -15,6 +15,11 @@ The live model combines:
 - current Gold, Oil, and VIX levels and their recent changes;
 - the selected stock identity.
 
+This stage also owns the quantitative external-market context presented beside
+the risk result: dated Gold, Oil, VIX, USD/LKR, and ASPI evidence. The trained
+classifier uses Gold, Oil, and VIX; the additional indicators provide wider
+market interpretation and are not presented as classifier inputs.
+
 It returns LOW, MEDIUM, or HIGH current financial-market risk plus per-feature
 SHAP contributions for the predicted class. This risk state is separate from
 the future price paths produced by the market-forecasting research.

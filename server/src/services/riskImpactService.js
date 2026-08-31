@@ -15,13 +15,13 @@ const sampleStandardDeviation = (values) => {
   return Math.sqrt(variance);
 };
 
-const factorValue = (externalContext, key) => {
-  const factor = externalContext?.externalFactors?.factors?.find((item) => item.key === key);
+const factorValue = (marketRiskContext, key) => {
+  const factor = marketRiskContext?.externalFactors?.factors?.find((item) => item.key === key);
   return Number.isFinite(Number(factor?.latestValue)) ? Number(factor.latestValue) : null;
 };
 
-const factorChange = (externalContext, key) => {
-  const factor = externalContext?.externalFactors?.factors?.find((item) => item.key === key);
+const factorChange = (marketRiskContext, key) => {
+  const factor = marketRiskContext?.externalFactors?.factors?.find((item) => item.key === key);
   return Number.isFinite(Number(factor?.change30dPct)) ? Number(factor.change30dPct) : null;
 };
 
@@ -34,7 +34,8 @@ const median = (values) => {
     : (sorted[middle - 1] + sorted[middle]) / 2;
 };
 
-const buildRiskFeatures = ({ symbol, rows, externalContext }) => {
+const buildRiskFeatures = ({ symbol, rows, marketRiskContext, externalContext }) => {
+  const context = marketRiskContext || externalContext;
   if (rows.length < 51) {
     throw new Error("At least 51 stored price observations are required for the risk assessment.");
   }
@@ -44,9 +45,9 @@ const buildRiskFeatures = ({ symbol, rows, externalContext }) => {
   const previous50 = previous.slice(0, 50).map((row) => Number(row.close));
   const previous20Volumes = previous.slice(0, 20).map((row) => Number(row.volume));
   const latest20Closes = rows.slice(0, 20).map((row) => Number(row.close));
-  const gold = factorValue(externalContext, "gold");
-  const oil = factorValue(externalContext, "oil");
-  const vix = factorValue(externalContext, "vix");
+  const gold = factorValue(context, "gold");
+  const oil = factorValue(context, "oil");
+  const vix = factorValue(context, "vix");
   const ma10 = previous10.reduce((sum, value) => sum + value, 0) / previous10.length;
   const ma50 = previous50.reduce((sum, value) => sum + value, 0) / previous50.length;
   const volatility = sampleStandardDeviation(previous10);
@@ -66,12 +67,12 @@ const buildRiskFeatures = ({ symbol, rows, externalContext }) => {
     gold,
     oil,
     vix,
-    gold_change30d_pct: factorChange(externalContext, "gold"),
-    oil_change30d_pct: factorChange(externalContext, "oil"),
-    vix_change30d_pct: factorChange(externalContext, "vix"),
+    gold_change30d_pct: factorChange(context, "gold"),
+    oil_change30d_pct: factorChange(context, "oil"),
+    vix_change30d_pct: factorChange(context, "vix"),
     stock_date: new Date(latest.tradeDate).toISOString().slice(0, 10),
     factor_dates: Object.fromEntries(
-      (externalContext?.externalFactors?.factors || [])
+      (context?.externalFactors?.factors || [])
         .filter((item) => ["gold", "oil", "vix"].includes(item.key))
         .map((item) => [item.key, item.latestDate])
     ),
@@ -110,14 +111,14 @@ const executeRiskAssessment = async (features) => {
 };
 
 const assessRiskImpact = async (
-  { symbol, externalContext },
+  { symbol, marketRiskContext, externalContext },
   { StockModel = Stock, executeRisk = executeRiskAssessment } = {}
 ) => {
   const rows = await StockModel.find({ symbol: String(symbol).toUpperCase() })
     .sort({ tradeDate: -1 })
     .limit(51)
     .lean();
-  const result = await executeRisk(buildRiskFeatures({ symbol, rows, externalContext }));
+  const result = await executeRisk(buildRiskFeatures({ symbol, rows, marketRiskContext, externalContext }));
   if (result.status !== "completed") {
     const error = new Error(result.message || "The risk assessment is unavailable for this stock.");
     error.code = result.code || "RISK_ASSESSMENT_UNAVAILABLE";

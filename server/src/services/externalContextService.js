@@ -448,23 +448,20 @@ const analyzeExternalFactors = async (symbol) => {
   return { factors, warnings, method: "One-year overlapping daily returns using Pearson correlation and single-factor return sensitivity. Results describe association, not cause." };
 };
 
-const collectExternalContext = async ({ symbol, companyName }) => {
+const collectNewsSentiment = async ({ symbol, companyName }) => {
   const shortSymbol = String(symbol).split(".")[0];
   const queries = [
     { scope: "company", query: `\"${companyName}\" OR \"${shortSymbol}\" Sri Lanka stock when:90d` },
     { scope: "market", query: `(\"Colombo Stock Exchange\" OR \"Sri Lanka economy\") (inflation OR interest OR rupee OR IMF OR oil OR gold OR war) when:45d` },
     { scope: "global", query: `(Iran OR \"Middle East\" OR geopolitical OR war) (oil OR markets OR \"Sri Lanka\") when:45d` },
   ];
-  const [companyNews, marketNews, globalNews, factorResult, aspiResult] = await Promise.allSettled([
+  const newsResults = await Promise.allSettled([
     fetchNewsFeed({ ...queries[0], companyName }),
     fetchNewsFeed({ ...queries[1], companyName }),
     fetchNewsFeed({ ...queries[2], companyName }),
-    analyzeExternalFactors(symbol),
-    fetchCseAspiSnapshot(),
   ]);
   const warnings = [];
   const articles = [];
-  const newsResults = [companyNews, marketNews, globalNews];
   for (const result of newsResults) {
     if (result.status === "fulfilled") articles.push(...result.value);
   }
@@ -473,6 +470,24 @@ const collectExternalContext = async ({ symbol, companyName }) => {
   if (newsCoverage.warning) warnings.push(newsCoverage.warning);
   const sentimentCounts = { positive: 0, neutral: 0, negative: 0 };
   uniqueArticles.forEach((article) => { sentimentCounts[article.sentiment.label] += 1; });
+
+  return {
+    collectedAt: new Date().toISOString(),
+    articleCount: uniqueArticles.length,
+    sentimentCounts,
+    articles: uniqueArticles,
+    newsCoverage,
+    warnings,
+    evaluationStatus: "Research evaluation metrics must be established on a labelled CSE news dataset.",
+  };
+};
+
+const collectMarketRiskContext = async ({ symbol }) => {
+  const [factorResult, aspiResult] = await Promise.allSettled([
+    analyzeExternalFactors(symbol),
+    fetchCseAspiSnapshot(),
+  ]);
+  const warnings = [];
   const externalFactors = factorResult.status === "fulfilled"
     ? factorResult.value
     : { factors: [], warnings: [`External factor data failed: ${factorResult.reason.message}`], method: "Unavailable" };
@@ -492,10 +507,6 @@ const collectExternalContext = async ({ symbol, companyName }) => {
 
   return {
     collectedAt: new Date().toISOString(),
-    articleCount: uniqueArticles.length,
-    sentimentCounts,
-    articles: uniqueArticles,
-    newsCoverage,
     externalFactors: {
       factors: externalFactors.factors,
       aspiSnapshot,
@@ -504,13 +515,27 @@ const collectExternalContext = async ({ symbol, companyName }) => {
       causalWarning: "Observed associations do not prove that a global factor caused the stock movement.",
     },
     warnings,
-    evaluationStatus: "Research evaluation metrics must be established on a labelled CSE news dataset.",
+  };
+};
+
+// Kept for older callers while the persisted data contract migrates to two explicit outputs.
+const collectExternalContext = async (input) => {
+  const [newsSentiment, marketRiskContext] = await Promise.all([
+    collectNewsSentiment(input),
+    collectMarketRiskContext(input),
+  ]);
+  return {
+    ...newsSentiment,
+    ...marketRiskContext,
+    warnings: [...newsSentiment.warnings, ...marketRiskContext.warnings],
   };
 };
 
 module.exports = {
   analyzeSentiment,
   collectExternalContext,
+  collectMarketRiskContext,
+  collectNewsSentiment,
   deduplicateNews,
   describeAssociation,
   eventTags,

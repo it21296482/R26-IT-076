@@ -13,7 +13,7 @@ const rows = Array.from({ length: 51 }, (_, index) => ({
   close: 20 - (index * 0.1),
   volume: 1_000_000 - index,
 }));
-const externalContext = {
+const marketRiskContext = {
   externalFactors: {
     factors: [
       { key: "gold", latestValue: 3400, change30dPct: 3.2, latestDate: "2026-08-28" },
@@ -27,8 +27,8 @@ test("calculates sample standard deviation consistently with the supplied compon
   assert.ok(Math.abs(sampleStandardDeviation([1, 2, 3]) - 1) < 0.000001);
 });
 
-test("builds the live risk inputs from stored history and shared global factors", () => {
-  const features = buildRiskFeatures({ symbol: "JKH.N0000", rows, externalContext });
+test("builds the live risk inputs from Component 4 external-market factors", () => {
+  const features = buildRiskFeatures({ symbol: "JKH.N0000", rows, marketRiskContext });
   assert.equal(features.stock, "JKH");
   assert.equal(features.close, 20);
   assert.equal(features.gold, 3400);
@@ -52,7 +52,7 @@ test("runs the risk adapter with the prepared evidence", async () => {
     },
   };
   const result = await assessRiskImpact(
-    { symbol: "JKH.N0000", externalContext },
+    { symbol: "JKH.N0000", marketRiskContext },
     {
       StockModel,
       executeRisk: async (features) => {
@@ -73,7 +73,7 @@ test("does not invent a risk category for a stock outside the trained BIL and JK
     },
   };
   await assert.rejects(() => assessRiskImpact(
-    { symbol: "HHL.N0000", externalContext },
+    { symbol: "HHL.N0000", marketRiskContext },
     {
       StockModel,
       executeRisk: async () => ({

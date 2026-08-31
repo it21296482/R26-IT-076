@@ -297,7 +297,13 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
     company = selected.get("company_name") or selected.get("symbol") or "The selected company"
     market = evidence.get("market_evidence")
     report = evidence.get("report_evidence")
-    context = evidence.get("external_context")
+    # Keep the research contributions separate until this final integration step.
+    news_context = evidence.get("news_sentiment_evidence") or evidence.get("external_context") or {}
+    market_risk_context = evidence.get("market_risk_context") or evidence.get("external_context") or {}
+    context = {
+        **news_context,
+        "external_factors": market_risk_context.get("external_factors") or {},
+    }
     risk = evidence.get("risk_evidence")
     market_text, paths, market_risks = _market_outlook(market)
     price_scenarios = _price_scenarios(market)

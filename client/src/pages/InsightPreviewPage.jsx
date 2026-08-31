@@ -101,14 +101,16 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
 
   const market = analysis?.outputs?.market;
   const report = analysis?.outputs?.report;
-  const context = analysis?.outputs?.externalContext;
+  const legacyContext = analysis?.outputs?.externalContext;
+  const newsContext = analysis?.outputs?.newsSentiment || legacyContext;
+  const marketRiskContext = analysis?.outputs?.marketRiskContext || legacyContext;
   const risk = analysis?.outputs?.riskImpact;
   const unified = analysis?.outputs?.unifiedInsight?.insight;
   const priceScenarios = unified?.price_scenarios;
   const decisionBalance = unified?.decision_balance;
   const reportSummary = report?.status === "completed" ? report.insight?.investor_friendly_insight : null;
-  const news = context?.articles?.slice(0, 6) || [];
-  const factors = context?.externalFactors?.factors || [];
+  const news = newsContext?.articles?.slice(0, 6) || [];
+  const factors = marketRiskContext?.externalFactors?.factors || [];
   const deviationHistory = market?.deviation_history;
   const ContentWrapper = embedded ? "div" : "main";
 
@@ -344,9 +346,9 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
             </section>
 
             <section className="surface-panel">
-              <p className="eyebrow !text-slate-500">What is happening around the stock</p>
-              <h2 className="mt-3 text-3xl font-semibold text-slate-950">Relevant events and wider market context</h2>
-              <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">News and global-market relationships add context. They do not prove that an event caused the stock price to move.</p>
+              <p className="eyebrow !text-slate-500">News sentiment and external-market risk</p>
+              <h2 className="mt-3 text-3xl font-semibold text-slate-950">Relevant events and wider risk conditions</h2>
+              <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">News sentiment identifies relevant events. External-market indicators provide separate risk context. Neither proves that an event or indicator caused the stock price to move.</p>
 
               <div className="mt-7 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
                 <div className="grid gap-3">

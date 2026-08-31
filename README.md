@@ -24,7 +24,7 @@ This repository contains the MERN application and reproducible research packages
 - user workspace requiring a supported stock and its latest quarterly or annual PDF report
 - report company and period verification both when the PDF is uploaded and immediately before analysis; stale or mismatched reports are rejected
 - every Analyze click first refreshes current available-stock rows from the official CSE trade summary, then reruns the market workflow from the latest MongoDB history; locked forecasts are never used as live output
-- market, report, and external-context evidence run together; the explainable risk stage then uses the same dated Gold/Oil/VIX context before all four outputs are fused
+- market behavior, report understanding, news/sentiment, and external-market risk run as four explicit stages before their outputs are fused
 - one same-page evidence-aware result containing forecast horizons, deviation/anomaly context, favourable and adverse price ranges, page-verified report strengths and concerns, dated news, stock-specific external-factor associations, explainable market risk, limitations, and a non-advisory statement
 - short-lived analysis storage with automatic expiry after 24 hours
 - admin console for:
