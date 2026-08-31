@@ -35,8 +35,10 @@ const analysisRunSchema = new mongoose.Schema(
       market: { type: mongoose.Schema.Types.Mixed, default: null },
       report: { type: mongoose.Schema.Types.Mixed, default: null },
       externalContext: { type: mongoose.Schema.Types.Mixed, default: null },
+      riskImpact: { type: mongoose.Schema.Types.Mixed, default: null },
       unifiedInsight: { type: mongoose.Schema.Types.Mixed, default: null },
       workflow: { type: mongoose.Schema.Types.Mixed, default: null },
+      priceRefresh: { type: mongoose.Schema.Types.Mixed, default: null },
     },
     warnings: {
       type: [String],

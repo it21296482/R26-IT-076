@@ -18,6 +18,7 @@ def test_fusion_lists_are_normalized_and_limited():
         "market_outlook": "Outlook",
         "company_report_takeaway": "Report",
         "external_context": "Context",
+        "risk_outlook": "Risk",
         "uncertainty": "Uncertainty",
         "non_advisory_note": "Ignored",
         "potential": [1, 2, 3, 4, 5, 6],
@@ -72,6 +73,12 @@ def test_local_fusion_combines_deviation_report_and_context_in_plain_language():
             ],
             "external_factors": {"factors": []},
         },
+        "risk_evidence": {
+            "status": "completed",
+            "risk_level": "HIGH",
+            "plain_explanation": "The combined market-risk reading is HIGH.",
+            "top_drivers": [{"label": "Recent price variability", "meaning": "Recent prices were less stable."}],
+        },
     }
 
     insight = build_local_fusion(evidence)
@@ -81,7 +88,8 @@ def test_local_fusion_combines_deviation_report_and_context_in_plain_language():
     assert "Revenue grew" in insight["plain_language_overview"]
     assert "Middle East tensions" in insight["plain_language_overview"]
     assert "does not prove" in insight["plain_language_overview"]
-    assert insight["decision_balance"]["label"] == "Balanced with meaningful company strengths"
+    assert "combined market-risk reading is HIGH" in insight["plain_language_overview"]
+    assert insight["decision_balance"]["label"] == "Risk-heavy despite upside possibilities"
 
 
 def test_local_fusion_marks_downside_heavy_price_range_as_risk_heavy():

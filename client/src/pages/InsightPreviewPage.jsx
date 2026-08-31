@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
 import api from "../lib/api";
-import { INSIGHT_PREVIEW_STORAGE_KEY } from "./UserDashboardPage";
+import { INSIGHT_PREVIEW_STORAGE_KEY } from "../lib/analysisPreview";
 
 const readStoredPreview = () => {
   try {
@@ -71,9 +71,11 @@ function ForecastPath({ market }) {
   );
 }
 
-function InsightPreviewPage() {
+function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = false }) {
   const location = useLocation();
-  const [previewRequest] = useState(location.state || readStoredPreview());
+  const [previewRequest] = useState(
+    providedAnalysisId ? { analysisId: providedAnalysisId } : (location.state || readStoredPreview())
+  );
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -100,6 +102,7 @@ function InsightPreviewPage() {
   const market = analysis?.outputs?.market;
   const report = analysis?.outputs?.report;
   const context = analysis?.outputs?.externalContext;
+  const risk = analysis?.outputs?.riskImpact;
   const unified = analysis?.outputs?.unifiedInsight?.insight;
   const priceScenarios = unified?.price_scenarios;
   const decisionBalance = unified?.decision_balance;
@@ -107,6 +110,7 @@ function InsightPreviewPage() {
   const news = context?.articles?.slice(0, 6) || [];
   const factors = context?.externalFactors?.factors || [];
   const deviationHistory = market?.deviation_history;
+  const ContentWrapper = embedded ? "div" : "main";
 
   if (!previewRequest?.analysisId && !loading) {
     return (
@@ -124,9 +128,9 @@ function InsightPreviewPage() {
   }
 
   return (
-    <div className="page-with-sticky-header min-h-screen pb-16">
-      <SiteHeader compact />
-      <main className="shell space-y-8">
+    <div className={embedded ? "scroll-mt-28" : "page-with-sticky-header min-h-screen pb-16"} id={embedded ? "stock-insight-result" : undefined}>
+      {!embedded && <SiteHeader compact />}
+      <ContentWrapper className={embedded ? "space-y-8" : "shell space-y-8"}>
         {loading && <section className="surface-panel text-center text-slate-600">Loading your stock picture...</section>}
         {error && <section className="rounded-[26px] border border-rose-200 bg-rose-50 p-6 text-rose-700">{error}</section>}
 
@@ -168,6 +172,25 @@ function InsightPreviewPage() {
                           <p className="mt-2 text-xs text-slate-400">{note}</p>
                         </div>
                       ))}
+                    </div>
+                  )}
+                  {risk && (
+                    <div className="mt-5 rounded-[24px] border border-white/12 bg-slate-950/35 p-5">
+                      <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">Combined market-risk reading</p>
+                          <p className="mt-2 text-3xl font-semibold text-white">{risk.risk_level}</p>
+                        </div>
+                        <p className="max-w-2xl text-sm leading-7 text-slate-300">{risk.plain_explanation}</p>
+                      </div>
+                      <div className="mt-4 grid gap-3 md:grid-cols-3">
+                        {risk.top_drivers?.map((driver) => (
+                          <div className="rounded-[18px] border border-white/10 bg-white/8 p-4" key={driver.label}>
+                            <p className="text-sm font-semibold text-white">{driver.label}</p>
+                            <p className="mt-2 text-xs leading-5 text-slate-400">{driver.meaning}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -369,10 +392,14 @@ function InsightPreviewPage() {
               </section>
             )}
 
-            <div className="flex justify-center"><Link className="secondary-cta" to="/dashboard">Analyze another stock</Link></div>
+            <div className="flex justify-center">
+              {embedded
+                ? <a className="secondary-cta" href="#analysis-workspace">Analyze another stock</a>
+                : <Link className="secondary-cta" to="/dashboard">Analyze another stock</Link>}
+            </div>
           </>
         )}
-      </main>
+      </ContentWrapper>
     </div>
   );
 }

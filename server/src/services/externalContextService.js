@@ -22,6 +22,7 @@ const EVENT_GROUPS = {
 const FACTORS = [
   { key: "gold", label: "Gold", symbol: "GC=F", unit: "USD per troy ounce" },
   { key: "oil", label: "Crude oil", symbol: "CL=F", unit: "USD per barrel" },
+  { key: "vix", label: "VIX Index", symbol: "^VIX", unit: "index points" },
   { key: "usd_lkr", label: "USD/LKR", symbol: "USDLKR=X", unit: "LKR per USD" },
 ];
 const STOCK_FACTOR_EXPOSURES = {
@@ -41,6 +42,11 @@ const STOCK_FACTOR_EXPOSURES = {
       rise: "Rising gold can indicate risk aversion, which may weigh on travel, investment confidence, and market valuations.",
       fall: "Falling gold can accompany improving risk appetite, but it is not a direct earnings driver for JKH.",
     },
+    vix: {
+      channel: "The VIX is an indicator of expected volatility in major global equities. Its link to JKH is mainly through tourism demand, foreign investor confidence, and broader risk appetite rather than direct operating revenue.",
+      rise: "A sustained VIX rise can signal global risk aversion and weaker confidence around travel, investment, and emerging-market assets.",
+      fall: "A lower VIX can accompany calmer global conditions and stronger risk appetite, but it does not guarantee a higher JKH price.",
+    },
   },
   "BIL.N0000": {
     oil: {
@@ -57,6 +63,11 @@ const STOCK_FACTOR_EXPOSURES = {
       channel: "Gold is mainly an indirect signal of inflation and global risk appetite for BIL, not a confirmed direct revenue driver.",
       rise: "Rising gold can signal defensive investor behaviour and broader uncertainty around diversified-market valuations.",
       fall: "Falling gold can accompany stronger risk appetite, but the direct effect on BIL operations is limited.",
+    },
+    vix: {
+      channel: "The VIX is a global risk-appetite indicator. Its link to BIL is indirect through tourism, funding conditions, foreign sentiment, and diversified asset valuations.",
+      rise: "A sustained VIX rise can increase global risk aversion and make funding, tourism, or diversified holdings harder to value.",
+      fall: "A lower VIX can support calmer investment conditions, but it does not directly determine BIL's operating performance or share price.",
     },
   },
 };

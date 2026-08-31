@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
 import { useAuth } from "../hooks/useAuth";
 import api from "../lib/api";
+import { INSIGHT_PREVIEW_STORAGE_KEY } from "../lib/analysisPreview";
+import InsightPreviewPage from "./InsightPreviewPage";
 
-const INSIGHT_PREVIEW_STORAGE_KEY = "cseInsightPreview";
 const MAX_REPORT_SIZE = 10 * 1024 * 1024;
 
 function UserDashboardPage() {
   const { user } = useAuth();
-  const navigate = useNavigate();
   const [stockUniverse, setStockUniverse] = useState([]);
   const [selectedSymbol, setSelectedSymbol] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [analyzing, setAnalyzing] = useState(false);
   const [error, setError] = useState("");
+  const [analysisId, setAnalysisId] = useState("");
 
   useEffect(() => {
     const loadStocks = async () => {
@@ -75,7 +75,10 @@ function UserDashboardPage() {
         selectedSymbol: selectedStock.symbol,
       };
       sessionStorage.setItem(INSIGHT_PREVIEW_STORAGE_KEY, JSON.stringify(previewPayload));
-      navigate("/dashboard/insight-preview", { state: previewPayload });
+      setAnalysisId(analysisData.analysis._id);
+      window.setTimeout(() => {
+        document.getElementById("stock-insight-result")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
     } catch (err) {
       setError(err.response?.data?.message || "The analysis could not be completed. Please try again.");
     } finally {
@@ -87,8 +90,8 @@ function UserDashboardPage() {
     <div className="page-with-sticky-header min-h-screen pb-16">
       <SiteHeader compact />
 
-      <main className="shell">
-        <section className="market-hero relative overflow-hidden p-6 fade-rise md:p-10 lg:p-12">
+      <main className="shell space-y-10">
+        <section className="market-hero relative overflow-hidden p-6 fade-rise md:p-10 lg:p-12" id="analysis-workspace">
           <div className="market-orb absolute -right-20 -top-24 h-72 w-72 opacity-70" />
           <div className="relative z-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div className="space-y-6">
@@ -98,7 +101,7 @@ function UserDashboardPage() {
               </h1>
               <p className="max-w-xl text-base leading-8 text-slate-300 md:text-lg">
                 Welcome {user?.name}. Choose a company and attach its latest financial report. We will bring market
-                behaviour, company information, and relevant events into one clear explanation.
+                behaviour, company information, relevant events, and market risk into one clear explanation.
               </p>
 
               <div className="grid gap-3 sm:grid-cols-3">
@@ -167,20 +170,26 @@ function UserDashboardPage() {
                 disabled={loading || analyzing || !stockUniverse.length}
                 type="submit"
               >
-                {analyzing ? "Building your stock picture..." : "Analyze"}
+                {analyzing ? "Refreshing prices and building your stock picture..." : "Analyze with latest prices"}
               </button>
               {analyzing && (
                 <p className="mt-4 text-center text-xs leading-5 text-slate-500">
                   Reading the report and checking current context can take a few minutes. Keep this page open.
                 </p>
               )}
+              <p className="mt-3 text-center text-xs leading-5 text-slate-500">
+                Analyze refreshes currently supported prices from the official CSE trade summary before the research stages run.
+              </p>
             </form>
           </div>
         </section>
+
+        {analysisId && (
+          <InsightPreviewPage key={analysisId} analysisId={analysisId} embedded />
+        )}
       </main>
     </div>
   );
 }
 
-export { INSIGHT_PREVIEW_STORAGE_KEY };
 export default UserDashboardPage;

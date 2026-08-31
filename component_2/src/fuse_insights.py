@@ -32,6 +32,7 @@ REQUIRED_STRING_FIELDS = (
     "market_outlook",
     "company_report_takeaway",
     "external_context",
+    "risk_outlook",
     "uncertainty",
     "non_advisory_note",
 )
@@ -242,6 +243,31 @@ def _market_comparison_takeaway(context: dict[str, Any] | None) -> str:
     )
 
 
+def _risk_takeaway(risk: dict[str, Any] | None) -> tuple[str, list[str], list[str]]:
+    if not risk or risk.get("status") != "completed":
+        return (
+            "A supported combined market-risk classification was unavailable for this stock.",
+            [],
+            ["The global-indicator risk classification was unavailable and was not estimated by proxy."],
+        )
+    level = str(risk.get("risk_level") or "").upper()
+    explanation = _sentence(
+        risk.get("plain_explanation"),
+        f"The combined market-risk reading is {level or 'unavailable'}",
+    )
+    drivers = [
+        f"{item.get('label')}: {item.get('meaning')}"
+        for item in (risk.get("top_drivers") or [])[:3]
+        if item.get("label") and item.get("meaning")
+    ]
+    concerns = []
+    if level == "HIGH":
+        concerns.append("The combined stock and global-market indicators are currently classified as high risk.")
+    elif level == "MEDIUM":
+        concerns.append("The combined stock and global-market indicators are currently classified as medium risk.")
+    return explanation, drivers, concerns
+
+
 def _conditional_upside_takeaway(
     price_scenarios: dict[str, Any] | None,
     context: dict[str, Any] | None,
@@ -272,11 +298,13 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
     market = evidence.get("market_evidence")
     report = evidence.get("report_evidence")
     context = evidence.get("external_context")
+    risk = evidence.get("risk_evidence")
     market_text, paths, market_risks = _market_outlook(market)
     price_scenarios = _price_scenarios(market)
     report_text, strengths, report_risks = _report_takeaway(report)
     external_text, factors, external_risks, changes = _external_takeaway(context)
     market_comparison_text = _market_comparison_takeaway(context)
+    risk_text, risk_drivers, risk_concerns = _risk_takeaway(risk)
     conditional_upside_text = _conditional_upside_takeaway(price_scenarios, context)
     external_text += _nearby_event_context(market, context)
     middle_east_report_risk = next((item for item in report_risks if "middle east" in item.lower()), None)
@@ -287,10 +315,12 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
         )
     anomaly = (market or {}).get("anomaly") or {}
     direction = "showed an unusual departure from its expected level" if anomaly.get("detected") else "remained within its expected movement range"
-    headline = f"{company} {direction}; verified business strengths and external risks pull the picture in different directions."
+    risk_level = str((risk or {}).get("risk_level") or "").upper()
+    risk_phrase = f" and carries a {risk_level.lower()} combined market-risk reading" if risk_level else ""
+    headline = f"{company} {direction}{risk_phrase}; verified business strengths and external risks pull the picture in different directions."
     overview = (
         f"{market_text} {market_comparison_text} {conditional_upside_text} "
-        f"{price_scenarios.get('narrative', '') if price_scenarios else ''} {report_text} {external_text} "
+        f"{price_scenarios.get('narrative', '') if price_scenarios else ''} {report_text} {external_text} {risk_text} "
         "Together, this covers the available price, company-report, news, ASPI, commodity, currency, risk, and uncertainty evidence; unknown future events can still change the picture."
     )
     potential = []
@@ -306,7 +336,7 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
             0,
             f"The adverse side of the measured {price_scenarios['horizon']} 80% range is about {_money(price_scenarios['adverse_80_lkr'])}; the wider downside is {_money(price_scenarios['wide_lower_95_lkr'])}.",
         )
-    key_risks = (report_risks + market_risks + external_risks)[:8]
+    key_risks = (risk_concerns + report_risks + market_risks + external_risks)[:8]
     if not key_risks:
         key_risks.append("Unexpected company or market developments could move the price away from the estimated path.")
     central_change = None
@@ -320,14 +350,24 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
     risk_heavy = bool(
         (central_change is not None and central_change <= -5)
         or (favourable_change is not None and adverse_change is not None and adverse_change > favourable_change * 1.3)
+        or risk_level == "HIGH"
     )
     balance_label = "Risk-heavy despite upside possibilities" if risk_heavy else "Balanced with meaningful company strengths"
-    balance_conclusion = (
-        "The central path is below today and the measured downside is larger than the favourable range. "
-        "Any upside possibility should therefore be weighed against the report's losses, cash pressure, external risks, and forecast uncertainty."
-        if risk_heavy else
-        "The central path is close to today's price. Verified operating improvements support potential, but the downside range, currency and finance-cost exposure, and external uncertainty remain important."
-    )
+    if risk_level == "HIGH":
+        balance_conclusion = (
+            "The combined stock and global-market risk reading is high. Any price potential and verified business strengths should therefore be weighed against "
+            "the measured downside range, company concerns, external pressure, and forecast uncertainty."
+        )
+    elif risk_heavy:
+        balance_conclusion = (
+            "The central path is below today or the measured downside is larger than the favourable range. "
+            "Any upside possibility should therefore be weighed against company concerns, external risks, and forecast uncertainty."
+        )
+    else:
+        balance_conclusion = (
+            "Verified operating improvements support potential, but the downside range, currency and finance-cost exposure, "
+            "external uncertainty, and the separate risk reading remain important."
+        )
     change_items = changes[:4]
     if conditional_upside_text not in change_items:
         change_items.insert(0, conditional_upside_text)
@@ -352,6 +392,7 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
         "market_outlook": market_text,
         "company_report_takeaway": report_text,
         "external_context": f"{market_comparison_text} {external_text}" + (f" Wider factors: {' '.join(factors)}" if factors else ""),
+        "risk_outlook": risk_text + (f" Main drivers: {' '.join(risk_drivers)}" if risk_drivers else ""),
         "market_comparison": market_comparison_text,
         "conditional_upside": conditional_upside_text,
         "price_scenarios": price_scenarios,
@@ -369,8 +410,9 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
         "evidence_used": [
             "Historical prices, trading volume, expected price, deviation, and unusual-movement score",
             "Page-verified figures from the uploaded company report",
-            "Dated company and market news plus observed gold, oil, and currency relationships",
+            "Dated company and market news plus observed gold, oil, VIX, and currency relationships",
             "Same-session selected-stock performance compared with the official CSE ASPI snapshot",
+            "Combined stock, gold, oil, and VIX risk classification with feature-level driver evidence",
         ],
         "non_advisory_note": "This is an informational research summary, not buying or selling advice.",
     }
@@ -387,6 +429,7 @@ Required JSON object:
   "market_outlook": "plain explanation of the available forecast horizons, anomaly, and reliability warning",
   "company_report_takeaway": "plain report summary, or clearly say it needs review",
   "external_context": "relevant company/market events and factor associations without causal overclaiming",
+  "risk_outlook": "LOW, MEDIUM, or HIGH combined risk and the supplied plain-language driver explanation, or say unavailable",
   "potential": ["up to three evidence-based possibilities, not advice"],
   "key_risks": ["up to five evidence-based risks"],
   "what_could_change_the_picture": ["up to five events or conditions"],
@@ -401,6 +444,7 @@ Rules:
 - Mention only news supplied in the evidence and avoid saying an event caused a price move.
 - Explain whether the latest stock move was shared with the ASPI or specific to the stock when same-session evidence exists.
 - Use favourable price bounds only as conditional uncertainty scenarios if news and broader-market conditions improve.
+- Treat the supplied risk classification as a separate risk signal, not a forecast and not proof that a factor caused a market outcome.
 - Do not assign an overall confidence percentage.
 
 Evidence JSON:
@@ -463,6 +507,7 @@ def fuse(evidence: dict[str, Any]) -> dict[str, Any]:
     insight["plain_language_overview"] = local_insight.get("plain_language_overview")
     insight["market_outlook"] = local_insight.get("market_outlook")
     insight["external_context"] = local_insight.get("external_context")
+    insight["risk_outlook"] = local_insight.get("risk_outlook")
     insight["potential"] = local_insight.get("potential")
     insight["what_could_change_the_picture"] = local_insight.get("what_could_change_the_picture")
     insight["market_comparison"] = local_insight.get("market_comparison")

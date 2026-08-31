@@ -1,0 +1,81 @@
+const test = require("node:test");
+const assert = require("node:assert/strict");
+
+const {
+  assessRiskImpact,
+  buildRiskFeatures,
+  sampleStandardDeviation,
+} = require("../src/services/riskImpactService");
+
+const rows = Array.from({ length: 51 }, (_, index) => ({
+  symbol: "JKH.N0000",
+  tradeDate: new Date(Date.UTC(2026, 7, 31 - index)),
+  close: 20 - (index * 0.1),
+  volume: 1_000_000 - index,
+}));
+const externalContext = {
+  externalFactors: {
+    factors: [
+      { key: "gold", latestValue: 3400, latestDate: "2026-08-28" },
+      { key: "oil", latestValue: 70, latestDate: "2026-08-28" },
+      { key: "vix", latestValue: 21, latestDate: "2026-08-28" },
+    ],
+  },
+};
+
+test("calculates sample standard deviation consistently with the supplied component", () => {
+  assert.ok(Math.abs(sampleStandardDeviation([1, 2, 3]) - 1) < 0.000001);
+});
+
+test("builds the nine risk inputs from stored history and shared global factors", () => {
+  const features = buildRiskFeatures({ symbol: "JKH.N0000", rows, externalContext });
+  assert.equal(features.stock, "JKH");
+  assert.equal(features.close, 20);
+  assert.equal(features.gold, 3400);
+  assert.equal(features.oil, 70);
+  assert.equal(features.vix, 21);
+  assert.ok(Number.isFinite(features.ma10));
+  assert.ok(Number.isFinite(features.ma50));
+  assert.ok(Number.isFinite(features.volatility));
+});
+
+test("runs the risk adapter with the prepared evidence", async () => {
+  let received = null;
+  const StockModel = {
+    find() {
+      return { sort: () => ({ limit: () => ({ lean: async () => rows }) }) };
+    },
+  };
+  const result = await assessRiskImpact(
+    { symbol: "JKH.N0000", externalContext },
+    {
+      StockModel,
+      executeRisk: async (features) => {
+        received = features;
+        return { status: "completed", risk_level: "MEDIUM", top_drivers: [] };
+      },
+    }
+  );
+
+  assert.equal(received.stock, "JKH");
+  assert.equal(result.risk_level, "MEDIUM");
+});
+
+test("does not invent a risk category for an unsupported stock", async () => {
+  const StockModel = {
+    find() {
+      return { sort: () => ({ limit: () => ({ lean: async () => rows }) }) };
+    },
+  };
+  await assert.rejects(() => assessRiskImpact(
+    { symbol: "BIL.N0000", externalContext },
+    {
+      StockModel,
+      executeRisk: async () => ({
+        status: "unavailable",
+        code: "RISK_STOCK_NOT_SUPPORTED",
+        message: "The supplied risk model was not trained for BIL.",
+      }),
+    }
+  ), /not trained for BIL/);
+});

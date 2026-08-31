@@ -11,6 +11,7 @@ This repository contains the MERN application and reproducible research packages
 - `research/component1/`: preserved market research, fresh on-demand runtime entry point, locked validation artifacts, and the executed forecast-validation notebook
 - `component_2/`: financial-report research, prompt benchmark, verified runtime adapter, and tests
 - `research/component3/`: preserved external-context research source and integration notes
+- `research/component4/`: preserved explainable risk model, isolated runtime adapter, supporting dataset, integration notes, and tests
 - `research/PROPOSAL_AND_IMPLEMENTATION_AUDIT.md`: requirements and evidence audit across all four proposals
 - `research/INTEGRATED_SYSTEM_DEMONSTRATION.md`: exact backend flow, research novelty, viva script, and honest limitations
 
@@ -22,8 +23,9 @@ This repository contains the MERN application and reproducible research packages
 - secure role-based sessions
 - user workspace requiring a supported stock and its latest quarterly or annual PDF report
 - report company and period verification both when the PDF is uploaded and immediately before analysis; stale or mismatched reports are rejected
-- every Analyze click reruns the market workflow from the latest MongoDB history; locked forecasts are never used as live output
-- one evidence-aware result containing forecast horizons, deviation/anomaly context, favourable and adverse price ranges, page-verified report strengths and concerns, dated news, stock-specific external-factor associations, risks, limitations, and a non-advisory statement
+- every Analyze click first refreshes current available-stock rows from the official CSE trade summary, then reruns the market workflow from the latest MongoDB history; locked forecasts are never used as live output
+- market, report, and external-context evidence run together; the explainable risk stage then uses the same dated Gold/Oil/VIX context before all four outputs are fused
+- one same-page evidence-aware result containing forecast horizons, deviation/anomaly context, favourable and adverse price ranges, page-verified report strengths and concerns, dated news, stock-specific external-factor associations, explainable market risk, limitations, and a non-advisory statement
 - short-lived analysis storage with automatic expiry after 24 hours
 - admin console for:
   - viewing current users and account activity
@@ -90,7 +92,9 @@ Open `http://127.0.0.1:5173`.
 - set `PYTHON_BIN=python` (or the path to the project Python environment) and allow up to six minutes for a fresh market run
 - report extraction and the combined explanation work locally from verified evidence by default (`USE_AZURE_OPENAI=false`)
 - Azure wording enhancement is optional; enable it only with `USE_AZURE_OPENAI=true` and a valid rotated credential that matches the endpoint and deployment
-- oil, gold, and USD/LKR relationships use overlapping one-year daily returns and are presented as associations with business context, never as proof of cause
+- oil, gold, VIX, and USD/LKR relationships use overlapping one-year daily returns and are presented as associations with business context, never as proof of cause
+- set `RISK_ANALYSIS_TIMEOUT_MS` if the local Python risk adapter needs more than its default two-minute limit
+- the supplied risk-model encoder supports JKH but not BIL; unsupported symbols are reported honestly rather than mapped to a proxy
 - the admin console includes a plain-language four-stage workflow demonstration for research review
 - never commit `.env` files or reuse credentials that have appeared in chat or Git history
 
@@ -99,6 +103,7 @@ Open `http://127.0.0.1:5173`.
 ```bash
 cd research/component1 && python -m pytest -q
 cd component_2 && pytest -q
+cd research/component4 && python -m pytest -q
 cd server && npm test && npm audit --omit=dev
 cd client && npm run lint && npm run build
 ```

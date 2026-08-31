@@ -1,10 +1,12 @@
 const AnalysisRun = require("../models/AnalysisRun");
 const FinancialReport = require("../models/FinancialReport");
 const Stock = require("../models/Stock");
+const { refreshAvailableStockQuotes } = require("../services/cseQuoteService");
 const { collectExternalContext } = require("../services/externalContextService");
 const { loadMarketInsight } = require("../services/marketInsightService");
 const { analyzeFinancialReport } = require("../services/reportInsightService");
 const { inspectFinancialReport } = require("../services/reportValidationService");
+const { assessRiskImpact } = require("../services/riskImpactService");
 const { generateUnifiedInsight } = require("../services/unifiedInsightService");
 
 const temporaryExpiry = () => new Date(Date.now() + 24 * 60 * 60 * 1000);
@@ -87,6 +89,16 @@ const publicExternalOutput = (externalContext) => {
   return output;
 };
 
+const publicRiskOutput = (riskImpact) => {
+  if (!riskImpact) return null;
+  const output = structuredClone(riskImpact);
+  delete output.class_probabilities;
+  delete output.explanation_method;
+  output.top_drivers = (output.top_drivers || []).map(({ impact, factor, ...driver }) => driver);
+  output.global_drivers = (output.global_drivers || []).map(({ impact, factor, ...driver }) => driver);
+  return output;
+};
+
 const warningsFrom = (settledResult, label) => {
   if (settledResult.status === "rejected") {
     return [`${label}: ${safeWarning(settledResult.reason?.message)}`];
@@ -96,7 +108,7 @@ const warningsFrom = (settledResult, label) => {
     : [];
 };
 
-const compactFusionEvidence = ({ stockSymbol, companyName, market, report, externalContext }) => ({
+const compactFusionEvidence = ({ stockSymbol, companyName, market, report, externalContext, riskImpact }) => ({
   selected_stock: { symbol: stockSymbol, company_name: companyName },
   market_evidence: market,
   report_evidence: report
@@ -125,10 +137,21 @@ const compactFusionEvidence = ({ stockSymbol, companyName, market, report, exter
         warnings: externalContext.warnings,
       }
     : { status: "unavailable" },
+  risk_evidence: riskImpact || { status: "unavailable" },
 });
 
 const createAnalysis = async (req, res) => {
   const stockSymbol = String(req.body.stockSymbol || "").toUpperCase();
+  let priceRefresh = null;
+  let priceRefreshWarning = "";
+  console.info(`[analysis:${stockSymbol}] priceRefresh: started`);
+  try {
+    priceRefresh = await refreshAvailableStockQuotes();
+    console.info(`[analysis:${stockSymbol}] priceRefresh: updated ${priceRefresh.updatedSymbols.length} symbols`);
+  } catch (error) {
+    priceRefreshWarning = `Latest CSE prices: ${safeWarning(error.message)}`;
+    console.info(`[analysis:${stockSymbol}] priceRefresh: unavailable`);
+  }
   const [latestStock, report] = await Promise.all([
     Stock.findOne({ symbol: stockSymbol }).sort({ tradeDate: -1 }).lean(),
     FinancialReport.findOne({
@@ -204,6 +227,22 @@ const createAnalysis = async (req, res) => {
     const market = resultOrNull(marketResult);
     const reportOutput = resultOrNull(reportResult);
     const externalContext = resultOrNull(contextResult);
+    let riskResult = { status: "rejected", reason: new Error("External context was unavailable for the risk assessment.") };
+    if (externalContext) {
+      riskResult = await Promise.allSettled([
+        runStage("riskImpact", "Explainable global-market risk impact", () => assessRiskImpact({
+          symbol: stockSymbol,
+          externalContext,
+        })),
+      ]).then(([result]) => result);
+    } else {
+      workflow.riskImpact = {
+        label: "Explainable global-market risk impact",
+        status: "unavailable",
+        durationMs: 0,
+      };
+    }
+    const riskImpact = resultOrNull(riskResult);
     if (Array.isArray(reportOutput?.warnings)) {
       reportOutput.warnings = reportOutput.warnings.map(safeWarning);
     }
@@ -211,9 +250,11 @@ const createAnalysis = async (req, res) => {
       externalContext.warnings = externalContext.warnings.map(safeWarning);
     }
     const warnings = [
+      ...(priceRefreshWarning ? [priceRefreshWarning] : []),
       ...warningsFrom(marketResult, "Market analysis"),
       ...warningsFrom(reportResult, "Financial report"),
       ...warningsFrom(contextResult, "External context"),
+      ...warningsFrom(riskResult, "Market risk"),
     ];
 
     if (reportOutput) {
@@ -225,7 +266,7 @@ const createAnalysis = async (req, res) => {
     await report.save();
 
     let unifiedInsight = null;
-    if (market || reportOutput || externalContext) {
+    if (market || reportOutput || externalContext || riskImpact) {
       try {
         unifiedInsight = await runStage("integration", "Plain-language integrated stock picture", () => generateUnifiedInsight(compactFusionEvidence({
           stockSymbol,
@@ -233,6 +274,7 @@ const createAnalysis = async (req, res) => {
           market,
           report: reportOutput,
           externalContext,
+          riskImpact,
         })));
         if (Array.isArray(unifiedInsight.warnings)) {
           warnings.push(...unifiedInsight.warnings.map((warning) => `Unified explanation: ${safeWarning(warning)}`));
@@ -243,15 +285,17 @@ const createAnalysis = async (req, res) => {
     }
 
     const requiredInputsComplete = Boolean(
-      market && reportOutput?.status === "completed" && externalContext && unifiedInsight?.status === "completed"
+      market && reportOutput?.status === "completed" && externalContext && riskImpact && unifiedInsight?.status === "completed"
     );
     analysis.status = requiredInputsComplete ? "completed" : "partial";
     analysis.outputs = {
       market: publicMarketOutput(market),
       report: publicReportOutput(reportOutput),
       externalContext: publicExternalOutput(externalContext),
+      riskImpact: publicRiskOutput(riskImpact),
       unifiedInsight,
       workflow,
+      priceRefresh,
     };
     analysis.warnings = [...new Set(warnings)];
     await analysis.save();

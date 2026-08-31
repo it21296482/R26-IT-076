@@ -22,8 +22,8 @@ The proposals consistently describe this flow:
 5. The independent outputs are combined into one plain-language, non-advisory
    explanation of what is happening, why it may be happening, uncertainty, and
    risk.
-6. The presentation strategy is evaluated with non-expert investors, not merely
-   displayed as a collection of charts.
+6. Stock behaviour and global financial indicators are combined into an
+   explainable LOW/MEDIUM/HIGH market-risk classification.
 
 For the current application milestone, the report upload is treated as required,
 following the latest integrated workflow requirement. The investor-facing input
@@ -35,22 +35,28 @@ screen therefore contains only stock selection, PDF upload, and Analyze.
 | --- | --- | --- | --- |
 | Market behaviour | Explainable, anomaly-aware CSE modelling that combines expected movement, liquidity-aware deviation, factor contribution, interaction analysis, and consistency over time. | Fresh 4-day, 1-month, 3-month, and 6-month paths; uncertainty ranges; signed deviation; anomaly score and direction; baseline comparison; factor contribution and explanation-stability outputs. | Explicit factor-interaction validation, broader multi-stock/regime testing, and formal usability evidence. |
 | Financial reports | Localized, retrieval-enhanced interpretation that converts unstructured reports into grounded financial-health, growth, and risk signals. | Annual/quarterly PDF handling, company/date checks, structured findings, contextual extraction, and page-verified quotes in the Analyze workflow. | Proposal-scale document corpus and labelled extraction, grounding, and reliability results. |
-| External context | Event-driven sentiment and news understanding integrated with market context rather than presented as a generic feed. | Selected-company, local, and global news; deduplication; event/sentiment labels; ASPI comparison; gold, oil, and USD/LKR associations and business channels. | Labelled CSE sentiment/event metrics, source-coverage evidence, and monitored provider reliability. |
-| Human-centred delivery | A comparative explanation framework that measures comprehension, trust, usability, and cognitive load, then refines how integrated insights are communicated. | One versioned result combines all evidence into a plain-language overview, price/risk views, report evidence, events, factor context, uncertainty, and a non-advisory note. | Multiple explanation-variant experiment, participant data, FICS/SUS/adapted NASA-TLX/task/think-aloud results, statistical comparison, and documented iterative refinement. |
+| External context | Event-driven sentiment and news understanding integrated with market context rather than presented as a generic feed. | Selected-company, local, and global news; deduplication; event/sentiment labels; ASPI comparison; gold, oil, VIX, and USD/LKR associations and business channels. | Labelled CSE sentiment/event metrics, source-coverage evidence, and monitored provider reliability. |
+| Explainable global-market risk | A stock-risk classifier that combines stock behaviour with Gold, Oil, and VIX and explains why the selected risk level was produced. | The supplied Random Forest and stock encoder run through an isolated adapter; corrected multiclass SHAP values produce main and global driver meanings inside the unified Analyze result. | Risk-label construction, training script, split method, confusion matrix, held-out metrics, broader CSE stock coverage, and stability evaluation. |
 
 ## Fourth-branch integration decision
 
-The unmerged `origin/IT22547088` branch was reviewed against the updated fourth
-proposal. Its `/risk` route and separate Python service implement another
-standalone market-risk predictor with manual indicator inputs and recommendation-
-style output. That is not the proposal's human-centred explanation and
-interpretability contribution, and it duplicates the first research stage.
+The later component description supplied after the updated proposal defines the
+fourth contribution as an explainable financial-market risk engine. It therefore
+supersedes the earlier human-centred explanation description for integration
+purposes. The `origin/IT22547088` branch was reviewed file by file rather than
+merged wholesale.
 
-The branch was therefore not merged into the product. The proposal-aligned part
-is integrated through the existing unified analysis result and protected research
-demonstration. The explanation-variant comparison, participant measurement, and
-iterative refinement remain research evaluation work rather than hidden or
-falsely completed features.
+The trained Random Forest, stock encoder, supporting dataset, and model-aligned
+risk logic were preserved under `research/component4`. The branch's separate
+Flask server, separate `/risk` React page, duplicate authentication/database
+configuration, hard-coded service URLs, exposed credentials, and recommendation-
+style output were not merged because they conflict with the current MERN
+architecture and one-page non-advisory workflow.
+
+The adapter also corrects a material multiclass SHAP indexing error in the branch:
+the model returns an instance-by-feature-by-class array, so contributions must be
+read across all features for the predicted class. The current runtime refuses
+unsupported stocks instead of silently substituting another company.
 
 ## Stage 1: Market behaviour, forecasting, and anomaly explanation
 
@@ -156,7 +162,8 @@ precision/recall/F1, and integration with the other research outputs.
   oil/fuel, trade, war, and geopolitical events.
 - The main Analyze workflow now calls a failure-aware external-context adapter
   that returns selected-company, local, and global articles; sentiment and event
-  labels; an ASPI comparison; and stock-aligned gold, oil, and USD/LKR context.
+  labels; an ASPI comparison; and stock-aligned gold, oil, VIX, and USD/LKR
+  context.
 - Each external factor includes its overlap count, association strength,
   explanatory share, business channel, and an explicit non-causal warning.
 
@@ -184,44 +191,56 @@ precision/recall/F1, and integration with the other research outputs.
   with date range, sample size, lag, and uncertainty; no causal language is used
   without a causal research design.
 
-## Stage 4: Unified insight and human interpretability
+## Stage 4: Explainable global-market risk impact
 
-### Proposal requirement
+### Revised requirement
 
-The proposal requires one dashboard that integrates all upstream outputs,
-multiple explanation variants for the same insight, and comparative evaluation
-using comprehension, SUS, FICS, adapted NASA-TLX, task completion, trust, and
-think-aloud analysis followed by iterative refinement.
+The latest supplied component definition requires a LOW/MEDIUM/HIGH stock-risk
+classification from historical stock behaviour plus Gold, Oil, and VIX. A
+Random Forest performs classification and SHAP explains the main factors that
+influenced the selected class. The output must contribute to the same unified
+dashboard rather than becoming a separate recommendation page.
 
 ### Current evidence
 
-- The main controller runs the first three evidence stages concurrently, passes
-  their structured outputs into one integration stage, and stores one
-  short-lived versioned analysis result.
-- The investor result renders returned price paths, anomaly/deviation evidence,
-  verified report strengths and concerns, dated events, external-factor
-  context, one plain-language conclusion, uncertainty, and a non-advisory note.
-- Internal research ownership and implementation terminology are kept out of
-  the investor-facing workflow; the four-stage explanation is restricted to the
-  protected administration demonstration.
+- The preserved model is a `RandomForestClassifier` with 200 trees, maximum
+  depth 10, and classes 0/1/2 mapped to LOW/MEDIUM/HIGH.
+- Runtime inputs match the model's exact nine-feature contract: Close, Volume,
+  MA10, MA50, Volatility, Gold, Oil, VIX, and encoded stock identity.
+- The risk stage consumes the selected stock's latest MongoDB history and reuses
+  the dated global indicators returned by the external-context stage.
+- The corrected SHAP adapter returns top overall drivers and separately explains
+  whether Gold, Oil, and VIX supported or partly offset the predicted class.
+- Risk is displayed inside the same first-page plain-language result and is also
+  passed into final evidence fusion. Technical model terminology is restricted
+  to the protected research demonstration and documentation.
 
 ### Missing or incorrect
 
-- No explanation-variant experiment, participant dataset, statistical comparison,
-  or iterative evaluation record was found.
-- The current interface presents several evidence views, but this is not the
-  same as a controlled comparison of the proposal's alternative explanation
-  strategies.
+- The supplied encoder contains JKH but not BIL, so BIL cannot receive a valid
+  risk classification from this model yet.
+- The branch contains a prepared dataset but no reproducible risk-label creation,
+  training script, train/test split record, confusion matrix, class-level
+  precision/recall/F1, or held-out performance report.
+- Current model feature importance is dominated by volatility. This may be valid,
+  but the intended contribution of global indicators needs ablation and stability
+  testing rather than being assumed from their presence.
+- SHAP explains model behaviour; it does not establish that a factor caused the
+  real-world stock risk.
 
 ### Acceptance criteria
 
-- Every displayed result is returned by one versioned analysis response; no
-  hard-coded confidence or risk claims remain.
-- The primary output uses plain language, separates observation from uncertainty,
-  cites report/news evidence, and includes a non-advisory statement.
-- Alternative explanation formats are evaluated using a documented participant
-  protocol and the proposal's comprehension, usability, trust, and cognitive-load
-  measures.
+- Every supported-stock result names the feature date, risk class, main drivers,
+  global-factor direction, and model scope.
+- Unsupported stock symbols return an explicit unavailable result; no proxy stock
+  or fabricated risk label is allowed.
+- Research reporting includes reproducible label construction, data split,
+  class balance, baseline comparison, confusion matrix, precision, recall, F1,
+  and out-of-sample performance.
+- Ablation and temporal-stability tests demonstrate whether Gold, Oil, and VIX
+  add measurable value beyond stock-only inputs.
+- Model contribution is described as explanation, not causal proof or investment
+  advice.
 
 ## Unified response contract
 
@@ -231,6 +250,7 @@ The integrated API should store a short-lived analysis record containing:
 - market forecast horizons and anomaly/deviation evidence;
 - report extraction status, structured findings, and page evidence;
 - relevant news/events and external-factor context with sources;
+- explainable global-market risk level, drivers, factor dates, and model scope;
 - data freshness and per-stage quality warnings;
 - one fused plain-language overview, potential, key risks, drivers, uncertainty,
   and explicit non-advisory note.
@@ -242,10 +262,12 @@ confident generated statement.
 ## Research conclusion
 
 The four stages are connected in the current end-to-end Analyze workflow, and
-their distinct novelty is now documented without exposing member ownership in
-the investor interface. Integration is not the same as research validation.
-Stage 1 has implementation and honest out-of-sample evidence but still needs
-broader and interaction-specific validation. Stages 2 and 3 need labelled,
-source-grounded evaluation. Stage 4 has a working unified presentation layer but
-still requires the proposed explanation-variant and human-interpretability
-study. These are research obligations, not only UI tasks.
+their distinct novelty is documented without exposing member ownership or model
+internals in the investor interface. Integration is not the same as research
+validation. Stage 1 has implementation and honest out-of-sample evidence but
+still needs broader and interaction-specific validation. Stages 2 and 3 need
+labelled, source-grounded evaluation. Stage 4 now runs the supplied explainable
+risk model for supported stocks but still needs reproducible training,
+performance, ablation, stability, and broader CSE coverage evidence. The shared
+plain-language integration layer remains product behaviour rather than a fifth
+research contribution.
