@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { ADMIN_DASHBOARD_PATH } from "../lib/routes";
 import BrandLogo from "./BrandLogo";
+import LanguageSelector from "./LanguageSelector";
 
 function SiteHeader({ compact = false }) {
   const { user, logout } = useAuth();
@@ -23,6 +24,7 @@ function SiteHeader({ compact = false }) {
         <BrandLogo compact={compact} />
 
         <nav className="flex flex-wrap items-center gap-2">
+          <LanguageSelector />
           <NavLink className={navLinkClass} to="/">
             Home
           </NavLink>

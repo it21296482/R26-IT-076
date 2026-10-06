@@ -8,6 +8,7 @@ const { analyzeFinancialReport } = require("../services/reportInsightService");
 const { inspectFinancialReport } = require("../services/reportValidationService");
 const { assessRiskImpact } = require("../services/riskImpactService");
 const { generateUnifiedInsight } = require("../services/unifiedInsightService");
+const { translateAnalysis } = require("../services/translationService");
 
 const temporaryExpiry = () => new Date(Date.now() + 24 * 60 * 60 * 1000);
 
@@ -348,7 +349,8 @@ const getAnalysis = async (req, res) => {
   if (!analysis) {
     return res.status(404).json({ message: "This analysis is unavailable or has expired." });
   }
-  return res.status(200).json({ analysis });
+  const translatedAnalysis = await translateAnalysis(analysis, req.query.language);
+  return res.status(200).json({ analysis: translatedAnalysis, language: req.query.language || "en" });
 };
 
 module.exports = { createAnalysis, getAnalysis };

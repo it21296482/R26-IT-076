@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
+import { useLanguage } from "../context/languageStore";
 import api from "../lib/api";
 import { INSIGHT_PREVIEW_STORAGE_KEY } from "../lib/analysisPreview";
 
@@ -73,6 +74,7 @@ function ForecastPath({ market }) {
 
 function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = false }) {
   const location = useLocation();
+  const { language } = useLanguage();
   const [previewRequest] = useState(
     providedAnalysisId ? { analysisId: providedAnalysisId } : (location.state || readStoredPreview())
   );
@@ -87,7 +89,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
         return;
       }
       try {
-        const { data } = await api.get(`/analysis/${previewRequest.analysisId}`);
+        const { data } = await api.get(`/analysis/${previewRequest.analysisId}`, { params: { language } });
         setAnalysis(data.analysis);
       } catch (err) {
         setError(err.response?.data?.message || "Unable to load this stock insight.");
@@ -97,7 +99,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
     };
 
     loadAnalysis();
-  }, [previewRequest]);
+  }, [language, previewRequest]);
 
   const market = analysis?.outputs?.market;
   const report = analysis?.outputs?.report;
@@ -238,7 +240,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
               </section>
             )}
 
-            <section className="surface-panel fade-rise-delay-1">
+            <section className="surface-panel fade-rise-delay-1" id="component-market">
               <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
                 <div>
                   <p className="eyebrow !text-slate-500">Potential price paths</p>
@@ -282,7 +284,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
             </section>
 
             <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-              <article className="surface-panel">
+              <article className="surface-panel" id="component-market-check">
                 <p className="eyebrow !text-slate-500">Unusual movement check</p>
                 <h2 className="mt-3 text-3xl font-semibold text-slate-950">{market?.anomaly?.detected ? "An unusual deviation was detected" : "No unusual deviation at the latest check"}</h2>
                 {market?.anomaly ? (
@@ -327,7 +329,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
                 ) : <p className="mt-5 text-slate-600">This check was unavailable.</p>}
               </article>
 
-              <article className="surface-panel">
+              <article className="surface-panel" id="component-report">
                 <p className="eyebrow !text-slate-500">What the company report says</p>
                 <h2 className="mt-3 text-3xl font-semibold text-slate-950">{reportSummary ? "Verified report takeaways" : "Report evidence needs review"}</h2>
                 {reportSummary ? (
@@ -345,7 +347,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
               </article>
             </section>
 
-            <section className="surface-panel">
+            <section className="surface-panel" id="component-news">
               <p className="eyebrow !text-slate-500">News sentiment and external-market risk</p>
               <h2 className="mt-3 text-3xl font-semibold text-slate-950">Relevant events and wider risk conditions</h2>
               <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">News sentiment identifies relevant events. External-market indicators provide separate risk context. Neither proves that an event or indicator caused the stock price to move.</p>
@@ -361,7 +363,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
                   )) : <p className="rounded-[22px] bg-slate-50 p-5 text-slate-600">No dated relevant articles were collected during this run.</p>}
                 </div>
 
-                <div className="grid content-start gap-3">
+                <div className="grid content-start gap-3" id="component-risk">
                   {factors.map((factor) => (
                     <article className="rounded-[22px] bg-slate-950 p-5 text-white" key={factor.key}>
                       <div className="flex items-start justify-between gap-4">
