@@ -110,6 +110,39 @@ cd client && npm run lint && npm run build
 
 The executed validation notebook is `research/component1/notebooks/component1_forecast_validation.ipynb`. Its documented result is that the locked May 2026 upward forecasts did not validate against the following three months, and a no-change baseline performed better for both available stocks.
 
+## Languages
+
+Choose **English**, **සිංහල**, or **தமிழ்** in the header. The choice is retained
+across navigation and reloads. Navigation, account forms, analysis inputs, result
+labels and admin controls use local translations, with no translation API needed.
+Dates follow the selected language. Prices, ticker symbols, scores, model status
+values, company names, CSV columns and original source quotes stay unchanged.
+
+Generated report takeaways, the combined explanation, risk-driver descriptions,
+and news headlines use the existing Azure explanation-service configuration
+(`AZURE_OPENAI_*` and `PYTHON_BIN`). No separate public translation service receives
+report summaries. This translation call requires valid Azure credentials even if
+English analysis uses the local fallback. It may incur normal Azure usage charges.
+Translations are cached in server memory for up to 30 minutes (maximum 2,000 strings)
+and are not written over the original analysis. Switching language does not rerun
+the research models. New analyses still refresh prices and run the original pipeline.
+
+Automatic translations are labelled. A provider outage or changed numeric/ticker
+content preserves the original English wording and shows an explicit translation
+notice rather than hiding evidence. Research documentation and original source
+documents remain in their original language; this does not add Sinhala/Tamil PDF
+extraction or retrain the sentiment model. Native-speaker financial terminology
+review is recommended before a public release.
+
+Language regression checks:
+
+```bash
+cd client
+node --test tests/language.test.mjs
+cd ../server
+node --test test/translationService.test.js
+```
+
 ## Hidden admin entry
 
 The public UI does not expose admin access. The current secret admin route is:

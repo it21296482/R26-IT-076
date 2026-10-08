@@ -29,6 +29,14 @@
       linear-gradient(180deg, #f9fbff 0%, #f4f8ff 35%, #ffffff 100%);
   }
 
+  html:lang(si) body {
+    font-family: "Noto Sans Sinhala", "Sinhala Sangam MN", "Iskoola Pota", sans-serif;
+  }
+
+  html:lang(ta) body {
+    font-family: "Noto Sans Tamil", "Tamil Sangam MN", "Latha", sans-serif;
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -39,6 +47,20 @@
   textarea {
     font: inherit;
   }
+}
+
+/* These scripts need intact glyph spacing; tracking utilities are Latin-specific. */
+html:is(:lang(si), :lang(ta)) :is(h1, h2, h3, p, label, button, select, a, span) {
+  letter-spacing: normal;
+  overflow-wrap: break-word;
+}
+
+html:is(:lang(si), :lang(ta)) :is(h1, h2, h3) {
+  line-height: 1.5;
+}
+
+html:is(:lang(si), :lang(ta)) h1 {
+  font-size: clamp(1.875rem, 4vw, 3.5rem);
 }
 
 @layer components {

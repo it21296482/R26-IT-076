@@ -1,6 +1,8 @@
+import { useLanguage } from "../context/languageStore";
 import SiteHeader from "./SiteHeader";
 
 function AuthShell({ title, subtitle, children, mode = "user", footer }) {
+  const { t } = useLanguage();
   const isAdmin = mode === "admin";
   const visualImage = isAdmin
     ? "/assets/cse-trading-floor.jpg"
@@ -23,21 +25,17 @@ function AuthShell({ title, subtitle, children, mode = "user", footer }) {
           <div className="market-orb absolute -left-12 bottom-12 h-32 w-32 opacity-40" />
           <div className="relative z-10 flex min-h-[620px] flex-col justify-end">
             <div className="max-w-xl space-y-5">
-              <p className="eyebrow !text-blue-100">{isAdmin ? "Restricted Access" : "Secure Account Access"}</p>
-              <h1 className="text-5xl font-semibold tracking-tight text-white md:text-6xl">{title}</h1>
-              <p className="max-w-2xl text-lg leading-8 text-slate-200">{subtitle}</p>
+              <p className="eyebrow !text-blue-100">{isAdmin ? t("Restricted Access") : t("Secure Account Access")}</p>
+              <h1 className="text-5xl font-semibold tracking-tight text-white md:text-6xl">{t(title)}</h1>
+              <p className="max-w-2xl text-lg leading-8 text-slate-200">{t(subtitle)}</p>
               <div className="grid gap-4 pt-4 sm:grid-cols-2">
                 <div className="glass-card rounded-[24px] p-5">
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-100">Market-aware flow</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-200">
-                    Built around stock selection, report upload, and clear investor understanding.
-                  </p>
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-100">{t("Market-aware flow")}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-200">{t("Built around stock selection, report upload, and clear investor understanding.")}{" "}</p>
                 </div>
                 <div className="glass-card rounded-[24px] p-5">
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-100">Clear guidance</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-200">
-                    Designed to simplify financial complexity instead of increasing cognitive load.
-                  </p>
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-100">{t("Clear guidance")}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-200">{t("Designed to simplify financial complexity instead of increasing cognitive load.")}{" "}</p>
                 </div>
               </div>
             </div>

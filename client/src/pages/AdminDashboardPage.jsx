@@ -1,3 +1,4 @@
+import { useLanguage } from "../context/languageStore";
 import { useEffect, useMemo, useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 import { useAuth } from "../hooks/useAuth";
@@ -36,6 +37,7 @@ const buildTemplateFile = () => {
 };
 
 function AdminDashboardPage() {
+  const { t, locale } = useLanguage();
   const { user: currentUser } = useAuth();
   const [overview, setOverview] = useState(null);
   const [users, setUsers] = useState([]);
@@ -346,11 +348,9 @@ function AdminDashboardPage() {
       <main className="shell space-y-10">
         <section className="grid gap-8 lg:grid-cols-[1fr_360px]">
           <div className="space-y-5 fade-rise">
-            <p className="eyebrow">Secure admin console</p>
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">Control access and keep market data ready.</h1>
-            <p className="max-w-3xl text-lg leading-8 text-slate-600">
-              Manage users, support account recovery, and import historical price data through CSV so the platform stays operational and trustworthy.
-            </p>
+            <p className="eyebrow">{t("Secure admin console")}</p>
+            <h1 className="text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">{t("Control access and keep market data ready.")}</h1>
+            <p className="max-w-3xl text-lg leading-8 text-slate-600">{t("Manage users, support account recovery, and import historical price data through CSV so the platform stays operational and trustworthy.")}{" "}</p>
           </div>
 
           <div className="market-hero relative overflow-hidden p-6 fade-rise-delay-1">
@@ -358,7 +358,7 @@ function AdminDashboardPage() {
             <div className="relative z-10 grid gap-4">
               {stats.map(([label, value]) => (
                 <div className="rounded-2xl border border-white/10 bg-white/8 px-4 py-4" key={label}>
-                  <p className="text-xs uppercase tracking-[0.22em] text-blue-100/75">{label}</p>
+                  <p className="text-xs uppercase tracking-[0.22em] text-blue-100/75">{t(label)}</p>
                   <p className="mt-2 text-3xl font-semibold text-white">{value}</p>
                 </div>
               ))}
@@ -368,27 +368,25 @@ function AdminDashboardPage() {
 
         {(error || success) && (
           <section className="space-y-3">
-            {error && <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{error}</div>}
-            {success && <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">{success}</div>}
+            {error && <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{t(error)}</div>}
+            {success && <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">{t(success)}</div>}
           </section>
         )}
 
         <section className="surface-panel fade-rise-delay-1">
-          <p className="eyebrow !text-slate-500">Analysis demonstration</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">How one stock picture is prepared</h2>
-          <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">
-            These four research stages are coordinated after a user selects a stock and uploads its latest verified company report.
-          </p>
+          <p className="eyebrow !text-slate-500">{t("Analysis demonstration")}</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">{t("How one stock picture is prepared")}</h2>
+          <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">{t("These four research stages are coordinated after a user selects a stock and uploads its latest verified company report.")}</p>
           <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {[
-              ["01", "Price behaviour", "Input: every stored price and volume row for the selected stock.", "Freshly estimates 4-day, 1-month, 3-month, and 6-month central and uncertainty paths, then measures expected-price deviation and unusual-movement score.", "Novelty: a CSE-specific, liquidity-aware framework connects forecast potential with signed deviation, anomaly direction, factor contribution, and explanation stability instead of reporting a price alone. Forecast, anomaly, and stability evidence are integrated; formal factor-interaction validation remains research work."],
-              ["02", "Company report", "Input: the latest company-matched quarterly or annual PDF.", "Verifies the company and reporting date, then extracts page-backed growth, margin, cash-flow, segment, balance-sheet, and risk evidence.", "Novelty: localized, context-aware report understanding turns unstructured disclosures into structured growth, health, and risk signals while preserving the source page and quote. The live workflow is integrated; proposal-scale extraction and grounding evaluation remains research work."],
-              ["03", "News and sentiment", "Input: dated stock-specific, Colombo Stock Exchange, Sri Lankan economic, and relevant global news coverage.", "Finds relevant events, classifies the language tone, and connects the resulting sentiment evidence to the selected stock without claiming that news caused its price movement.", "Novelty: combines company-specific financial news, broader market announcements, event detection, and sentiment signals into selected-stock evidence instead of displaying a generic news feed. The live workflow is integrated; labelled CSE evaluation remains research work."],
-              ["04", "Explainable external-market risk", "Input: latest stock price, volume, recent trend, drawdown, variability, unusual activity, ASPI, gold, crude oil, VIX, and supporting currency context.", "Measures wider market conditions, classifies the current combined financial-market risk as LOW, MEDIUM, or HIGH, and identifies which stock or global indicators contributed most to that result.", "Novelty: combines stock risk classification with quantitative external-market indicators, then uses feature-level explanation to show why the category was produced instead of returning an unexplained label. The reproducible CSE model supports both BIL and JKH and achieved 0.859 macro-F1 on a chronological holdout; this measures current-risk label fidelity, not future-return prediction."],
+              ["01", t("Price behaviour"), t("Input: every stored price and volume row for the selected stock."), t("Freshly estimates 4-day, 1-month, 3-month, and 6-month central and uncertainty paths, then measures expected-price deviation and unusual-movement score."), t("Novelty: a CSE-specific, liquidity-aware framework connects forecast potential with signed deviation, anomaly direction, factor contribution, and explanation stability instead of reporting a price alone. Forecast, anomaly, and stability evidence are integrated; formal factor-interaction validation remains research work.")],
+              ["02", t("Company report"), t("Input: the latest company-matched quarterly or annual PDF."), t("Verifies the company and reporting date, then extracts page-backed growth, margin, cash-flow, segment, balance-sheet, and risk evidence."), t("Novelty: localized, context-aware report understanding turns unstructured disclosures into structured growth, health, and risk signals while preserving the source page and quote. The live workflow is integrated; proposal-scale extraction and grounding evaluation remains research work.")],
+              ["03", t("News and sentiment"), t("Input: dated stock-specific, Colombo Stock Exchange, Sri Lankan economic, and relevant global news coverage."), t("Finds relevant events, classifies the language tone, and connects the resulting sentiment evidence to the selected stock without claiming that news caused its price movement."), t("Novelty: combines company-specific financial news, broader market announcements, event detection, and sentiment signals into selected-stock evidence instead of displaying a generic news feed. The live workflow is integrated; labelled CSE evaluation remains research work.")],
+              ["04", t("Explainable external-market risk"), t("Input: latest stock price, volume, recent trend, drawdown, variability, unusual activity, ASPI, gold, crude oil, VIX, and supporting currency context."), t("Measures wider market conditions, classifies the current combined financial-market risk as LOW, MEDIUM, or HIGH, and identifies which stock or global indicators contributed most to that result."), t("Novelty: combines stock risk classification with quantitative external-market indicators, then uses feature-level explanation to show why the category was produced instead of returning an unexplained label. The reproducible CSE model supports both BIL and JKH and achieved 0.859 macro-F1 on a chronological holdout; this measures current-risk label fidelity, not future-return prediction.")],
             ].map(([number, title, input, action, novelty]) => (
               <article className="rounded-[24px] border border-slate-200 bg-slate-50 p-5" key={number}>
                 <p className="text-xs font-semibold tracking-[0.2em] text-sky-700">{number}</p>
-                <h3 className="mt-3 text-xl font-semibold text-slate-950">{title}</h3>
+                <h3 className="mt-3 text-xl font-semibold text-slate-950">{t(title)}</h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-slate-800">{input}</p>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{action}</p>
                 <p className="mt-4 border-t border-slate-200 pt-4 text-xs leading-6 text-sky-800">{novelty}</p>
@@ -396,30 +394,25 @@ function AdminDashboardPage() {
             ))}
           </div>
           <div className="mt-6 rounded-[22px] border border-sky-100 bg-sky-50 p-5 text-sm leading-7 text-slate-700">
-            <strong className="text-slate-950">Live demonstration:</strong> select BIL or JKH, upload its latest matching report, and click Analyze once. The server refreshes available stock quotes, then starts all four research stages together. Stage 03 independently produces news, event, and sentiment evidence; stage 04 independently collects quantitative external-market indicators and produces its explained risk level. Only the final integration layer combines their outputs into one plain-language picture, stored for 24 hours.
-          </div>
+            <strong className="text-slate-950">{t("Live demonstration:")}</strong>{t("select BIL or JKH, upload its latest matching report, and click Analyze once. The server refreshes available stock quotes, then starts all four research stages together. Stage 03 independently produces news, event, and sentiment evidence; stage 04 independently collects quantitative external-market indicators and produces its explained risk level. Only the final integration layer combines their outputs into one plain-language picture, stored for 24 hours.")}</div>
         </section>
 
         <section className="grid gap-8 2xl:grid-cols-[0.86fr_1.14fr]">
           <article className="surface-panel fade-rise">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <p className="eyebrow !text-slate-500">Historical price import</p>
-                <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">Import CSV data</h2>
-                <p className="mt-3 max-w-xl text-sm leading-7 text-slate-600">
-                  Upload one company dataset at a time so the system can load the correct historical prices when users select a stock.
-                </p>
+                <p className="eyebrow !text-slate-500">{t("Historical price import")}</p>
+                <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">{t("Import CSV data")}</h2>
+                <p className="mt-3 max-w-xl text-sm leading-7 text-slate-600">{t("Upload one company dataset at a time so the system can load the correct historical prices when users select a stock.")}{" "}</p>
               </div>
 
-              <button className="secondary-cta self-start !border-[#d7e6ff] !bg-[#eff5ff] !text-[#1d4aa8] hover:!bg-[#e4efff] sm:self-auto" onClick={buildTemplateFile} type="button">
-                Download template
-              </button>
+              <button className="secondary-cta self-start !border-[#d7e6ff] !bg-[#eff5ff] !text-[#1d4aa8] hover:!bg-[#e4efff] sm:self-auto" onClick={buildTemplateFile} type="button">{t("Download template")}{" "}</button>
             </div>
 
             <form className="mt-8 space-y-5" onSubmit={handleCsvUpload}>
               <div className="grid gap-5 md:grid-cols-2">
                 <label className="block space-y-2">
-                  <span className="text-sm font-medium text-slate-700">Company name</span>
+                  <span className="text-sm font-medium text-slate-700">{t("Company name")}</span>
                   <input
                     className="input-surface"
                     onChange={(event) => setUploadForm((current) => ({ ...current, companyName: event.target.value }))}
@@ -430,7 +423,7 @@ function AdminDashboardPage() {
                 </label>
 
                 <label className="block space-y-2">
-                  <span className="text-sm font-medium text-slate-700">Ticker symbol</span>
+                  <span className="text-sm font-medium text-slate-700">{t("Ticker symbol")}</span>
                   <input
                     className="input-surface"
                     onChange={(event) => setUploadForm((current) => ({ ...current, symbol: event.target.value.toUpperCase() }))}
@@ -442,33 +435,37 @@ function AdminDashboardPage() {
               </div>
 
               <label className="block space-y-2">
-                <span className="text-sm font-medium text-slate-700">CSV file</span>
-                <input
-                  className="input-surface file:mr-4 file:rounded-full file:border-0 file:bg-slate-900 file:px-4 file:py-2 file:text-sm file:font-medium file:text-white"
-                  onChange={(event) => setCsvFile(event.target.files?.[0] || null)}
-                  type="file"
-                />
+                <span className="text-sm font-medium text-slate-700">{t("CSV file")}</span>
+                <span className="input-surface flex cursor-pointer items-center gap-3 focus-within:ring-2 focus-within:ring-blue-400">
+                  <input
+                    aria-label={t("CSV file")}
+                    className="sr-only"
+                    onChange={(event) => setCsvFile(event.target.files?.[0] || null)}
+                    type="file"
+                  />
+                  <span className="shrink-0 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white">{t("Choose CSV")}</span>
+                  <span className="min-w-0 truncate text-sm text-slate-500">{csvFile?.name || t("No file selected")}</span>
+                </span>
               </label>
 
               <label className="block space-y-2">
-                <span className="text-sm font-medium text-slate-700">Notes</span>
+                <span className="text-sm font-medium text-slate-700">{t("Notes")}</span>
                 <textarea
                   className="input-surface min-h-32 resize-none"
                   onChange={(event) => setUploadForm((current) => ({ ...current, notes: event.target.value }))}
-                  placeholder="Optional import note"
+                  placeholder={t("Optional import note")}
                   value={uploadForm.notes}
                 />
               </label>
 
-              <div className="metric-card px-4 py-4 text-sm leading-7 text-slate-600">
-                Expected columns: <code>tradeDate</code>, <code>open</code>, <code>high</code>, <code>low</code>,{" "}
+              <div className="metric-card px-4 py-4 text-sm leading-7 text-slate-600">{t("Expected columns:")}{" "}<code>tradeDate</code>, <code>open</code>, <code>high</code>, <code>low</code>,{" "}
                 <code>close</code>, <code>adjustedClose</code>, <code>volume</code>
               </div>
 
-              {csvFile && <p className="text-sm text-slate-500">Selected file: {csvFile.name}</p>}
+              {csvFile && <p className="text-sm text-slate-500">{t("Selected file:")}{" "}{csvFile.name}</p>}
 
               <button className="primary-cta w-full" disabled={uploading} type="submit">
-                {uploading ? "Importing CSV..." : "Import Historical Prices"}
+                {uploading ? t("Importing CSV...") : t("Import Historical Prices")}
               </button>
             </form>
           </article>
@@ -476,27 +473,25 @@ function AdminDashboardPage() {
           <article className="surface-panel fade-rise-delay-1">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
               <div>
-                <p className="eyebrow !text-slate-500">User directory</p>
+                <p className="eyebrow !text-slate-500">{t("User directory")}</p>
               </div>
-              <button className="secondary-cta self-start lg:self-auto" onClick={handleExportUsers} type="button">
-                Download users PDF
-              </button>
+              <button className="secondary-cta self-start lg:self-auto" onClick={handleExportUsers} type="button">{t("Download users PDF")}{" "}</button>
             </div>
 
             <form className="mt-8 grid gap-4 rounded-[24px] border border-[#dbe7fb] bg-[#f8fbff] p-5 xl:grid-cols-2" onSubmit={handleSaveUser}>
               <label className="block space-y-2">
-                <span className="text-sm font-medium text-slate-700">Full name</span>
+                <span className="text-sm font-medium text-slate-700">{t("Full name")}</span>
                 <input
                   className="input-surface"
                   onChange={(event) => setUserForm((current) => ({ ...current, name: event.target.value }))}
-                  placeholder="Enter full name"
+                  placeholder={t("Enter full name")}
                   type="text"
                   value={userForm.name}
                 />
               </label>
 
               <label className="block space-y-2">
-                <span className="text-sm font-medium text-slate-700">Email</span>
+                <span className="text-sm font-medium text-slate-700">{t("Email")}</span>
                 <input
                   className="input-surface"
                   onChange={(event) => setUserForm((current) => ({ ...current, email: event.target.value }))}
@@ -507,26 +502,26 @@ function AdminDashboardPage() {
               </label>
 
               <label className="block space-y-2">
-                <span className="text-sm font-medium text-slate-700">Role</span>
+                <span className="text-sm font-medium text-slate-700">{t("Role")}</span>
                 <select
                   className="input-surface"
                   onChange={(event) => setUserForm((current) => ({ ...current, role: event.target.value }))}
                   value={userForm.role}
                 >
-                  <option value="user">User</option>
-                  <option value="admin">Admin</option>
+                  <option value="user">{t("User")}</option>
+                  <option value="admin">{t("Admin")}</option>
                 </select>
               </label>
 
               <label className="block space-y-2">
                 <span className="text-sm font-medium text-slate-700">
-                  {editingUserId ? "Password managed separately" : "Temporary password"}
+                  {editingUserId ? t("Password managed separately") : t("Temporary password")}
                 </span>
                 <input
                   className="input-surface"
                   disabled={Boolean(editingUserId)}
                   onChange={(event) => setUserForm((current) => ({ ...current, password: event.target.value }))}
-                  placeholder={editingUserId ? "Use reset password below for changes" : "At least 8 characters"}
+                  placeholder={editingUserId ? t("Use reset password below for changes") : t("At least 8 characters")}
                   type="password"
                   value={userForm.password}
                 />
@@ -534,29 +529,27 @@ function AdminDashboardPage() {
 
               <div className="flex flex-wrap gap-3 md:col-span-2">
                 <button className="primary-cta" disabled={savingUser} type="submit">
-                  {savingUser ? "Saving..." : editingUserId ? "Update User" : "Create User"}
+                  {savingUser ? t("Saving...") : editingUserId ? t("Update User") : t("Create User")}
                 </button>
                 {editingUserId && (
-                  <button className="secondary-cta" onClick={handleCancelEdit} type="button">
-                    Cancel Edit
-                  </button>
+                  <button className="secondary-cta" onClick={handleCancelEdit} type="button">{t("Cancel Edit")}{" "}</button>
                 )}
               </div>
             </form>
 
             <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <label className="block w-full max-w-md space-y-2">
-                <span className="text-sm font-medium text-slate-700">Search users</span>
+                <span className="text-sm font-medium text-slate-700">{t("Search users")}</span>
                 <input
                   className="input-surface"
                   onChange={(event) => setSearchTerm(event.target.value)}
-                  placeholder="Search by name, email, or role"
+                  placeholder={t("Search by name, email, or role")}
                   type="search"
                   value={searchTerm}
                 />
               </label>
               <div className="rounded-2xl border border-[#dbe7fb] bg-[#f8fbff] px-4 py-3 text-sm text-slate-600">
-                Showing {paginatedUsers.length} of {filteredUsers.length} users
+                {t("Showing {count} of {total} users", { count: paginatedUsers.length, total: filteredUsers.length })}
               </div>
             </div>
 
@@ -565,11 +558,11 @@ function AdminDashboardPage() {
                 <table className="min-w-full bg-white">
                   <thead className="bg-[#f8fbff]">
                     <tr className="text-left text-xs uppercase tracking-[0.22em] text-slate-500">
-                      <th className="px-5 py-4">User</th>
-                      <th className="px-5 py-4">Role</th>
-                      <th className="px-5 py-4">Last login</th>
-                      <th className="px-5 py-4">Reset password</th>
-                      <th className="px-5 py-4">Actions</th>
+                      <th className="px-5 py-4">{t("User")}</th>
+                      <th className="px-5 py-4">{t("Role")}</th>
+                      <th className="px-5 py-4">{t("Last login")}</th>
+                      <th className="px-5 py-4">{t("Reset password")}</th>
+                      <th className="px-5 py-4">{t("Actions")}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -581,11 +574,11 @@ function AdminDashboardPage() {
                         </td>
                         <td className="px-5 py-4">
                           <span className="rounded-full bg-[#eff5ff] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#1d4aa8]">
-                            {user.role}
+                            {t(user.role)}
                           </span>
                         </td>
                         <td className="px-5 py-4 text-sm text-slate-600">
-                          {user.lastLoginAt ? new Date(user.lastLoginAt).toLocaleString() : "Not recorded"}
+                          {user.lastLoginAt ? new Date(user.lastLoginAt).toLocaleString(locale) : t("Not recorded")}
                         </td>
                         <td className="px-5 py-4">
                           <div className="space-y-3">
@@ -594,7 +587,7 @@ function AdminDashboardPage() {
                               onChange={(event) =>
                                 setResetDrafts((current) => ({ ...current, [user._id]: event.target.value }))
                               }
-                              placeholder="Temporary new password"
+                              placeholder={t("Temporary new password")}
                               type="password"
                               value={resetDrafts[user._id] || ""}
                             />
@@ -603,22 +596,20 @@ function AdminDashboardPage() {
                               onClick={() => handleResetPassword(user._id)}
                               type="button"
                             >
-                              {resettingUserId === user._id ? "Resetting..." : "Reset Password"}
+                              {resettingUserId === user._id ? t("Resetting...") : t("Reset Password")}
                             </button>
                           </div>
                         </td>
                         <td className="px-5 py-4">
                           <div className="flex flex-col gap-3">
-                            <button className="secondary-cta !justify-center" onClick={() => handleEditUser(user)} type="button">
-                              Edit
-                            </button>
+                            <button className="secondary-cta !justify-center" onClick={() => handleEditUser(user)} type="button">{t("Edit")}{" "}</button>
                             <button
                               className="rounded-full border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-700 transition hover:bg-rose-100"
                               disabled={deletingUserId === user._id || currentUser?._id === user._id}
                               onClick={() => handleDeleteUser(user._id)}
                               type="button"
                             >
-                              {deletingUserId === user._id ? "Deleting..." : currentUser?._id === user._id ? "Current Admin" : "Delete"}
+                              {deletingUserId === user._id ? t("Deleting...") : currentUser?._id === user._id ? t("Current Admin") : t("Delete")}
                             </button>
                           </div>
                         </td>
@@ -629,13 +620,13 @@ function AdminDashboardPage() {
               </div>
 
               {!loading && !paginatedUsers.length && (
-                <div className="px-5 py-8 text-center text-sm text-slate-500">No users match your search.</div>
+                <div className="px-5 py-8 text-center text-sm text-slate-500">{t("No users match your search.")}</div>
               )}
             </div>
 
             <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
               <p className="text-sm text-slate-500">
-                Page {currentPage} of {totalPages}
+                {t("Page {page} of {total}", { page: currentPage, total: totalPages })}
               </p>
               <div className="flex gap-3">
                 <button
@@ -643,17 +634,13 @@ function AdminDashboardPage() {
                   disabled={currentPage === 1}
                   onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
                   type="button"
-                >
-                  Previous
-                </button>
+                >{t("Previous")}{" "}</button>
                 <button
                   className="secondary-cta"
                   disabled={currentPage === totalPages}
                   onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
                   type="button"
-                >
-                  Next
-                </button>
+                >{t("Next")}{" "}</button>
               </div>
             </div>
           </article>
@@ -665,11 +652,11 @@ function AdminDashboardPage() {
               <table className="min-w-full bg-white">
                 <thead className="bg-[#f8fbff]">
                   <tr className="text-left text-xs uppercase tracking-[0.22em] text-slate-500">
-                    <th className="px-5 py-4">Company</th>
-                    <th className="px-5 py-4">Date</th>
-                    <th className="px-5 py-4">Prices</th>
-                    <th className="px-5 py-4">Volume</th>
-                    <th className="px-5 py-4">Actions</th>
+                    <th className="px-5 py-4">{t("Company")}</th>
+                    <th className="px-5 py-4">{t("Date")}</th>
+                    <th className="px-5 py-4">{t("Prices")}</th>
+                    <th className="px-5 py-4">{t("Volume")}</th>
+                    <th className="px-5 py-4">{t("Actions")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -679,7 +666,7 @@ function AdminDashboardPage() {
                         <p className="font-semibold text-slate-900">{stock.companyName}</p>
                         <p className="mt-1 text-sm text-slate-500">{stock.symbol}</p>
                       </td>
-                      <td className="px-5 py-4 text-sm text-slate-600">{new Date(stock.tradeDate).toLocaleDateString()}</td>
+                      <td className="px-5 py-4 text-sm text-slate-600">{new Date(stock.tradeDate).toLocaleDateString(locale)}</td>
                       <td className="px-5 py-4 text-sm text-slate-600">
                         O: {stock.open} | H: {stock.high} | L: {stock.low} | C: {stock.close}
                       </td>
@@ -692,7 +679,7 @@ function AdminDashboardPage() {
                             onClick={() => handleDeleteRecord(stock._id)}
                             type="button"
                           >
-                            {deletingRecordId === stock._id ? "Deleting..." : "Delete"}
+                            {deletingRecordId === stock._id ? t("Deleting...") : t("Delete")}
                           </button>
                         </div>
                       </td>
@@ -703,13 +690,13 @@ function AdminDashboardPage() {
             </div>
 
             {!loading && !paginatedRecords.length && (
-              <div className="px-5 py-8 text-center text-sm text-slate-500">No stock records match your search.</div>
+              <div className="px-5 py-8 text-center text-sm text-slate-500">{t("No stock records match your search.")}</div>
             )}
           </div>
 
           <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm text-slate-500">
-              Page {recordPage} of {totalRecordPages}
+              {t("Page {page} of {total}", { page: recordPage, total: totalRecordPages })}
             </p>
             <div className="flex gap-3">
               <button
@@ -717,17 +704,13 @@ function AdminDashboardPage() {
                 disabled={recordPage === 1}
                 onClick={() => setRecordPage((page) => Math.max(1, page - 1))}
                 type="button"
-              >
-                Previous
-              </button>
+              >{t("Previous")}{" "}</button>
               <button
                 className="secondary-cta"
                 disabled={recordPage === totalRecordPages}
                 onClick={() => setRecordPage((page) => Math.min(totalRecordPages, page + 1))}
                 type="button"
-              >
-                Next
-              </button>
+              >{t("Next")}{" "}</button>
             </div>
           </div>
         </section>

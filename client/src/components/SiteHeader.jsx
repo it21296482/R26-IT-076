@@ -1,3 +1,4 @@
+import { useLanguage } from "../context/languageStore";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { ADMIN_DASHBOARD_PATH } from "../lib/routes";
@@ -5,6 +6,7 @@ import BrandLogo from "./BrandLogo";
 import LanguageSelector from "./LanguageSelector";
 
 function SiteHeader({ compact = false }) {
+  const { t } = useLanguage();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -25,37 +27,25 @@ function SiteHeader({ compact = false }) {
 
         <nav className="flex flex-wrap items-center gap-2">
           <LanguageSelector />
-          <NavLink className={navLinkClass} to="/">
-            Home
-          </NavLink>
+          <NavLink className={navLinkClass} to="/">{t("Home")}{" "}</NavLink>
           {!user && (
             <>
-              <NavLink className={navLinkClass} to="/login">
-                Sign In
-              </NavLink>
-              <NavLink className={navLinkClass} to="/register">
-                Sign Up
-              </NavLink>
+              <NavLink className={navLinkClass} to="/login">{t("Sign In")}{" "}</NavLink>
+              <NavLink className={navLinkClass} to="/register">{t("Sign Up")}{" "}</NavLink>
             </>
           )}
           {user?.role === "user" && (
-            <NavLink className={navLinkClass} to="/dashboard">
-              Workspace
-            </NavLink>
+            <NavLink className={navLinkClass} to="/dashboard">{t("Workspace")}{" "}</NavLink>
           )}
           {user?.role === "admin" && (
-            <NavLink className={navLinkClass} to={ADMIN_DASHBOARD_PATH}>
-              Console
-            </NavLink>
+            <NavLink className={navLinkClass} to={ADMIN_DASHBOARD_PATH}>{t("Console")}{" "}</NavLink>
           )}
           {user && (
             <button
               className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
               onClick={handleLogout}
               type="button"
-            >
-              Logout
-            </button>
+            >{t("Logout")}{" "}</button>
           )}
         </nav>
       </div>

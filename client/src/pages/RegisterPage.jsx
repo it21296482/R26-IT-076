@@ -1,9 +1,11 @@
+import { useLanguage } from "../context/languageStore";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthShell from "../components/AuthShell";
 import { useAuth } from "../hooks/useAuth";
 
 function RegisterPage() {
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const { register } = useAuth();
   const [form, setForm] = useState({
@@ -45,39 +47,36 @@ function RegisterPage() {
 
   return (
     <AuthShell
-      title="Create your account and start understanding the market"
-      subtitle="Join a simpler stock insight experience built to reduce noise, improve trust, and support clear investor decisions."
+      title={t("Create your account and start understanding the market")}
+      subtitle={t("Join a simpler stock insight experience built to reduce noise, improve trust, and support clear investor decisions.")}
       footer={
-        <p>
-          Already have an account?{" "}
-          <Link className="font-semibold text-orange-500" to="/login">
-            Sign in
-          </Link>
+        <p>{t("Already have an account?")}{" "}
+          <Link className="font-semibold text-orange-500" to="/login">{t("Sign in")}{" "}</Link>
           .
         </p>
       }
     >
       <div className="space-y-8">
         <div className="space-y-3">
-          <p className="eyebrow !text-slate-500">Create account</p>
-          <h2 className="text-3xl font-semibold tracking-tight text-slate-900">Get started in minutes</h2>
-          <p className="text-sm leading-7 text-slate-500">Set up your account and move directly into guided stock analysis.</p>
+          <p className="eyebrow !text-slate-500">{t("Create account")}</p>
+          <h2 className="text-3xl font-semibold tracking-tight text-slate-900">{t("Get started in minutes")}</h2>
+          <p className="text-sm leading-7 text-slate-500">{t("Set up your account and move directly into guided stock analysis.")}</p>
         </div>
 
         <form className="space-y-5" onSubmit={handleSubmit}>
           <label className="block space-y-2">
-            <span className="text-sm font-medium text-slate-700">Full name</span>
+            <span className="text-sm font-medium text-slate-700">{t("Full name")}</span>
             <input
               className="input-surface"
               onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
-              placeholder="Enter your full name"
+              placeholder={t("Enter your full name")}
               type="text"
               value={form.name}
             />
           </label>
 
           <label className="block space-y-2">
-            <span className="text-sm font-medium text-slate-700">Email address</span>
+            <span className="text-sm font-medium text-slate-700">{t("Email address")}</span>
             <input
               className="input-surface"
               onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
@@ -89,35 +88,35 @@ function RegisterPage() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <label className="block space-y-2">
-              <span className="text-sm font-medium text-slate-700">Password</span>
+              <span className="text-sm font-medium text-slate-700">{t("Password")}</span>
               <input
                 className="input-surface"
                 minLength={8}
                 onChange={(event) => setForm((current) => ({ ...current, password: event.target.value }))}
-                placeholder="At least 8 characters"
+                placeholder={t("At least 8 characters")}
                 type="password"
                 value={form.password}
               />
             </label>
 
             <label className="block space-y-2">
-              <span className="text-sm font-medium text-slate-700">Confirm password</span>
+              <span className="text-sm font-medium text-slate-700">{t("Confirm password")}</span>
               <input
                 className="input-surface"
                 minLength={8}
                 onChange={(event) => setForm((current) => ({ ...current, confirmPassword: event.target.value }))}
-                placeholder="Repeat your password"
+                placeholder={t("Repeat your password")}
                 type="password"
                 value={form.confirmPassword}
               />
             </label>
           </div>
 
-          {error && <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{error}</div>}
-          {success && <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">{success}</div>}
+          {error && <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{t(error)}</div>}
+          {success && <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">{t(success)}</div>}
 
           <button className="primary-cta w-full" disabled={loading} type="submit">
-            {loading ? "Creating account..." : "Create Account"}
+            {loading ? t("Creating account...") : t("Create Account")}
           </button>
         </form>
       </div>

@@ -350,7 +350,7 @@ const getAnalysis = async (req, res) => {
     return res.status(404).json({ message: "This analysis is unavailable or has expired." });
   }
   const translatedAnalysis = await translateAnalysis(analysis, req.query.language);
-  return res.status(200).json({ analysis: translatedAnalysis, language: req.query.language || "en" });
+  return res.status(200).json({ analysis: translatedAnalysis, language: translatedAnalysis.localization?.requestedLanguage || "en" });
 };
 
 module.exports = { createAnalysis, getAnalysis };
