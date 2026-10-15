@@ -1,0 +1,87 @@
+/* Native controls keep the existing design usable without scripts. */
+.css-control {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.component-tab { display: block; }
+#menuToggle { display: none; }
+.components .component-panel,
+.milestones .milestone-detail { display: none; }
+#select-component1:checked ~ #component1,
+#select-component2:checked ~ #component2,
+#select-component3:checked ~ #component3,
+#select-component4:checked ~ #component4 { display: block; }
+#select-component1:checked ~ .component-tabs label[for="select-component1"],
+#select-component2:checked ~ .component-tabs label[for="select-component2"],
+#select-component3:checked ~ .component-tabs label[for="select-component3"],
+#select-component4:checked ~ .component-tabs label[for="select-component4"] {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+#select-proposal:checked ~ .milestone-layout #milestone-proposal,
+#select-pp1:checked ~ .milestone-layout #milestone-pp1,
+#select-pp2:checked ~ .milestone-layout #milestone-pp2,
+#select-final:checked ~ .milestone-layout #milestone-final,
+#select-viva:checked ~ .milestone-layout #milestone-viva { display: block; }
+#select-proposal:checked ~ .milestone-layout label[for="select-proposal"],
+#select-pp1:checked ~ .milestone-layout label[for="select-pp1"],
+#select-pp2:checked ~ .milestone-layout label[for="select-pp2"],
+#select-final:checked ~ .milestone-layout label[for="select-final"],
+#select-viva:checked ~ .milestone-layout label[for="select-viva"] {
+  background: #f6bf4f;
+  color: var(--ink);
+  border-color: #f6bf4f;
+  padding-left: 20px;
+}
+.components:has(#select-component1:focus-visible) label[for="select-component1"],
+.components:has(#select-component2:focus-visible) label[for="select-component2"],
+.components:has(#select-component3:focus-visible) label[for="select-component3"],
+.components:has(#select-component4:focus-visible) label[for="select-component4"],
+.milestones:has(#select-proposal:focus-visible) label[for="select-proposal"],
+.milestones:has(#select-pp1:focus-visible) label[for="select-pp1"],
+.milestones:has(#select-pp2:focus-visible) label[for="select-pp2"],
+.milestones:has(#select-final:focus-visible) label[for="select-final"],
+.milestones:has(#select-viva:focus-visible) label[for="select-viva"],
+#menuToggle:focus-visible + .menu-toggle {
+  outline: 3px solid #3565d9;
+  outline-offset: 4px;
+}
+.document-find-hint { font-size: 12px; color: var(--muted); }
+.reveal { opacity: 1; transform: none; animation: static-reveal .65s ease both; }
+@keyframes static-reveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@supports (animation-timeline: scroll()) {
+  .progress-bar {
+    width: 100%;
+    transform-origin: left;
+    animation: reading-progress linear both;
+    animation-timeline: scroll(root block);
+  }
+  @keyframes reading-progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+}
+@media (max-width: 680px) {
+  #menuToggle { display: block; }
+  #menuToggle:checked ~ #siteNav { display: flex; }
+  .menu-toggle { cursor: pointer; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { animation: none; }
+  .progress-bar { animation: none; width: 0; }
+}
+@media print {
+  .components .component-panel,
+  .milestones .milestone-detail { display: block; }
+  .component-tabs, .milestone-list, .menu-toggle { display: none; }
+  .reveal { animation: none; }
+}

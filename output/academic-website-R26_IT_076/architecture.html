@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="System architecture and design rationale for R26-IT-076." />
+    <title>System Architecture | R26-IT-076</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="cse-theme.css" />
+    <link rel="stylesheet" href="architecture.css" />
+  </head>
+  <body class="architecture-page">
+    <header class="site-header">
+      <a class="brand" href="index.html#home" aria-label="R26-IT-076 home"><span class="logo-frame"><img src="assets/cse-logo-source.png" alt="CSE Insight Generator logo" /></span><span><strong>AI MARKET INTELLIGENCE</strong><small>CSE Insight Generator · research archive</small></span></a>
+      <nav aria-label="Main navigation"><a href="index.html#home">Home</a><a href="index.html#domain">Domain</a><a href="index.html#components">Components</a><a href="index.html#documents">Documents</a><a class="nav-contact" href="index.html#contact">Contact</a></nav>
+    </header>
+    <main>
+      <section class="architecture-hero"><div><p class="eyebrow"><span class="status-dot"></span> Research design / system architecture</p><h1>Why the system is layered this way</h1><p>The architecture separates collection, analysis, explanation, and presentation so each research component can be tested independently while the final CSE insight remains understandable and evidence-aware.</p><a class="button button-primary" href="index.html#documents">Back to research artefacts <span>↗</span></a></div><div class="architecture-badge"><span>DATA</span><strong>→</strong><span>MODELS</span><strong>→</strong><span>EVIDENCE</span><strong>→</strong><span>INSIGHT</span></div></section>
+      <section class="architecture-section"><div class="architecture-heading"><p class="eyebrow">Full system architecture</p><h2>Four research components, one controlled evidence path</h2><p>The centre of the system is the API and insight fusion layer. It coordinates the components without merging their responsibilities too early.</p></div>
+        <div class="architecture-flow" aria-label="System architecture flow diagram">
+          <div class="flow-column sources"><span class="flow-label">01 / SOURCES</span><div class="arch-node source-node"><i>⌂</i><div><strong>User / Admin</strong><small>select stock, upload report</small></div></div><div class="arch-node source-node"><i>◒</i><div><strong>CSE trade data</strong><small>prices and volume</small></div></div><div class="arch-node source-node"><i>◌</i><div><strong>News sources</strong><small>RSS, Google News, MarketAux</small></div></div><div class="arch-node source-node"><i>◈</i><div><strong>Global factors</strong><small>gold, oil, VIX, ASPI</small></div></div><div class="arch-node source-node"><i>▤</i><div><strong>Financial PDFs</strong><small>annual and interim reports</small></div></div></div>
+          <div class="flow-connector connector-left"><span>validated inputs</span></div>
+          <div class="flow-column platform"><span class="flow-label">02 / PLATFORM</span><div class="arch-node platform-node ui-node"><i>◉</i><div><strong>React + Vite interface</strong><small>accessible research dashboard</small></div></div><div class="arch-node platform-node api-node"><i>↔</i><div><strong>Express REST API</strong><small>authentication · validation · routing</small></div></div><div class="component-stack"><div class="stack-title">Independent research components</div><div class="component-node comp-one"><b>01</b><span>Market modelling<br /><small>forecast + anomaly + XAI</small></span></div><div class="component-node comp-two"><b>02</b><span>Financial reports<br /><small>PDF + evidence + prompts</small></span></div><div class="component-node comp-three"><b>03</b><span>News and sentiment<br /><small>events + context</small></span></div><div class="component-node comp-four"><b>04</b><span>External risk<br /><small>global factor analysis</small></span></div></div><div class="arch-node platform-node fusion-node"><i>✦</i><div><strong>Insight fusion</strong><small>combines public-safe evidence</small></div></div></div>
+          <div class="flow-connector connector-right"><span>qualified output</span></div>
+          <div class="flow-column outputs"><span class="flow-label">03 / OUTPUTS</span><div class="arch-node output-node"><i>▥</i><div><strong>Evidence dashboard</strong><small>forecast, report, news, risk</small></div></div><div class="arch-node output-node"><i>✓</i><div><strong>Plain-language insight</strong><small>limitations stay visible</small></div></div><div class="arch-node output-node"><i>!</i><div><strong>Non-advisory warning</strong><small>supports understanding, not trading</small></div></div></div>
+        </div>
+      </section>
+      <section class="architecture-section rationale-section"><div class="architecture-heading"><p class="eyebrow">Design rationale</p><h2>What each boundary protects</h2></div><div class="rationale-grid"><article><span class="rationale-icon icon-lime">01</span><h3>Independent research</h3><p>Each component owns one evidence stream. This makes the individual research contributions visible and lets the team test a component without hiding failures inside a combined score.</p></article><article><span class="rationale-icon icon-mint">02</span><h3>Controlled integration</h3><p>The API validates inputs, coordinates the analysis stages, and keeps uploaded reports and temporary analysis records behind authenticated routes.</p></article><article><span class="rationale-icon icon-blue">03</span><h3>Evidence before language</h3><p>The fusion layer combines structured outputs only after the components return their evidence, warnings, and limitations. The interface can then explain the result without pretending uncertainty has disappeared.</p></article><article><span class="rationale-icon icon-peach">04</span><h3>CSE-focused delivery</h3><p>The final dashboard brings local market behaviour, company reports, news, and external factors into one view for the Colombo Stock Exchange context.</p></article></div></section>
+      <section class="architecture-note"><span class="eyebrow">Research boundary</span><strong>The product supports market understanding. It does not provide buy, sell, or hold recommendations.</strong></section>
+    </main>
+    <footer class="site-footer"><div><strong>R26-IT-076</strong><span>AI-Powered Stock Market Insight Generator for the CSE</span></div><span>Academic information website · 2026</span></footer>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "generated_at": "2026-10-11T08:37:24.303939+00:00",
+  "seed": 42,
+  "python_torch_version": "2.11.0",
+  "epochs_requested": 18,
+  "scope": "JKH and BIL saved historical snapshots; no fresh exchange download",
+  "limitations": "Retrospective development evaluation; require new prospective forecasts for independent confirmation. Overlapping origins are not independent samples."
+}

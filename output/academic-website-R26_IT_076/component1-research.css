@@ -1,0 +1,29 @@
+/* Scoped to the individual research record; other sections retain their theme. */
+#component1 .c1-research { margin-top: 34px; }
+#component1 .c1-intro h4 { font-size: 24px; line-height: 1.25; margin: 12px 0; }
+#component1 .c1-intro p, #component1 .c1-detail p { font-size: 14px; color: var(--muted); }
+#component1 .c1-research details { border: 1px solid var(--line); border-radius: 4px; margin-top: 14px; }
+#component1 .c1-research summary { padding: 19px 20px; cursor: pointer; font-size: 14px; font-weight: 800; line-height: 1.5; }
+#component1 .c1-research summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+#component1 .c1-research details[open] summary { border-bottom: 1px solid var(--line); background: var(--paper); }
+#component1 .c1-detail { padding: 6px 22px 22px; min-width: 0; }
+#component1 .c1-detail h5 { font-size: 14px; margin: 18px 0 8px; }
+#component1 .c1-equation { padding: 16px; margin: 16px 0; background: #f1f5f0; border-left: 3px solid #78916b; font-family: 'DM Mono', monospace; font-size: 13px; line-height: 1.95; overflow-wrap: anywhere; color: #16212b; }
+#component1 .c1-example { border: 1px solid var(--line); padding: 0 18px 8px; border-radius: 4px; }
+#component1 .c1-caution { border-left: 3px solid #ad783a; padding: 12px 16px; background: #fff6e9; color: #5d472c !important; }
+#component1 .c1-table-wrap { overflow-x: auto; margin: 20px 0; }
+#component1 table { border-collapse: collapse; width: 100%; font-size: 13px; text-align: left; }
+#component1 caption { text-align: left; font-weight: 800; padding-bottom: 12px; }
+#component1 th, #component1 td { padding: 11px 12px; border-bottom: 1px solid var(--line); }
+#component1 th { background: var(--paper); }
+#component1 .c1-evidence { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+#component1 .c1-evidence a { font-size: 12px; font-weight: 700; color: var(--ink); border: 1px solid var(--line); padding: 13px; border-radius: 4px; text-underline-offset: 3px; overflow-wrap: anywhere; }
+#component1 .c1-evidence a:hover { background: var(--paper); }
+#component1 .c1-source { font-size: 12px !important; border-top: 1px solid var(--line); padding-top: 18px; margin-top: 24px; }
+@media (max-width: 680px) {
+  #component1 .c1-detail { padding: 4px 14px 16px; }
+  #component1 .c1-research summary { padding: 16px 14px; }
+  #component1 .c1-equation { padding: 12px; font-size: 12px; }
+  #component1 .c1-evidence { grid-template-columns: 1fr; }
+  #component1 .c1-example { padding-left: 12px; padding-right: 12px; }
+}

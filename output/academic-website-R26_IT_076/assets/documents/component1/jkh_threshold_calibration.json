@@ -1,0 +1,9 @@
+{
+  "threshold_basis": "Validation-only calibration on the chronological validation split using a train/validation quantile grid. Thresholds are selected before the test split is evaluated.",
+  "threshold_percentile": 95.4586,
+  "prediction_band_threshold_percentile": 98.1481,
+  "validation_split_used_for_threshold": "chronological_validation_split",
+  "predicted_positive_rate_validation": 0.074303,
+  "actual_proxy_positive_rate_validation": 0.256966,
+  "actual_proxy_positive_rate_test": 0.01391
+}

@@ -58,3 +58,40 @@ with the same baseline comparison and caution labels as the shorter horizons.
 
 The validation evaluates forecast accuracy, not investment profitability. The
 results are research evidence and are not buying or selling advice.
+
+## Model upgrade v2
+
+Fresh application runs now use the upgraded defaults. The public fields and
+other components' interfaces remain unchanged. Original May forecasts and
+validation artifacts are preserved; new evidence is in `artifacts/upgrade_v2/`.
+
+- The short-term expected-price model learns log price changes with relative
+  price/volume features, Smooth L1 loss, gradient clipping and early stopping.
+- Two learning rates and a learned-return/persistence blend are selected using
+  validation data, never the test outcome. A zero blend is an explicit baseline
+  fallback, not a claim that the neural network beat the baseline.
+- The future path tests persistence, observed trends and damped trends separately
+  at 4, 21, 60 and 120 sessions. It no longer forces recovery to a structural
+  reference using weights evaluated only on one-day predictions.
+- Selection, interval calibration and holdout origins have purged chronological
+  boundaries: every earlier stage's target is known before the next stage starts.
+- Live horizon selection uses completed historical outcomes. Empirical residual
+  ranges include a recent-volatility floor; favourable/adverse paths are not
+  guaranteed best/worst outcomes.
+- Proxy-label tails and adaptive anomaly cutoffs use shifted past-only windows.
+  Current and future scores cannot change the current cutoff. The original
+  deviation/volume formula is unchanged; zero-volume scores are not treated as
+  reliable liquidity confirmation. A separate prediction-band flag can still
+  identify a price deviation when liquidity evidence is unavailable.
+
+Run the reproducible comparison from the repository root:
+
+```bash
+python research/component1/evaluate_model_upgrade.py --epochs 18
+python -m pytest research/component1/tests -q
+```
+
+The report distinguishes one-step holdouts, purged multi-session holdouts and
+new retrospective hindcasts over the original May period. That May period
+motivated the redesign, so improved hindcasts are not independent validation.
+See `MODEL_UPGRADE_REPORT.md` for the formulas, measurements and remaining limits.

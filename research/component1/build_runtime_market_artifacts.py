@@ -49,6 +49,9 @@ def horizon_summary(
     advanced_model_beats_naive: bool,
 ) -> dict[str, Any]:
     row = forecast.loc[forecast["forecast_step"] == step].iloc[0]
+    calibration = forecast.attrs.get("calibration", {}).get("horizons", {}).get(str(step), {})
+    holdout = calibration.get("holdout", {})
+    beats_baseline = holdout.get("beats_baseline_mae", advanced_model_beats_naive)
     estimate = float(row["ensemble_predicted_close"])
     change_pct = ((estimate / current_price) - 1.0) * 100.0
     if change_pct > 1.0:
@@ -70,7 +73,9 @@ def horizon_summary(
         "upper_80_lkr": round(float(row["upper_80"]), 4),
         "lower_95_lkr": round(float(row["lower_95"]), 4),
         "upper_95_lkr": round(float(row["upper_95"]), 4),
-        "status": "available" if advanced_model_beats_naive else "available_with_caution",
+        "status": "available" if beats_baseline else "available_with_caution",
+        "calibration": calibration,
+        "evaluation_scope": "retrospective_at_this_horizon" if calibration else "legacy_one_step_only",
     }
 
 
@@ -93,7 +98,7 @@ def deviation_history(test_results: pd.DataFrame, threshold: float) -> dict[str,
             "signed_deviation_lkr": round(float(row["actual_price"] - row["predicted_price"]), 4),
             "deviation_pct": round(float(row["deviation_pct"]), 4),
             "anomaly_score": round(float(row["liquidity_aware_anomaly_score"]), 6),
-            "threshold": round(float(threshold), 6),
+            "threshold": round(float(row.get("applied_liquidity_threshold", threshold)), 6),
             "detected": bool(row["final_anomaly_detected"]),
             "side": str(row.get("anomaly_side", "none")),
             "risk_level": str(row.get("risk_level", "Unknown")),
@@ -118,9 +123,9 @@ def build_contract(stock: str, results: dict[str, Any], source_file: Path) -> di
     latest = results["test_results"].sort_values("date").iloc[-1]
     current_price = float(dashboard["current_price"])
     advanced_model_beats_naive = bool(
-        results["prediction_metrics"]["mae"] < results["naive_baseline_metrics"]["mae"]
+        results["prediction_metrics"]["mae"] < results["naive_baseline_metrics"]["mae"] - 1e-6
     )
-    anomaly_threshold = float(results["anomaly_threshold_selection"]["liquidity_threshold"])
+    anomaly_threshold = float(latest.get("applied_liquidity_threshold", results["anomaly_threshold_selection"]["liquidity_threshold"]))
     supported_horizons = [
         horizon_summary(forecast, key, step, label, current_price, advanced_model_beats_naive)
         for key, step, label in HORIZONS
@@ -153,6 +158,8 @@ def build_contract(stock: str, results: dict[str, Any], source_file: Path) -> di
         },
         "deviation_history": deviation_history(results["test_results"], anomaly_threshold),
         "model_quality": {
+            "upgrade": dashboard.get("model_upgrade", {}),
+            "reliability_scope": "Legacy reliability score describes one-step ensemble diagnostics; use each horizon's calibration for multi-session forecasts.",
             "forecast_reliability_score": json_value(dashboard.get("forecast_reliability_score")),
             "forecast_reliability_interpretation": dashboard.get("forecast_reliability_interpretation"),
             "test_mae_lkr": round(float(results["prediction_metrics"]["mae"]), 6),

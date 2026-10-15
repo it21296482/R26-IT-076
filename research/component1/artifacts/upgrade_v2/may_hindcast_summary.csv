@@ -1,0 +1,3 @@
+stock,matched_sessions,locked_ensemble_mae_lkr,new_hindcast_mae_lkr,status
+JKH,57,1.4157420331774584,0.5473684210526311,retrospective_hindcast_on_development_period_not_independent_test
+BIL,57,0.8821751213789488,0.6561403508771934,retrospective_hindcast_on_development_period_not_independent_test

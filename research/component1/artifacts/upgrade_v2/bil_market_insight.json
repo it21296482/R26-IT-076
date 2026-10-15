@@ -1,0 +1,734 @@
+{
+  "schema_version": "1.0",
+  "symbol": "BIL.N0000",
+  "as_of_date": "2026-08-28",
+  "generated_at": "2026-10-11T08:37:24.035376+00:00",
+  "source_file": "BIL_actual_through_2026-08-28.csv",
+  "current_price_lkr": 5.0,
+  "horizons": [
+    {
+      "key": "4d",
+      "label": "4 trading days",
+      "sessions": 4,
+      "target_date": "2026-09-03",
+      "estimated_close_lkr": 5.0,
+      "change_from_latest_pct": 0.0,
+      "direction": "broadly stable",
+      "lower_80_lkr": 4.7837,
+      "upper_80_lkr": 5.2163,
+      "lower_95_lkr": 4.6,
+      "upper_95_lkr": 5.4,
+      "status": "available_with_caution",
+      "calibration": {
+        "horizon": 4,
+        "live_candidate": "persistence",
+        "live_selection_errors": {
+          "persistence": 0.05038735595920649,
+          "trend_20": 0.053623489501694266,
+          "trend_60": 0.052505919487205344,
+          "damped_20": 0.0531237914163949,
+          "damped_60": 0.05231674878433801
+        },
+        "frozen_selection_errors": {
+          "persistence": 0.04411835995664535,
+          "trend_20": 0.0504289075932416,
+          "trend_60": 0.04848656975973244,
+          "damped_20": 0.049912242132126236,
+          "damped_60": 0.04814679949503211
+        },
+        "calibration_observations": 49,
+        "calibration_latest_target": "2026-08-20",
+        "q80": 0.03508771929824565,
+        "q95": 0.07999999999999995,
+        "holdout": {
+          "status": "retrospective_purged_holdout",
+          "selected_candidate": "persistence",
+          "observations": 131,
+          "selection_end_date": "2021-02-03",
+          "calibration_end_date": "2023-11-20",
+          "test_start_date": "2023-11-27",
+          "selected": {
+            "mae_lkr": 0.19160305343511455,
+            "rmse_lkr": 0.2634185129733657,
+            "mape_pct": 2.9574158975943354
+          },
+          "baseline": {
+            "mae_lkr": 0.19160305343511455,
+            "rmse_lkr": 0.2634185129733657,
+            "mape_pct": 2.9574158975943354
+          },
+          "beats_baseline_mae": false,
+          "interval_95_coverage": 1.0
+        }
+      },
+      "evaluation_scope": "retrospective_at_this_horizon"
+    },
+    {
+      "key": "1m",
+      "label": "1 month",
+      "sessions": 21,
+      "target_date": "2026-09-28",
+      "estimated_close_lkr": 5.0,
+      "change_from_latest_pct": 0.0,
+      "direction": "broadly stable",
+      "lower_80_lkr": 4.4915,
+      "upper_80_lkr": 5.5085,
+      "lower_95_lkr": 4.1667,
+      "upper_95_lkr": 5.8333,
+      "status": "available_with_caution",
+      "calibration": {
+        "horizon": 21,
+        "live_candidate": "persistence",
+        "live_selection_errors": {
+          "persistence": 0.13766582465115307,
+          "trend_20": 0.1623626816563285,
+          "trend_60": 0.1452548885032446,
+          "damped_20": 0.14368500953816205,
+          "damped_60": 0.13730747818305203
+        },
+        "frozen_selection_errors": {
+          "persistence": 0.12224709092606777,
+          "trend_20": 0.1550771782341301,
+          "trend_60": 0.1372277580772125,
+          "damped_20": 0.13947686790357688,
+          "damped_60": 0.12913348648771672
+        },
+        "calibration_observations": 46,
+        "calibration_latest_target": "2026-08-24",
+        "q80": 0.10169491525423738,
+        "q95": 0.16666666666666663,
+        "holdout": {
+          "status": "retrospective_purged_holdout",
+          "selected_candidate": "persistence",
+          "observations": 128,
+          "selection_end_date": "2021-02-03",
+          "calibration_end_date": "2023-11-20",
+          "test_start_date": "2023-11-27",
+          "selected": {
+            "mae_lkr": 0.5109375,
+            "rmse_lkr": 0.6775415116433827,
+            "mape_pct": 7.959197573961303
+          },
+          "baseline": {
+            "mae_lkr": 0.5109375,
+            "rmse_lkr": 0.6775415116433827,
+            "mape_pct": 7.959197573961303
+          },
+          "beats_baseline_mae": false,
+          "interval_95_coverage": 1.0
+        }
+      },
+      "evaluation_scope": "retrospective_at_this_horizon"
+    },
+    {
+      "key": "3m",
+      "label": "3 months",
+      "sessions": 60,
+      "target_date": "2026-11-20",
+      "estimated_close_lkr": 5.0,
+      "change_from_latest_pct": 0.0,
+      "direction": "broadly stable",
+      "lower_80_lkr": 4.1621,
+      "upper_80_lkr": 5.8379,
+      "lower_95_lkr": 3.7186,
+      "upper_95_lkr": 6.2814,
+      "status": "available_with_caution",
+      "calibration": {
+        "horizon": 60,
+        "live_candidate": "persistence",
+        "live_selection_errors": {
+          "persistence": 0.23162765782962344,
+          "trend_20": 0.4029011881480716,
+          "trend_60": 0.30656871601800517,
+          "damped_20": 0.25701575604698385,
+          "damped_60": 0.24334219476102995
+        },
+        "frozen_selection_errors": {
+          "persistence": 0.23490778992732367,
+          "trend_20": 0.368620593011583,
+          "trend_60": 0.3175198923872841,
+          "damped_20": 0.2516461222863447,
+          "damped_60": 0.24408471019352826
+        },
+        "calibration_observations": 38,
+        "calibration_latest_target": "2026-08-21",
+        "q80": 0.1518987341772152,
+        "q95": 0.19047619047619052,
+        "holdout": {
+          "status": "retrospective_purged_holdout",
+          "selected_candidate": "persistence",
+          "observations": 120,
+          "selection_end_date": "2021-02-03",
+          "calibration_end_date": "2023-11-20",
+          "test_start_date": "2023-11-27",
+          "selected": {
+            "mae_lkr": 0.8474999999999999,
+            "rmse_lkr": 1.075755548440258,
+            "mape_pct": 12.983460913594936
+          },
+          "baseline": {
+            "mae_lkr": 0.8474999999999999,
+            "rmse_lkr": 1.075755548440258,
+            "mape_pct": 12.983460913594936
+          },
+          "beats_baseline_mae": false,
+          "interval_95_coverage": 1.0
+        }
+      },
+      "evaluation_scope": "retrospective_at_this_horizon"
+    },
+    {
+      "key": "6m",
+      "label": "6 months",
+      "sessions": 120,
+      "target_date": "2027-02-12",
+      "estimated_close_lkr": 5.0,
+      "change_from_latest_pct": 0.0,
+      "direction": "broadly stable",
+      "lower_80_lkr": 3.8151,
+      "upper_80_lkr": 6.1849,
+      "lower_95_lkr": 3.1879,
+      "upper_95_lkr": 6.8121,
+      "status": "available_with_caution",
+      "calibration": {
+        "horizon": 120,
+        "live_candidate": "persistence",
+        "live_selection_errors": {
+          "persistence": 0.2992952649411243,
+          "trend_20": 0.857596419998298,
+          "trend_60": 0.6018564183803803,
+          "damped_20": 0.3357282610932341,
+          "damped_60": 0.31852894043854607
+        },
+        "frozen_selection_errors": {
+          "persistence": 0.38565962062264153,
+          "trend_20": 0.7375090681033112,
+          "trend_60": 0.6080889404489077,
+          "damped_20": 0.3946447558092071,
+          "damped_60": 0.39730507609530247
+        },
+        "calibration_observations": 26,
+        "calibration_latest_target": "2026-08-21",
+        "q80": 0.23188405797101455,
+        "q95": 0.26666666666666666,
+        "holdout": {
+          "status": "retrospective_purged_holdout",
+          "selected_candidate": "persistence",
+          "observations": 108,
+          "selection_end_date": "2021-02-03",
+          "calibration_end_date": "2023-11-20",
+          "test_start_date": "2023-11-27",
+          "selected": {
+            "mae_lkr": 1.1888888888888887,
+            "rmse_lkr": 1.4317821063276355,
+            "mape_pct": 17.54581413430555
+          },
+          "baseline": {
+            "mae_lkr": 1.1888888888888887,
+            "rmse_lkr": 1.4317821063276355,
+            "mape_pct": 17.54581413430555
+          },
+          "beats_baseline_mae": false,
+          "interval_95_coverage": 1.0
+        }
+      },
+      "evaluation_scope": "retrospective_at_this_horizon"
+    }
+  ],
+  "anomaly": {
+    "detected": false,
+    "type": "Normal movement",
+    "actual_price_lkr": 5.0,
+    "expected_price_lkr": 5.0,
+    "signed_deviation_lkr": 0.0,
+    "absolute_deviation_lkr": 0.0,
+    "liquidity_aware_score": 0.0,
+    "threshold": 0.063122,
+    "side": "none",
+    "risk_level": "Low",
+    "explanation": "The latest movement is within the model's normal range. The score behaviour was mainly influenced by lower trading volume, weaker recent returns, and a wider moving-average gap."
+  },
+  "deviation_history": {
+    "window_start": "2026-04-17",
+    "window_end": "2026-08-28",
+    "observations": 90,
+    "detected_count": 49,
+    "detected_events": [
+      {
+        "date": "2026-07-24",
+        "actual_price_lkr": 5.2,
+        "expected_price_lkr": 5.3,
+        "signed_deviation_lkr": -0.1,
+        "deviation_pct": -1.8868,
+        "anomaly_score": 0.074532,
+        "threshold": 0.051796,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-07-27",
+        "actual_price_lkr": 5.4,
+        "expected_price_lkr": 5.2,
+        "signed_deviation_lkr": 0.2,
+        "deviation_pct": 3.8462,
+        "anomaly_score": 0.898357,
+        "threshold": 0.052613,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-07-28",
+        "actual_price_lkr": 5.3,
+        "expected_price_lkr": 5.4,
+        "signed_deviation_lkr": -0.1,
+        "deviation_pct": -1.8519,
+        "anomaly_score": 0.081246,
+        "threshold": 0.055418,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-08-04",
+        "actual_price_lkr": 5.2,
+        "expected_price_lkr": 5.1,
+        "signed_deviation_lkr": 0.1,
+        "deviation_pct": 1.9608,
+        "anomaly_score": 0.084864,
+        "threshold": 0.058396,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-08-06",
+        "actual_price_lkr": 5.2,
+        "expected_price_lkr": 5.3,
+        "signed_deviation_lkr": -0.1,
+        "deviation_pct": -1.8868,
+        "anomaly_score": 0.114437,
+        "threshold": 0.060014,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-08-11",
+        "actual_price_lkr": 5.2,
+        "expected_price_lkr": 5.1,
+        "signed_deviation_lkr": 0.1,
+        "deviation_pct": 1.9608,
+        "anomaly_score": 0.079639,
+        "threshold": 0.060666,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-08-12",
+        "actual_price_lkr": 5.1,
+        "expected_price_lkr": 5.2,
+        "signed_deviation_lkr": -0.1,
+        "deviation_pct": -1.9231,
+        "anomaly_score": 0.069823,
+        "threshold": 0.060985,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-08-19",
+        "actual_price_lkr": 5.1,
+        "expected_price_lkr": 5.2,
+        "signed_deviation_lkr": -0.1,
+        "deviation_pct": -1.9231,
+        "anomaly_score": 0.17467,
+        "threshold": 0.061319,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-08-21",
+        "actual_price_lkr": 5.1,
+        "expected_price_lkr": 5.0,
+        "signed_deviation_lkr": 0.1,
+        "deviation_pct": 2.0,
+        "anomaly_score": 0.129945,
+        "threshold": 0.061547,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-08-25",
+        "actual_price_lkr": 5.0,
+        "expected_price_lkr": 5.1,
+        "signed_deviation_lkr": -0.1,
+        "deviation_pct": -1.9608,
+        "anomaly_score": 0.063522,
+        "threshold": 0.062151,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      }
+    ],
+    "largest_recent_deviations": [
+      {
+        "date": "2026-04-20",
+        "actual_price_lkr": 6.5,
+        "expected_price_lkr": 6.8,
+        "signed_deviation_lkr": -0.3,
+        "deviation_pct": -4.4118,
+        "anomaly_score": 0.083929,
+        "threshold": 0.029735,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-05-21",
+        "actual_price_lkr": 6.1,
+        "expected_price_lkr": 5.9,
+        "signed_deviation_lkr": 0.2,
+        "deviation_pct": 3.3898,
+        "anomaly_score": 0.192604,
+        "threshold": 0.03272,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-07-09",
+        "actual_price_lkr": 5.4,
+        "expected_price_lkr": 5.6,
+        "signed_deviation_lkr": -0.2,
+        "deviation_pct": -3.5714,
+        "anomaly_score": 0.177814,
+        "threshold": 0.047962,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-07-27",
+        "actual_price_lkr": 5.4,
+        "expected_price_lkr": 5.2,
+        "signed_deviation_lkr": 0.2,
+        "deviation_pct": 3.8462,
+        "anomaly_score": 0.898357,
+        "threshold": 0.052613,
+        "detected": true,
+        "side": "liquidity",
+        "risk_level": "Medium"
+      },
+      {
+        "date": "2026-08-03",
+        "actual_price_lkr": 5.1,
+        "expected_price_lkr": 5.3,
+        "signed_deviation_lkr": -0.2,
+        "deviation_pct": -3.7736,
+        "anomaly_score": 0.047317,
+        "threshold": 0.058396,
+        "detected": false,
+        "side": "none",
+        "risk_level": "Low"
+      }
+    ],
+    "interpretation": "Dates can be compared with dated external events, but timing overlap alone does not prove causation."
+  },
+  "model_quality": {
+    "upgrade": {
+      "version": "2.0",
+      "price_model_mode": "log_return",
+      "validation_return_blend": 0.0,
+      "selected_learning_rate": 0.001,
+      "validation_tuning": [
+        {
+          "learning_rate": 0.001,
+          "validation_mae_lkr": 0.13425925374031067,
+          "return_blend": 0.0,
+          "epochs_completed": 5
+        },
+        {
+          "learning_rate": 0.0003,
+          "validation_mae_lkr": 0.13425925374031067,
+          "return_blend": 0.0,
+          "epochs_completed": 6
+        }
+      ],
+      "forecast_calibration": {
+        "method": "horizon_specific_purged_selection_and_completed_outcome_refit",
+        "recent_daily_log_return_std": 0.01688008663186435,
+        "interval_basis": "Horizon residual quantiles with a recent-volatility floor; no coverage guarantee",
+        "horizons": {
+          "1": {
+            "horizon": 1,
+            "live_candidate": "persistence",
+            "live_selection_errors": {
+              "persistence": 0.02190930283835239,
+              "trend_20": 0.022880263280666537,
+              "trend_60": 0.022543551760497826,
+              "damped_20": 0.022880263280666537,
+              "damped_60": 0.022543551760497826
+            },
+            "frozen_selection_errors": {
+              "persistence": 0.02357503119404228,
+              "trend_20": 0.02593662513024711,
+              "trend_60": 0.024822562454183406,
+              "damped_20": 0.02593662513024711,
+              "damped_60": 0.024822562454183406
+            },
+            "calibration_observations": 50,
+            "calibration_latest_target": "2026-08-24",
+            "q80": 0.0285714285714286,
+            "q95": 0.04545454545454557,
+            "holdout": {
+              "status": "retrospective_purged_holdout",
+              "selected_candidate": "persistence",
+              "observations": 132,
+              "selection_end_date": "2021-02-03",
+              "calibration_end_date": "2023-11-20",
+              "test_start_date": "2023-11-27",
+              "selected": {
+                "mae_lkr": 0.09015151515151516,
+                "rmse_lkr": 0.13228756555322957,
+                "mape_pct": 1.4219056051445302
+              },
+              "baseline": {
+                "mae_lkr": 0.09015151515151516,
+                "rmse_lkr": 0.13228756555322957,
+                "mape_pct": 1.4219056051445302
+              },
+              "beats_baseline_mae": false,
+              "interval_95_coverage": 0.9924242424242424
+            }
+          },
+          "4": {
+            "horizon": 4,
+            "live_candidate": "persistence",
+            "live_selection_errors": {
+              "persistence": 0.05038735595920649,
+              "trend_20": 0.053623489501694266,
+              "trend_60": 0.052505919487205344,
+              "damped_20": 0.0531237914163949,
+              "damped_60": 0.05231674878433801
+            },
+            "frozen_selection_errors": {
+              "persistence": 0.04411835995664535,
+              "trend_20": 0.0504289075932416,
+              "trend_60": 0.04848656975973244,
+              "damped_20": 0.049912242132126236,
+              "damped_60": 0.04814679949503211
+            },
+            "calibration_observations": 49,
+            "calibration_latest_target": "2026-08-20",
+            "q80": 0.03508771929824565,
+            "q95": 0.07999999999999995,
+            "holdout": {
+              "status": "retrospective_purged_holdout",
+              "selected_candidate": "persistence",
+              "observations": 131,
+              "selection_end_date": "2021-02-03",
+              "calibration_end_date": "2023-11-20",
+              "test_start_date": "2023-11-27",
+              "selected": {
+                "mae_lkr": 0.19160305343511455,
+                "rmse_lkr": 0.2634185129733657,
+                "mape_pct": 2.9574158975943354
+              },
+              "baseline": {
+                "mae_lkr": 0.19160305343511455,
+                "rmse_lkr": 0.2634185129733657,
+                "mape_pct": 2.9574158975943354
+              },
+              "beats_baseline_mae": false,
+              "interval_95_coverage": 1.0
+            }
+          },
+          "21": {
+            "horizon": 21,
+            "live_candidate": "persistence",
+            "live_selection_errors": {
+              "persistence": 0.13766582465115307,
+              "trend_20": 0.1623626816563285,
+              "trend_60": 0.1452548885032446,
+              "damped_20": 0.14368500953816205,
+              "damped_60": 0.13730747818305203
+            },
+            "frozen_selection_errors": {
+              "persistence": 0.12224709092606777,
+              "trend_20": 0.1550771782341301,
+              "trend_60": 0.1372277580772125,
+              "damped_20": 0.13947686790357688,
+              "damped_60": 0.12913348648771672
+            },
+            "calibration_observations": 46,
+            "calibration_latest_target": "2026-08-24",
+            "q80": 0.10169491525423738,
+            "q95": 0.16666666666666663,
+            "holdout": {
+              "status": "retrospective_purged_holdout",
+              "selected_candidate": "persistence",
+              "observations": 128,
+              "selection_end_date": "2021-02-03",
+              "calibration_end_date": "2023-11-20",
+              "test_start_date": "2023-11-27",
+              "selected": {
+                "mae_lkr": 0.5109375,
+                "rmse_lkr": 0.6775415116433827,
+                "mape_pct": 7.959197573961303
+              },
+              "baseline": {
+                "mae_lkr": 0.5109375,
+                "rmse_lkr": 0.6775415116433827,
+                "mape_pct": 7.959197573961303
+              },
+              "beats_baseline_mae": false,
+              "interval_95_coverage": 1.0
+            }
+          },
+          "60": {
+            "horizon": 60,
+            "live_candidate": "persistence",
+            "live_selection_errors": {
+              "persistence": 0.23162765782962344,
+              "trend_20": 0.4029011881480716,
+              "trend_60": 0.30656871601800517,
+              "damped_20": 0.25701575604698385,
+              "damped_60": 0.24334219476102995
+            },
+            "frozen_selection_errors": {
+              "persistence": 0.23490778992732367,
+              "trend_20": 0.368620593011583,
+              "trend_60": 0.3175198923872841,
+              "damped_20": 0.2516461222863447,
+              "damped_60": 0.24408471019352826
+            },
+            "calibration_observations": 38,
+            "calibration_latest_target": "2026-08-21",
+            "q80": 0.1518987341772152,
+            "q95": 0.19047619047619052,
+            "holdout": {
+              "status": "retrospective_purged_holdout",
+              "selected_candidate": "persistence",
+              "observations": 120,
+              "selection_end_date": "2021-02-03",
+              "calibration_end_date": "2023-11-20",
+              "test_start_date": "2023-11-27",
+              "selected": {
+                "mae_lkr": 0.8474999999999999,
+                "rmse_lkr": 1.075755548440258,
+                "mape_pct": 12.983460913594936
+              },
+              "baseline": {
+                "mae_lkr": 0.8474999999999999,
+                "rmse_lkr": 1.075755548440258,
+                "mape_pct": 12.983460913594936
+              },
+              "beats_baseline_mae": false,
+              "interval_95_coverage": 1.0
+            }
+          },
+          "120": {
+            "horizon": 120,
+            "live_candidate": "persistence",
+            "live_selection_errors": {
+              "persistence": 0.2992952649411243,
+              "trend_20": 0.857596419998298,
+              "trend_60": 0.6018564183803803,
+              "damped_20": 0.3357282610932341,
+              "damped_60": 0.31852894043854607
+            },
+            "frozen_selection_errors": {
+              "persistence": 0.38565962062264153,
+              "trend_20": 0.7375090681033112,
+              "trend_60": 0.6080889404489077,
+              "damped_20": 0.3946447558092071,
+              "damped_60": 0.39730507609530247
+            },
+            "calibration_observations": 26,
+            "calibration_latest_target": "2026-08-21",
+            "q80": 0.23188405797101455,
+            "q95": 0.26666666666666666,
+            "holdout": {
+              "status": "retrospective_purged_holdout",
+              "selected_candidate": "persistence",
+              "observations": 108,
+              "selection_end_date": "2021-02-03",
+              "calibration_end_date": "2023-11-20",
+              "test_start_date": "2023-11-27",
+              "selected": {
+                "mae_lkr": 1.1888888888888887,
+                "rmse_lkr": 1.4317821063276355,
+                "mape_pct": 17.54581413430555
+              },
+              "baseline": {
+                "mae_lkr": 1.1888888888888887,
+                "rmse_lkr": 1.4317821063276355,
+                "mape_pct": 17.54581413430555
+              },
+              "beats_baseline_mae": false,
+              "interval_95_coverage": 1.0
+            }
+          }
+        },
+        "limitations": [
+          "Holdout results are retrospective, not a new prospective six-month experiment.",
+          "Overlapping forecast origins are dependent; empirical bands have no guaranteed coverage under market shifts.",
+          "Intermediate path points interpolate calibrated checkpoints; business dates are not an official CSE holiday calendar.",
+          "Historical prices must be checked for splits and corporate actions; an external event is not a proven cause."
+        ]
+      },
+      "threshold_calibration": {
+        "threshold_basis": "Validation-only calibration on the chronological validation split using a train/validation quantile grid. Initial thresholds are selected before test evaluation. Test cutoffs adapt using only earlier scores when the causal rolling window is enabled; no future score or label is used.",
+        "proxy_label_basis": "Lagged 252-session quantiles; minimum 60 past observations; event windows remain retrospective proxies",
+        "validation_positive_support": 3,
+        "validation_negative_support": 321,
+        "score_warning": "Zero-volume scores are not reliable liquidity evidence; thin-trading scores need caution.",
+        "threshold_percentile": 76.0563,
+        "prediction_band_threshold_percentile": 98.3715,
+        "validation_split_used_for_threshold": "chronological_validation_split",
+        "predicted_positive_rate_validation": 0.006173,
+        "actual_proxy_positive_rate_validation": 0.009259,
+        "actual_proxy_positive_rate_test": 0.01849
+      }
+    },
+    "reliability_scope": "Legacy reliability score describes one-step ensemble diagnostics; use each horizon's calibration for multi-session forecasts.",
+    "forecast_reliability_score": 9.210823,
+    "forecast_reliability_interpretation": "High",
+    "test_mae_lkr": 0.103082,
+    "test_mape_pct": 1.612348,
+    "naive_test_mae_lkr": 0.103082,
+    "advanced_model_beats_naive_mae": false,
+    "comparative_assessment": "baseline_not_beaten_use_forecast_with_caution"
+  },
+  "top_factors": [
+    {
+      "feature": "Trading Volume",
+      "contribution": 0.964821
+    },
+    {
+      "feature": "1D Return",
+      "contribution": 0.020943
+    },
+    {
+      "feature": "Moving Average Gap",
+      "contribution": 0.007199
+    }
+  ],
+  "limitations": [
+    "Anomaly labels are proxy labels, not manually verified CSE event labels.",
+    "The CSV source column indicates tradingview_cselk_fallback, so this is not a pure Ideabeam-only dataset. Historical OHLCV was recovered through the TradingView CSELK fallback path when the Ideabeam workflow was unavailable.",
+    "Low MAPE does not guarantee profitable trading performance.",
+    "Directional prediction is evaluated as classification quality only; it should not be presented as guaranteed trading accuracy.",
+    "SHAP explains a surrogate anomaly-score model, not internal LSTM gates.",
+    "The forecast is scenario-based, interval-calibrated, not guaranteed, and not financial advice.",
+    "The following optional external/proxy inputs were unavailable: market_return_proxy, sector_return_proxy, news_sentiment_score, external_pressure_proxy. Shock-adjusted interpretation therefore relies on stock-level anomaly and stress proxies only.",
+    "Counterfactual structural suppression is model-based and should be validated with external market, news, and fundamental evidence.",
+    "Data source should be validated against official CSE/MyCSE when possible."
+  ],
+  "non_advisory_note": "This is a model-based research estimate for decision support, not buying or selling advice."
+}

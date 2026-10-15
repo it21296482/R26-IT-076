@@ -60,14 +60,14 @@ def test_formula_direction_uses_deviation_over_scaled_volume() -> None:
 
 
 def test_data_audit_marks_required_raw_fields_available() -> None:
-    raw_jkh = load_stock_history("JKH")
+    raw_jkh = load_stock_history("JKH", ROOT / "data")
     audit_df = build_data_audit(raw_jkh)
     available = set(audit_df.loc[audit_df["status"] == "available_raw", "field"])
     assert {"date", "open", "high", "low", "close", "volume"}.issubset(available)
 
 
 def test_data_quality_summary_reports_source_and_counts() -> None:
-    raw_jkh = load_stock_history("JKH")
+    raw_jkh = load_stock_history("JKH", ROOT / "data")
     quality_df = build_data_quality_summary(raw_jkh)
     row = quality_df.iloc[0]
 
@@ -78,7 +78,7 @@ def test_data_quality_summary_reports_source_and_counts() -> None:
 
 
 def test_feature_engineering_creates_required_columns() -> None:
-    raw_jkh = load_stock_history("JKH")
+    raw_jkh = load_stock_history("JKH", ROOT / "data")
     features = engineer_features(raw_jkh)
     expected_columns = {
         "return_1d",

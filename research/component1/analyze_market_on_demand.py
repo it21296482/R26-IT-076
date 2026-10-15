@@ -16,6 +16,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 import pandas as pd
+import torch
 
 from build_runtime_market_artifacts import build_contract
 from src.component1_research import ResearchConfig, run_research_pipeline
@@ -32,6 +33,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    torch.set_num_threads(1)
     stock = args.stock.upper().split(".")[0]
     input_path = args.input_csv.resolve()
     output_path = args.output.resolve()

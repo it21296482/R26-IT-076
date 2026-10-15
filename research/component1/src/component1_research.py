@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import math
 import random
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from pathlib import Path
 from typing import Any
 
@@ -249,6 +249,10 @@ class ResearchConfig:
     shock_reliability_min_score: float = 5.0
     max_rows: int | None = None
     verbose: bool = False
+    price_model_mode: str = "log_return"
+    forecast_strategy: str = "horizon_calibrated"
+    adaptive_anomaly_window: int = 252
+    learning_rate_candidates: tuple[float, ...] = (1e-3, 3e-4)
 
 
 def set_random_seed(seed: int) -> None:
@@ -444,6 +448,8 @@ def engineer_features(raw_df: pd.DataFrame) -> pd.DataFrame:
     avg_loss = down.rolling(14).mean()
     rs = avg_gain / avg_loss.replace(0, np.nan)
     df["rsi_14"] = 100.0 - (100.0 / (1.0 + rs))
+    df.loc[avg_loss.eq(0) & avg_gain.gt(0), "rsi_14"] = 100.0
+    df.loc[avg_loss.eq(0) & avg_gain.eq(0), "rsi_14"] = 50.0
 
     df["volume_5d_ma"] = df["volume"].rolling(5, min_periods=3).mean()
     df["volume_20d_ma"] = df["volume"].rolling(20, min_periods=5).mean()
@@ -465,9 +471,10 @@ def engineer_features(raw_df: pd.DataFrame) -> pd.DataFrame:
         df.loc[df["date"].between(start, end), "event_window_flag"] = True
 
     abs_return = df["return_1d"].abs()
-    return_tail = abs_return >= abs_return.quantile(0.975)
-    volatility_tail = df["volatility_20"].fillna(0) >= df["volatility_20"].quantile(0.90)
-    volume_spike = df["volume_ratio_20d"].fillna(0) >= df["volume_ratio_20d"].quantile(0.90)
+    # A later market shock must not change an earlier proxy label.
+    return_tail = abs_return > abs_return.shift(1).rolling(252, min_periods=60).quantile(0.975)
+    volatility_tail = df["volatility_20"] > df["volatility_20"].shift(1).rolling(252, min_periods=60).quantile(0.90)
+    volume_spike = df["volume_ratio_20d"] > df["volume_ratio_20d"].shift(1).rolling(252, min_periods=60).quantile(0.90)
     df["proxy_anomaly_label"] = (
         df["event_window_flag"] | (return_tail & (volatility_tail | volume_spike))
     ).astype(int)
@@ -577,6 +584,24 @@ class LSTMRegressor(nn.Module):
         return prediction.squeeze(-1)
 
 
+def relative_sequence_features(array: np.ndarray) -> np.ndarray:
+    """Normalize price/volume levels within each past-only lookback window."""
+    out = array.copy()
+    close_index = DEFAULT_FEATURE_COLUMNS.index("close")
+    anchor = np.maximum(array[:, -1, close_index], 1e-6)
+    for name in ("open", "high", "low", "close", "sma_5", "sma_10", "sma_20", "sma_50", "ema_12", "ema_26"):
+        index = DEFAULT_FEATURE_COLUMNS.index(name)
+        out[:, :, index] = array[:, :, index] / anchor[:, None] - 1.0
+    for name in ("moving_average_gap", "atr_14"):
+        index = DEFAULT_FEATURE_COLUMNS.index(name)
+        out[:, :, index] = array[:, :, index] / anchor[:, None]
+    volume = np.maximum(np.median(array[:, :, DEFAULT_FEATURE_COLUMNS.index("volume")], axis=1), 1.0)
+    for name in ("volume", "volume_5d_ma", "volume_20d_ma"):
+        index = DEFAULT_FEATURE_COLUMNS.index(name)
+        out[:, :, index] = np.log1p(np.maximum(array[:, :, index], 0.0) / volume[:, None])
+    return out
+
+
 def train_lstm_model(
     X_train: np.ndarray,
     y_train: np.ndarray,
@@ -585,6 +610,18 @@ def train_lstm_model(
     config: ResearchConfig,
 ) -> tuple[LSTMRegressor, StandardScaler, StandardScaler, dict[str, list[float]]]:
     set_random_seed(config.random_seed)
+
+    if config.price_model_mode not in ("log_return", "legacy_price"):
+        raise ValueError("Unknown price_model_mode")
+    return_mode = config.price_model_mode == "log_return"
+    if return_mode:
+        close_index = DEFAULT_FEATURE_COLUMNS.index("close")
+        anchor_train = np.maximum(X_train[:, -1, close_index], 1e-6)
+        anchor_val = np.maximum(X_val[:, -1, close_index], 1e-6)
+        y_train = np.log(np.maximum(y_train, 1e-6) / anchor_train)
+        y_val = np.log(np.maximum(y_val, 1e-6) / anchor_val)
+        X_train = relative_sequence_features(X_train)
+        X_val = relative_sequence_features(X_val)
 
     feature_scaler = StandardScaler()
     feature_scaler.fit(X_train.reshape(-1, X_train.shape[-1]))
@@ -624,12 +661,13 @@ def train_lstm_model(
         num_layers=config.num_layers,
         dropout=config.dropout,
     )
+    model.price_model_mode = config.price_model_mode
     optimizer = torch.optim.Adam(
         model.parameters(),
         lr=config.learning_rate,
         weight_decay=config.weight_decay,
     )
-    loss_fn = nn.MSELoss()
+    loss_fn = nn.SmoothL1Loss() if return_mode else nn.MSELoss()
 
     history = {"train_loss": [], "val_loss": []}
     best_state: dict[str, Any] | None = None
@@ -645,6 +683,8 @@ def train_lstm_model(
             preds = model(batch_x)
             loss = loss_fn(preds, batch_y)
             loss.backward()
+            if return_mode:
+                nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
             optimizer.step()
             train_losses.append(float(loss.item()))
 
@@ -674,6 +714,15 @@ def train_lstm_model(
     if best_state is not None:
         model.load_state_dict(best_state)
 
+    # Validation alone decides how much learned return beats zero-return persistence.
+    model.return_blend = 1.0
+    if return_mode:
+        with torch.no_grad():
+            scaled = model(torch.tensor(X_val_scaled, dtype=torch.float32)).cpu().numpy()
+        learned = target_scaler.inverse_transform(scaled.reshape(-1, 1)).ravel()
+        choices = (0.0, 0.1, 0.25, 0.5, 1.0)
+        model.return_blend = min(choices, key=lambda w: float(np.mean(np.abs(anchor_val * np.exp(w * learned) - anchor_val * np.exp(y_val)))))
+
     return model, feature_scaler, target_scaler, history
 
 
@@ -683,12 +732,19 @@ def predict_lstm(
     feature_scaler: StandardScaler,
     target_scaler: StandardScaler,
 ) -> np.ndarray:
+    return_mode = getattr(model, "price_model_mode", "legacy_price") == "log_return"
+    if return_mode:
+        anchor = np.maximum(X[:, -1, DEFAULT_FEATURE_COLUMNS.index("close")], 1e-6)
+        X = relative_sequence_features(X)
     transformed = feature_scaler.transform(X.reshape(-1, X.shape[-1])).reshape(X.shape)
     tensor = torch.tensor(transformed, dtype=torch.float32)
     model.eval()
     with torch.no_grad():
         preds = model(tensor).cpu().numpy()
-    return target_scaler.inverse_transform(preds.reshape(-1, 1)).ravel()
+    output = target_scaler.inverse_transform(preds.reshape(-1, 1)).ravel()
+    if return_mode:
+        return anchor * np.exp(np.clip(output * model.return_blend, -5.0, 5.0))
+    return output
 
 
 def compute_prediction_metrics(actual: np.ndarray, predicted: np.ndarray) -> dict[str, float]:
@@ -710,6 +766,27 @@ def compute_prediction_metrics(actual: np.ndarray, predicted: np.ndarray) -> dic
         "residual_max": float(np.max(residual)) if len(residual) else math.nan,
         "latest_prediction_error": float(residual[-1]) if len(residual) else math.nan,
     }
+
+
+def train_selected_price_model(X_train: np.ndarray, y_train: np.ndarray,
+                               X_val: np.ndarray, y_val: np.ndarray,
+                               config: ResearchConfig):
+    rates = config.learning_rate_candidates if config.price_model_mode == "log_return" else (config.learning_rate,)
+    if not rates or any(rate <= 0 for rate in rates):
+        raise ValueError("Learning-rate candidates must be nonempty and positive.")
+    best, best_mae, search = None, math.inf, []
+    for rate in rates:
+        fitted = train_lstm_model(X_train, y_train, X_val, y_val, replace(config, learning_rate=rate))
+        model, features, target, history = fitted
+        prediction = predict_lstm(model, X_val, features, target)
+        mae = float(mean_absolute_error(y_val, prediction))
+        search.append({"learning_rate": rate, "validation_mae_lkr": mae,
+                       "return_blend": float(model.return_blend), "epochs_completed": len(history["val_loss"])})
+        if mae < best_mae:
+            best, best_mae = fitted, mae
+            model.selected_learning_rate = rate
+    best[0].validation_tuning = search
+    return best
 
 
 def compute_directional_metrics(
@@ -779,9 +856,9 @@ def build_lstm_vs_naive_comparison(
         if math.isfinite(float(lstm_metrics.get("directional_accuracy", math.nan)))
         and math.isfinite(float(naive_metrics.get("directional_accuracy", math.nan)))
         else math.nan,
-        "beats_naive_on_mae": bool(lstm_metrics["mae"] < naive_metrics["mae"]),
-        "beats_naive_on_rmse": bool(lstm_metrics["rmse"] < naive_metrics["rmse"]),
-        "beats_naive_on_mape": bool(lstm_metrics["mape"] < naive_metrics["mape"]),
+        "beats_naive_on_mae": bool(lstm_metrics["mae"] < naive_metrics["mae"] - 1e-6),
+        "beats_naive_on_rmse": bool(lstm_metrics["rmse"] < naive_metrics["rmse"] - 1e-6),
+        "beats_naive_on_mape": bool(lstm_metrics["mape"] < naive_metrics["mape"] - 1e-8),
         "beats_naive_on_directional_accuracy": bool(
             lstm_metrics.get("directional_accuracy", -math.inf) > naive_metrics.get("directional_accuracy", -math.inf)
         ),
@@ -1596,7 +1673,7 @@ def add_anomaly_columns(
     out = frame.copy()
     downside_band = max(float(downside_band or 0.0), epsilon)
     upside_band = max(float(upside_band or 0.0), epsilon)
-    liquidity_threshold = None if liquidity_threshold is None else float(liquidity_threshold)
+    liquidity_threshold = None if liquidity_threshold is None else max(float(liquidity_threshold), epsilon)
     prediction_band_threshold = (
         math.inf if prediction_band_threshold is None else float(prediction_band_threshold)
     )
@@ -1645,6 +1722,8 @@ def add_anomaly_columns(
         if liquidity_threshold is not None
         else False
     )
+    out["score_reliable"] = ~out["zero_volume_flag"]
+    out["liquidity_anomaly_flag"] &= out["score_reliable"]
     out["downside_band_signal"] = out["downside_gap_ratio"] >= prediction_band_threshold
     out["upside_band_signal"] = out["upside_gap_ratio"] >= prediction_band_threshold
     out["prediction_band_anomaly_flag"] = out["downside_band_signal"] | out["upside_band_signal"]
@@ -1719,8 +1798,14 @@ def calibrate_final_anomaly_logic(
     val_results: pd.DataFrame,
     config: ResearchConfig,
 ) -> dict[str, Any]:
-    train_liquidity_scores = train_results["liquidity_aware_anomaly_score"].astype(float).to_numpy()
+    train_liquidity_scores = train_results.loc[~train_results["zero_volume_flag"], "liquidity_aware_anomaly_score"].astype(float).to_numpy()
+    val_valid_scores = val_results.loc[~val_results["zero_volume_flag"], "liquidity_aware_anomaly_score"].astype(float).to_numpy()
+    train_liquidity_scores = train_liquidity_scores[np.isfinite(train_liquidity_scores)]
+    val_valid_scores = val_valid_scores[np.isfinite(val_valid_scores)]
+    if not len(train_liquidity_scores) or not len(val_valid_scores):
+        raise ValueError("Anomaly calibration needs nonzero-volume observations in train and validation.")
     val_liquidity_scores = val_results["liquidity_aware_anomaly_score"].astype(float).to_numpy()
+    valid_volume = ~val_results["zero_volume_flag"].to_numpy(dtype=bool)
     train_band_scores = (
         train_results["prediction_band_severity"].replace([np.inf, -np.inf], np.nan).fillna(0.0).astype(float).to_numpy()
     )
@@ -1743,11 +1828,12 @@ def calibrate_final_anomaly_logic(
         np.concatenate(
             [
                 np.quantile(train_liquidity_scores, liquidity_quantiles),
-                np.quantile(val_liquidity_scores, liquidity_quantiles),
+                np.quantile(val_valid_scores, liquidity_quantiles),
                 np.asarray([np.quantile(train_liquidity_scores, config.anomaly_quantile)]),
             ]
         )
     )
+    liquidity_thresholds = np.maximum(liquidity_thresholds, config.liquidity_epsilon)
     band_thresholds = np.unique(
         np.concatenate(
             [
@@ -1774,7 +1860,7 @@ def calibrate_final_anomaly_logic(
     for liquidity_threshold in liquidity_thresholds:
         for prediction_band_threshold in band_thresholds:
             y_pred = (
-                (val_liquidity_scores >= liquidity_threshold)
+                ((val_liquidity_scores >= liquidity_threshold) & valid_volume)
                 | (val_band_scores >= prediction_band_threshold)
             ).astype(int)
             metrics = compute_classification_metrics(y_val, y_pred)
@@ -1866,6 +1952,36 @@ def calibrate_final_anomaly_logic(
             ascending=[False, False, True, True, False, False],
         ).reset_index(drop=True),
     }
+
+
+def apply_causal_anomaly_thresholds(reference: pd.DataFrame, evaluation: pd.DataFrame,
+                                  liquidity_threshold: float, band_threshold: float,
+                                  window: int = 252) -> pd.DataFrame:
+    """Prequential adaptation: each cutoff uses only scores before that observation."""
+    out = evaluation.copy()
+    valid_reference = reference.loc[~reference.zero_volume_flag, "liquidity_aware_anomaly_score"]
+    percentile = float((valid_reference <= liquidity_threshold).mean())
+    band_percentile = float((reference.prediction_band_severity <= band_threshold).mean())
+    percentile = float(np.clip(percentile, 0.60, 0.995))
+    band_percentile = float(np.clip(band_percentile, 0.95, 0.995))
+    combined = pd.concat([reference, evaluation], ignore_index=True)
+    scores = combined.liquidity_aware_anomaly_score.where(~combined.zero_volume_flag)
+    local_liquidity = scores.shift(1).rolling(window, min_periods=60).quantile(percentile)
+    local_band = combined.prediction_band_severity.shift(1).rolling(window, min_periods=60).quantile(band_percentile)
+    start = len(reference)
+    out["applied_liquidity_threshold"] = np.maximum(local_liquidity.iloc[start:].fillna(liquidity_threshold).to_numpy(), 1e-6)
+    out["applied_band_threshold"] = np.maximum(local_band.iloc[start:].fillna(band_threshold).to_numpy(), 1.05)
+    out["liquidity_anomaly_flag"] = (out.liquidity_aware_anomaly_score >= out.applied_liquidity_threshold) & ~out.zero_volume_flag
+    out["downside_band_signal"] = out.downside_gap_ratio >= out.applied_band_threshold
+    out["upside_band_signal"] = out.upside_gap_ratio >= out.applied_band_threshold
+    out["prediction_band_anomaly_flag"] = out.downside_band_signal | out.upside_band_signal
+    out["final_anomaly_detected"] = out.liquidity_anomaly_flag | out.prediction_band_anomaly_flag
+    out["anomaly_detected"] = out.final_anomaly_detected
+    out["anomaly_side"] = np.select(
+        [out.liquidity_anomaly_flag & out.prediction_band_anomaly_flag, out.downside_band_signal,
+         out.upside_band_signal, out.liquidity_anomaly_flag],
+        ["liquidity_and_band", "downside_band", "upside_band", "liquidity"], default="none")
+    return out
 
 
 def classify_risk(
@@ -2001,6 +2117,10 @@ def build_anomaly_method_comparison(
                 "method": method,
                 "purpose": method_info["purpose"],
                 "split": split,
+                "threshold_policy": (
+                    "past_only_rolling_cutoffs" if method == "LSTM deviation method" and "applied_liquidity_threshold" in frame
+                    else "fixed_calibrated_cutoff"
+                ),
                 "threshold": float(method_info["threshold"]),
                 "prediction_band_threshold": (
                     float(method_info["prediction_band_threshold"])
@@ -2685,7 +2805,7 @@ def build_counterfactual_structural_suppression_layer(
     }
 
 
-def generate_three_month_forecast(
+def generate_legacy_forecast(
     raw_df: pd.DataFrame,
     reference_results: pd.DataFrame,
     config: ResearchConfig,
@@ -2769,6 +2889,21 @@ def generate_three_month_forecast(
         last_date = next_date
 
     return pd.DataFrame(forecast_rows)
+
+
+def generate_three_month_forecast(
+    raw_df: pd.DataFrame, reference_results: pd.DataFrame, config: ResearchConfig,
+    residual_std: float, forecast_weights: dict[str, float],
+    conformal_q80: float, conformal_q95: float,
+) -> pd.DataFrame:
+    if config.forecast_strategy == "legacy":
+        return generate_legacy_forecast(raw_df, reference_results, config, residual_std, forecast_weights, conformal_q80, conformal_q95)
+    # Kept under the old function name so notebooks and the application stay compatible.
+    try:
+        from .horizon_forecast import calibrated_horizon_forecast
+    except ImportError:
+        from horizon_forecast import calibrated_horizon_forecast
+    return calibrated_horizon_forecast(raw_df, config.forecast_horizon_days)
 
 
 def _fallback_local_contributions(
@@ -2997,7 +3132,7 @@ def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
     naive_val = pd.to_numeric(rows_val["prev_close"], errors="coerce").astype(float).to_numpy()
     naive_test = pd.to_numeric(rows_test["prev_close"], errors="coerce").astype(float).to_numpy()
 
-    model, feature_scaler, target_scaler, history = train_lstm_model(
+    model, feature_scaler, target_scaler, history = train_selected_price_model(
         X_train=X_train,
         y_train=y_train,
         X_val=X_val,
@@ -3165,6 +3300,11 @@ def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
         liquidity_threshold=anomaly_threshold,
         prediction_band_threshold=prediction_band_threshold,
     )
+    if config.adaptive_anomaly_window:
+        test_results = apply_causal_anomaly_thresholds(
+            pd.concat([train_results, val_results], ignore_index=True), test_results,
+            anomaly_threshold, prediction_band_threshold, config.adaptive_anomaly_window,
+        )
     test_results["risk_level"] = test_results.apply(
         lambda row: classify_risk(
             float(row["liquidity_aware_anomaly_score"]),
@@ -3321,10 +3461,15 @@ def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
     )
     threshold_basis = (
         "Validation-only calibration on the chronological validation split using a train/validation quantile grid. "
-        "Thresholds are selected before the test split is evaluated."
+        "Initial thresholds are selected before test evaluation. Test cutoffs adapt using only earlier scores "
+        "when the causal rolling window is enabled; no future score or label is used."
     )
     threshold_calibration_summary = {
         "threshold_basis": threshold_basis,
+        "proxy_label_basis": "Lagged 252-session quantiles; minimum 60 past observations; event windows remain retrospective proxies",
+        "validation_positive_support": int(val_results["proxy_anomaly_label"].sum()),
+        "validation_negative_support": int((1 - val_results["proxy_anomaly_label"]).sum()),
+        "score_warning": "Zero-volume scores are not reliable liquidity evidence; thin-trading scores need caution.",
         "threshold_percentile": round(
             float((train_results["liquidity_aware_anomaly_score"] <= anomaly_threshold).mean()) * 100.0,
             4,
@@ -3373,6 +3518,7 @@ def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
     )
     proxy_anomaly_label_construction = (
         "Proxy labels are generated from market-stress windows plus extreme realized price, volatility, and volume conditions. "
+        "Numeric tail cutoffs use shifted rolling quantiles of past observations only. Event windows are retrospective annotations. "
         "They are not manually verified CSE event labels, so anomaly evaluation is proxy-label evaluation rather than real-world ground truth."
     )
 
@@ -3476,6 +3622,12 @@ def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
         conformal_q80=forecast_backtest_bundle["conformal_q80"],
         conformal_q95=forecast_backtest_bundle["conformal_q95"],
     )
+    if config.forecast_strategy != "legacy":
+        forecast_reliability_note = (
+            "The historical reliability score describes the one-step ensemble only. "
+            "The future path uses separate purged horizon tests and completed-outcome calibration. "
+            "Check the horizon-specific holdout results; empirical intervals are not guaranteed under market shifts."
+        )
 
     latest_row = test_results.iloc[-1]
     top_shap_factors = explanation["top_factors"]
@@ -3498,8 +3650,10 @@ def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
             "Forecast reliability remains limited: the intervals are informative, but uncertainty is high and the "
             "path should not be treated as a precise future outcome."
         )
+    if config.forecast_strategy != "legacy":
+        forecast_risk_warning = "Forecasts are recalibrated separately by horizon. Retrospective checks are available, but no outcome or recovery is guaranteed."
     forecast_summary = {
-        "forecast_basis": "anomaly_adjusted_structural_reversion_scenario",
+        "forecast_basis": "purged_horizon_calibrated_forecast" if config.forecast_strategy != "legacy" else "anomaly_adjusted_structural_reversion_scenario",
         "forecast_heading": "3-Month Model-Based Scenario Forecast",
         "forecast_start_date": str(forecast_3m.iloc[0]["date"].date()),
         "forecast_end_date": str(forecast_3m.iloc[-1]["date"].date()),
@@ -3522,6 +3676,7 @@ def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
         "forecast_model_weights": {
             key: round(float(value), 6) for key, value in forecast_backtest_bundle["weights"].items()
         },
+        "forecast_model_weights_scope": "one_step_backtest_only" if config.forecast_strategy != "legacy" else "legacy_scenario",
         "forecast_note": (
             "This is a model-based scenario forecast, not guaranteed, and not financial advice."
         ),
@@ -3547,6 +3702,15 @@ def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
         materiality_threshold_pct=regime_shift_layer["suppression_materiality_threshold_pct"],
     )
     output_payload = {
+        "model_upgrade": {
+            "version": "2.0",
+            "price_model_mode": config.price_model_mode,
+            "validation_return_blend": float(getattr(model, "return_blend", 1.0)),
+            "selected_learning_rate": float(model.selected_learning_rate),
+            "validation_tuning": model.validation_tuning,
+            "forecast_calibration": forecast_3m.attrs.get("calibration", {}),
+            "threshold_calibration": threshold_calibration_summary,
+        },
         "selected_stock": normalize_stock_code(config.stock_code),
         "analysis_date": str(pd.Timestamp(raw_df["date"].max()).date()),
         "formula": FORMULA_TEXT,
@@ -3557,8 +3721,8 @@ def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
         "volume": int(latest_row["volume"]),
         "volume_scaled": round(float(latest_row["volume_scaled"]), 6),
         "epsilon": float(config.liquidity_epsilon),
-        "anomaly_threshold": round(anomaly_threshold, 6),
-        "prediction_band_threshold": round(prediction_band_threshold, 6),
+        "anomaly_threshold": round(float(latest_row.get("applied_liquidity_threshold", anomaly_threshold)), 6),
+        "prediction_band_threshold": round(float(latest_row.get("applied_band_threshold", prediction_band_threshold)), 6),
         "structural_gap_threshold_pct": round(float(structural_gap_threshold_pct) * 100.0, 4),
         "threshold_basis": threshold_basis,
         "anomaly_threshold_basis": (

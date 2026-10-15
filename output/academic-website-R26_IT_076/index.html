@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Academic research website for R26-IT-076, AI-Powered Stock Market Insight Generator for the Colombo Stock Exchange." />
+    <title>R26-IT-076 | CSE AI Insight Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="cse-theme.css" />
+    <link rel="stylesheet" href="component1-research.css" />
+    <link rel="stylesheet" href="component-additions.css" />
+    <link rel="stylesheet" href="static-controls.css" />
+    <link rel="stylesheet" href="benchmark.css" />
+  </head>
+  <body>
+    <div class="progress-bar" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="R26-IT-076 home">
+        <span class="logo-frame"><img src="assets/cse-logo-source.png" alt="CSE Insight Generator logo" /></span>
+        <span><strong>AI MARKET INTELLIGENCE</strong><small>CSE Insight Generator · research archive</small></span>
+      </a>
+      <input class="css-control" type="checkbox" id="menuToggle" aria-label="Toggle navigation" />
+      <label class="menu-toggle" for="menuToggle" aria-hidden="true">☰</label>
+      <nav id="siteNav" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#domain">Domain</a>
+        <a href="#components">Components</a>
+        <a href="#milestones">Milestones</a>
+        <a href="#documents">Documents</a>
+        <a href="#presentations">Slides</a>
+        <a href="#team">About us</a>
+        <a class="nav-contact" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section" id="home">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="status-dot"></span> Research project archive · 2026</p>
+          <h1>Making CSE market evidence easier to <em>understand.</em></h1>
+          <p class="hero-lede">An academic record of how our team studies, explains, and presents financial market information for retail investors on the Colombo Stock Exchange.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#domain">Explore the research <span>↗</span></a>
+            <a class="button button-quiet" href="#documents">View documentation</a>
+          </div>
+        </div>
+        <div class="hero-visual reveal" aria-label="Abstract market research visual">
+          <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
+          <div class="visual-core"><span class="core-kicker">CSE / AI</span><strong>Evidence<br />before insight</strong><small>R26-IT-076</small></div>
+          <div class="float-note note-a"><span>01</span> Market behaviour</div>
+          <div class="float-note note-b"><span>02</span> Report evidence</div>
+          <div class="float-note note-c"><span>03</span> Explainability</div>
+        </div>
+      </section>
+
+      <section class="intro-strip">
+        <div><span class="mono-label">PROJECT FOCUS</span><strong>Investor-oriented financial intelligence</strong></div>
+        <p>The website documents the research process, findings, methods, and artefacts. It is separate from the final product/system.</p>
+      </section>
+
+      <section class="section domain" id="domain">
+        <div class="section-heading reveal"><p class="eyebrow">01 / Domain</p><h2>Four evidence streams, one research question</h2><p>How can a local, explainable workflow help people interpret several market signals without hiding uncertainty?</p></div>
+        <div class="domain-grid">
+          <article class="domain-card card-market reveal"><span class="card-number">01</span><h3>Market modelling</h3><p>Historical prices, volume, features, expected behaviour, and anomaly-aware comparison.</p><span class="card-tag">Component 1</span></article>
+          <article class="domain-card card-report reveal"><span class="card-number">02</span><h3>Financial reports</h3><p>Page-level extraction, evidence retrieval, structured facts, and prompt benchmarking.</p><span class="card-tag">Component 2</span></article>
+          <article class="domain-card card-sentiment reveal"><span class="card-number">03</span><h3>News & sentiment</h3><p>News classification and event context that adds a dated narrative around market movement.</p><span class="card-tag">Component 3</span></article>
+          <article class="domain-card card-risk reveal"><span class="card-number">04</span><h3>External risk</h3><p>Explainable risk classification using stock indicators together with gold, oil, and VIX.</p><span class="card-tag">Component 4</span></article>
+        </div>
+        <div class="research-facts reveal"><div><span>Primary users</span><strong>Retail investors</strong></div><div><span>Market context</span><strong>Colombo Stock Exchange</strong></div><div><span>Research stance</span><strong>Non-advisory</strong></div><div><span>Project ID</span><strong>R26-IT-076</strong></div></div>
+      </section>
+
+      <section class="section components" id="components">
+        <div class="section-heading reveal"><p class="eyebrow">02 / Individual components</p><h2>Research work behind the system</h2><p>Explore all four individual research contributions, their methods, recorded findings, and limitations.</p></div>
+        <input class="css-control" type="radio" name="research-component" id="select-component1" aria-label="Component 1" checked />
+<input class="css-control" type="radio" name="research-component" id="select-component2" aria-label="Component 2" />
+<input class="css-control" type="radio" name="research-component" id="select-component3" aria-label="Component 3" />
+<input class="css-control" type="radio" name="research-component" id="select-component4" aria-label="Component 4" />
+        <div class="component-tabs" aria-label="Research components">
+          <label class="component-tab" for="select-component1">Component 1 <small>Market modelling & XAI</small></label>
+          <label class="component-tab" for="select-component2">Component 2 <small>Financial documents & LLMs</small></label>
+          <label class="component-tab" for="select-component3">Component 3 <small>News &amp; sentiment analysis</small></label>
+          <label class="component-tab" for="select-component4">Component 4 <small>External-market risk &amp; XAI</small></label>
+        </div>
+        <div class="component-panel" id="component1" role="region" aria-labelledby="heading-component1">
+          <div class="component-title"><span class="component-index">01</span><div><p class="eyebrow">IT21296482 · S A H Samarathunga</p><h3 id="heading-component1">Market Modeling and Explainable AI Insight Generation</h3></div></div>
+          <div class="component-columns"><div><h4>Research problem</h4><p>Retail investors often receive raw prices, volumes, and technical indicators without an accessible explanation of the movement, its unusualness, or its uncertainty.</p><h4>Contribution in plain English</h4><p>I learn a stock's usual behaviour from its historical prices and trading volume, estimate a possible future price path, and compare expected prices with actual observations. I show how large and unusual a difference is, which factors influenced the anomaly score, and whether those explanations stay consistent over time.</p></div><div><h4>Methodology</h4><ol class="clean-list"><li>Validate and order historical observations</li><li>Engineer trend, volatility, and liquidity features</li><li>Train on earlier observations; calibrate on validation data</li><li>Evaluate later observations against an unchanged-price baseline</li><li>Return forecasts, anomalies, explanations, and limitations</li></ol></div></div>
+          <div class="finding"><span>Key finding</span><p>Explainability must remain alongside the forecast: a model association can describe how the model used a variable, but cannot prove that the variable caused a market movement.</p></div>
+          <div class="c1-research" aria-label="IT21296482 methodology and mathematical evidence">
+            <div class="c1-intro"><p class="eyebrow">Individual research evidence / IT21296482</p><h4>From an expected price to an explainable anomaly</h4><p>This is a static academic record of the implemented calculations, not a live stock-analysis service. Expand each topic to inspect the method and its limitations.</p></div>
+            <details open><summary>01 / Data, training, and forecast logic</summary><div class="c1-detail">
+              <p><strong>Inputs:</strong> dated open, high, low, close, and trading-volume observations for the selected CSE stock. The preserved experiments cover JKH and BIL. The source metadata records a TradingView CSELK fallback; the dataset must not be described as exclusively collected from Ideabeam.</p>
+              <p><strong>Preparation:</strong> order dates, check duplicates, missing values, impossible prices and negative volume, then build returns, moving averages, volatility, momentum, and volume-ratio features. The default sequence uses the previous 20 observations to estimate the next closing price. Scaling is fitted on training rows only. The chronological split is approximately 70% training, 10% validation, and 20% testing.</p>
+              <p><strong>Forecasting:</strong> an LSTM sequence model learns expected closing-price behaviour. A forecast ensemble combines the LSTM scenario, an unchanged-price path, and a moving-average drift path. Weights are based on validation error, not test results. The live runtime generates a fresh 120-trading-session path, with checkpoints at 4, 20, 60, and 120 sessions (approximately 4 days, 1, 3, and 6 months).</p>
+              <div class="c1-equation">w<sub>i</sub> = [1 / max(MAE<sub>i,validation</sub>, &epsilon;)] / &Sigma;<sub>j</sub>[1 / max(MAE<sub>j,validation</sub>, &epsilon;)]<br>Forecast<sub>t</sub> = &Sigma;<sub>i</sub> w<sub>i</sub> &times; Forecast<sub>i,t</sub></div>
+              <p>The favourable and adverse paths are uncertainty ranges, not guaranteed maximum/minimum prices. A six-month output is available, but it is not evidence of a completed six-month prospective validation.</p>
+              <p><strong>On Analyze in the application:</strong> the backend refreshes available market observations, loads the selected stock's historical MongoDB rows, exports a private temporary CSV, reruns the market pipeline, and returns a run ID and data cutoff. Temporary files are deleted. Locked May forecasts are used for research validation only, never substituted for a fresh live result.</p>
+            </div></details>
+            <details open><summary>02 / Deviation and liquidity-aware anomaly score</summary><div class="c1-detail">
+              <p>Let <strong>A</strong> be the actual closing price (LKR), <strong>P</strong> the expected closing price (LKR), and <strong>V</strong> the number of shares traded on the observation date.</p>
+              <div class="c1-equation">Signed deviation D = A &minus; P<br>Absolute deviation d = |A &minus; P|<br>Signed deviation (%) = 100 &times; (A &minus; P) / P<br>Scaled volume v = V / 1,000,000<br>Liquidity-aware anomaly score S = d / (v + &epsilon;), where &epsilon; = 0.000001</div>
+              <p>A negative signed deviation means the stock closed below the model estimate; a positive value means it closed above it. The percentage is relative to the <em>expected</em> price, and is undefined if P is zero. The score is not a percentage or a probability.</p>
+              <div class="c1-example"><h5>Worked example (illustrative, not a live JKH quote)</h5><p>Expected price = Rs. 24.00; actual price = Rs. 19.80; volume = 2,000,000 shares.</p><div class="c1-equation">D = 19.80 &minus; 24.00 = &minus;4.20 LKR<br>d = |&minus;4.20| = 4.20 LKR<br>Deviation (%) = (&minus;4.20 / 24.00) &times; 100 = &minus;17.50%<br>v = 2,000,000 / 1,000,000 = 2<br>S = 4.20 / (2 + 0.000001) &asymp; 2.099999</div><p>If the calibrated score threshold for this example were 0.446011, S would exceed it and trigger the liquidity flag. That number is an example threshold, not a universal constant or the current threshold for every stock.</p></div>
+              <p><strong>Why volume matters:</strong> the same price gap produces a larger score when fewer shares trade. A large score may therefore indicate thin trading, not strong market-wide confirmation. The small &epsilon; avoids division by zero; zero-volume and thin-trading flags must still qualify interpretation.</p>
+              <div class="c1-equation">Relative volume = V / rolling 20-observation median volume<br>Low volume: relative volume &lt; 0.50<br>Thin trading: V = 0 or relative volume &lt; 0.25<br>Market-confirmed diagnostic C = d &times; ln(1 + v)</div>
+              <p>C increases with participation and is a separate supporting diagnostic. It is not a replacement for S and is not directly used in the final OR rule below.</p>
+            </div></details>
+            <details><summary>03 / How the threshold and final anomaly flag are selected</summary><div class="c1-detail">
+              <p>The anomaly threshold is calibrated, not manually chosen and not learned as a forecast target. Candidate liquidity cutoffs come from the 60th to 99.5th percentiles of training/validation scores. Candidate prediction-band cutoffs are also searched, with a minimum severity threshold of 1.05.</p>
+              <p>Each candidate pair is checked on the chronological validation split against <strong>proxy anomaly labels</strong>: predefined event windows, or extreme returns accompanied by high volatility or a volume spike. The selection first maximizes F<sub>0.5</sub>, which weights precision more heavily than recall; ties consider precision, excessive flag rates, rate consistency, accuracy, and recall. Test observations are evaluated after selection.</p>
+              <div class="c1-equation">Precision = TP / (TP + FP); Recall = TP / (TP + FN)<br>F<sub>0.5</sub> = 1.25 &times; Precision &times; Recall / (0.25 &times; Precision + Recall)</div>
+              <p><strong>Prediction bands:</strong> validation residuals determine asymmetric downside/upside widths. The base width is the larger of the 95th percentile of absolute validation residuals, their standard deviation, and 0.000001. Each side width is at least the base width.</p>
+              <div class="c1-equation">Downside gap = max(P &minus; A, 0); Upside gap = max(A &minus; P, 0)<br>Band severity B = max(downside gap / downside width, upside gap / upside width)<br>Liquidity flag = (S &ge; T<sub>liquidity</sub>)<br>Band flag = (B &ge; T<sub>band</sub>)<br>Final anomaly = Liquidity flag OR Band flag</div>
+              <p>A price outside the basic band does not automatically satisfy the calibrated band-severity cutoff. A separate structural discount signal is not included in this OR rule.</p>
+              <p><strong>Recorded example:</strong> the packaged JKH dashboard artifact reports T<sub>liquidity</sub> = <strong>0.961452</strong>. Its calibration metadata records a selected liquidity percentile of 95.4586. These belong to that saved run; rerunning with different observations can change the selected thresholds.</p>
+              <p class="c1-caution"><strong>Evaluation limitation:</strong> proxy labels are not independently verified ground truth. Their tail quantiles are currently constructed on the prepared full series, so claims of fully leakage-free anomaly-label validation would be too strong. Split-local label construction and independently reviewed events remain necessary follow-up checks.</p>
+            </div></details>
+            <details><summary>04 / Structural gap, market pressure, and interpretation</summary><div class="c1-detail">
+              <p>The component keeps an unusual observation separate from a price being below its historical-pattern reference.</p>
+              <div class="c1-equation">Structural reference R = 0.35 &times; SMA<sub>20</sub> + 0.25 &times; SMA<sub>50</sub> + 0.25 &times; EMA<sub>12</sub> + 0.15 &times; P<br>Structural discount = max(R &minus; A, 0)<br>Structural discount fraction = structural discount / R</div>
+              <p>SMA means simple moving average; EMA means exponential moving average. Missing averages fall back to P. The structural-gap cutoff is the 90th percentile of positive training/validation discount fractions. This is a pattern-based reference, <strong>not fair value</strong> and not proof that a share should recover.</p>
+              <p>A separate pressure layer combines standardized unusualness in 1-day and 5-day returns, 20-observation volatility, the volume ratio, and S. Optional external proxies are included only when available.</p>
+              <div class="c1-equation">z<sub>j</sub> = |(x<sub>j</sub> &minus; &mu;<sub>j</sub>) / &sigma;<sub>j</sub>|<br>Pressure score = &Sigma;<sub>j</sub> z<sub>j</sub><br>Pressure threshold = 90th percentile of training/validation pressure scores</div>
+              <p>Means and population standard deviations come from training/validation rows; a nonpositive or invalid standard deviation uses 1. Missing pressure inputs contribute zero and must be disclosed. This pressure score is different from the liquidity score and cannot establish that war, news, or another external event caused a deviation.</p>
+            </div></details>
+            <details><summary>05 / Explanations, stability, and the research novelty</summary><div class="c1-detail">
+              <p>A Random Forest regression surrogate approximates the liquidity-aware anomaly score. Tree SHAP identifies which inputs influenced that surrogate output. It does <strong>not</strong> directly explain the internal LSTM forecast. If SHAP is unavailable, the implementation labels its feature-importance fallback; it must not be presented as Tree SHAP.</p>
+              <div class="c1-equation">Surrogate output f(x) = baseline + &Sigma;<sub>j</sub> &phi;<sub>j</sub><br>Displayed contribution share<sub>j</sub> = |&phi;<sub>j</sub>| / &Sigma;<sub>k</sub>|&phi;<sub>k</sub>|</div>
+              <p>The normalized shares show influence magnitude, not a factor's causal effect or its direction. Signed raw contributions retain the direction relative to the surrogate baseline.</p>
+              <p><strong>Explanation Stability Index (ESI):</strong> rank factors by average absolute attribution within each 60-observation window, advancing by 20 observations. Compare the top three factor names in consecutive windows.</p>
+              <div class="c1-equation">ESI<sub>t</sub> = |Top3<sub>t</sub> &cap; Top3<sub>t&minus;1</sub>| / 3<br>Example: {volume, volatility, return} and {volume, volatility, momentum}<br>ESI = 2 / 3 &asymp; 0.667 (moderate stability)</div>
+              <p>ESI &ge; 0.80 is high, 0.50 to below 0.80 moderate, and below 0.50 low. No pair of windows means stability cannot be measured. ESI checks top-factor overlap, not forecast accuracy, attribution-sign stability, or user understanding. A stable explanation can still be dominated by volume.</p>
+              <h5>Claimed contribution</h5><p>The research contribution is the <strong>combined CSE-focused workflow</strong>: expected-price modelling, volume-adjusted deviation scoring, a separately calibrated band flag, separate structural-gap interpretation, surrogate explanations, and temporal explanation checks. LSTM, Random Forest, and SHAP themselves are established methods, not newly invented algorithms.</p>
+              <p><strong>What is not yet established:</strong> worldwide novelty, superior forecasting accuracy, causal explanations, and validated feature-interaction effects. Formal interaction analysis should remain a research objective, not a completed result. The evidence below supports reproducibility and an integrated method, not a claim that every prediction is correct.</p>
+            </div></details>
+            <details open><summary>06 / Locked three-month forecast validation</summary><div class="c1-detail">
+              <p>Historical snapshots ended on <strong>7 May 2026</strong>. Forecast files were created on <strong>10 May 2026</strong> for 60 business-day dates, 8 May to 30 July. Exact-date matching found <strong>57 observations per stock</strong>. No actual rows existed for 28 May, 29 June, or 29 July, so those dates were excluded without filling prices.</p>
+              <div class="c1-equation">MAE = mean(|A &minus; P|)<br>RMSE = &radic;mean((A &minus; P)<sup>2</sup>)<br>MAPE (%) = mean(|A &minus; P| / |A|) &times; 100</div>
+              <p>MAPE divides by actual price, unlike the signed deviation percentage above. These are different quantities.</p>
+              <div class="c1-table-wrap"><table><caption>Out-of-sample results for the preserved May forecasts</caption><thead><tr><th scope="col">Stock</th><th scope="col">Method</th><th scope="col">MAE (LKR)</th><th scope="col">RMSE (LKR)</th><th scope="col">MAPE</th></tr></thead><tbody><tr><td>JKH</td><td>Ensemble</td><td>1.416</td><td>1.594</td><td>7.07%</td></tr><tr><td>JKH</td><td>LSTM scenario</td><td>1.109</td><td>1.260</td><td>5.54%</td></tr><tr><td>JKH</td><td>Unchanged-price baseline</td><td>0.547</td><td>0.617</td><td>2.74%</td></tr><tr><td>BIL</td><td>Ensemble</td><td>0.882</td><td>0.988</td><td>15.83%</td></tr><tr><td>BIL</td><td>LSTM scenario</td><td>0.857</td><td>0.963</td><td>15.38%</td></tr><tr><td>BIL</td><td>Unchanged-price baseline</td><td>0.656</td><td>0.728</td><td>11.76%</td></tr></tbody></table></div>
+              <p class="c1-caution"><strong>Finding:</strong> the unchanged-price baseline beat both advanced forecasts for both stocks. The saved upward forecasts were not confirmed in this period. JKH's 30 July actual close was Rs. 19.80 versus the ensemble's Rs. 22.53; BIL's was Rs. 5.20 versus Rs. 6.87. Only two timestamped stock forecasts were found, so a third validated result is not claimed.</p>
+              <p>JKH's nominal 80% interval covered 38.60% of matched observations; its 95% interval covered 100% but averaged Rs. 8.91 wide. BIL's 80% and 95% intervals covered 100%, with average widths of Rs. 2.57 and Rs. 5.61. Coverage alone is not proof of useful precision. This experiment covers one period and does not validate investment profitability.</p>
+              <p>The locked-forecast notebook also computes a post-hoc standardized forecast-deviation diagnostic. It is separate from the volume-adjusted one-step anomaly detector; its scores must not be compared as though they share the same threshold.</p>
+              <div class="c1-evidence"><a href="assets/documents/component1/forecast_validation_metrics.csv" download>Download validation metrics (CSV)</a><a href="assets/documents/component1/JKH_forecast_vs_actual.csv" download>JKH matched predictions and actuals (CSV)</a><a href="assets/documents/component1/BIL_forecast_vs_actual.csv" download>BIL matched predictions and actuals (CSV)</a><a href="assets/documents/component1/FORECAST_VALIDATION_REPORT.md" download>Full validation record (Markdown)</a><a href="assets/documents/component1/component1_research.py" download>Implemented formulas and calibration (Python source)</a><a href="assets/documents/component1/jkh_threshold_calibration.json" download>JKH calibration metadata (JSON)</a></div>
+            </div></details>
+            <details><summary>07 / Contribution to the overall system and demonstration</summary><div class="c1-detail">
+              <p>My component supplies the expected price paths, actual price, signed and absolute deviations, anomaly score, calibrated threshold, anomaly flags, influential factors, explanation stability, and model-quality limitations. Financial-report findings, news/sentiment, and external-market risk are supplied separately by the other research streams.</p>
+              <p>The integration layer combines these evidence objects into a plain-language stock explanation. My output supports the quantitative part of that explanation; it does not independently determine company financial strength or prove a news event caused a price change. The final result informs the investor without giving buying or selling advice.</p>
+              <ol class="clean-list"><li>Show the dated training snapshot and immutable May forecast files.</li><li>Run the forecast-validation notebook and inspect exact-date matched prices and baseline comparisons.</li><li>Open the research source: add_anomaly_columns, calibrate_final_anomaly_logic, and compute_shap_explanations show the actual mathematics.</li><li>In the separate app, select a supported stock, upload a current report, and Analyze. Show the new market run ID, cutoff date, score, threshold, and evidence passed to the unified explanation.</li></ol>
+              <p class="c1-source">Verification basis: supplied IT21296482 thesis draft; Component 1 research source, runtime adapter, README, packaged JKH calibration/dashboard artifacts, and locked-forecast validation report. Checked 10 October 2026. The draft PDF is preserved unchanged; this section clarifies implementation limits rather than rewriting the submitted document.</p>
+            </div></details>
+          </div>
+        </div>
+        <div class="component-panel" id="component2" role="region" aria-labelledby="heading-component2">
+          <div class="component-title"><span class="component-index">02</span><div><p class="eyebrow">IT21471162 · Fernando K C S</p><h3 id="heading-component2">Financial Document Understanding and Language-Driven Insight Extraction</h3></div></div>
+          <div class="component-columns"><div><h4>Research problem</h4><p>Important report facts are scattered across financial statements, notes, governance disclosures, and risk sections. Generic summaries can omit numbers or lose their evidence trail.</p><h4>Contribution</h4><p>The component extracts text and tables page by page, retrieves investor-relevant evidence, constructs expected outputs, benchmarks prompts, and integrates non-advisory insights into the dashboard.</p></div><div><h4>Methodology</h4><ol class="clean-list"><li>Verify report company and reporting period</li><li>Extract page-level text and tables</li><li>Compare ten prompt strategies against a shared JSON schema</li><li>Score coverage, accuracy, similarity, relevance, and faithfulness</li></ol></div></div>
+          <div class="finding"><span>Recorded result</span><p>Prompt 08, the Beginner Investor Explanation Prompt, ranked best overall across six evaluated reports. The results also exposed the need for stronger numeric normalization and evidence verification.</p></div>
+          <section class="c2-benchmark" aria-labelledby="c2-benchmark-heading">
+            <div class="c2-section-heading"><p class="eyebrow">Component 2 evidence</p><h4 id="c2-benchmark-heading">How the final prompt was selected</h4><p>The prompt was not chosen by opinion. The same six annual-report cases, retrieved evidence context, and JSON output schema were given to ten prompt strategies. Their outputs were compared against expected source-grounded fields.</p></div>
+            <div class="benchmark-stats"><div><strong>10</strong><span>prompt strategies</span></div><div><strong>6</strong><span>reports evaluated</span></div><div><strong>0.1693</strong><span>best final score</span></div><div><strong>08</strong><span>selected prompt</span></div></div>
+            <div class="benchmark-flow"><span>PDF extraction</span><b>→</b><span>page evidence</span><b>→</b><span>10 prompts</span><b>→</b><span>weighted scoring</span><b>→</b><span>Prompt 08</span></div>
+            <div class="c2-score-card"><div><h5>Benchmark score formula</h5><p class="score-formula">0.25 coverage + 0.20 numeric accuracy + 0.20 semantic similarity + 0.20 source faithfulness + 0.15 investor relevance − hallucination penalty</p><p class="benchmark-note">These are normalized research evaluation scores, not academic marks. The penalty and the zero faithfulness score remain visible so the result is not overstated.</p></div><div class="score-breakdown"><div><span>Coverage</span><strong>0.9342</strong></div><div><span>Numeric accuracy</span><strong>0.0619</strong></div><div><span>Semantic similarity</span><strong>0.1168</strong></div><div><span>Faithfulness</span><strong>0.0000</strong></div><div><span>Investor relevance</span><strong>1.0000</strong></div><div><span>Hallucination penalty</span><strong>0.2500</strong></div></div></div>
+            <div class="c2-prompt-list"><h5>All ten prompt strategies and final scores</h5><div class="prompt-row prompt-selected"><span>01</span><strong>prompt_08 · Beginner Investor Explanation</strong><b>0.1693</b></div><div class="prompt-row"><span>02</span><strong>prompt_10 · Hybrid Best-Practice</strong><b>0.1673</b></div><div class="prompt-row"><span>03</span><strong>prompt_07 · Risk-Focused Investor</strong><b>0.1645</b></div><div class="prompt-row"><span>04</span><strong>prompt_02 · Role-Based Financial Analyst</strong><b>0.1634</b></div><div class="prompt-row"><span>05</span><strong>prompt_01 · Basic Extraction</strong><b>0.1619</b></div><div class="prompt-row"><span>06</span><strong>prompt_06 · Ratio-Aware</strong><b>0.1613</b></div><div class="prompt-row"><span>07</span><strong>prompt_04 · Source-Grounded Evidence</strong><b>0.1596</b></div><div class="prompt-row"><span>08</span><strong>prompt_05 · Chain-of-Verification</strong><b>0.1573</b></div><div class="prompt-row"><span>09</span><strong>prompt_03 · JSON Schema-Constrained</strong><b>0.1555</b></div><div class="prompt-row"><span>10</span><strong>prompt_09 · Few-Shot</strong><b>0.1376</b></div></div>
+            <div class="selected-prompt-card"><div><p class="eyebrow">Selected for the prototype</p><h5>Prompt 08 · Beginner Investor Explanation</h5><p>Extract report-backed facts and explain them in simple language for beginner investors. Keep explanations factual, concise, and non-advisory. Return only valid JSON using the shared schema, preserve missing values as null, and include evidence fields.</p></div><a href="assets/documents/best_prompt_to_use.txt" target="_blank" rel="noopener">Open full prompt ↗</a></div>
+            <details><summary>What the ten prompts changed</summary><div class="c2-details"><p>Prompt 01 tested basic extraction. Prompt 02 added an analyst role. Prompt 03 enforced strict JSON. Prompt 04 added page-level evidence. Prompt 05 added a verification sequence. Prompt 06 allowed ratios only when source values existed. Prompt 07 prioritised risk information. Prompt 08 simplified explanations for beginner investors. Prompt 09 tested few-shot examples. Prompt 10 combined the strongest rules. All strategies used the same report context and schema for a fair comparison.</p><div class="c2-evidence-links"><a href="assets/documents/prompt_comparison_table.csv" download>Download score table (CSV)</a><a href="assets/documents/best_prompt_selection_report.md" download>Download selection report</a><a href="assets/documents/prompt_benchmark_methodology.md" download>Download methodology</a><a href="assets/documents/ten_prompt_strategies.py" download>Download ten prompt definitions (Python)</a></div></div></details>
+          </section>
+          <section class="c2-tech" aria-labelledby="c2-tech-heading"><p class="eyebrow">Technology used for Component 2</p><h4 id="c2-tech-heading">From financial PDF to explainable insight</h4><div class="c2-tech-grid"><div><span>Document processing</span><strong>Python · PyMuPDF · pdfplumber</strong><p>Extracts text, tables, page numbers, and evidence from annual reports.</p></div><div><span>Retrieval and structure</span><strong>Keyword retrieval · similarity matching · JSON Schema</strong><p>Finds investor-relevant sections and keeps every output aligned to one schema.</p></div><div><span>Prompt evaluation</span><strong>Ten strategies · benchmark metrics · normalization</strong><p>Compares coverage, numeric accuracy, similarity, faithfulness, relevance, and penalties.</p></div><div><span>Integration</span><strong>Python service · REST API · React/Vite dashboard</strong><p>Passes the structured non-advisory insight to the wider CSE Insight Generator.</p></div></div><p class="c2-source">Supporting files: <a href="assets/documents/IT21471162_RP_Proposal.pdf" target="_blank" rel="noopener">Component 2 proposal</a> · <a href="assets/documents/IT21471162_Draft.pdf" target="_blank" rel="noopener">individual thesis draft</a>.</p></section>
+        </div>
+<div class="component-panel" id="component3" role="region" aria-labelledby="heading-component3">
+  <div class="component-title">
+    <span class="component-index">03</span>
+    <div>
+      <p class="eyebrow">IT22065308 · Harithra K</p>
+      <h3 id="heading-component3">Sentiment and Event-Driven Financial Insight Modelling</h3>
+    </div>
+  </div>
+
+  <div class="component-columns">
+    <div>
+      <h4>Research Problem</h4>
+      <p>
+        Financial news contains valuable information about market sentiment,
+        but manually interpreting large volumes of news is time-consuming.
+        General sentiment models may also struggle to understand financial
+        terminology and market-related events.
+      </p>
+
+      <h4>Research Gap</h4>
+      <p>
+        General text classification may not fully capture the context of
+        financial news. Combining machine learning with financial
+        rule-based analysis offers an approach to improve sentiment
+        interpretation for the Colombo Stock Exchange (CSE).
+      </p>
+
+      <h4>Research Aim</h4>
+      <p>
+        To develop and evaluate a hybrid sentiment analysis model that
+        classifies financial news and supports sentiment-based market
+        insights for the CSE.
+      </p>
+    </div>
+
+    <div>
+      <h4>Research Objectives</h4>
+      <ul class="clean-list">
+        <li>Classify financial news into positive, negative, and neutral sentiment.</li>
+        <li>Develop a Naive Bayes baseline classifier.</li>
+        <li>Integrate machine learning predictions with financial rule-based analysis.</li>
+        <li>Compare model performance using classification metrics.</li>
+        <li>Integrate sentiment results into the stock market insight platform.</li>
+      </ul>
+
+      <h4>Research Questions</h4>
+      <ul class="clean-list">
+        <li>How effectively can financial news be classified into sentiment categories?</li>
+        <li>Can financial rules improve machine learning-based sentiment classification?</li>
+        <li>How can sentiment analysis support CSE-related market insights?</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Proposed Methodology</h4>
+  <div class="finding"><strong>Individual contribution</strong><p>This component combines a financial-news classifier with domain-specific rules, then compares the hybrid output with the classifier alone. Its contribution is a CSE-focused sentiment workflow and a documented comparison, not a claim to have invented sentiment analysis.</p></div>
+  <p>
+    The proposed workflow combines natural language processing,
+    machine learning, and financial rule-based logic to produce
+    a final sentiment classification.
+  </p>
+
+  <div class="component-columns">
+    <div>
+      <h4>01. News Preprocessing</h4>
+      <p>
+        Financial news headlines are collected and prepared for analysis
+        through text preprocessing.
+      </p>
+
+      <h4>02. Machine Learning Classification</h4>
+      <p>
+        A Naive Bayes classifier, implemented using the
+        <code>natural</code> JavaScript library, predicts the sentiment
+        of each headline.
+      </p>
+
+      <h4>03. Financial Rule-Based Analysis</h4>
+      <p>
+        Financial terms and domain-specific rules are analysed to identify
+        sentiment signals that may require additional financial context.
+      </p>
+    </div>
+
+    <div>
+      <h4>04. Hybrid Decision</h4>
+      <p>
+        The machine learning prediction is combined with rule-based
+        evidence. Strong financial rule signals can influence the
+        final sentiment decision.
+      </p>
+
+      <h4>05. Evaluation and Integration</h4>
+      <p>
+        The Naive Bayes and hybrid models are evaluated using a labelled
+        dataset of 60 financial headlines. The resulting sentiment
+        insights are integrated into the web application.
+      </p>
+    </div>
+  </div>
+
+
+<h4>Hybrid Sentiment Model</h4>
+<p>
+  The model combines machine learning predictions with financial
+  rule-based evidence to determine the final sentiment classification.
+</p>
+
+<div class="c1-equation">
+  <p><strong>Hybrid Decision Approach</strong></p>
+  <p style="text-align: center; font-size: 1rem; line-height: 1.8;">
+    Final Sentiment = f (ML Prediction, Financial Rule Evidence)
+  </p>
+</div>
+
+<h4>Model Evaluation Metrics</h4>
+<p>
+  The classification performance of both models is measured using
+  the following evaluation metrics.
+</p>
+
+<div class="c1-equation">
+  <p><strong>01. Accuracy</strong></p>
+  <div style="text-align: center; padding: 10px 0;">
+    <span style="display: inline-flex; flex-direction: column; text-align: center; vertical-align: middle; line-height: 1.6;">
+      <span style="padding: 0 12px 5px; border-bottom: 1.5px solid currentColor;">
+        Correct Predictions
+      </span>
+      <span style="padding: 5px 12px 0;">
+        Total Predictions
+      </span>
+    </span>
+  </div>
+</div>
+
+<div class="c1-equation">
+  <p><strong>02. Precision</strong></p>
+  <div style="text-align: center; padding: 10px 0;">
+    Precision =
+    <span style="display: inline-flex; flex-direction: column; text-align: center; vertical-align: middle; line-height: 1.6;">
+      <span style="padding: 0 12px 5px; border-bottom: 1.5px solid currentColor;">
+        True Positives
+      </span>
+      <span style="padding: 5px 12px 0;">
+        True Positives + False Positives
+      </span>
+    </span>
+  </div>
+</div>
+
+<div class="c1-equation">
+  <p><strong>03. Recall</strong></p>
+  <div style="text-align: center; padding: 10px 0;">
+    Recall =
+    <span style="display: inline-flex; flex-direction: column; text-align: center; vertical-align: middle; line-height: 1.6;">
+      <span style="padding: 0 12px 5px; border-bottom: 1.5px solid currentColor;">
+        True Positives
+      </span>
+      <span style="padding: 5px 12px 0;">
+        True Positives + False Negatives
+      </span>
+    </span>
+  </div>
+</div>
+
+<div class="c1-equation">
+  <p><strong>04. F1-Score</strong></p>
+  <div style="text-align: center; padding: 10px 0;">
+    F1-Score =
+    <span style="display: inline-flex; flex-direction: column; text-align: center; vertical-align: middle; line-height: 1.6;">
+      <span style="padding: 0 12px 5px; border-bottom: 1.5px solid currentColor;">
+        2 × Precision × Recall
+      </span>
+      <span style="padding: 5px 12px 0;">
+        Precision + Recall
+      </span>
+    </span>
+  </div>
+</div>
+
+<div class="c1-equation">
+  <p><strong>05. Macro F1-Score</strong></p>
+  <div style="text-align: center; padding: 10px 0;">
+    Macro F1-Score =
+    <span style="display: inline-flex; flex-direction: column; text-align: center; vertical-align: middle; line-height: 1.6;">
+      <span style="padding: 0 12px 5px; border-bottom: 1.5px solid currentColor;">
+        F1<sub>Positive</sub> + F1<sub>Negative</sub> + F1<sub>Neutral</sub>
+      </span>
+      <span style="padding: 5px 12px 0;">3</span>
+    </span>
+  </div>
+</div>
+
+
+  <h4>Experimental Evaluation</h4>
+  <p>
+    Both models were evaluated on the same dataset of 60 labelled
+    financial headlines, consisting of 20 positive, 20 negative,
+    and 20 neutral examples.
+  </p>
+
+  <div class="c1-table-wrap"><table>
+    <thead>
+      <tr>
+        <th>Evaluation Metric</th>
+        <th>Naive Bayes</th>
+        <th>Hybrid Model</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Accuracy</td>
+        <td>60.00%</td>
+        <td>63.33%</td>
+      </tr>
+      <tr>
+        <td>Macro F1-Score</td>
+        <td>0.607</td>
+        <td>0.616</td>
+      </tr>
+    </tbody>
+  </table></div>
+
+  <div class="finding">
+    <strong>Key Finding</strong>
+    <p>
+      The hybrid model improved accuracy by 3.33 percentage points
+      and achieved a modest increase in macro F1-score. However,
+      neutral sentiment recall decreased, indicating that further
+      refinement is needed to improve performance across all
+      sentiment categories.
+    </p>
+  </div>
+
+  <h4>Technology Stack</h4>
+  <p>
+    <strong>Backend:</strong> Node.js, Express.js, JavaScript
+    <br>
+    <strong>Sentiment Analysis:</strong> Natural (Naive Bayes),
+    financial rule-based logic
+    <br>
+    <strong>Frontend Integration:</strong> React, Vite, Axios
+  </p>
+
+  <div class="finding">
+    <strong>Research Outcome</strong>
+    <p>
+      The component demonstrates a hybrid approach to financial news
+      sentiment classification, combining machine learning and
+      financial rule-based analysis to generate sentiment insights
+      for CSE-related market analysis. These insights support
+      interpretation of financial news rather than predicting
+      stock prices or providing investment advice.
+    </p>
+  </div>
+  <p class="c1-source">Source: Harithra's supplied academic-website package. The reported 60-headline comparison has not been independently rerun for this website; it is a small evaluation, not evidence of performance across all financial news. <a href="assets/documents/IT22065308_RP_Proposal.pdf" target="_blank" rel="noopener">Read the individual proposal</a>. The supplied package did not include an individual thesis PDF.</p>
+</div>
+
+              <div class="component-panel" id="component4" role="region" aria-labelledby="heading-component4">
+          <div class="component-title"><span class="component-index">04</span><div><p class="eyebrow">IT22547088 · T G R N S Wijesooriya</p><h3 id="heading-component4">Explainable AI-Based Financial Market Risk Impact Engine</h3></div></div>
+          <div class="component-columns c4-overview">
+            <div><h4>Research Problem</h4><p>Retail investors may see changes in stock prices and trading volume, but they may not understand the current risk condition. A risk label alone does not explain why the model produced that result.</p><h4>Research Gap</h4><p>Prices, stock indicators, and global market indicators are often viewed separately. A model's overall feature importance also does not explain one selected result. This component brings these inputs and a local explanation together in one CSE-focused workflow.</p><h4>Research Aim</h4><p>To develop and evaluate an explainable system that classifies the current risk condition of selected CSE stocks as LOW, MEDIUM, or HIGH, and explains the main factors behind each result.</p><h4>Individual Contribution</h4><p>I combine stock data and global indicators, use Random Forest to classify risk, use SHAP to explain the result, and use Gemini to write a simple explanation. These outputs support our overall CSE insight system.</p></div>
+            <div><h4>Research Objectives</h4><ol class="clean-list"><li>Collect and prepare historical and current stock data.</li><li>Calculate stock features such as moving averages and volatility.</li><li>Add Gold, Oil, and VIX as global market indicators.</li><li>Classify current risk using a Random Forest model.</li><li>Explain individual results using SHAP.</li><li>Generate simple text from the risk result and SHAP factors.</li><li>Connect the workflow to the Flask API and React/Vite dashboard.</li><li>Evaluate classification, explanations, integration, and limitations.</li></ol><h4>Research Questions</h4><ol class="clean-list"><li>How can stock and global indicators be combined for risk analysis?</li><li>How well does the model separate the prototype risk classes?</li><li>Which features influence each selected prediction?</li><li>How can the result be explained clearly to a non-expert user?</li></ol></div>
+          </div>
+          <div class="c4-method-intro"><h4>Research Methodology</h4><p>The workflow prepares market features, classifies the current risk state, explains the model result, and presents it in the dashboard.</p></div>
+          <div class="finding"><span>Individual contribution</span><p>The contribution combines a risk class with gold, oil and VIX context and a local explanation of the selected result. It complements Component 1's expected-price deviations: a risk class and a price anomaly answer different questions. The classifiers and explanation methods themselves are established techniques. This section records the member's standalone prototype; the architecture page describes the wider integrated application.</p></div>
+          <div class="component-columns c4-method">
+            <div><h4>01. Data Preparation</h4><p>Order historical stock records by symbol and date. The archived dataset contains 33,080 rows from 2020 to 2023. The dashboard supports HHL, JKH, and LLUB.</p><h4>02. Feature Engineering</h4><p>Prepare Close, Volume, MA10, MA50, Volatility, Gold, Oil, VIX, and Stock_encoded. Training volatility is the ten-period rolling standard deviation of returns.</p><h4>03. Risk Classification</h4><p>A saved Random Forest model with 200 trees returns LOW, MEDIUM, or HIGH. Prototype training labels are created from volatility bands.</p></div>
+            <div><h4>04. Explainability</h4><p>SHAP TreeExplainer identifies features that influenced the predicted class. These contributions explain the model's result; they do not prove that a feature caused a market movement.</p><h4>05. Plain-Language Explanation</h4><p>Gemini 2.5 Flash writes a simple explanation using the structured risk result and main SHAP factors. Gemini does not choose or change the risk class.</p><h4>06. Evaluation and Integration</h4><p>Inspect the archived classification metrics and model explanations. Connect the result to the dashboard through the Flask API. Report limitations alongside the findings.</p></div>
+          </div>
+          <div class="finding"><span>Recorded result</span><p>The archived confusion matrix shows 100% classification accuracy on one reported split of 6,291 observations. Volatility accounts for approximately 88.18% of the saved model's impurity-based feature importance. Because the labels were constructed from volatility bands and Volatility is also an input, this result demonstrates reproduction of the prototype rule; it does not establish perfect future-risk prediction.</p></div>
+          <div class="c1-research" aria-label="IT22547088 research evidence">
+            <div class="c1-intro"><p class="eyebrow">Individual research evidence / IT22547088</p><h4>From market context to an understandable risk state</h4><p>A static academic record of the component's methodology, evaluation, and integration, based on the supplied individual thesis.</p></div>
+            <details open><summary>01 / Dataset and model inputs</summary><div class="c1-detail"><p>The archived model-development dataset contains <strong>33,080 rows</strong> spanning <strong>1 January 2020 to 31 December 2023</strong>, with 33 stock symbols across the USA, UK, India, and Sri Lanka. The Sri Lankan subset contains 3,020 records; the dashboard supports <strong>HHL, JKH, and LLUB</strong>.</p><p>The fixed nine-feature input order is <strong>Close, Volume, MA10, MA50, Volatility, Gold, Oil, VIX, Stock_encoded</strong>. MA10 and MA50 represent short- and longer-term moving averages; model-development Volatility is a ten-period rolling standard deviation of returns.</p></div></details>
+            <details><summary>02 / Risk-class construction and explanation</summary><div class="c1-detail"><div class="c1-equation">Volatility &lt; 0.01 → LOW<br>0.01 ≤ Volatility &lt; 0.03 → MEDIUM<br>Volatility ≥ 0.03 → HIGH</div><p>These are operational prototype cut-offs, not universal financial-risk boundaries. The classifier returns the risk class; SHAP TreeExplainer provides local feature attribution for that predicted class. Gemini only expresses the structured result in accessible language. Feature attribution describes model associations and does not prove that an external indicator caused a stock movement.</p></div></details>
+            <details open><summary>03 / Evaluation findings and limitations</summary><div class="c1-detail"><div class="c1-table-wrap"><table><caption>Archived classification evidence reported in the thesis</caption><thead><tr><th scope="col">Measure</th><th scope="col">Reported result</th></tr></thead><tbody><tr><td>Evaluated observations</td><td>6,291</td></tr><tr><td>Correct LOW / MEDIUM / HIGH cases</td><td>445 / 4,232 / 1,614</td></tr><tr><td>Accuracy</td><td>100% on the reported split</td></tr><tr><td>Per-class precision, recall, and F1-score</td><td>1.0 on the same reported split</td></tr><tr><td>Volatility feature importance</td><td>88.18% (impurity-based)</td></tr><tr><td>Volume / VIX feature importance</td><td>5.71% / 2.15% (impurity-based)</td></tr></tbody></table></div><p class="c1-caution"><strong>Interpretation:</strong> using Volatility both to construct target labels and as a model input creates a circular relationship. High classification scores therefore do not validate forecasts of future losses. The thesis also reports no formal human-subject comprehension study, and the prototype dashboard confidence percentage is a placeholder rather than a validated evaluation metric.</p><p>The final thesis also identifies a preprocessing mismatch: training uses rolling return volatility, while the live endpoint uses the standard deviation of recent prices. The missing final training notebook limits full reproduction of the evaluation split. Historical replay checks confirm that the persisted model accepts the intended inputs for HHL, JKH, and LLUB. Future work includes independently defined future-risk targets, chronological out-of-sample evaluation, suitable classifier baselines, verified multiclass SHAP handling, and controlled user-comprehension testing.</p></div></details>
+            <details><summary>04 / Integration and supporting documents</summary><div class="c1-detail"><p>The implemented component integrates Python Flask, MongoDB, Selenium, yfinance, scikit-learn, SHAP, Gemini, and a React/Vite dashboard. It supplies a risk class, influential factors, external-market context, and a plain-language explanation to the wider CSE insight system. This website documents that separate implementation.</p><div class="c1-evidence"><a href="assets/documents/IT22547088_Thesis_Draft.pdf" target="_blank" rel="noopener">Open individual thesis (PDF)</a></div><p class="c1-source">Source: supplied IT22547088 individual thesis report. Evaluation figures are reported from those documents; the model and dataset were not independently rerun for this website update.</p></div></details>
+
+            <details open><summary>05 / Explain this component </summary><div class="c1-detail">
+              <h5>My component in one minute</h5><p>My name is T G R N S Wijesooriya. My student ID is IT22547088. My component is the Explainable AI-Based Financial Market Risk Impact Engine. It helps users understand the current risk condition of a selected stock. It uses stock data and global indicators such as Gold, Oil, and VIX. A Random Forest model gives a LOW, MEDIUM, or HIGH risk label. SHAP shows which features influenced that result. Gemini turns the result into a simple English explanation. My component adds risk information to our overall CSE insight system.</p>
+              <h5>How does it work?</h5><p>First, the user selects a supported stock. The backend prepares nine inputs. The saved Random Forest model gives a risk class. Next, SHAP finds the main factors behind that class. Finally, the dashboard shows the risk result and an explanation. Gemini writes the explanation; it does not choose the risk class.</p>
+              <h5>Why did you use Random Forest?</h5><p>Random Forest combines many decision trees. Our saved model has 200 trees. It can work with different market features, and it can be explained using Tree SHAP.</p>
+              <h5>What do the main terms mean?</h5><p><strong>Volatility</strong> means how much returns change over time. <strong>MA10 and MA50</strong> are average prices over 10 and 50 observations. <strong>VIX</strong> is a global market uncertainty indicator. <strong>SHAP</strong> shows how each feature contributes to a model result.</p>
+              <h5>What is your contribution?</h5><p>I combine a risk class, local feature explanations, and global market context in one workflow. The user can see both the result and the factors behind it. I use existing methods; I did not invent Random Forest or SHAP.</p>
+              <h5>What are the limitations and future improvements?</h5><p>The current labels depend on volatility rules. Training used volatility of returns, but the live endpoint uses variation in recent prices. These calculations should be made consistent. The final training notebook was not available for full reproduction. We have not completed a formal user-understanding study. In future, I would use independently defined future-risk labels, test on later unseen dates, compare other models, and test the explanations with users.</p>
+              <h5>How does it help the full project?</h5><p>Other components provide market modelling, financial-report information, and news sentiment. My component provides risk information and its explanation. Together, these outputs give the user more context about a stock.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section method-section">
+        <div class="method-visual reveal"><div class="method-line"></div><div class="method-node node-one">01<span>Data</span></div><div class="method-node node-two">02<span>Models</span></div><div class="method-node node-three">03<span>Evidence</span></div><div class="method-node node-four">04<span>Insight</span></div></div>
+        <div class="method-copy reveal"><p class="eyebrow">Research methodology</p><h2>A transparent path from source to explanation</h2><p>The integrated workflow keeps the evidence path visible: source data enters independent research components, results are checked, and the dashboard presents context with limitations.</p><a class="text-link" href="#documents">Read the supporting reports <span>→</span></a></div>
+      </section>
+
+      <section class="section milestones" id="milestones">
+        <div class="section-heading reveal"><p class="eyebrow">03 / Milestones</p><h2>Assessment trail</h2><p>Select a milestone to see its purpose, evidence, and current status.</p></div>
+        <input class="css-control" type="radio" name="milestone" id="select-proposal" aria-label="Project proposal" checked /><input class="css-control" type="radio" name="milestone" id="select-pp1" aria-label="Progress presentation 1" /><input class="css-control" type="radio" name="milestone" id="select-pp2" aria-label="Progress presentation 2" /><input class="css-control" type="radio" name="milestone" id="select-final" aria-label="Final presentation" /><input class="css-control" type="radio" name="milestone" id="select-viva" aria-label="Website viva" /><div class="milestone-layout"><div class="milestone-list" aria-label="Project milestones"><label class="milestone-item" for="select-proposal"><span>01</span><strong>Project proposal</strong><small>Research direction</small></label><label class="milestone-item" for="select-pp1"><span>02</span><strong>Progress presentation 1</strong><small>Problem and solution</small></label><label class="milestone-item" for="select-pp2"><span>03</span><strong>Progress presentation 2</strong><small>Completed · implementation evidence</small></label><label class="milestone-item" for="select-final"><span>04</span><strong>Final presentation</strong><small>Upcoming · complete research record</small></label><label class="milestone-item" for="select-viva"><span>05</span><strong>Website viva</strong><small>Upcoming · academic website review</small></label></div><div><div class="milestone-detail" id="milestone-proposal" role="region" aria-labelledby="heading-proposal"><span class="detail-code">CURRENT MILESTONE</span><h3 id="heading-proposal">Project proposal</h3><p>The proposal established the CSE-focused research problem, the four-component scope, research objectives, and the planned technical direction.</p><div class="detail-meta"><div><span>Evidence</span><strong>Proposal document</strong></div><div><span>Status</span><strong>Completed</strong></div></div></div><div class="milestone-detail" id="milestone-pp1" role="region" aria-labelledby="heading-pp1"><span class="detail-code">SELECTED MILESTONE</span><h3 id="heading-pp1">Progress presentation 1</h3><p>The first progress presentation introduced the background, problem statement, proposed solution, system architecture, and individual component contributions.</p><div class="detail-meta"><div><span>Evidence</span><strong>PP1 presentation deck</strong></div><div><span>Status</span><strong>Completed</strong></div></div></div><div class="milestone-detail" id="milestone-pp2" role="region" aria-labelledby="heading-pp2"><span class="detail-code">SELECTED MILESTONE</span><h3 id="heading-pp2">Progress presentation 2</h3><p>The second progress stage records the implementation evidence, research artefacts, evaluation progress, and integration work across the components.</p><div class="detail-meta"><div><span>Evidence</span><strong>PP2 presentation deck</strong></div><div><span>Status</span><strong>Completed</strong></div></div></div><div class="milestone-detail" id="milestone-final" role="region" aria-labelledby="heading-final"><span class="detail-code">SELECTED MILESTONE</span><h3 id="heading-final">Final presentation</h3><p>The final presentation will bring together the completed individual components, integrated product evidence, findings, limitations, and future directions.</p><div class="detail-meta"><div><span>Evidence</span><strong>Final presentation deck</strong></div><div><span>Status</span><strong>Upcoming</strong></div></div></div><div class="milestone-detail" id="milestone-viva" role="region" aria-labelledby="heading-viva"><span class="detail-code">SELECTED MILESTONE</span><h3 id="heading-viva">Website viva</h3><p>The academic website presents the research journey and supporting evidence for demonstration on the same day as the final research project presentation.</p><div class="detail-meta"><div><span>Evidence</span><strong>Website source package</strong></div><div><span>Status</span><strong>Upcoming</strong></div></div></div></div></div>
+      </section>
+
+      <section class="section documents" id="documents">
+        <div class="section-heading reveal"><p class="eyebrow">04 / Documents</p><h2>Research artefacts</h2><p>Open the produced documents and presentation materials. These files are included with the source package for submission.</p></div>
+            <div class="document-toolbar"><span class="search-box document-find-hint"><span aria-hidden="true">⌕</span>Find documents: Ctrl / ⌘ + F</span><span class="document-count" id="documentCount">7 artefacts</span></div>
+        <div class="document-grid" id="documentGrid">
+          <a class="document-card reveal" data-name="component 3 proposal sentiment event driven financial news harithra" href="assets/documents/IT22065308_RP_Proposal.pdf" target="_blank" rel="noopener"><span class="file-type pdf">PDF</span><div><h3>Component 3 research proposal</h3><p>Sentiment and Event-Driven Financial Insight Modelling</p></div><span class="download">↗</span></a>
+          <a class="document-card reveal" data-name="component 4 individual thesis external market risk shap gold oil vix ruchini" href="assets/documents/IT22547088_Thesis_Draft.pdf" target="_blank" rel="noopener"><span class="file-type pdf">PDF</span><div><h3>Component 4 thesis draft</h3><p>Explainable AI-Based Financial Market Risk Impact Engine</p></div><span class="download">↗</span></a>
+          <a class="document-card reveal" data-name="component 2 individual thesis financial document understanding" href="assets/documents/IT21471162_Draft.pdf" target="_blank"><span class="file-type pdf">PDF</span><div><h3>Component 2 thesis draft</h3><p>Financial Document Understanding and Language-Driven Insight Extraction</p></div><span class="download">↗</span></a>
+          <a class="document-card reveal" data-name="component 1 individual thesis market modeling explainable ai" href="assets/documents/IT21296482_Draft.pdf" target="_blank"><span class="file-type pdf">PDF</span><div><h3>Component 1 thesis draft</h3><p>Market Modeling and Explainable AI Insight Generation</p></div><span class="download">↗</span></a>
+          <a class="document-card reveal" data-name="progress presentation 1 pp1 slides cse ai insight generator" href="assets/documents/CSE_AI_Insight_Generator_PP1_3.pptx" target="_blank"><span class="file-type slides">PPTX</span><div><h3>Progress presentation 1</h3><p>AI-Powered Stock Market Insight Generator · R26-IT-076</p></div><span class="download">↗</span></a>
+          <a class="document-card reveal" data-name="progress presentation 2 pp2 blue modern stock market slides" href="assets/documents/Progress_Presentation_2_Blue_Modern_Stock_Market.pptx" target="_blank"><span class="file-type slides">PPTX</span><div><h3>Progress presentation 2</h3><p>Blue Modern Stock Market Presentation · R26-IT-076</p></div><span class="download">↗</span></a>
+          <a class="document-card reveal" data-name="system architecture documentation visual cse workflow" href="architecture.html"><span class="file-type doc">↗</span><div><h3>System architecture</h3><p>Visual CSE workflow and design rationale</p></div><span class="download">↗</span></a>
+        </div>
+      </section>
+
+      <section class="section presentations" id="presentations">
+        <div class="presentation-copy reveal"><p class="eyebrow">05 / Presentations</p><h2>From proposal to final presentation</h2><p>PP1 introduced the problem, proposed solution, architecture, and individual component contributions. PP2 records the implementation and progress evidence. The final presentation will bring together the completed research, product evidence, findings, limitations, and future directions.</p><div class="hero-actions"><a class="button button-primary" href="assets/documents/CSE_AI_Insight_Generator_PP1_3.pptx">Open PP1 deck <span>↗</span></a><a class="button button-quiet" href="assets/documents/Progress_Presentation_2_Blue_Modern_Stock_Market.pptx">Open PP2 deck <span>↗</span></a></div><div class="pending-slot"><span>FINAL PRESENTATION</span><strong>Deck will be added before the final viva</strong></div></div>
+        <div class="slide-stack reveal"><div class="slide-back"></div><div class="slide-mid"></div><div class="slide-front"><span class="slide-label">PP1 / 2026</span><strong>AI-Powered<br />Stock Market<br />Insight Generator</strong><small>for the Colombo Stock Exchange</small><div class="slide-footer">R26-IT-076 · SLIIT</div></div></div>
+      </section>
+
+      <section class="section team" id="team">
+        <div class="section-heading reveal"><p class="eyebrow">06 / About us</p><h2>The research team</h2><p>Four individual components, one integrated academic project.</p></div>
+        <div class="team-grid"><article class="person reveal"><span class="person-initials">FC</span><h3>Fernando K C S</h3><p>IT21471162</p><span>Financial document understanding</span></article><article class="person reveal"><span class="person-initials">SA</span><h3>S A H Samarathunga</h3><p>IT21296482</p><span>Market modelling and XAI</span></article><article class="person reveal"><span class="person-initials">HK</span><h3>Harithra K</h3><p>IT22065308</p><span>News and sentiment analysis</span></article><article class="person reveal"><span class="person-initials">RW</span><h3>T G R N S Wijesooriya</h3><p>IT22547088</p><span>External-market risk analysis</span></article></div>
+        <div class="supervisors"><span>Supervision</span><strong>Dr. Kapila Dissanayaka</strong><strong>Dr. Mahima Weerasinghe</strong><small>Department of Information Technology · SLIIT</small></div>
+      </section>
+
+<section class="section contact" id="contact"><div class="contact-card reveal"><div><p class="eyebrow">07 / Contact us</p><h2>Questions about the research archive?</h2><p>For academic enquiries about R26-IT-076, contact the research team through the details below.</p></div><div class="contact-details"><a href="mailto:it21471162@sliit.lk">it21471162@sliit.lk <span>↗</span></a><a href="mailto:it21296482@sliit.lk">it21296482@sliit.lk <span>↗</span></a><a href="mailto:it22065308@sliit.lk">it22065308@sliit.lk <span>↗</span></a><a href="mailto:it22547088@sliit.lk">it22547088@sliit.lk <span>↗</span></a><a href="mailto:kapila.d@sliit.lk">Supervisor contact <span>↗</span></a><span class="contact-note">Please include your name, student ID, and enquiry.</span></div></div></section>
+    </main>
+    <footer class="site-footer"><div><strong>R26-IT-076</strong><span>AI-Powered Stock Market Insight Generator for the CSE</span></div><span>Academic information website · 2026</span></footer>
+  </body>
+</html>

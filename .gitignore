@@ -11,3 +11,6 @@ __pycache__/
 tmp/
 Research-harithra/
 assets.zip
+.venv/
+output/*
+!output/academic-website-R26_IT_076/

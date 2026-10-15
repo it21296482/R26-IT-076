@@ -2,6 +2,22 @@
 
 This repository contains the MERN application and reproducible research packages for the integrated project.
 
+## Academic website
+
+Published archive: [R26-IT-076 Research Website](https://r26-it-076-research.netlify.app/).
+Source: `output/academic-website-R26_IT_076/`.
+
+This separate HTML/CSS website documents all four contributions, including
+Component 2's prompt-comparison evidence. It is not the working stock-analysis
+application and needs no database, backend, API keys, or build step.
+
+```bash
+python3 -m http.server 4173 --bind 127.0.0.1 --directory output/academic-website-R26_IT_076
+```
+
+Open `http://127.0.0.1:4173`. Netlify uses a manual directory upload;
+pushing to GitHub does not automatically redeploy this site.
+
 ## Included
 
 - `client/`: React + Vite frontend
@@ -65,6 +81,41 @@ No third market artifact is claimed because a third locked forecast was not foun
 
 ## Local run
 
+### First-time setup
+
+Use Node.js 22.12 or newer and Python 3.11 or newer, subject to the pinned
+Python packages' platform support. A reachable MongoDB database is required.
+The frontend alone cannot authenticate users or run analyses.
+
+From the repository root:
+
+```bash
+npm ci
+npm --prefix server ci
+npm --prefix client ci
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r research/component1/requirements.txt
+python -m pip install -r component_2/requirements.txt
+python -m pip install -r research/component4/requirements.txt
+cp server/.env.example server/.env
+cp client/.env.example client/.env
+```
+
+On Windows, create the environment with `py -m venv .venv`, activate with
+`.venv\Scripts\Activate.ps1`, and use `Copy-Item` instead of `cp`.
+
+Edit the copied environment files before starting. Supply your MongoDB URI,
+a strong random JWT secret, and your own admin seed password. Set `PYTHON_BIN`
+to the absolute path of the virtual environment's Python executable. The admin
+seed account is initialized during backend startup; example values are not
+working credentials.
+
+Use consistent hostnames: set `CLIENT_URL=http://127.0.0.1:5173` in
+`server/.env` and `VITE_API_URL=http://127.0.0.1:5001/api` in `client/.env`.
+For Atlas, configure the database user and permitted client IP address. The
+database password is separate from the Atlas website login password.
+
 ### Backend
 
 ```bash
@@ -110,6 +161,46 @@ cd client && npm run lint && npm run build
 
 The executed validation notebook is `research/component1/notebooks/component1_forecast_validation.ipynb`. Its documented result is that the locked May 2026 upward forecasts did not validate against the following three months, and a no-change baseline performed better for both available stocks.
 
+## Component 1 model upgrade
+
+The updated research implementation uses log-return learning, validation-selected
+baseline blending, horizon-specific forecast selection, and past-only adaptive
+anomaly cutoffs. Original deviation/volume formulas and locked forecasts remain
+preserved. See `research/component1/MODEL_UPGRADE_REPORT.md` and the comparison
+evidence in `research/component1/artifacts/upgrade_v2/`.
+
+```bash
+python -m pytest research/component1/tests -q
+python research/component1/evaluate_model_upgrade.py --epochs 18
+```
+
+The evaluation command can take several minutes. Retrospective improvements
+are not independent prospective validation, and no price outcome is guaranteed.
+
+## Troubleshooting
+
+- Connection refused on port 5001: check the backend terminal and database
+  connection; the frontend does not start the API automatically.
+- `querySrv ENOTFOUND`: check the MongoDB hostname and DNS. Replace the sample
+  URI instead of leaving `your_cluster.mongodb.net` in the configuration.
+- A 401 from `/api/auth/me` before login can be expected. Repeated 401s after
+  login require checking consistent hostnames, cookies, and environment values,
+  then signing in again.
+- Python import errors: check that `PYTHON_BIN` uses the environment where the
+  requirements were installed.
+- Evidence warnings indicate missing or unverified inputs, not successful
+  predictions. Do not substitute invented data.
+
+## Security and limitations
+
+Never commit `.env`, uploaded reports, private exports, or credentials. Rotate
+credentials previously disclosed in chat or Git history. Admin security depends
+on server-side authentication and role checks, not on hiding the sign-in URL.
+Configure HTTPS and deployment security separately before exposing the MERN
+application. The Netlify site hosts only the academic archive.
+
+This project provides research evidence and explanations, not financial advice.
+
 ## Languages
 
 Choose **English**, **සිංහල**, or **தமிழ்** in the header. The choice is retained
@@ -145,6 +236,6 @@ node --test test/translationService.test.js
 
 ## Hidden admin entry
 
-The public UI does not expose admin access. The current secret admin route is:
+The public UI does not link to admin access. The admin sign-in route is:
 
 `/observatory/secure-entry`
