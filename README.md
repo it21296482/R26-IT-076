@@ -2,6 +2,85 @@
 
 This repository contains the MERN application and reproducible research packages for the integrated project.
 
+## Project overview
+
+The system helps non-expert investors understand a selected Colombo Stock
+Exchange company by bringing together its price behaviour, financial reports,
+news, and wider-market risks. It presents one plain-language stock outlook,
+including strengths, concerns, possible price paths, and uncertainty. It does
+not give buying or selling instructions.
+
+### Component 1: Market behaviour and anomaly detection
+
+Studies historical stock prices and trading volume to learn the stock's usual
+behaviour. It produces fresh forecast paths for approximately 4 trading days,
+1 month, 3 months, and 6 months, with uncertainty ranges. It compares the actual
+price with the expected price, calculates the deviation and a volume-adjusted
+anomaly score, and checks whether the movement crosses a calibrated threshold.
+Factor explanations help show what influenced the score.
+
+**Contribution:** explains whether a price movement is unusual and shows possible
+future paths without treating them as guaranteed targets.
+
+Implementation and research: `research/component1/`.
+
+### Component 2: Financial report understanding
+
+Checks the company and reporting period of the uploaded quarterly or annual
+report, extracts financial and operational information, and turns it into
+understandable strengths and concerns. Findings retain page references and
+source evidence. The research compares ten prompt strategies to identify a
+suitable approach for explaining reports to beginner investors; benchmark
+limitations remain documented rather than hidden.
+
+**Contribution:** helps users understand company performance without having to
+read and interpret the entire financial report themselves.
+
+Implementation and research: `component_2/`.
+
+### Component 3: Financial news and sentiment
+
+Collects relevant company, local-market, and global financial news. It removes
+duplicate articles, identifies important events, and assesses whether the news
+expresses positive, negative, or neutral sentiment. Dated news evidence adds
+context to the selected stock's recent movement; it does not prove that a
+headline caused that movement.
+
+**Contribution:** shows what is being reported about the company and market,
+helping users understand the events and sentiment around a price change.
+
+Research source and integration notes: `research/component3/`.
+
+### Component 4: Explainable external-market risk
+
+Combines stock behaviour with gold, crude oil, and VIX indicators to classify
+current financial-market risk as LOW, MEDIUM, or HIGH. A Random Forest model
+produces the classification, and SHAP identifies the factors that increased
+or reduced it. Wider-context evidence also includes ASPI comparisons and
+USD/LKR relationships where data is available. These are associations, not
+proof of causation or predictions of investment returns.
+
+**Contribution:** explains the stock's current risk reading and how broader
+financial conditions relate to it, rather than showing an unexplained label.
+
+Implementation and research: `research/component4/`.
+
+### How the four components work together
+
+The user signs in, selects a supported stock, uploads its latest financial
+report, and clicks Analyze. The backend refreshes available market prices and
+coordinates the four evidence workflows. The integration layer combines their
+findings into one same-page explanation: what the company is doing well, where
+risks exist, whether price behaviour is unusual, and what evidence could change
+the outlook. Missing or unverified evidence is labelled rather than guessed.
+
+Component 1 explains price behaviour; Component 2 explains company performance;
+Component 3 explains news and sentiment; Component 4 explains external-market
+risk. Their combined result supports understanding, while the investment
+decision remains with the user. See
+`research/INTEGRATED_SYSTEM_DEMONSTRATION.md` for backend demonstration details
+and each contribution's evaluation limits.
+
 ## Academic website
 
 Published archive: [R26-IT-076 Research Website](https://r26-it-076-research.netlify.app/).
