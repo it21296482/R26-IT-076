@@ -22,6 +22,8 @@ const DISPLAY_KEYS = new Set([
   "risk_evidence", "plain_conclusion", "label", "narrative", "explanation",
   "plain_explanation", "meaning", "businessChannel", "ifFactorRises",
   "ifFactorFalls", "contributionEstimate", "interpretation", "message",
+  "plain_assessment", "limitations", "top_drivers", "risk_level", "scope",
+  "sentiment", "status", "direction", "unit",
 ]);
 
 const runTranslation = async (texts, language) => {
@@ -72,6 +74,8 @@ const translateAnalysis = async (analysis, language, { translateBatch = runTrans
   collect(outputs.riskImpact);
   collect(outputs.market?.anomaly);
   collect(outputs.market?.horizons);
+  collect(outputs.market?.estimate_quality);
+  collect(outputs.market?.limitations);
   for (const context of [outputs.newsSentiment, outputs.marketRiskContext, outputs.externalContext]) {
     collect(context?.externalFactors?.factors);
     for (const article of (context?.articles || []).slice(0, 6)) {

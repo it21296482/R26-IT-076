@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
 import { useLanguage } from "../context/languageStore";
 import api from "../lib/api";
@@ -70,15 +70,18 @@ function ForecastPath({ market }) {
   );
 }
 
-function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = false }) {
+function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
   const { t, language, locale } = useLanguage();
   const location = useLocation();
+  const { analysisId: routeAnalysisId = "" } = useParams();
+  const analysisId = providedAnalysisId || routeAnalysisId;
   const [previewRequest] = useState(
-    providedAnalysisId ? { analysisId: providedAnalysisId } : (location.state || readStoredPreview())
+    analysisId ? { analysisId } : (location.state || readStoredPreview())
   );
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [activeOutput, setActiveOutput] = useState("");
   const formatMoney = (value) => t(moneyText(value));
   const formatPercent = (value) => t(percentText(value));
   const formatDate = (value) => value && Number.isFinite(new Date(value).getTime())
@@ -121,7 +124,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
   const news = newsContext?.articles?.slice(0, 6) || [];
   const factors = marketRiskContext?.externalFactors?.factors || [];
   const deviationHistory = market?.deviation_history;
-  const ContentWrapper = embedded ? "div" : "main";
+  const printReport = () => window.print();
 
   if (!previewRequest?.analysisId && !loading) {
     return (
@@ -139,9 +142,13 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
   }
 
   return (
-    <div className={embedded ? "scroll-mt-28" : "page-with-sticky-header min-h-screen pb-16"} id={embedded ? "stock-insight-result" : undefined}>
-      {!embedded && <SiteHeader compact />}
-      <ContentWrapper className={embedded ? "space-y-8" : "shell space-y-8"}>
+    <div className="page-with-sticky-header min-h-screen pb-16">
+      <div className="print-brand" aria-hidden="true">
+        <img alt="" src="/assets/cse-logo-source.png" />
+        <div><strong>COLOMBO STOCK EXCHANGE</strong><span>AI-Powered Stock Market Insight Generator · R26-IT-076</span></div>
+      </div>
+      <SiteHeader compact />
+      <main className={`shell space-y-8 output-filter-${activeOutput || "all"}`}>
         {loading && <section className="surface-panel text-center text-slate-600">{t("Loading your stock picture...")}</section>}
         {error && <section className="rounded-[26px] border border-rose-200 bg-rose-50 p-6 text-rose-700">{t(error)}</section>}
 
@@ -163,8 +170,13 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
                     <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-6xl">{analysis.companyName}</h1>
                     <p className="mt-3 text-lg text-slate-300">{analysis.stockSymbol} · {t("Information checked")} {formatDate(analysis.createdAt)}</p>
                   </div>
-                  <div className={`w-fit rounded-full border px-4 py-2 text-sm font-semibold ${analysis.status === "completed" ? "border-emerald-300/25 bg-emerald-300/10 text-emerald-100" : "border-amber-300/25 bg-amber-300/10 text-amber-100"}`}>
-                    {analysis.status === "completed" ? t("Complete") : t("Ready with limitations")}
+                  <div className="no-print flex flex-wrap items-center gap-3 lg:flex-nowrap">
+                    <Link className="secondary-cta !border-white/20 !bg-white/10 !text-white hover:!bg-white/20" to="/dashboard">
+                      {t("New analysis")}
+                    </Link>
+                    <div className={`w-fit whitespace-nowrap rounded-full border px-4 py-2 text-sm font-semibold ${analysis.status === "completed" ? "border-emerald-300/25 bg-emerald-300/10 text-emerald-100" : "border-amber-300/25 bg-amber-300/10 text-amber-100"}`}>
+                      {analysis.status === "completed" ? t("Complete") : t("Ready with limitations")}
+                    </div>
                   </div>
                 </div>
 
@@ -173,7 +185,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
                   <h2 className="mt-4 max-w-4xl text-3xl font-semibold leading-tight text-white">
                     {unified?.headline || t("Your combined stock explanation is being prepared.")}
                   </h2>
-                  <p className="mt-5 max-w-4xl text-base leading-8 text-slate-300">
+                  <p className="mx-auto mt-5 max-w-4xl text-center text-base leading-8 text-slate-300">
                     {unified?.plain_language_overview || t("The historical price, uploaded report, and current market context are being brought together.")}
                   </p>
                   {priceScenarios && (
@@ -224,8 +236,32 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
               </div>
             </section>
 
+            <section className="output-toggle-panel no-print" aria-label={t("Choose an output")}>
+              <p className="eyebrow !text-slate-500">{t("Explore the analysis")}</p>
+              <div className="mt-4 grid gap-3 md:grid-cols-5">
+                {[
+                  ["market", "01", "Price behaviour"],
+                  ["report", "02", "Company report"],
+                  ["news", "03", "News & sentiment"],
+                  ["risk", "04", "External-market risk"],
+                  ["overall", "05", "Overall insight"],
+                ].map(([key, number, label]) => (
+                  <button
+                    aria-pressed={activeOutput === key}
+                    className={`output-toggle ${activeOutput === key ? "output-toggle-active" : ""}`}
+                    key={key}
+                    onClick={() => setActiveOutput((current) => (current === key ? "" : key))}
+                    type="button"
+                  >
+                    <span>{number}</span>
+                    <strong>{t(label)}</strong>
+                  </button>
+                ))}
+              </div>
+            </section>
+
             {decisionBalance && (
-              <section className="grid gap-6 lg:grid-cols-2 fade-rise-delay-1">
+              <section className="grid gap-6 lg:grid-cols-2 fade-rise-delay-1" id="section-overall-balance">
                 <div className="rounded-[26px] border border-sky-200 bg-sky-50 p-5 lg:col-span-2">
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">{t("Overall evidence balance")}</p>
                   <p className="mt-2 text-2xl font-semibold text-slate-950">{decisionBalance.label}</p>
@@ -254,7 +290,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
               </section>
             )}
 
-            <section className="surface-panel fade-rise-delay-1" id="component-market">
+            <section className="surface-panel fade-rise-delay-1 report-section" id="section-market">
               <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
                 <div>
                   <p className="eyebrow !text-slate-500">{t("Potential price paths")}</p>
@@ -296,7 +332,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
             </section>
 
             <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-              <article className="surface-panel" id="component-market-check">
+              <article className="surface-panel report-section" id="section-market-check">
                 <p className="eyebrow !text-slate-500">{t("Unusual movement check")}</p>
                 <h2 className="mt-3 text-3xl font-semibold text-slate-950">{market?.anomaly?.detected ? t("An unusual deviation was detected") : t("No unusual deviation at the latest check")}</h2>
                 {market?.anomaly ? (
@@ -340,7 +376,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
                 ) : <p className="mt-5 text-slate-600">{t("This check was unavailable.")}</p>}
               </article>
 
-              <article className="surface-panel" id="component-report">
+              <article className="surface-panel report-section" id="section-report">
                 <p className="eyebrow !text-slate-500">{t("What the company report says")}</p>
                 <h2 className="mt-3 text-3xl font-semibold text-slate-950">{reportSummary ? t("Verified report takeaways") : t("Report evidence needs review")}</h2>
                 {reportSummary ? (
@@ -358,13 +394,13 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
               </article>
             </section>
 
-            <section className="surface-panel" id="component-news">
+            <section className="surface-panel report-section" id="section-news">
               <p className="eyebrow !text-slate-500">{t("News sentiment and external-market risk")}</p>
               <h2 className="mt-3 text-3xl font-semibold text-slate-950">{t("Relevant events and wider risk conditions")}</h2>
               <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">{t("News sentiment identifies relevant events. External-market indicators provide separate risk context. Neither proves that an event or indicator caused the stock price to move.")}</p>
 
               <div className="mt-7 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-                <div className="grid gap-3">
+                <div className="grid gap-3" id="section-news-articles">
                   {news.length ? news.map((article) => (
                     <a className="interactive-card rounded-[22px] border border-slate-200 bg-slate-50 p-5" href={article.url} key={`${article.title}-${article.publishedAt}`} rel="noreferrer" target="_blank">
                       <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500"><span>{article.source}</span><span>{formatDate(article.publishedAt)}</span></div>
@@ -374,7 +410,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
                   )) : <p className="rounded-[22px] bg-slate-50 p-5 text-slate-600">{t("No dated relevant articles were collected during this run.")}</p>}
                 </div>
 
-                <div className="grid content-start gap-3" id="component-risk">
+                <div className="grid content-start gap-3" id="section-risk">
                   {factors.map((factor) => (
                     <article className="rounded-[22px] bg-slate-950 p-5 text-white" key={factor.key}>
                       <div className="flex items-start justify-between gap-4">
@@ -397,7 +433,16 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
             </section>
 
             {unified && (
-              <section className="market-hero p-6 md:p-9">
+              <section className="market-hero p-6 md:p-9" id="section-overall">
+                <div className="mb-7 flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <p className="eyebrow !text-blue-100">{t("Overall insight")}</p>
+                    <h2 className="mt-3 text-3xl font-semibold text-white">{t("Complete stock insight")}</h2>
+                  </div>
+                  <button className="no-print secondary-cta !border-white/20 !bg-white/10 !text-white hover:!bg-white/20" onClick={printReport} type="button">
+                    {t("Download complete PDF")}
+                  </button>
+                </div>
                 <div className="grid gap-6 lg:grid-cols-3">
                   <div><p className="eyebrow !text-blue-100">{t("Potential")}</p>{unified.potential?.map((item) => <p className="mt-4 text-sm leading-7 text-slate-200" key={item}>{item}</p>)}</div>
                   <div><p className="eyebrow !text-blue-100">{t("Key risks")}</p>{unified.key_risks?.map((item) => <p className="mt-4 text-sm leading-7 text-slate-200" key={item}>{item}</p>)}</div>
@@ -407,14 +452,12 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "", embedded = fa
               </section>
             )}
 
-            <div className="flex justify-center">
-              {embedded
-                ? <a className="secondary-cta" href="#analysis-workspace">{t("Analyze another stock")}</a>
-                : <Link className="secondary-cta" to="/dashboard">{t("Analyze another stock")}</Link>}
+            <div className="no-print flex justify-center">
+              <Link className="secondary-cta" to="/dashboard">{t("Analyze another stock")}</Link>
             </div>
           </>
         )}
-      </ContentWrapper>
+      </main>
     </div>
   );
 }
