@@ -60,14 +60,36 @@ importance, and limitations are stored in
 
 ## Honest scope
 
-- The evaluated runtime scope is BIL and JKH only. An unseen stock is rejected;
-  no proxy classification is invented.
+- The preserved artifact's evaluated scope is BIL and JKH only. It still rejects
+  unseen stocks; no proxy classification is invented. Additional securities use
+  the separate fresh-fitting workflow below, not these stored accuracy figures.
 - Metrics measure fidelity to the documented current-risk labels. They are not
   evidence of future-return or loss prediction.
 - SHAP explains how the classifier used its inputs; it does not prove that a
   global factor caused the stock's real-world risk or price movement.
 - Independent validation of the risk definition, rolling regime tests, and
   broader CSE stock coverage remain future research.
+
+## Additional Securities: On-Demand Fitting
+
+`train_stock_on_demand.py` trains a separate 180-tree Random Forest from the exact
+selected security's own observations. Full symbols are retained, including share
+class. Dated Gold, Oil and VIX histories are cached privately and refreshed when
+stale; a preceding calendar day's global close is used for a historical CSE
+session to avoid same-day US-close leakage.
+
+The existing transparent current-risk index is unchanged. Its training-period
+tertiles define the labels; later rows remain a chronological holdout. Each fit
+records separate accuracy, macro-F1, majority baseline and stock-only ablation.
+Only after evaluation is the model refitted on all completed observations, with
+the original training cutoffs retained. Prediction then uses SHAP for that fitted
+security, never a surrogate company.
+
+The Express adapter saves private run evidence in `server/uploads/risk-runs/`.
+Neither the original pickle files nor their published evaluation are overwritten.
+Insufficient history, missing global factors or inadequate category variation
+produce an explicit unavailable result. New fits are exploratory stock-specific
+research estimates, not proof of universally validated financial risk prediction.
 
 ## Reproduce
 

@@ -1,0 +1,61 @@
+{
+  "scope": "Preserved May-2026 research outputs; not current runtime model accuracy",
+  "stocks": {
+    "JKH": {
+      "raw_observations": 3308,
+      "first_date": "2012-02-22",
+      "last_date": "2026-05-07",
+      "test_observations": 647,
+      "proxy_positives": 9,
+      "counts": {
+        "tn": 608,
+        "fp": 30,
+        "fn": 1,
+        "tp": 8
+      },
+      "liquidity_flags": 4,
+      "band_flags": 34,
+      "overlap": 0,
+      "retrospective_label_match": true,
+      "mean_esi": 0.896552,
+      "windows": 30
+    },
+    "BIL": {
+      "raw_observations": 3238,
+      "first_date": "2012-02-23",
+      "last_date": "2026-05-07",
+      "test_observations": 629,
+      "proxy_positives": 2,
+      "counts": {
+        "tn": 624,
+        "fp": 3,
+        "fn": 1,
+        "tp": 1
+      },
+      "liquidity_flags": 1,
+      "band_flags": 3,
+      "overlap": 0,
+      "retrospective_label_match": true,
+      "mean_esi": 1.0,
+      "windows": 29
+    }
+  },
+  "source_sha256": {
+    "research/component1/artifacts/validation/forecast_validation_metrics.csv": "f063d423b06a46549ccf88d3b47624ba433c5e7c0f46d9812391c936a186e85f",
+    "research/component1/artifacts/validation/forecast_interval_validation.csv": "097550ca9fd9f45af7f7ca5a368873fdfbc3b4293feefabbf6d4cce4d1471f9d",
+    "research/component1/artifacts/validation/forecast_endpoint_validation.csv": "2722426f971afa58f3316027d0e929a9d286f95f0504556556009eb8b8610afd",
+    "research/component1/artifacts/validation/JKH_forecast_vs_actual.csv": "b72869b5a1a7b7cb6f775b72ce949d5a6275adc4ad589807ac90c77182ba479a",
+    "research/component1/data/training/JKH_history_through_2026-05-07.csv": "87a93ed201f96a1d3d93688f26b460f29f4193b6788f86fb77e0fe9405859502",
+    "research/component1/artifacts/component1/jkh_test_results.csv": "9e625201892a5fe7c280be21a707fe639f13fd2f8a16ef4257f15b33283fa6af",
+    "research/component1/artifacts/component1/jkh_anomaly_method_split_metrics.csv": "7dc087c52fb07e9422dc52e514ef320360aed421ea7b045037fab1fd26e35a42",
+    "research/component1/artifacts/component1/jkh_dashboard_output.json": "c178e4ec2179cae7aa372673f3649c778d2777617aed015643dd57bf3cd06d46",
+    "research/component1/artifacts/validation/BIL_forecast_vs_actual.csv": "2121d6c7d08ec35cde93c08b5325e4840f22bc00001d19a9e6ae4037f3fa02cd",
+    "research/component1/data/training/BIL_history_through_2026-05-07.csv": "7991127b6bb6755033223d5a80abb34caf4dc61dd511220117a50a123d82ed27",
+    "research/component1/artifacts/component1/bil_test_results.csv": "cfb327ad8fc202adc1e9fc421ebe7a7cb166d3753f305d3128c28aefdfc5d977",
+    "research/component1/artifacts/component1/bil_anomaly_method_split_metrics.csv": "ada59fbc239a83f6c78f1f754ab693df7a25c219cc0e697ae3f2351cb993e8b1",
+    "research/component1/artifacts/component1/bil_dashboard_output.json": "133c9988287e3fa5a42b839a60e7003089b36f8b18cacde12a19b883bca7b89e",
+    "research/component1/artifacts/component1/jkh_top_factors.csv": "9d8fcd214c5d8f7177716d1f42352e6c985bae391bb84a6cd342afb8f23b389d",
+    "research/component1/artifacts/component1/bil_top_factors.csv": "0c69469c9e53d62c038a0ebe1b3f6e183e4a62f9a228e53512dd95b71f02daf1"
+  },
+  "verification": "Recomputed forecast errors, interval coverage/width, confusion counts, score formula and full-series proxy labels."
+}

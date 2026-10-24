@@ -1,6 +1,5 @@
 const AnalysisRun = require("../models/AnalysisRun");
 const FinancialReport = require("../models/FinancialReport");
-const Stock = require("../models/Stock");
 const { refreshAvailableStockQuotes } = require("../services/cseQuoteService");
 const { collectMarketRiskContext, collectNewsSentiment } = require("../services/externalContextService");
 const { loadMarketInsight } = require("../services/marketInsightService");
@@ -9,6 +8,9 @@ const { inspectFinancialReport } = require("../services/reportValidationService"
 const { assessRiskImpact } = require("../services/riskImpactService");
 const { generateUnifiedInsight } = require("../services/unifiedInsightService");
 const { translateAnalysis } = require("../services/translationService");
+const { updateProgress, subscribeProgress } = require("../services/analysisProgressService");
+const { ensureStockPrepared, requireListedCompany } = require("../services/stockPreparationService");
+const { runQueuedAnalysis } = require("../services/analysisQueueService");
 
 const temporaryExpiry = () => new Date(Date.now() + 24 * 60 * 60 * 1000);
 
@@ -54,9 +56,10 @@ const publicMarketOutput = (market) => {
           test_error_lkr: quality.test_mae_lkr,
           unchanged_price_error_lkr: quality.naive_test_mae_lkr,
           estimate_beats_unchanged_price: quality.advanced_model_beats_naive_mae,
+          assessment_scope: "one_step_expected_price_only",
           plain_assessment: quality.advanced_model_beats_naive_mae === false
-            ? "Use these price ranges with extra caution because an unchanged-price comparison performed better in testing."
-            : "The price ranges passed the available comparison check.",
+            ? "The daily expected-price check did not improve on an unchanged-price comparison. Each longer forecast has a separate accuracy check and remains uncertain."
+            : "The daily expected-price check improved on the available comparison. This does not validate every forecast horizon; check each range's own caution note.",
         }
       : null,
     limitations: [
@@ -101,6 +104,7 @@ const publicRiskOutput = (riskImpact) => {
   delete output.explanation_method;
   delete output.model_scope;
   delete output.model_validation;
+  delete output.training;
   output.top_drivers = (output.top_drivers || []).map(({ impact, factor, ...driver }) => driver);
   output.global_drivers = (output.global_drivers || []).map(({ impact, factor, ...driver }) => driver);
   return output;
@@ -171,8 +175,10 @@ const compactFusionEvidence = ({ stockSymbol, companyName, market, report, newsS
   risk_evidence: compactRiskEvidence(riskImpact),
 });
 
-const createAnalysis = async (req, res) => {
+const performAnalysis = async (req, res) => {
+  const progress = (update) => updateProgress(req.user._id, req.body.clientRequestId, update);
   const stockSymbol = String(req.body.stockSymbol || "").toUpperCase();
+  const company = await requireListedCompany(stockSymbol);
   let priceRefresh = null;
   let priceRefreshWarning = "";
   console.info(`[analysis:${stockSymbol}] priceRefresh: started`);
@@ -183,18 +189,12 @@ const createAnalysis = async (req, res) => {
     priceRefreshWarning = `Latest CSE prices: ${safeWarning(error.message)}`;
     console.info(`[analysis:${stockSymbol}] priceRefresh: unavailable`);
   }
-  const [latestStock, report] = await Promise.all([
-    Stock.findOne({ symbol: stockSymbol }).sort({ tradeDate: -1 }).lean(),
-    FinancialReport.findOne({
+  progress({ percent: 5, stage: "validating_report", status: "processing" });
+  const report = await FinancialReport.findOne({
       _id: req.body.reportId,
       uploadedBy: req.user._id,
       stockSymbol,
-    }),
-  ]);
-
-  if (!latestStock) {
-    return res.status(404).json({ message: "The selected stock is not available." });
-  }
+    });
   if (!report) {
     return res.status(400).json({
       message: "A financial report uploaded for the selected company is required.",
@@ -203,7 +203,7 @@ const createAnalysis = async (req, res) => {
 
   const reportValidation = await inspectFinancialReport({
     pdfPath: report.storagePath,
-    companyName: latestStock.companyName,
+    companyName: company.companyName,
     symbol: stockSymbol,
   });
   if (!reportValidation.accepted) {
@@ -217,7 +217,7 @@ const createAnalysis = async (req, res) => {
     user: req.user._id,
     report: report._id,
     stockSymbol,
-    companyName: latestStock.companyName,
+    companyName: company.companyName,
     status: "processing",
     expiresAt: temporaryExpiry(),
   });
@@ -226,6 +226,15 @@ const createAnalysis = async (req, res) => {
   await report.save();
 
   try {
+    progress({ percent: 8, stage: "preparing_stock", status: "processing" });
+    let preparation = null, preparationError = null;
+    try {
+      preparation = await ensureStockPrepared({ symbol: stockSymbol, company, createdBy: req.user._id });
+      console.info(`[analysis:${analysis._id}] history prepared: ${preparation.mode}`);
+    } catch (error) {
+      preparationError = error;
+      console.warn(`[analysis:${analysis._id}] history preparation: ${safeWarning(error.message)}`);
+    }
     const workflow = {};
     const runStage = async (key, label, task) => {
       const started = Date.now();
@@ -242,24 +251,32 @@ const createAnalysis = async (req, res) => {
       }
     };
     const [marketResult, reportResult, newsResult, riskResult] = await Promise.allSettled([
-      runStage("market", "Market behaviour and unusual movement", () => loadMarketInsight(stockSymbol)),
+      runStage("market", "Market behaviour and unusual movement", () => {
+        if (preparationError) throw preparationError;
+        if (!preparation.forecastReady) throw new Error(`Only ${preparation.validRows} genuine sessions and ${preparation.recentActiveSessions} recent active sessions were available. The four-horizon forecast requires 1000 observations and 80 recent active sessions; no missing prices were invented.`);
+        return loadMarketInsight(stockSymbol, {
+        refreshHistory: async () => preparation.refresh || { applied: true, source: preparation.sourceNote },
+        onProgress: ({ percent, ...detail }) => progress({ ...detail, percent: 10 + percent * .75, status: "processing" }),
+      }); }),
       runStage("report", "Verified company report", () => analyzeFinancialReport({
         pdfPath: report.storagePath,
-        companyName: latestStock.companyName,
+        companyName: company.companyName,
         symbol: stockSymbol,
       })),
       runStage("newsSentiment", "News, events, and sentiment", () => collectNewsSentiment({
         symbol: stockSymbol,
-        companyName: latestStock.companyName,
+        companyName: company.companyName,
       })),
       runStage("riskImpact", "External-market risk and explanation", async () => {
+        if (preparationError) throw preparationError;
         const marketRiskContext = await collectMarketRiskContext({ symbol: stockSymbol });
         const riskImpact = await assessRiskImpact({ symbol: stockSymbol, marketRiskContext });
-        return { marketRiskContext, riskImpact, warnings: marketRiskContext.warnings };
+        return { marketRiskContext, riskImpact, warnings: [...(marketRiskContext.warnings || []), ...(riskImpact.warnings || [])] };
       }),
     ]);
 
     const market = resultOrNull(marketResult);
+    progress({ percent: 88, stage: "combining_evidence", status: "processing" });
     const reportOutput = resultOrNull(reportResult);
     const newsSentiment = resultOrNull(newsResult);
     const riskBundle = resultOrNull(riskResult);
@@ -295,7 +312,7 @@ const createAnalysis = async (req, res) => {
       try {
         unifiedInsight = await runStage("integration", "Plain-language integrated stock picture", () => generateUnifiedInsight(compactFusionEvidence({
           stockSymbol,
-          companyName: latestStock.companyName,
+          companyName: company.companyName,
           market,
           report: reportOutput,
           newsSentiment,
@@ -324,9 +341,11 @@ const createAnalysis = async (req, res) => {
       unifiedInsight,
       workflow,
       priceRefresh,
+      historyPreparation: preparation && { ...preparation, auditId: undefined },
     };
     analysis.warnings = [...new Set(warnings)];
     await analysis.save();
+    progress({ percent: 100, stage: requiredInputsComplete ? "completed" : "partial", status: requiredInputsComplete ? "completed" : "partial" });
 
     return res.status(201).json({
       message: requiredInputsComplete
@@ -344,6 +363,35 @@ const createAnalysis = async (req, res) => {
   }
 };
 
+const createAnalysis = async (req, res) => {
+  updateProgress(req.user._id, req.body.clientRequestId, { percent: 1, stage: "refreshing_prices", status: "processing" });
+  try {
+    await runQueuedAnalysis(req.user._id, () => performAnalysis(req, res), () =>
+      updateProgress(req.user._id, req.body.clientRequestId, { percent: 1, stage: "queued", status: "processing" }));
+    if (res.statusCode >= 400) updateProgress(req.user._id, req.body.clientRequestId, { stage: "failed", status: "failed" });
+  } catch (error) {
+    updateProgress(req.user._id, req.body.clientRequestId, { stage: "failed", status: "failed" });
+    throw error;
+  }
+};
+
+const getAnalysisProgress = (req, res) => {
+  res.set({ "Content-Type": "text/event-stream", "Cache-Control": "no-cache, no-transform", Connection: "keep-alive", "X-Accel-Buffering": "no" });
+  res.flushHeaders();
+  let unsubscribe;
+  const heartbeat = setInterval(() => res.write(": heartbeat\n\n"), 20000);
+  try {
+    unsubscribe = subscribeProgress(req.user._id, req.params.requestId, (state) => {
+      res.write(`data: ${JSON.stringify(state)}\n\n`);
+    });
+  } catch (error) {
+    clearInterval(heartbeat);
+    res.end();
+    return;
+  }
+  req.on("close", () => { clearInterval(heartbeat); unsubscribe(); });
+};
+
 const getAnalysis = async (req, res) => {
   const analysis = await AnalysisRun.findOne({ _id: req.params.analysisId, user: req.user._id }).lean();
   if (!analysis) {
@@ -353,4 +401,4 @@ const getAnalysis = async (req, res) => {
   return res.status(200).json({ analysis: translatedAnalysis, language: translatedAnalysis.localization?.requestedLanguage || "en" });
 };
 
-module.exports = { createAnalysis, getAnalysis };
+module.exports = { createAnalysis, getAnalysis, getAnalysisProgress };

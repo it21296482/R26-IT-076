@@ -1,0 +1,30 @@
+{
+  "_id": "tabs-fixture",
+  "companyName": "UI test fixture - not real market data",
+  "stockSymbol": "TEST.N0000",
+  "status": "completed",
+  "createdAt": "2026-10-19T08:00:00Z",
+  "warnings": [],
+  "outputs": {
+    "market": {
+      "status": "completed", "current_price_lkr": 20,
+      "horizons": [
+        {"key":"4d","label":"4 trading days","estimated_close_lkr":21,"upper_80_lkr":22,"lower_80_lkr":19,"change_from_latest_pct":5,"target_date":"2026-10-23","direction":"rising","status":"available"},
+        {"key":"1m","label":"1 month","estimated_close_lkr":22,"upper_80_lkr":24,"lower_80_lkr":18,"change_from_latest_pct":10,"target_date":"2026-11-19","direction":"rising","status":"available"},
+        {"key":"3m","label":"3 months","estimated_close_lkr":23,"upper_80_lkr":26,"lower_80_lkr":17,"change_from_latest_pct":15,"target_date":"2027-01-19","direction":"rising","status":"available"},
+        {"key":"6m","label":"6 months","estimated_close_lkr":24,"upper_80_lkr":28,"lower_80_lkr":16,"change_from_latest_pct":20,"target_date":"2027-04-19","direction":"rising","status":"available"}
+      ],
+      "anomaly":{"detected":true,"actual_price_lkr":20,"expected_price_lkr":19,"signed_deviation_lkr":1,"signed_deviation_pct":5.26,"absolute_deviation_lkr":1,"liquidity_aware_score":0.5,"threshold":0.446,"volume":2000000,"volume_scaled":2,"epsilon":0.000001,"score_reliable":true,"explanation":"PRICE_ONLY: synthetic unusual-movement evidence for tab testing."}
+    },
+    "report":{"status":"completed","evidence_validation":{"valid_count":2},"insight":{"investor_friendly_insight":{"summary":"REPORT_ONLY: company-report evidence belongs to this tab.","key_strengths":["REPORT_STRENGTH: synthetic revenue evidence."],"key_concerns":["REPORT_CONCERN: synthetic debt evidence."]}}},
+    "newsSentiment":{"status":"completed","articles":[{"title":"NEWS_ONLY: synthetic company news headline","source":"UI fixture","url":"https://example.test/news","publishedAt":"2026-10-19","scope":"company","sentiment":{"label":"positive","score":0.4}}]},
+    "marketRiskContext":{"externalFactors":{"factors":[
+      {"key":"gold","label":"Gold","unit":"USD per troy ounce","latestValue":2000,"change30dPct":2,"change90dPct":4,"explanatorySharePct":3,"overlappingReturnDays":90,"meaning":{"businessChannel":"RISK_ONLY: synthetic gold exposure.","ifFactorRises":"RISK_RISE: contextual association only.","ifFactorFalls":"RISK_FALL: contextual association only.","contributionEstimate":"RISK_ASSOCIATION: not proof of cause."}},
+      {"key":"oil","label":"Oil","unit":"USD per barrel","latestValue":80,"change30dPct":-2,"change90dPct":-4,"explanatorySharePct":5,"overlappingReturnDays":90,"meaning":{"businessChannel":"RISK_ONLY: synthetic oil exposure."}},
+      {"key":"vix","label":"VIX","unit":"index points","latestValue":25,"change30dPct":3,"change90dPct":5,"explanatorySharePct":6,"overlappingReturnDays":90,"meaning":{"businessChannel":"RISK_ONLY: synthetic VIX exposure."}},
+      {"key":"usd_lkr","label":"USD/LKR","unit":"LKR per USD","latestValue":300,"change30dPct":1,"change90dPct":2,"explanatorySharePct":4,"overlappingReturnDays":90,"meaning":{"businessChannel":"RISK_ONLY: synthetic currency exposure."}}
+    ]}},
+    "riskImpact":{"status":"completed","risk_level":"HIGH","plain_explanation":"Combined risk context remains in the shared overview.","top_drivers":[{"label":"VIX","meaning":"Synthetic uncertainty driver."}]},
+    "unifiedInsight":{"status":"completed","insight":{"headline":"Combined test explanation","plain_language_overview":"This synthetic fixture tests the interface, not financial predictions.","decision_balance":{"label":"OVERALL_ONLY: synthetic evidence balance","supporting_evidence":["OVERALL_SUPPORT: integrated evidence."],"risk_evidence":["OVERALL_RISK: integrated caution."],"plain_conclusion":"OVERALL_CONCLUSION: a combined view of the test stock."},"potential":["OVERALL_POTENTIAL: conditional upside."],"key_risks":["OVERALL_DOWNSIDE: uncertainty remains."],"what_could_change_the_picture":["OVERALL_CHANGE: new evidence can change the picture."],"uncertainty":"Synthetic prices are not real estimates.","non_advisory_note":"Not buying or selling advice."}}
+  }
+}

@@ -174,3 +174,37 @@ def test_summary_explains_aspi_comparison_and_conditional_upside():
     assert "specific to this stock" in insight["plain_language_overview"]
     assert "favourable 3 months range of LKR 6.40 (+28.0% from today)" in insight["plain_language_overview"]
     assert "not a prediction" in insight["conditional_upside"]
+
+
+def test_normal_daily_movement_does_not_erase_prolonged_shock_risk_or_invent_a_peace_price():
+    evidence = {
+        "selected_stock": {"symbol": "JKH.N0000", "company_name": "John Keells Holdings PLC"},
+        "market_evidence": {"current_price_lkr": 18., "anomaly": {"detected": False}, "horizons": [{
+            "key": "3m", "label": "3 months", "estimated_close_lkr": 18.2,
+            "upper_80_lkr": 20., "lower_80_lkr": 16., "upper_95_lkr": 22., "lower_95_lkr": 14.,
+        }]},
+        "report_evidence": {"status": "completed", "insight": {"investor_friendly_insight": {
+            "summary": "Hotel and transportation profits improved, but finance costs remain high.",
+            "key_strengths": ["Hotel performance improved."], "key_concerns": ["Debt remains high."],
+        }}},
+        "news_sentiment_evidence": {"articles": [{"title": "Disaster recovery update", "event_tags": ["disaster_recovery"]}]},
+    }
+    insight = build_local_fusion(evidence)
+    context = insight["shock_context"]
+    assert "does not mean" in context["anomaly_context"]
+    assert "Middle East" in context["recovery_outlook"]
+    assert "Ditwah" in context["recovery_outlook"]
+    assert "has not established a validated price" in context["range_note"]
+    assert context["event_conditioned_price_available"] is False
+    assert context["horizon_ranges"][0]["favourable_80_lkr"] == 20.
+    assert "financing" in " ".join(context["company_exposure"])
+    assert "No new unusual daily movement" in insight["plain_language_overview"]
+
+
+def test_unverified_report_and_missing_anomaly_do_not_turn_into_recovery_evidence():
+    insight = build_local_fusion({"report_evidence": {"status": "needs_review", "insight": {
+        "investor_friendly_insight": {"summary": "Hotel profits doubled."},
+    }}})
+    assert "absence of a result does not mean normal" in insight["shock_context"]["anomaly_context"]
+    assert "has not been established" in insight["shock_context"]["company_exposure"][0]
+    assert "No dated conflict" in insight["shock_context"]["evidence_status"]

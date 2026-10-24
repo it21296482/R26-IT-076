@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import sys
 from pathlib import Path
@@ -17,13 +16,15 @@ from typing import Any
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    from src.llm_client import LLMClient
+    from src.llm_client import LLMClient, explanation_enabled, explanation_provider
+    from src.grounded_wording import rewrite_verified_text
     from src.local_report_analysis import build_local_report_insight
     from src.pdf_extractor import extract_pdf_pages
     from src.prompts import prompt_definitions
     from src.retrieval import build_retrieval_context
 else:
-    from .llm_client import LLMClient
+    from .llm_client import LLMClient, explanation_enabled, explanation_provider
+    from .grounded_wording import rewrite_verified_text
     from .local_report_analysis import build_local_report_insight
     from .pdf_extractor import extract_pdf_pages
     from .prompts import prompt_definitions
@@ -151,8 +152,8 @@ Report context:
 
 
 def external_explanation_enabled() -> bool:
-    """Require an explicit opt-in so a stale local credential cannot break requests."""
-    return os.getenv("USE_AZURE_OPENAI", "false").strip().lower() in {"1", "true", "yes"}
+    """Use the selected local provider or explicitly enabled cloud provider."""
+    return explanation_enabled()
 
 
 def locally_grounded_result(
@@ -234,6 +235,20 @@ def analyze_report(pdf_path: Path, company_name: str, symbol: str) -> dict[str, 
         return locally_grounded_result(
             extracted, pdf_path, company_name, symbol, extracted_characters
         )
+
+    if explanation_provider() == "ollama":
+        result = locally_grounded_result(extracted, pdf_path, company_name, symbol, extracted_characters)
+        if result["status"] != "completed":
+            return result
+        narrative = result["insight"]["investor_friendly_insight"]
+        rewritten, generation = rewrite_verified_text({"summary": narrative["summary"]}, [company_name, symbol])
+        result["generation"] = generation
+        result["fallback_used"] = rewritten is None
+        if rewritten:
+            narrative["summary"] = rewritten["summary"]
+        else:
+            result["warnings"].append("The local wording service could not produce a verified explanation. Showing the verified rule-based report summary instead.")
+        return result
 
     response = LLMClient().run_json_prompt(build_runtime_prompt(extracted, company_name, symbol))
     if response.get("error") or not isinstance(response.get("parsed_output"), dict):

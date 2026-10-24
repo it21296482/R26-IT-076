@@ -5,10 +5,20 @@ const {
   quoteToStockRow,
   refreshAvailableStockQuotes,
   tradeDateFromTimestamp,
+  quotePriceList,
 } = require("../src/services/cseQuoteService");
 
 test("normalizes an official CSE timestamp to the Colombo trading date", () => {
   assert.equal(tradeDateFromTimestamp(1788166790906).toISOString(), "2026-08-31T00:00:00.000Z");
+});
+
+test("market list includes all returned symbols without inventing missing prices or dates", () => {
+  const quotes = quotePriceList([{symbol:"JKH.N0000",name:"JOHN KEELLS HOLDINGS PLC",price:18,lastTradedTime:1792141179424},
+    {symbol:"TEST.N0000",name:"TEST PLC",price:0,closingPrice:0,lastTradedTime:0}]);
+  assert.equal(quotes.length,2);
+  assert.equal(quotes[0].price,18);
+  assert.equal(quotes[1].price,null);
+  assert.equal(quotes[1].lastTradeDate,null);
 });
 
 test("maps a CSE trade-summary quote into a valid stock row", () => {
@@ -63,4 +73,13 @@ test("refreshes every stock already available in the application from one quote 
   assert.equal(operations.length, 2);
   assert.deepEqual(result.updatedSymbols, ["JKH.N0000", "BIL.N0000"]);
   assert.ok(operations.every((operation) => operation.updateOne.upsert));
+});
+
+test("unfinished zero close uses a positive last-traded price, never zero", () => {
+  const quote = { closingPrice: 0, price: 19.8, open: 20, high: 20.1, low: 19.7,
+    sharevolume: 1000, lastTradedTime: 1788166790906 };
+  assert.equal(quoteToStockRow(quote, { symbol: "JKH.N0000" }).close, 19.8);
+  assert.equal(quoteToStockRow({ ...quote, price: 0 }, { symbol: "JKH.N0000" }), null);
+  assert.equal(quoteToStockRow({ ...quote, low: 0 }, { symbol: "JKH.N0000" }), null);
+  assert.equal(quoteToStockRow({ ...quote, sharevolume: -1 }, { symbol: "JKH.N0000" }), null);
 });

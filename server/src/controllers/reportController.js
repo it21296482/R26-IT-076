@@ -1,6 +1,7 @@
 const fs = require("fs/promises");
 const FinancialReport = require("../models/FinancialReport");
 const { inspectFinancialReport } = require("../services/reportValidationService");
+const { requireListedCompany } = require("../services/stockPreparationService");
 
 // Keeps the API response focused on the fields the workspace needs to render upload status.
 const buildReportResponse = (report) => ({
@@ -29,7 +30,7 @@ const listUserReports = async (req, res) => {
 
 const uploadFinancialReport = async (req, res) => {
   const symbol = req.body.symbol?.trim().toUpperCase();
-  const companyName = req.body.companyName?.trim();
+  let companyName = req.body.companyName?.trim();
 
   if (!symbol || !companyName) {
     return res.status(400).json({
@@ -40,6 +41,16 @@ const uploadFinancialReport = async (req, res) => {
   if (!req.file) {
     return res.status(400).json({
       message: "Please upload a PDF report.",
+    });
+  }
+
+  try {
+    const company = await requireListedCompany(symbol);
+    companyName = company.companyName;
+  } catch (error) {
+    await fs.unlink(req.file.path).catch(() => {});
+    return res.status(422).json({
+      message: error.message,
     });
   }
 

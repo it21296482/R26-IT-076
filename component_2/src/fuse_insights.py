@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -12,9 +11,11 @@ from typing import Any
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    from src.llm_client import LLMClient
+    from src.llm_client import LLMClient, explanation_enabled, explanation_provider
+    from src.grounded_wording import rewrite_verified_text
 else:
-    from .llm_client import LLMClient
+    from .llm_client import LLMClient, explanation_enabled, explanation_provider
+    from .grounded_wording import rewrite_verified_text
 
 
 SYSTEM_PROMPT = """
@@ -117,6 +118,73 @@ def _market_outlook(market: dict[str, Any] | None) -> tuple[str, list[str], list
     if path_text:
         outlook += f" The current paths are {path_text}."
     return outlook + caution, paths, risks
+
+
+def _shock_context(market, report, context):
+    """Separate a daily anomaly from an event-conditioned recovery hypothesis.
+
+    Historical interval endpoints are not a calibrated peace/disaster effect.
+    No event-specific price or probability is calculated without such a model.
+    """
+    anomaly = (market or {}).get("anomaly") or {}
+    if anomaly.get("detected") is False:
+        anomaly_context = (
+            "No new unusual daily movement was detected. This does not mean the company is unaffected by war, disaster or a prolonged downturn. "
+            "A continuing shock can become part of the recent trading pattern, so normal daily movement is not the same as normal business conditions or low investment risk."
+        )
+    elif anomaly.get("detected") is True:
+        anomaly_context = (
+            "The latest move was unusual compared with the recent price and volume pattern. "
+            "The score alone cannot identify a war, disaster or any other event as its cause."
+        )
+    else:
+        anomaly_context = "The daily unusual-movement check was unavailable; absence of a result does not mean normal movement."
+    friendly = (((report or {}).get("insight") or {}).get("investor_friendly_insight") or {}) if (report or {}).get("status") == "completed" else {}
+    report_items = [friendly.get("summary", ""), *friendly.get("key_strengths", []), *friendly.get("key_concerns", [])]
+    text = " ".join(str(item) for item in report_items).lower()
+    channels = []
+    if any(term in text for term in ("hotel", "tourism", "leisure", "travel")):
+        channels.append("The report identifies travel or leisure activity: steadier flights and visitor demand could help, but recovery must be confirmed in occupancy, bookings or earnings.")
+    if any(term in text for term in ("transport", "port", "shipping", "logistics")):
+        channels.append("The report identifies transport or logistics activity: shipping access, fuel costs and cargo volumes matter, and lower oil can also reduce income in some fuel-related activities.")
+    if any(term in text for term in ("plantation", "agriculture", "tea", "crop")):
+        channels.append("The report identifies agricultural activity: weather, harvest recovery, damaged transport links and export demand matter; disaster recovery is not automatically an immediate earnings recovery.")
+    if any(term in text for term in ("construction", "manufacturing", "cement", "building")):
+        channels.append("The report identifies construction or manufacturing activity: rebuilding may create demand, but funding, material costs, damaged assets and project timing determine whether that becomes profit.")
+    if any(term in text for term in ("retail", "consumer", "supermarket", "beverage")):
+        channels.append("The report identifies consumer or retail activity: lower delivery costs and less pressure on household budgets could help, but actual sales volumes and margins must confirm improvement.")
+    if any(term in text for term in ("debt", "finance cost", "interest", "loss")):
+        channels.append("The report also flags losses or financing exposure. Better external news does not remove company debt, interest costs or operating weaknesses.")
+    if not channels:
+        channels.append("Company-specific exposure to conflict or disaster has not been established from the verified report takeaways; national impacts must not be treated as proven damage to this company.")
+    relevant = [item for item in (context or {}).get("articles", [])
+                if set(item.get("event_tags") or []) & {"geopolitical", "disaster_recovery"}]
+    ranges = [{"key": item.get("key"), "label": item.get("label"),
+               "central_path_lkr": item.get("estimated_close_lkr"), "favourable_80_lkr": item.get("upper_80_lkr"),
+               "adverse_80_lkr": item.get("lower_80_lkr")}
+              for item in (market or {}).get("horizons", []) if item.get("estimated_close_lkr") is not None]
+    return {
+        "anomaly_context": anomaly_context,
+        "recovery_outlook": (
+            "If the Middle East conflict eases, energy and shipping costs settle, flights and demand recover, and the ASPI strengthens, "
+            "conditions could become more supportive. The ASPI represents the wider Sri Lankan stock market. "
+            "Progress rebuilding after Cyclone Ditwah could also ease transport and business disruption. "
+            "These are conditions to monitor, not confirmation that recovery has happened or that this stock must rise."
+        ),
+        "if_disruption_persists": (
+            "If disruption continues, costs remain high or company earnings disappoint, the price could stay weak or move below the central path. "
+            "A ceasefire alone may not restore demand, damaged assets or company profits, and a stronger market may already be reflected in the price."
+        ),
+        "company_exposure": channels,
+        "range_note": (
+            "The favourable and adverse prices below are historical uncertainty bounds, not forecasts conditioned on war ending or disaster recovery. "
+            "This system has not established a validated price for a world without these events. Prices can move outside these ranges."
+        ),
+        "evidence_status": (f"This run collected {len(relevant)} dated conflict or disaster-related news items. Their relevance is context, not proof of the stock-price impact."
+                            if relevant else "No dated conflict or disaster-related news item was available in this run. Event-specific effects remain unverified."),
+        "horizon_ranges": ranges,
+        "event_conditioned_price_available": False,
+    }
 
 
 def _price_scenarios(market: dict[str, Any] | None) -> dict[str, Any] | None:
@@ -255,6 +323,7 @@ def _risk_takeaway(risk: dict[str, Any] | None) -> tuple[str, list[str], list[st
         risk.get("plain_explanation"),
         f"The combined market-risk reading is {level or 'unavailable'}",
     )
+    explanation += " This describes the available indicators now, not a prediction of loss or proof that conflict and disaster risks have ended."
     drivers = [
         f"{item.get('label')}: {item.get('meaning')}"
         for item in (risk.get("top_drivers") or [])[:3]
@@ -287,7 +356,8 @@ def _conditional_upside_takeaway(
         f"{news_context}If company-specific news becomes more positive and the ASPI strengthens, improved confidence could support "
         f"movement toward the favourable {price_scenarios['horizon']} range of "
         f"{_money(price_scenarios['favourable_80_lkr'])} ({_percent(price_scenarios.get('favourable_change_pct'))} from today). "
-        "That is a conditional uncertainty scenario, not a prediction that good news or a rising ASPI will cause the price to reach it."
+        "That is a conditional uncertainty scenario, not a prediction that good news or a rising ASPI will cause the price to reach it. "
+        "The range was not calibrated to a ceasefire or recovery event and must not be read as the price effect of one."
     )
 
 
@@ -312,20 +382,25 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
     market_comparison_text = _market_comparison_takeaway(context)
     risk_text, risk_drivers, risk_concerns = _risk_takeaway(risk)
     conditional_upside_text = _conditional_upside_takeaway(price_scenarios, context)
+    shock_context = _shock_context(market, report, context)
     external_text += _nearby_event_context(market, context)
     middle_east_report_risk = next((item for item in report_risks if "middle east" in item.lower()), None)
     if middle_east_report_risk:
         external_text += (
-            " The uploaded report directly confirms that Middle East conflict affected travel sentiment or leisure performance. "
-            "This confirms a business impact, but it does not prove how much of the share-price movement it caused."
+            f" A verified report takeaway flags this concern: {middle_east_report_risk} "
+            "This is report evidence, not a measurement of how much the event changed the share price."
         )
     anomaly = (market or {}).get("anomaly") or {}
-    direction = "showed an unusual departure from its expected level" if anomaly.get("detected") else "remained within its expected movement range"
+    direction = ("showed an unusual departure from its expected level" if anomaly.get("detected") is True
+                 else "remained within its recent movement range" if anomaly.get("detected") is False
+                 else "has an unavailable unusual-movement check")
     risk_level = str((risk or {}).get("risk_level") or "").upper()
     risk_phrase = f" and carries a {risk_level.lower()} combined market-risk reading" if risk_level else ""
-    headline = f"{company} {direction}{risk_phrase}; verified business strengths and external risks pull the picture in different directions."
+    balance_phrase = ("verified business strengths and external risks need to be weighed together" if strengths
+                      else "the available evidence and its limits need to be considered together")
+    headline = f"{company} {direction}{risk_phrase}; {balance_phrase}."
     overview = (
-        f"{market_text} {market_comparison_text} {conditional_upside_text} "
+        f"{market_text} {shock_context['anomaly_context']} {market_comparison_text} {conditional_upside_text} "
         f"{price_scenarios.get('narrative', '') if price_scenarios else ''} {report_text} {external_text} {risk_text} "
         "Together, this covers the available price, company-report, news, ASPI, commodity, currency, risk, and uncertainty evidence; unknown future events can still change the picture."
     )
@@ -358,7 +433,8 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
         or (favourable_change is not None and adverse_change is not None and adverse_change > favourable_change * 1.3)
         or risk_level == "HIGH"
     )
-    balance_label = "Risk-heavy despite upside possibilities" if risk_heavy else "Balanced with meaningful company strengths"
+    balance_label = ("Risk-heavy despite upside possibilities" if risk_heavy else
+                     "Balanced with meaningful company strengths" if strengths else "Limited evidence for a clear balance")
     if risk_level == "HIGH":
         balance_conclusion = (
             "The combined stock and global-market risk reading is high. Any price potential and verified business strengths should therefore be weighed against "
@@ -371,8 +447,9 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
         )
     else:
         balance_conclusion = (
-            "Verified operating improvements support potential, but the downside range, currency and finance-cost exposure, "
-            "external uncertainty, and the separate risk reading remain important."
+            ("Verified operating improvements support potential, but the downside range, currency and finance-cost exposure, "
+             "external uncertainty, and the separate risk reading remain important.") if strengths else
+            "The verified evidence does not establish clear operating strengths. Do not infer a recovery case from the price range alone; company results, external uncertainty and risk still matter."
         )
     change_items = changes[:4]
     if conditional_upside_text not in change_items:
@@ -401,6 +478,7 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
         "risk_outlook": risk_text + (f" Main drivers: {' '.join(risk_drivers)}" if risk_drivers else ""),
         "market_comparison": market_comparison_text,
         "conditional_upside": conditional_upside_text,
+        "shock_context": shock_context,
         "price_scenarios": price_scenarios,
         "decision_balance": {
             "label": balance_label,
@@ -413,13 +491,15 @@ def build_local_fusion(evidence: dict[str, Any]) -> dict[str, Any]:
         "key_risks": key_risks,
         "what_could_change_the_picture": change_items[:5],
         "uncertainty": " ".join(uncertainty_parts),
-        "evidence_used": [
-            "Historical prices, trading volume, expected price, deviation, and unusual-movement score",
-            "Page-verified figures from the uploaded company report",
-            "Dated company and market news plus observed gold, oil, VIX, and currency relationships",
-            "Same-session selected-stock performance compared with the official CSE ASPI snapshot",
-            "Combined stock, gold, oil, and VIX risk classification with feature-level driver evidence",
-        ],
+        "evidence_used": (
+            (["Historical prices, trading volume, expected price, deviation, and unusual-movement score"] if market else [])
+            + (["Page-verified figures from the uploaded company report"] if (report or {}).get("status") == "completed" else [])
+            + (["Dated company and market news"] if context.get("articles") else [])
+            + (["Observed gold, oil, VIX and currency relationships"] if context["external_factors"].get("factors") else [])
+            + (["Same-session selected-stock performance compared with the official CSE ASPI snapshot"]
+               if context["external_factors"].get("marketComparison", {}).get("classification") not in {None, "unavailable"} else [])
+            + (["Combined stock, gold, oil, and VIX risk classification with feature-level driver evidence"] if (risk or {}).get("status") == "completed" else [])
+        ),
         "non_advisory_note": "This is an informational research summary, not buying or selling advice.",
     }
 
@@ -452,6 +532,8 @@ Rules:
 - Use favourable price bounds only as conditional uncertainty scenarios if news and broader-market conditions improve.
 - Treat the supplied risk classification as a separate risk signal, not a forecast and not proof that a factor caused a market outcome.
 - Do not assign an overall confidence percentage.
+- No daily anomaly does not mean no prolonged event impact or low risk.
+- Never invent a peace-time, no-disaster or fair-value stock price. Historical prediction bounds are not causal recovery targets.
 
 Evidence JSON:
 {json.dumps(evidence, ensure_ascii=False)}
@@ -488,15 +570,26 @@ def validate_output(value: Any) -> tuple[dict[str, Any] | None, list[str]]:
 
 def fuse(evidence: dict[str, Any]) -> dict[str, Any]:
     local_insight = build_local_fusion(evidence)
-    if os.getenv("USE_AZURE_OPENAI", "false").strip().lower() not in {"1", "true", "yes"}:
+    if not explanation_enabled():
         return {"status": "completed", "insight": local_insight, "warnings": []}
+
+    if explanation_provider() == "ollama":
+        fields = ("headline", "plain_language_overview", "company_report_takeaway")
+        selected = evidence.get("selected_stock") or {}
+        names = [selected.get("company_name", ""), selected.get("symbol", "")]
+        rewritten, generation = rewrite_verified_text({key: local_insight[key] for key in fields}, names)
+        if rewritten:
+            local_insight.update(rewritten)
+        return {"status": "completed", "insight": local_insight, "generation": generation,
+                "fallback_used": rewritten is None, "warnings": [] if rewritten else [
+                    "The local wording service could not produce a verified explanation. Showing the rule-based combined summary instead."]}
 
     response = LLMClient().run_json_prompt(build_prompt(evidence), instructions=SYSTEM_PROMPT)
     if response.get("error"):
         return {
             "status": "completed",
             "insight": local_insight,
-            "warnings": [],
+            "warnings": ["The wording service was unavailable. Showing the rule-based combined summary instead."],
             "fallback_used": True,
         }
     insight, warnings = validate_output(response.get("parsed_output"))
@@ -504,7 +597,7 @@ def fuse(evidence: dict[str, Any]) -> dict[str, Any]:
         return {
             "status": "completed",
             "insight": local_insight,
-            "warnings": [],
+            "warnings": ["The generated wording did not pass verification. Showing the rule-based combined summary instead."],
             "fallback_used": True,
         }
     insight["price_scenarios"] = local_insight.get("price_scenarios")
@@ -518,6 +611,7 @@ def fuse(evidence: dict[str, Any]) -> dict[str, Any]:
     insight["what_could_change_the_picture"] = local_insight.get("what_could_change_the_picture")
     insight["market_comparison"] = local_insight.get("market_comparison")
     insight["conditional_upside"] = local_insight.get("conditional_upside")
+    insight["shock_context"] = local_insight.get("shock_context")
     return {
         "status": "completed",
         "insight": insight,

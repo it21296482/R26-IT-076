@@ -29,6 +29,7 @@ const fetchTradeSummary = async ({ timeoutMs = 15000 } = {}) => {
 };
 
 const tradeDateFromTimestamp = (value) => {
+  if (value === null || value === undefined || !Number.isFinite(Number(value)) || Number(value) <= 0) return null;
   const date = new Date(Number(value));
   if (Number.isNaN(date.getTime())) return null;
   const parts = new Intl.DateTimeFormat("en-CA", {
@@ -46,14 +47,30 @@ const displayCompanyName = (value) => String(value || "")
   .replace(/\b\w/g, (character) => character.toUpperCase())
   .replace(/\bPlc\b/g, "PLC");
 
+const quotePriceList = (quotes) => quotes.map((quote) => {
+  const price = Number(quote.price) > 0 ? Number(quote.price) : Number(quote.closingPrice);
+  const date = tradeDateFromTimestamp(quote.lastTradedTime);
+  return {
+    symbol: String(quote.symbol || "").toUpperCase(),
+    companyName: displayCompanyName(quote.name),
+    price: Number.isFinite(price) && price > 0 ? price : null,
+    changePercent: quote.percentageChange != null && Number.isFinite(Number(quote.percentageChange)) ? Number(quote.percentageChange) : null,
+    volume: quote.sharevolume != null && Number.isFinite(Number(quote.sharevolume)) && Number(quote.sharevolume) >= 0 ? Number(quote.sharevolume) : null,
+    lastTradeDate: date?.toISOString() || null,
+  };
+}).filter((quote) => quote.symbol).sort((a, b) => a.companyName.localeCompare(b.companyName));
+
 const quoteToStockRow = (quote, latest) => {
   const tradeDate = tradeDateFromTimestamp(quote.lastTradedTime);
-  const close = Number(quote.closingPrice ?? quote.price);
+  // An unfinished session can expose closingPrice=0 alongside a valid last trade.
+  const closingPrice = Number(quote.closingPrice);
+  const close = closingPrice > 0 ? closingPrice : Number(quote.price);
   const open = Number(quote.open ?? close);
   const reportedHigh = Number(quote.high ?? close);
   const reportedLow = Number(quote.low ?? close);
   const volume = Number(quote.sharevolume ?? 0);
-  if (!tradeDate || ![close, open, reportedHigh, reportedLow, volume].every(Number.isFinite)) {
+  if (!tradeDate || ![close, open, reportedHigh, reportedLow, volume].every(Number.isFinite)
+    || ![close, open, reportedHigh, reportedLow].every((price) => price > 0) || volume < 0) {
     return null;
   }
   return {
@@ -65,7 +82,7 @@ const quoteToStockRow = (quote, latest) => {
     low: Math.min(open, reportedHigh, reportedLow, close),
     close,
     adjustedClose: close,
-    volume: Math.max(0, volume),
+    volume,
     source: "cse-live-trade-summary",
     notes: "Automatically refreshed from the official CSE trade summary when analysis started.",
     createdBy: latest.createdBy,
@@ -126,4 +143,5 @@ module.exports = {
   quoteToStockRow,
   refreshAvailableStockQuotes,
   tradeDateFromTimestamp,
+  quotePriceList,
 };

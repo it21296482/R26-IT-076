@@ -8,7 +8,9 @@
     "start": "node src/server.js",
     "check": "node --check src/server.js",
     "test": "node --test",
-    "export:risk-data": "node scripts/exportRiskTrainingData.js"
+    "export:risk-data": "node scripts/exportRiskTrainingData.js",
+    "backfill:market-history": "node scripts/backfillMarketHistory.js",
+    "audit:stock-coverage": "node scripts/auditStockCoverage.js"
   },
   "keywords": [
     "mern",
@@ -16,6 +18,9 @@
     "authentication",
     "cse"
   ],
+  "nodemonConfig": {
+    "ignore": ["uploads/**"]
+  },
   "author": "",
   "license": "ISC",
   "type": "commonjs",

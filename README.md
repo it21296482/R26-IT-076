@@ -151,12 +151,14 @@ pushing to GitHub does not automatically redeploy this site.
 - stores integrated results and evidence warnings temporarily
 - a MongoDB TTL index deletes each record after its `expiresAt` time
 
-## Current research-supported stocks
+## Original Research Validation Stocks
 
 - John Keells Holdings PLC (`JKH.N0000`)
 - Browns Investments PLC (`BIL.N0000`)
 
-No third market artifact is claimed because a third locked forecast was not found in the supplied research workspace.
+These remain the original locked validation cases. Other current CSE directory
+listings can now be selected for on-demand data preparation and stock-specific
+training. This does not extend the original locked study's validation claims.
 
 ## Local run
 
@@ -223,8 +225,8 @@ Open `http://127.0.0.1:5173`.
 - report extraction and the combined explanation work locally from verified evidence by default (`USE_AZURE_OPENAI=false`)
 - Azure wording enhancement is optional; enable it only with `USE_AZURE_OPENAI=true` and a valid rotated credential that matches the endpoint and deployment
 - oil, gold, VIX, and USD/LKR relationships use overlapping one-year daily returns and are presented as associations with business context, never as proof of cause
-- set `RISK_ANALYSIS_TIMEOUT_MS` if the local Python risk adapter needs more than its default two-minute limit
-- the reproducible CSE risk model supports BIL and JKH; its chronological test metrics and stock-only ablation are stored with the model artifact
+- set `RISK_ANALYSIS_TIMEOUT_MS` if the local Python risk adapter needs more than its default three-minute limit
+- the preserved CSE risk artifact supports BIL and JKH; other securities fit their own classifier and chronological comparison on demand, without modifying that artifact
 - the admin console includes a plain-language four-stage workflow demonstration for research review
 - never commit `.env` files or reuse credentials that have appeared in chat or Git history
 
@@ -242,11 +244,104 @@ The executed validation notebook is `research/component1/notebooks/component1_fo
 
 ## Component 1 model upgrade
 
-The updated research implementation uses log-return learning, validation-selected
-baseline blending, horizon-specific forecast selection, and past-only adaptive
-anomaly cutoffs. Original deviation/volume formulas and locked forecasts remain
-preserved. See `research/component1/MODEL_UPGRADE_REPORT.md` and the comparison
-evidence in `research/component1/artifacts/upgrade_v2/`.
+Each live Analyze request trains the expected-price workflow and compares
+Ridge regressions, Random Forest, Extra Trees, gradient boosting and an explicitly
+labelled unchanged-price baseline separately for all four forecast horizons.
+The lowest error on purged chronological validation selects the candidate; a
+recent completed-outcome refit uses the current valid database history. A
+persistence winner is labelled honestly, not disguised as a learned price move.
+The original deviation/volume formula, past-only anomaly
+thresholds, and locked validation forecasts are preserved. Live training needs
+at least 1,000 valid observations for the purged four-horizon evaluation.
+
+The UI receives actual stage/epoch events through an authenticated progress
+stream and records a new run ID and input fingerprint. The searchable CSE quote
+list covers every returned security. JKH and BIL retain the original research
+artifacts; additional listings use the preparation workflow below. Before training,
+a separate CSE daily-history check repairs
+verified missing sessions and invalid/unfinished CSE snapshots. CSE supplies daily
+closing prices, high/low and total share volumes. When CSE omits an opening,
+TradingView's actual opening is accepted only for the same date with matching
+high/low. Both sources and pre-change rows are saved privately for audit; nothing
+is interpolated. Valid uploaded CSV records and locked research files are preserved.
+Unresolved source gaps remain disclosed rather than hidden.
+
+See `research/component1/README.md` for the current method and progress protocol.
+`research/component1/MODEL_UPGRADE_REPORT.md` and
+`research/component1/artifacts/upgrade_v2/` preserve the preceding v2 comparison,
+not a claim that the new live regressions have prospective validation.
+
+The integrated explanation distinguishes a fresh daily anomaly from a prolonged
+shock that may already be reflected in recent trading. Conflict, disaster recovery,
+business exposures and adverse conditions are discussed conditionally. Historical
+price ranges are not relabelled as causal ceasefire or no-disaster price targets.
+Company, market, global and disaster-recovery news receive balanced space rather
+than allowing the first company feed to crowd out the remaining sources.
+
+### Company Directory And Eligibility
+
+See `research/CSE_COVERAGE_AND_TRAINING.md` for the dated 302-listing source audit,
+additional-security runs and integrated regression results.
+
+The stock selector reads CSE's A-Z company directory, cached for one hour to
+avoid repeated upstream calls. It shows each company name and security code;
+the latest-price table remains a separate CSE quote view. Percentage gains are
+green, losses red, and zero/missing changes remain neutral.
+
+Every listing in the current directory is selectable. The backend independently
+confirms the exact security and canonical company name before accepting a report.
+It validates the report before preparing history. Voting and non-voting shares
+are separate securities; forecasts and risk models are never borrowed between them.
+
+For a new selection, the server requests up to 5,000 actual split-adjusted daily
+observations from TradingView CSELK and compares the latest 20 comparable sessions
+with CSE high/low records. At least 10 comparisons, 90% recent agreement, and a
+corroborated latest completed session are required. Older adjusted prices can
+differ from unadjusted exchange records: they remain explicitly secondary-sourced,
+not rescaled by an inferred adjustment. Where daily high/low agree, genuine CSE
+closing prices and total volume take precedence. Missing openings, suspended
+sessions, and failed requests are never filled with invented values.
+
+Preparation is demand-driven, with two workers, a bounded queue, shared pending
+requests, and insert-only new rows/version-checked updates. Identical rows are not
+rewritten. Private source snapshots, checksums and preimages precede data changes.
+The app does not download all 302 histories into a free Atlas database at startup.
+Database storage and private audit retention still need monitoring as usage grows.
+
+The full four-horizon workflow still requires 1,000 valid observations. New-series
+preparation also requires at least 80 positive-volume observations among the last
+252 and data no older than 10 calendar days. These are conservative operational
+guards, not research-validated liquidity or accuracy thresholds. An illiquid,
+recently listed, suspended or unavailable security can still produce report/news
+evidence, but unsupported forecasts and risk readings are explicitly unavailable.
+Selecting a stock is not a promise that sufficient evidence exists for every stage.
+
+Additional securities train their own risk classifier using their own history,
+Gold/Oil/VIX history and the existing current-risk index definition. Historical
+global closes are aligned strictly before the CSE session. A chronological 80/20
+check and stock-only ablation are recorded before refitting on completed outcomes;
+the original BIL/JKH files are unchanged. These metrics assess agreement with
+research-defined risk labels, not future-loss prediction or investment returns.
+
+Audit actual source eligibility without database writes:
+
+```bash
+cd server
+npm run audit:stock-coverage -- --all
+```
+
+The dated result is `output/cse-listing-history-audit.json`. It distinguishes data
+eligibility from missing/stale/conflicting evidence; it is not 302 trained-model
+accuracy validation. To verify one additional security's actual preparation,
+fresh forecasts/anomalies and fresh risk fit against the configured database:
+
+```bash
+node scripts/verifyAdditionalStock.js COMB.X0000
+```
+
+That local verification writes genuine history using an existing administrator
+as its import owner. It does not bypass report validation or claim to test a
+financial report that has not been supplied for that company.
 
 ```bash
 python -m pytest research/component1/tests -q
@@ -282,17 +377,85 @@ This project provides research evidence and explanations, not financial advice.
 
 ## Languages
 
+### Temporary Local Explanation Mode
+
+The local development configuration can use Ollama instead of Azure. Install and
+start Ollama on the same computer, then pull a model if it is not already present:
+
+```bash
+ollama pull qwen2.5:3b-instruct-q4_K_M
+```
+
+Set `LLM_PROVIDER=ollama`, `OLLAMA_BASE_URL=http://127.0.0.1:11434`,
+`OLLAMA_MODEL=qwen2.5:3b-instruct-q4_K_M`, `OLLAMA_NUM_CTX=8192` and
+`USE_AZURE_OPENAI=false` in `server/.env`, then
+restart the backend. No cloud key is used in this mode and the adapter only
+accepts a loopback endpoint, with redirects and environment proxies disabled.
+
+The report extractor still verifies statement rows and page quotes first. The
+local model rewrites its verified summary without replacing the extracted
+strengths, concerns or source quotes. The combined explanation rewrites the
+headline, overall stock overview and company-report takeaway from the integrated
+evidence. Forecasts, risk categories, source evidence and detailed conditional
+scenario calculations remain unchanged. Names and financial values are protected;
+changed markers, numbers, risk labels and explicit advice are rejected. These
+checks are not a guarantee of semantic accuracy or a substitute for research
+evaluation of the new provider.
+
+Generation provenance is recorded in `outputs.report.generation` and
+`outputs.unifiedInsight.generation`. Successful local wording uses
+`mode=local_model`; rejected or unavailable wording uses
+`mode=rule_based_fallback`, `fallback_used=true` and a visible warning. A completed
+analysis alone does not prove that model wording was used. Local translations
+use a separate translation-specific model, not the small English explanation
+model, and retain the financial-value checks. Native-speaker review remains necessary.
+Local generation may take longer and
+needs sufficient memory alongside the forecasting workflow.
+
+To restore Azure later, set `LLM_PROVIDER=azure`, `USE_AZURE_OPENAI=true`, provide
+valid rotated Azure settings and restart. The preserved prompt benchmark and
+its original evaluation do not establish the quality of this temporary local mode.
+
+### Language Behaviour
+
+Dynamic Sinhala/Tamil explanations use offline NLLB-200 (600M, int8) when
+`TRANSLATION_PROVIDER=nllb`. This includes the combined summary, strengths,
+risks, conditional recovery outlook, report explanations and news titles, not
+just navigation headings. Long narratives are split without discarding their
+remaining sentences; invalid translations retain clearly labelled English.
+Translations never recalculate forecasts or modify the saved English evidence.
+
+Install `component_2/requirements-translation.txt` in the backend's Python
+environment. Download the CTranslate2 model once (about 630 MB; allow 1 GB free):
+
+```bash
+hf download JustFrederik/nllb-200-distilled-600M-ct2-int8 --revision 302d78f00e6fdb50a1064059df7c392b735e9d05 --include model.bin config.json sentencepiece.bpe.model shared_vocabulary.txt README.md --local-dir output/local-models/nllb-600m-int8
+```
+
+Run this command from the repository root. Set `TRANSLATION_PROVIDER=nllb` in
+`server/.env` and restart the backend. `TRANSLATION_MODEL_DIR` may override the
+default directory; otherwise leave it unset. Requests do not download weights or
+send explanation text to a remote translation service. Model files remain in
+the ignored output folder. The first language switch takes longer; validated
+translations are cached in memory for 30 minutes.
+
+**Research-only licence:** Meta's [NLLB model card](https://huggingface.co/facebook/nllb-200-distilled-600M)
+specifies CC-BY-NC-4.0 and research limitations. This is not a certified financial
+translator or licensed for commercial deployment. Preserve attribution and
+obtain native-speaker review before using translations in financial decisions.
+Do not present these automated checks as a measured translation-accuracy score.
+
 Choose **English**, **සිංහල**, or **தமிழ்** in the header. The choice is retained
 across navigation and reloads. Navigation, account forms, analysis inputs, result
 labels and admin controls use local translations, with no translation API needed.
 Dates follow the selected language. Prices, ticker symbols, scores, model status
 values, company names, CSV columns and original source quotes stay unchanged.
 
-Generated report takeaways, the combined explanation, risk-driver descriptions,
-and news headlines use the existing Azure explanation-service configuration
-(`AZURE_OPENAI_*` and `PYTHON_BIN`). No separate public translation service receives
-report summaries. This translation call requires valid Azure credentials even if
-English analysis uses the local fallback. It may incur normal Azure usage charges.
+For an explicitly configured cloud alternative, `TRANSLATION_PROVIDER=llm` uses
+the selected explanation provider (`LLM_PROVIDER` and `PYTHON_BIN`). Azure requires
+valid credentials and may incur normal Azure charges. The small local English
+explanation model is not recommended for Sinhala/Tamil translation; use the
+dedicated offline translator above instead.
 Translations are cached in server memory for up to 30 minutes (maximum 2,000 strings)
 and are not written over the original analysis. Switching language does not rerun
 the research models. New analyses still refresh prices and run the original pipeline.
@@ -303,6 +466,15 @@ notice rather than hiding evidence. Research documentation and original source
 documents remain in their original language; this does not add Sinhala/Tamil PDF
 extraction or retrain the sentiment model. Native-speaker financial terminology
 review is recommended before a public release.
+
+Narrative translation covers the complete integrated summary, recovery discussion,
+company strengths/concerns, uncertainty lists, factor explanations and displayed
+news headlines. Small batches avoid oversized output failures; concurrent requests
+queue instead of being silently skipped. Protected placeholders preserve company
+names, currency/amount pairs, signs and figures, followed by a bilingual copy-edit
+pass. These automated checks do not substitute for native-speaker review. A
+rejected server credential is reported explicitly; local UI translations can work
+while dynamic explanations remain unavailable until valid Azure settings are restored.
 
 Language regression checks:
 

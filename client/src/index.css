@@ -504,49 +504,11 @@ html:is(:lang(si), :lang(ta)) h1 {
   line-height: 1.3;
 }
 
-.output-filter-market #section-overall-balance,
-.output-filter-market #section-report,
-.output-filter-market #section-news,
-.output-filter-market #section-overall,
-.output-filter-report #section-market,
-.output-filter-report #section-market-check,
-.output-filter-report #section-news,
-.output-filter-report #section-overall,
-.output-filter-news #section-market,
-.output-filter-news #section-market-check,
-.output-filter-news #section-report,
-.output-filter-news #section-overall,
-.output-filter-risk #section-market,
-.output-filter-risk #section-market-check,
-.output-filter-risk #section-report,
-.output-filter-risk #section-overall,
-.output-filter-overall #section-market,
-.output-filter-overall #section-market-check,
-.output-filter-overall #section-report,
-.output-filter-overall #section-news {
-  display: none;
-}
-
-.output-filter-risk #section-news-articles {
-  display: none;
-}
-
-.output-filter-news #section-risk {
-  display: none;
-}
-
-.output-filter-market #section-market-check,
-.output-filter-report #section-report {
-  grid-column: 1 / -1;
-}
-
-.output-filter-news #section-news > .mt-7,
-.output-filter-risk #section-news > .mt-7 {
-  grid-template-columns: minmax(0, 1fr);
-}
-
-.output-filter-overall #section-overall-balance {
-  display: grid;
+@media screen {
+  .analysis-results [data-output-section][hidden],
+  .analysis-results [data-output-group][hidden] {
+    display: none !important;
+  }
 }
 
 @media print {
@@ -554,10 +516,9 @@ html:is(:lang(si), :lang(ta)) h1 {
     display: none !important;
   }
 
-  .output-filter-market #section-overall-balance,
-  .output-filter-report #section-overall-balance,
-  .output-filter-news #section-overall-balance,
-  .output-filter-risk #section-overall-balance {
-    display: grid;
+  /* Export the complete analysis, regardless of the selected screen filter. */
+  .analysis-results [data-output-section][hidden],
+  .analysis-results [data-output-group][hidden] {
+    display: revert !important;
   }
 }

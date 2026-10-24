@@ -40,7 +40,7 @@ RISK_LABELS = {0: "LOW", 1: "MEDIUM", 2: "HIGH"}
 FACTOR_SYMBOLS = {"Gold": "GC=F", "Oil": "CL=F", "VIX": "^VIX"}
 
 
-def _fetch_yahoo_series(symbol: str, start: datetime, end: datetime) -> pd.DataFrame:
+def _fetch_yahoo_series(symbol: str, start: datetime, end: datetime, *, attempts: int = 3, timeout: int = 30) -> pd.DataFrame:
     encoded = requests.utils.quote(symbol, safe="")
     params = {
         "period1": int(start.timestamp()),
@@ -50,13 +50,13 @@ def _fetch_yahoo_series(symbol: str, start: datetime, end: datetime) -> pd.DataF
     }
     last_error: Exception | None = None
     for host in ("query2.finance.yahoo.com", "query1.finance.yahoo.com"):
-        for attempt in range(3):
+        for attempt in range(attempts):
             try:
                 response = requests.get(
                     f"https://{host}/v8/finance/chart/{encoded}",
                     params=params,
                     headers={"User-Agent": "CSE-Insight-Research/1.0"},
-                    timeout=30,
+                    timeout=timeout,
                 )
                 response.raise_for_status()
                 result = response.json()["chart"]["result"][0]
@@ -100,10 +100,10 @@ def current_risk_score(frame: pd.DataFrame) -> pd.Series:
     )
 
 
-def prepare_dataset(stock_history: pd.DataFrame, factor_history: pd.DataFrame) -> pd.DataFrame:
+def prepare_dataset(stock_history: pd.DataFrame, factor_history: pd.DataFrame, *, preserve_symbols=False, prior_global_close=False) -> pd.DataFrame:
     stocks = stock_history.copy()
     stocks["Date"] = pd.to_datetime(stocks["Date"]).dt.normalize()
-    stocks["Stock"] = stocks["Symbol"].str.upper().str.split(".").str[0]
+    stocks["Stock"] = stocks["Symbol"].str.upper() if preserve_symbols else stocks["Symbol"].str.upper().str.split(".").str[0]
     stocks = stocks.sort_values(["Stock", "Date"]).drop_duplicates(["Stock", "Date"], keep="last")
 
     factors = factor_history.copy()
@@ -111,6 +111,9 @@ def prepare_dataset(stock_history: pd.DataFrame, factor_history: pd.DataFrame) -
     factors = factors.sort_values("Date").drop_duplicates("Date", keep="last")
     for factor in FACTOR_SYMBOLS:
         factors[f"{factor}Change30dPct"] = factors[factor].pct_change(21) * 100
+    if prior_global_close:
+        # US daily closes occur after the CSE session on the same calendar day.
+        factors["Date"] = factors["Date"] + pd.Timedelta(days=1)
 
     prepared = []
     for stock, group in stocks.groupby("Stock", sort=True):

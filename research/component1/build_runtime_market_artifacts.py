@@ -17,7 +17,7 @@ from typing import Any
 
 import pandas as pd
 
-from src.component1_research import ResearchConfig, run_research_pipeline, save_research_artifacts
+from src.component1_research import ResearchConfig, run_research_pipeline, save_research_artifacts, symbol_from_code
 
 
 ROOT = Path(__file__).resolve().parent
@@ -73,9 +73,13 @@ def horizon_summary(
         "upper_80_lkr": round(float(row["upper_80"]), 4),
         "lower_95_lkr": round(float(row["lower_95"]), 4),
         "upper_95_lkr": round(float(row["upper_95"]), 4),
-        "status": "available" if beats_baseline else "available_with_caution",
+        "status": "available" if beats_baseline and calibration.get("evaluation_matches_live_model", True) else "available_with_caution",
+        "caution": ("Earlier accuracy checks used a different estimation method. The current choice has not yet been independently checked on future prices."
+                    if not calibration.get("evaluation_matches_live_model", True) else ""),
         "calibration": calibration,
         "evaluation_scope": "retrospective_at_this_horizon" if calibration else "legacy_one_step_only",
+        "estimate_basis": calibration.get("live_candidate", "legacy_scenario"),
+        "baseline_estimate_lkr": round(current_price, 4),
     }
 
 
@@ -137,7 +141,13 @@ def build_contract(stock: str, results: dict[str, Any], source_file: Path) -> di
 
     return {
         "schema_version": "1.0",
-        "symbol": str(dashboard.get("stock") or f"{stock}.N0000"),
+        "data_quality": results["raw_data"].attrs.get("input_quality", {}),
+        "warnings": ([
+            f"Excluded {results['raw_data'].attrs['input_quality']['excluded_rows']} invalid historical observations; no replacement prices were used."
+        ] if results["raw_data"].attrs.get("input_quality", {}).get("excluded_rows") else []) + ([
+            "Recent history contains gaps longer than seven calendar days. Estimates use available observations; verify missing sessions or trading halts before relying on the outlook."
+        ] if results["raw_data"].attrs.get("input_quality", {}).get("recent_long_gaps") else []),
+        "symbol": symbol_from_code(stock),
         "as_of_date": pd.Timestamp(results["raw_data"]["date"].max()).date().isoformat(),
         "generated_at": datetime.now(UTC).isoformat(),
         "source_file": source_file.name,
@@ -155,6 +165,12 @@ def build_contract(stock: str, results: dict[str, Any], source_file: Path) -> di
             "side": str(latest.get("anomaly_side", "none")),
             "risk_level": str(latest.get("risk_level", "Unknown")),
             "explanation": str(dashboard.get("simple_explanation", dashboard.get("shock_adjusted_explanation", ""))),
+            "signed_deviation_pct": round(float((latest["actual_price"] / latest["predicted_price"] - 1) * 100), 4),
+            "volume": int(latest["volume"]),
+            "volume_scaled": float(latest["volume_scaled"]),
+            "epsilon": float(results["config"]["liquidity_epsilon"]),
+            "score_reliable": bool(latest.get("score_reliable", True)),
+            "formula": "abs(actual - expected) / (volume / 1000000 + epsilon)",
         },
         "deviation_history": deviation_history(results["test_results"], anomaly_threshold),
         "model_quality": {

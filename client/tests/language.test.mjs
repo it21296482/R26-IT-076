@@ -36,7 +36,7 @@ test("English, unknown text, and invalid language have safe defaults", () => {
 test("all explicit translated UI phrases exist in the bilingual dictionary", () => {
   const files = [
     "components/LanguageSelector", "components/SiteHeader", "components/AuthShell",
-    "components/BrandLogo", "components/ProtectedRoute", "pages/HomePage",
+    "components/BrandLogo", "components/ProtectedRoute", "components/MarketPriceList", "components/AnalysisProgress", "pages/HomePage",
     "pages/UserLoginPage", "pages/RegisterPage", "pages/AdminLoginPage",
     "pages/UserDashboardPage", "pages/InsightPreviewPage", "pages/AdminDashboardPage",
   ];

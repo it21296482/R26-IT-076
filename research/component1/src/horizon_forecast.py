@@ -11,11 +11,19 @@ import numpy as np
 import pandas as pd
 from pandas.tseries.offsets import BDay
 
+# Reading guide: build candidate paths -> replay historical forecasts -> select
+# a candidate -> calibrate error ranges -> evaluate untouched later outcomes.
+# learned_horizon.py reuses helpers here; this file also retains a simpler
+# trend-based alternative. Do not present those trend paths as trained LSTMs.
+# These are trading-session counts, not exact calendar-month durations.
 HORIZONS = (4, 21, 60, 120)
 CANDIDATES = ("persistence", "trend_20", "trend_60", "damped_20", "damped_60")
 
 
 def candidate_paths(closes: np.ndarray, horizon: int) -> dict[str, np.ndarray]:
+    # Persistence keeps today's price unchanged. Trend paths extend the recent
+    # average log return; damped paths gradually reduce that extension so a short
+    # trend is not extrapolated at full strength indefinitely.
     values = np.asarray(closes, dtype=float)
     if len(values) < 60 or not np.isfinite(values).all() or (values <= 0).any():
         raise ValueError("Forecasts require at least 60 finite, positive closes.")
@@ -27,6 +35,7 @@ def candidate_paths(closes: np.ndarray, horizon: int) -> dict[str, np.ndarray]:
         # Winsorize within the observed window, never against future outcomes.
         low, high = np.quantile(returns, [0.1, 0.9])
         drift = float(np.mean(np.clip(returns, low, high)))
+        # The 1% daily drift cap is a modelling safeguard, not a market price limit.
         drift = float(np.clip(drift, -0.01, 0.01))
         result[f"trend_{window}"] = last * np.exp(drift * steps)
         damped_steps = (1.0 - np.power(0.95, steps)) / (1.0 - 0.95)
@@ -35,6 +44,9 @@ def candidate_paths(closes: np.ndarray, horizon: int) -> dict[str, np.ndarray]:
 
 
 def horizon_observations(history: pd.DataFrame, horizon: int, stride: int = 5) -> pd.DataFrame:
+    # Replay what could have been forecast at each historical origin using only
+    # closes known then. Compare with the actual close `horizon` sessions later.
+    # A five-session stride reduces work; overlapping horizons are still dependent.
     closes = history.close.to_numpy(dtype=float)
     rows = []
     for origin in range(60, len(closes) - horizon, stride):
@@ -50,6 +62,8 @@ def horizon_observations(history: pd.DataFrame, horizon: int, stride: int = 5) -
 
 
 def choose_candidate(selection: pd.DataFrame) -> tuple[str, dict[str, float]]:
+    # Error / origin price makes errors comparable across different price levels.
+    # Selection uses historical evidence, not the later holdout test results.
     if len(selection) < 12:
         return "persistence", {}
     errors = {
@@ -64,6 +78,10 @@ def choose_candidate(selection: pd.DataFrame) -> tuple[str, dict[str, float]]:
 
 
 def residual_quantile(errors: np.ndarray, coverage: float) -> float:
+    # Calibration means using completed prediction errors to set a range width.
+    # Example: coverage=0.80 selects an upper rank in the sorted absolute errors.
+    # The (n+1) rank adjustment is finite-sample aware; it does not guarantee that
+    # 80% of future prices will fall inside the band when market conditions change.
     values = np.sort(np.asarray(errors, dtype=float))
     if not len(values):
         raise ValueError("No completed calibration observations are available.")
@@ -72,6 +90,8 @@ def residual_quantile(errors: np.ndarray, coverage: float) -> float:
 
 
 def metrics(rows: pd.DataFrame, prediction: str) -> dict[str, float]:
+    # MAE is the average absolute error in LKR; RMSE penalises large misses more;
+    # MAPE expresses error as a percentage of the observed price. Lower is better.
     error = (rows.actual - rows[prediction]).to_numpy(dtype=float)
     return {
         "mae_lkr": float(np.mean(np.abs(error))),
@@ -84,9 +104,13 @@ def fit_horizon(history: pd.DataFrame, horizon: int) -> dict:
     observations = horizon_observations(history, horizon)
     n = len(history)
     selection_end, calibration_end = int(n * 0.60), int(n * 0.80)
+    # Purge crossing outcomes: a selection forecast must finish before the
+    # calibration period starts, and calibration must finish before testing.
+    # This prevents a long forecast's future target leaking across time splits.
     selection = observations[observations.target < selection_end]
     calibration = observations[(observations.origin >= selection_end) & (observations.target < calibration_end)]
     test = observations[observations.origin >= calibration_end]
+    # Freeze the selected candidate before measuring its later test accuracy.
     frozen_name, errors = choose_candidate(selection)
     evaluation = {"status": "insufficient_purged_observations", "observations": int(len(test))}
     if len(calibration) >= 12 and len(test) >= 12:
@@ -113,6 +137,8 @@ def fit_horizon(history: pd.DataFrame, horizon: int) -> dict:
         live_calibration = observations.tail(50)
     if live_calibration.empty:
         raise ValueError(f"Insufficient history to calibrate a {horizon}-session forecast.")
+    # Store errors relative to the origin price; forecast assembly converts these
+    # proportions back into LKR widths around the current forecast path.
     relative_errors = np.abs(live_calibration.actual - live_calibration[live_name]) / live_calibration.anchor
     return {
         "horizon": horizon, "live_candidate": live_name,
@@ -126,6 +152,8 @@ def fit_horizon(history: pd.DataFrame, horizon: int) -> dict:
 
 
 def calibrated_horizon_forecast(raw_df: pd.DataFrame, horizon_days: int) -> pd.DataFrame:
+    # Choose/calibrate each horizon separately: a good four-day method need not
+    # be a good six-month method. This alternative selects simple candidate paths.
     history = raw_df[["date", "close"]].copy().sort_values("date").reset_index(drop=True)
     history["date"] = pd.to_datetime(history.date)
     if history.date.duplicated().any():
@@ -141,6 +169,8 @@ def calibrated_horizon_forecast(raw_df: pd.DataFrame, horizon_days: int) -> pd.D
         q80.append(float(fit["q80"]))
         q95.append(float(fit["q95"]))
     steps = np.arange(1, horizon_days + 1)
+    # Lines between horizon checkpoints are interpolated for chart continuity;
+    # they are not independently trained predictions for every intervening day.
     estimates = np.interp(steps, horizons, points)
     recent_returns = np.diff(np.log(closes[-61:]))
     recent_sigma = float(np.std(recent_returns, ddof=0))
@@ -150,6 +180,8 @@ def calibrated_horizon_forecast(raw_df: pd.DataFrame, horizon_days: int) -> pd.D
     # Keep bands nested and nondecreasing; they are empirical, not guarantees.
     width80 = closes[-1] * np.interp(steps, horizons, np.maximum.accumulate(q80))
     width95 = closes[-1] * np.interp(steps, horizons, np.maximum.accumulate(np.maximum(q95, q80)))
+    # BDay removes weekends only; target dates do not incorporate CSE holidays.
+    # Lower/upper ranges show uncertainty, not guaranteed best/worst outcomes.
     forecast = pd.DataFrame({
         "date": pd.bdate_range(history.date.iloc[-1] + BDay(1), periods=horizon_days),
         "forecast_step": steps,

@@ -5,9 +5,11 @@ import { useAuth } from "../hooks/useAuth";
 import api from "../lib/api";
 import { INSIGHT_PREVIEW_STORAGE_KEY } from "../lib/analysisPreview";
 import InsightPreviewPage from "./InsightPreviewPage";
+import MarketPriceList from "../components/MarketPriceList";
+import { progressUrl } from "../lib/analysisProgress";
+import AnalysisProgress from "../components/AnalysisProgress";
 
 const MAX_REPORT_SIZE = 10 * 1024 * 1024;
-
 function UserDashboardPage() {
   const { t } = useLanguage();
   const { user } = useAuth();
@@ -18,12 +20,34 @@ function UserDashboardPage() {
   const [analyzing, setAnalyzing] = useState(false);
   const [error, setError] = useState("");
   const [analysisId, setAnalysisId] = useState("");
+  const [progress, setProgress] = useState(null);
+  const [progressRequestId, setProgressRequestId] = useState("");
+  const [progressDisconnected, setProgressDisconnected] = useState(false);
+  const [pricesRefreshKey, setPricesRefreshKey] = useState(0);
+  const [directoryWarning, setDirectoryWarning] = useState("");
+
+  useEffect(() => {
+    if (!progressRequestId) return;
+    const stream = new EventSource(progressUrl(api.defaults.baseURL, progressRequestId, window.location.origin), { withCredentials: true });
+    stream.onmessage = (event) => {
+      try {
+        const update = JSON.parse(event.data);
+        if (!Number.isFinite(update.percent) || update.percent < 0 || update.percent > 100) return;
+        setProgress((current) => ["completed", "partial", "failed"].includes(current?.status)
+          ? current : ({ ...update, percent: Math.max(current?.percent || 0, update.percent) }));
+        setProgressDisconnected(false);
+      } catch { /* A malformed progress message must not interrupt analysis. */ }
+    };
+    stream.onerror = () => setProgressDisconnected(true);
+    return () => stream.close();
+  }, [progressRequestId]);
 
   useEffect(() => {
     const loadStocks = async () => {
       try {
         const { data } = await api.get("/stocks/universe");
         setStockUniverse(data.stocks || []);
+        setDirectoryWarning(data.warning || "");
       } catch (err) {
         setError(err.response?.data?.message || "Unable to load the available stocks.");
       } finally {
@@ -54,12 +78,19 @@ function UserDashboardPage() {
       setError("Select a stock before starting the analysis.");
       return;
     }
+    if (!selectedStock.analysisEligible) {
+      setError("This security could not be confirmed in the current CSE directory. Please refresh and try again.");
+      return;
+    }
     if (!selectedFile) {
       setError("Upload the latest quarterly or annual financial report for the selected company.");
       return;
     }
 
     setAnalyzing(true);
+    setAnalysisId("");
+    setProgress({ stage: "upload", percent: 0, status: "processing" });
+    setProgressDisconnected(false);
     setError("");
     try {
       const formData = new FormData();
@@ -68,10 +99,16 @@ function UserDashboardPage() {
       formData.append("file", selectedFile);
 
       const { data: uploadData } = await api.post("/reports/upload", formData);
+      const clientRequestId = crypto.randomUUID();
+      setProgressRequestId(clientRequestId);
       const { data: analysisData } = await api.post("/analysis", {
         stockSymbol: selectedStock.symbol,
         reportId: uploadData.report._id,
+        clientRequestId,
       });
+      setProgress({ percent: 100, stage: analysisData.analysis.status === "completed" ? "completed" : "partial",
+        status: analysisData.analysis.status === "completed" ? "completed" : "partial" });
+      setPricesRefreshKey((key) => key + 1);
       const previewPayload = {
         analysisId: analysisData.analysis._id,
         selectedSymbol: selectedStock.symbol,
@@ -82,8 +119,10 @@ function UserDashboardPage() {
         document.getElementById("stock-insight-result")?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 100);
     } catch (err) {
+      setProgress((current) => ({ ...current, stage: "failed", status: "failed" }));
       setError(err.response?.data?.message || "The analysis could not be completed. Please try again.");
     } finally {
+      setProgressRequestId("");
       setAnalyzing(false);
     }
   };
@@ -131,12 +170,21 @@ function UserDashboardPage() {
                     value={selectedSymbol}
                   >
                     <option value="">{t("Select a listed company")}</option>
-                    {stockUniverse.map((stock) => (
-                      <option key={stock.symbol} value={stock.symbol}>
-                        {stock.companyName} ({stock.symbol})
-                      </option>
+                    {[
+                      { label: t("Analysis supported"), stocks: stockUniverse.filter((stock) => stock.analysisAvailable) },
+                      { label: t("Prepare history when analyzing"), stocks: stockUniverse.filter((stock) => !stock.analysisAvailable) },
+                    ].filter((group) => group.stocks.length).map((group) => (
+                      <optgroup label={group.label} key={group.label}>
+                        {group.stocks.map((stock) => (
+                          <option key={stock.symbol} value={stock.symbol} disabled={!stock.analysisEligible}>
+                            {stock.companyName} ({stock.symbol})
+                          </option>
+                        ))}
+                      </optgroup>
                     ))}
                   </select>
+                  <span className="block text-xs leading-5 text-slate-500">{t("All CSE listings can be selected. Analysis checks real history and trains stock-specific models when enough evidence is available. Missing evidence is clearly shown.")}</span>
+                  {directoryWarning && <span className="block text-xs leading-5 text-amber-800">{t(directoryWarning)}</span>}
                 </label>
 
                 <label className="block space-y-2">
@@ -169,7 +217,7 @@ function UserDashboardPage() {
 
               <button
                 className="primary-cta mt-6 w-full"
-                disabled={loading || analyzing || !stockUniverse.length}
+                disabled={loading || analyzing || !selectedStock?.analysisEligible}
                 type="submit"
               >
                 {analyzing ? t("Refreshing prices and building your stock picture...") : t("Analyze with latest prices")}
@@ -177,13 +225,17 @@ function UserDashboardPage() {
               {analyzing && (
                 <p className="mt-4 text-center text-xs leading-5 text-slate-500">{t("Reading the report and checking current context can take a few minutes. Keep this page open.")}{" "}</p>
               )}
-              <p className="mt-3 text-center text-xs leading-5 text-slate-500">{t("Analyze refreshes currently supported prices from the official CSE trade summary before the research stages run.")}{" "}</p>
+              <AnalysisProgress progress={progress} analyzing={analyzing} progressDisconnected={progressDisconnected} />
             </form>
           </div>
         </section>
 
+        <MarketPriceList key={pricesRefreshKey} supportedSymbols={stockUniverse.filter((stock) => stock.analysisAvailable).map((stock) => stock.symbol)} refreshKey={pricesRefreshKey} />
+
         {analysisId && (
-          <InsightPreviewPage key={analysisId} analysisId={analysisId} embedded />
+          <div id="stock-insight-result" className="scroll-mt-28">
+            <InsightPreviewPage key={analysisId} analysisId={analysisId} embedded />
+          </div>
         )}
       </main>
     </div>

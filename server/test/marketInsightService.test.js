@@ -3,9 +3,14 @@ const assert = require("node:assert/strict");
 
 const fs = require("fs/promises");
 
-const { historyCsv, loadMarketInsight } = require("../src/services/marketInsightService");
+const { executeFreshAnalysis, historyCsv, loadMarketInsight, stockCodeFromSymbol } = require("../src/services/marketInsightService");
 
-const rows = Array.from({ length: 300 }, (_, index) => ({
+test("voting and non-voting identifiers cannot collapse to one forecast", () => {
+  assert.equal(stockCodeFromSymbol("COMB.N0000"), "COMB");
+  assert.equal(stockCodeFromSymbol("COMB.X0000"), "COMB.X0000");
+});
+
+const rows = Array.from({ length: 1000 }, (_, index) => ({
   symbol: "JKH.N0000",
   tradeDate: new Date(Date.UTC(2025, 0, index + 1)),
   open: 20 + index / 100,
@@ -37,7 +42,11 @@ test("runs a fresh market analysis from current database history", async () => {
       horizons: [{ key: "6m", status: "available_with_caution", estimated_close_lkr: 22.5 }],
     }));
   };
-  const insight = await loadMarketInsight("JKH.N0000", { StockModel, executeAnalysis });
+  let refreshed = false;
+  const insight = await loadMarketInsight("JKH.N0000", { StockModel, executeAnalysis,
+    refreshHistory: async (symbol) => { assert.equal(symbol, "JKH.N0000"); refreshed = true; return { inserted: 2 }; } });
+  assert.ok(refreshed);
+  assert.equal(insight.history_refresh.inserted, 2);
   assert.equal(insight.symbol, "JKH.N0000");
   assert.equal(insight.run_mode, "fresh_on_demand");
   assert.equal(insight.horizons.at(-1).estimated_close_lkr, 22.5);
@@ -49,7 +58,7 @@ test("does not fabricate a forecast when history is insufficient", async () => {
       return { sort: () => ({ lean: async () => [] }) };
     },
   };
-  await assert.rejects(() => loadMarketInsight("UNKNOWN.N0000", { StockModel: EmptyStockModel }), {
+  await assert.rejects(() => loadMarketInsight("UNKNOWN.N0000", { StockModel: EmptyStockModel, refreshHistory: async () => ({}) }), {
     code: "MARKET_HISTORY_INSUFFICIENT",
   });
 });
@@ -57,4 +66,28 @@ test("does not fabricate a forecast when history is insufficient", async () => {
 test("serializes history as a safe CSV", () => {
   const csv = historyCsv([{ ...rows[0], source: 'upload, "verified"' }]);
   assert.match(csv, /"upload, ""verified"""/);
+});
+
+test("failed Python execution has a safe public error and a backend diagnostic", async () => {
+  const previous = process.env.PYTHON_BIN;
+  const log = console.error;
+  const diagnostics = [];
+  try {
+    process.env.PYTHON_BIN = "/nonexistent/cse-test-python";
+    console.error = (...args) => diagnostics.push(args);
+    await assert.rejects(() => executeFreshAnalysis({
+      inputPath: "/tmp/history.csv", outputPath: "/tmp/output.json", stockCode: "JKH",
+    }), (error) => {
+      assert.equal(error.code, "MARKET_ANALYSIS_FAILED");
+      assert.equal(error.cause.code, "ENOENT");
+      assert.doesNotMatch(error.message, /\/nonexistent|Traceback|Command failed/);
+      return true;
+    });
+    assert.equal(diagnostics.length, 1);
+    assert.match(diagnostics[0][0], /market:JKH/);
+  } finally {
+    if (previous === undefined) delete process.env.PYTHON_BIN;
+    else process.env.PYTHON_BIN = previous;
+    console.error = log;
+  }
 });

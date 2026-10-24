@@ -1,0 +1,4 @@
+# Install separately for optional offline Sinhala/Tamil research translations.
+ctranslate2==4.8.3
+sentencepiece==0.2.2
+huggingface-hub>=0.34,<2

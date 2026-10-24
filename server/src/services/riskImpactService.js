@@ -4,6 +4,9 @@ const os = require("os");
 const path = require("path");
 const { promisify } = require("util");
 const Stock = require("../models/Stock");
+const { loadRiskCoverage } = require("./stockCoverageService");
+const { historyCsv } = require("./marketInsightService");
+const { tradeDateFromTimestamp } = require("./cseQuoteService");
 
 const execFileAsync = promisify(execFile);
 const RISK_SCRIPT = path.resolve(__dirname, "../../../research/component4/predict_risk.py");
@@ -54,7 +57,7 @@ const buildRiskFeatures = ({ symbol, rows, marketRiskContext, externalContext })
   const prior20Close = Number(rows[20].close);
   const previousVolumeMedian = median(previous20Volumes);
   const values = {
-    stock: String(symbol).toUpperCase().split(".")[0],
+    stock: String(symbol).toUpperCase().replace(/\.N0000$/, ""),
     close: Number(latest.close),
     volume: Number(latest.volume),
     ma10,
@@ -89,22 +92,32 @@ const buildRiskFeatures = ({ symbol, rows, marketRiskContext, externalContext })
   return values;
 };
 
-const executeRiskAssessment = async (features) => {
+const executeRiskAssessment = async (features, { history } = {}) => {
   const temporaryDirectory = await fs.mkdtemp(path.join(os.tmpdir(), "cse-risk-"));
   const inputPath = path.join(temporaryDirectory, "risk-input.json");
   try {
     await fs.writeFile(inputPath, JSON.stringify(features), { encoding: "utf8", mode: 0o600 });
+    const historyPath = path.join(temporaryDirectory, "history.csv");
+    if (history) await fs.writeFile(historyPath, historyCsv(history), { mode: 0o600 });
     const { stdout } = await execFileAsync(
       process.env.PYTHON_BIN || "python",
-      [RISK_SCRIPT, "--input", inputPath],
+      [RISK_SCRIPT, "--input", inputPath, ...(history ? ["--history-csv", historyPath] : [])],
       {
         cwd: path.dirname(RISK_SCRIPT),
-        timeout: Number(process.env.RISK_ANALYSIS_TIMEOUT_MS || 120000),
+        timeout: Number(process.env.RISK_ANALYSIS_TIMEOUT_MS || 180000),
         maxBuffer: 4 * 1024 * 1024,
       }
     );
     const output = String(stdout || "").trim().split(/\r?\n/).at(-1);
-    return JSON.parse(output);
+    const result = JSON.parse(output);
+    if (result.training) {
+      const auditDirectory = path.resolve(__dirname, "../../uploads/risk-runs");
+      await fs.mkdir(auditDirectory, { recursive: true, mode: 0o700 });
+      await fs.writeFile(path.join(auditDirectory, `${require("crypto").randomUUID()}.json`),
+        JSON.stringify({ features, training: result.training, risk_level: result.risk_level }), { mode: 0o600, flag: "wx" });
+      console.info(`[risk:${features.stock}] fresh stock-specific fit; chronological macro F1=${result.training.test_metrics.macro_f1}, simple comparison=${result.training.majority_baseline_macro_f1}`);
+    }
+    return result;
   } finally {
     await fs.rm(temporaryDirectory, { recursive: true, force: true });
   }
@@ -112,13 +125,22 @@ const executeRiskAssessment = async (features) => {
 
 const assessRiskImpact = async (
   { symbol, marketRiskContext, externalContext },
-  { StockModel = Stock, executeRisk = executeRiskAssessment } = {}
+  { StockModel = Stock, executeRisk = executeRiskAssessment, loadCoverage = loadRiskCoverage } = {}
 ) => {
-  const rows = await StockModel.find({ symbol: String(symbol).toUpperCase() })
+  symbol = String(symbol).toUpperCase();
+  const filter = { symbol, tradeDate: { $lt: tradeDateFromTimestamp(Date.now()) } };
+  const rows = await StockModel.find(filter)
     .sort({ tradeDate: -1 })
     .limit(51)
     .lean();
-  const result = await executeRisk(buildRiskFeatures({ symbol, rows, marketRiskContext, externalContext }));
+  const features = buildRiskFeatures({ symbol, rows, marketRiskContext, externalContext });
+  const covered = await loadCoverage();
+  let history;
+  if (!covered.has(symbol)) {
+    features.stock = symbol;
+    history = await StockModel.find(filter).sort({ tradeDate: 1 }).lean();
+  }
+  const result = await executeRisk(features, { history });
   if (result.status !== "completed") {
     const error = new Error(result.message || "The risk assessment is unavailable for this stock.");
     error.code = result.code || "RISK_ASSESSMENT_UNAVAILABLE";

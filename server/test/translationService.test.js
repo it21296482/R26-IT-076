@@ -120,3 +120,81 @@ test("simultaneous duplicate requests share one provider call and subsequent req
   assert.deepEqual(await translateAnalysis(analysis, "si", options), first);
   assert.equal(calls, 1);
 });
+
+test("translates recovery, market-comparison, evidence and all displayed lists without altering enums", async () => {
+  const original = fixture();
+  const insight = original.outputs.unifiedInsight.insight;
+  insight.market_comparison = "The ASPI fell while JKH.N0000 was stable.";
+  insight.conditional_upside = "Recovery is possible, not guaranteed.";
+  insight.evidence_used = ["Dated report evidence was checked."];
+  insight.shock_context = { anomaly_context: "Normal trading is not proof of no war impact.",
+    recovery_outlook: "Lower costs could help recovery.", if_disruption_persists: "Demand may remain weak.",
+    company_exposure: ["The report identifies tourism exposure."], range_note: "These are not ceasefire targets.",
+    evidence_status: "Event-specific price effects are unverified.", event_conditioned_price_available: false };
+  original.outputs.market.limitations = ["Prices may move outside these ranges."];
+  original.outputs.market.horizons[0].caution = "Recent selection is not prospective validation.";
+  const result = await translateAnalysis(original, "si", { now: Date.now() + 9000000,
+    translateBatch: async (texts) => Object.fromEntries(texts.map((text, i) => [i, `සිංහල ${text}`])) });
+  const translated = result.outputs.unifiedInsight.insight;
+  assert.match(translated.market_comparison, /සිංහල/);
+  assert.match(translated.conditional_upside, /සිංහල/);
+  assert.match(translated.evidence_used[0], /සිංහල/);
+  for (const [key, value] of Object.entries(translated.shock_context)) {
+    if (typeof value === "string") assert.match(value, /සිංහල/, key);
+    if (Array.isArray(value)) assert.match(value[0], /සිංහල/, key);
+  }
+  assert.equal(result.outputs.riskImpact.status, "completed");
+  assert.match(result.outputs.market.limitations[0], /සිංහල/);
+  assert.match(result.outputs.market.horizons[0].caution, /සිංහල/);
+});
+
+test("financial-token validation permits natural word order but never changed values", () => {
+  assert.equal(validTranslation("LKR 18.00 is compared with USD 5.00", "USD 5.00 සමග LKR 18.00 සැසඳේ", "si"), true);
+  assert.equal(validTranslation("LKR 18.00 is compared with USD 5.00", "USD 18.00 සමග LKR 5.00 සැසඳේ", "si"), false);
+});
+
+test("credential rejection is explicitly reported without exposing the credential", async () => {
+  const result = await translateAnalysis(fixture(), "ta", { now: Date.now() + 12000000,
+    translateBatch: async () => ({ translations: {}, failureCode: "TRANSLATION_CREDENTIAL_REJECTED" }) });
+  assert.equal(result.localization.failureCode, "TRANSLATION_CREDENTIAL_REJECTED");
+  assert.equal(result.localization.status, "unavailable");
+});
+
+test("large outputs are batched and a third concurrent language request is queued, not silently dropped", async () => {
+  let maxItems = 0;
+  const results = await Promise.all([0, 1, 2].map((group) => translateAnalysis({ outputs: {
+    unifiedInsight: { insight: { potential: Array.from({ length: 35 }, (_, i) => `Stock ${group} evidence ${i} is uncertain.`) } },
+  } }, "si", { now: Date.now() + 15000000, translateBatch: async (texts) => {
+    maxItems = Math.max(maxItems, texts.length);
+    return Object.fromEntries(texts.map((text, i) => [i, `සිංහල ${text}`]));
+  } })));
+  assert.ok(maxItems <= 16);
+  assert.ok(results.every((result) => result.localization.status === "completed"));
+});
+
+test("a validation rejection does not prevent later batches translating", async () => {
+  let calls = 0;
+  const result = await translateAnalysis({ outputs: { unifiedInsight: { insight: {
+    potential: Array.from({ length: 75 }, (_, index) => `Separate translation evidence ${index} has uncertainty.`),
+  } } } }, "ta", { now: Date.now() + 18000000, translateBatch: async (texts) => {
+    calls++;
+    if (calls === 1) return { translations: {}, failureCode: "TRANSLATION_VALIDATION_FAILED" };
+    return { translations: Object.fromEntries(texts.map((text, index) => [index, `தமிழ் ${text}`])) };
+  } });
+  assert.ok(calls > 1);
+  assert.equal(result.localization.status, "partial");
+  assert.equal(result.localization.failureCode, "TRANSLATION_VALIDATION_FAILED");
+});
+
+test("a later timeout keeps already completed translations", async () => {
+  let calls = 0;
+  const result = await translateAnalysis({ outputs: { unifiedInsight: { insight: {
+    potential: Array.from({ length: 75 }, (_, index) => `Timeout regression evidence ${index} remains uncertain.`),
+  } } } }, "si", { now: Date.now() + 20000000, translateBatch: async (texts) => {
+    if (++calls > 1) throw new Error("Private provider failure");
+    return { translations: Object.fromEntries(texts.map((text, index) => [index, `සිංහල ${text}`])) };
+  } });
+  assert.equal(result.localization.status, "partial");
+  assert.ok(result.localization.translatedCount > 0);
+  assert.equal(result.localization.failureCode, "TRANSLATION_PROVIDER_UNAVAILABLE");
+});

@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
 import { useLanguage } from "../context/languageStore";
 import api from "../lib/api";
 import { INSIGHT_PREVIEW_STORAGE_KEY } from "../lib/analysisPreview";
+import { anomalyHeading } from "../lib/marketStatus";
+import { ANALYSIS_OUTPUTS, outputVisibility } from "../lib/analysisOutputs";
 
 const readStoredPreview = () => {
   try {
@@ -14,10 +16,10 @@ const readStoredPreview = () => {
 };
 
 const moneyText = (value) => (
-  Number.isFinite(Number(value)) ? `LKR ${Number(value).toFixed(2)}` : "Not available"
+  value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? `LKR ${Number(value).toFixed(2)}` : "Not available"
 );
 const percentText = (value) => (
-  Number.isFinite(Number(value)) ? `${Number(value) >= 0 ? "+" : ""}${Number(value).toFixed(2)}%` : "Not available"
+  value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value)) ? `${Number(value) >= 0 ? "+" : ""}${Number(value).toFixed(2)}%` : "Not available"
 );
 
 function ForecastPath({ market }) {
@@ -82,6 +84,12 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [activeOutput, setActiveOutput] = useState("");
+  const outputNavigation = useRef(null);
+  const visible = outputVisibility(activeOutput);
+  const selectOutput = (key) => {
+    setActiveOutput(key);
+    outputNavigation.current?.scrollIntoView({ block: "start", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  };
   const formatMoney = (value) => t(moneyText(value));
   const formatPercent = (value) => t(percentText(value));
   const formatDate = (value) => value && Number.isFinite(new Date(value).getTime())
@@ -148,7 +156,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
         <div><strong>COLOMBO STOCK EXCHANGE</strong><span>AI-Powered Stock Market Insight Generator · R26-IT-076</span></div>
       </div>
       <SiteHeader compact />
-      <main className={`shell space-y-8 output-filter-${activeOutput || "all"}`}>
+      <main className="shell space-y-8 analysis-results">
         {loading && <section className="surface-panel text-center text-slate-600">{t("Loading your stock picture...")}</section>}
         {error && <section className="rounded-[26px] border border-rose-200 bg-rose-50 p-6 text-rose-700">{t(error)}</section>}
 
@@ -156,7 +164,9 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
           <>
             {language !== "en" && (
               <p className={`rounded-2xl border p-4 text-sm leading-7 ${analysis.localization?.status === "completed" ? "border-sky-200 bg-sky-50 text-sky-900" : "border-amber-200 bg-amber-50 text-amber-900"}`} role="status">
-                {t(analysis.localization?.status === "completed"
+                {t(analysis.localization?.failureCode === "TRANSLATION_CREDENTIAL_REJECTED"
+                  ? "Translation is unavailable because the explanation service credential needs updating. Original English evidence is shown."
+                  : analysis.localization?.status === "completed"
                   ? "Automatic translation. Check the original source before making financial decisions."
                   : "Some explanations could not be translated. Their original English text is shown; the analysis is unchanged.")}
               </p>
@@ -188,6 +198,12 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
                   <p className="mx-auto mt-5 max-w-4xl text-center text-base leading-8 text-slate-300">
                     {unified?.plain_language_overview || t("The historical price, uploaded report, and current market context are being brought together.")}
                   </p>
+                  {analysis.outputs?.unifiedInsight?.generation?.mode === "local_model" && (
+                    <p className="mt-3 text-center text-xs text-slate-400">{t("Explanation generated locally; calculated figures are unchanged.")}</p>
+                  )}
+                  {analysis.outputs?.unifiedInsight?.fallback_used && (
+                    <p className="mt-3 text-sm text-amber-200" role="status">{t("Generated wording was unavailable or could not be verified. Showing a rule-based summary.")}</p>
+                  )}
                   {priceScenarios && (
                     <div className="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                       {[
@@ -223,6 +239,17 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
                       </div>
                     </div>
                   )}
+                  {unified?.shock_context && (
+                    <div className="mt-5 space-y-4 rounded-[24px] border border-white/12 bg-slate-950/35 p-5 text-sm leading-7 text-slate-300">
+                      <h3 className="font-semibold text-white">{t("What recovery could mean")}</h3>
+                      <p>{unified.shock_context.anomaly_context}</p>
+                      <p>{unified.shock_context.recovery_outlook}</p>
+                      {unified.shock_context.company_exposure?.map((item) => <p key={item}>{item}</p>)}
+                      <p>{unified.shock_context.if_disruption_persists}</p>
+                      <p className="text-amber-100">{unified.shock_context.range_note}</p>
+                      <p className="text-xs text-slate-400">{unified.shock_context.evidence_status}</p>
+                    </div>
+                  )}
                 </div>
 
                 {analysis.warnings?.length > 0 && (
@@ -236,21 +263,16 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
               </div>
             </section>
 
-            <section className="output-toggle-panel no-print" aria-label={t("Choose an output")}>
+            <section className="output-toggle-panel no-print" aria-label={t("Choose an output")} ref={outputNavigation}>
               <p className="eyebrow !text-slate-500">{t("Explore the analysis")}</p>
               <div className="mt-4 grid gap-3 md:grid-cols-5">
-                {[
-                  ["market", "01", "Price behaviour"],
-                  ["report", "02", "Company report"],
-                  ["news", "03", "News & sentiment"],
-                  ["risk", "04", "External-market risk"],
-                  ["overall", "05", "Overall insight"],
-                ].map(([key, number, label]) => (
+                {ANALYSIS_OUTPUTS.map(({ key, number, label, controls }) => (
                   <button
+                    aria-controls={controls}
                     aria-pressed={activeOutput === key}
                     className={`output-toggle ${activeOutput === key ? "output-toggle-active" : ""}`}
                     key={key}
-                    onClick={() => setActiveOutput((current) => (current === key ? "" : key))}
+                    onClick={() => selectOutput(key)}
                     type="button"
                   >
                     <span>{number}</span>
@@ -261,7 +283,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
             </section>
 
             {decisionBalance && (
-              <section className="grid gap-6 lg:grid-cols-2 fade-rise-delay-1" id="section-overall-balance">
+              <section className="grid gap-6 lg:grid-cols-2 fade-rise-delay-1" id="section-overall-balance" data-output-section="overall" hidden={!visible.overall}>
                 <div className="rounded-[26px] border border-sky-200 bg-sky-50 p-5 lg:col-span-2">
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">{t("Overall evidence balance")}</p>
                   <p className="mt-2 text-2xl font-semibold text-slate-950">{decisionBalance.label}</p>
@@ -290,7 +312,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
               </section>
             )}
 
-            <section className="surface-panel fade-rise-delay-1 report-section" id="section-market">
+            <section className="surface-panel fade-rise-delay-1 report-section" id="section-market" data-output-section="market" hidden={!visible.market}>
               <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
                 <div>
                   <p className="eyebrow !text-slate-500">{t("Potential price paths")}</p>
@@ -302,6 +324,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
 
               {market ? (
                 <>
+                  {market.data_quality?.recent_long_gaps?.length > 0 && <p className="mt-5 rounded-2xl bg-amber-50 p-4 text-sm leading-7 text-amber-900">{t("Recent history has gaps. Estimates use available observations; verify missing sessions or trading halts before relying on these ranges.")}</p>}
                   <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                     {market.horizons.map((horizon) => (
                       <article className="rounded-[24px] border border-slate-200 bg-slate-50 p-5" key={horizon.key}>
@@ -309,6 +332,8 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
                         {horizon.estimated_close_lkr ? (
                           <>
                             <p className="mt-4 text-3xl font-semibold text-slate-950">{formatMoney(horizon.estimated_close_lkr)}</p>
+                            {horizon.estimate_basis === "persistence" ? <p className="mt-2 text-xs text-slate-500">{t("An unchanged-price estimate performed best in recent checks; this is not a guarantee that the price will stay the same.")}</p>
+                              : <p className="mt-2 text-xs text-slate-500">{t("Newly fitted price estimate; not a guaranteed target.")}</p>}
                             <p className={`mt-2 text-sm font-semibold ${horizon.change_from_latest_pct >= 0 ? "text-emerald-700" : "text-rose-700"}`}>
                               {formatPercent(horizon.change_from_latest_pct)}{" "}{t("from latest")}{" "}</p>
                             <div className="mt-4 grid gap-2 border-t border-slate-200 pt-4 text-xs">
@@ -317,7 +342,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
                               <p className="flex justify-between gap-3 text-rose-700"><span>{t("Adverse range")}</span><strong>{formatMoney(horizon.lower_80_lkr)} · {formatPercent(((horizon.lower_80_lkr / market.current_price_lkr) - 1) * 100)}</strong></p>
                             </div>
                             <p className="mt-3 text-xs leading-5 text-slate-500">{t("Expected around")}{" "}{formatDate(horizon.target_date)} · {t(horizon.direction)}</p>
-                            {horizon.status === "available_with_caution" && <p className="mt-3 rounded-xl bg-amber-50 p-3 text-xs leading-5 text-amber-800">{t("Treat cautiously: this estimate did not beat a simple unchanged-price comparison in its latest test.")}</p>}
+                            {horizon.status === "available_with_caution" && <p className="mt-3 rounded-xl bg-amber-50 p-3 text-xs leading-5 text-amber-800">{horizon.caution || t("Treat cautiously: this estimate did not beat a simple unchanged-price comparison in its latest test.")}</p>}
                           </>
                         ) : (
                           <p className="mt-4 text-sm leading-7 text-slate-600">{horizon.message}</p>
@@ -327,14 +352,15 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
                   </div>
                   <div className="market-hero mt-6 p-4 md:p-6"><ForecastPath market={market} /></div>
                   {market.run_mode === "fresh_on_demand" && <p className="mt-4 text-center text-xs leading-5 text-slate-500">{t("Freshly calculated from {count} stored trading sessions through {date} · run {run}", { count: market.historical_row_count?.toLocaleString(locale), date: formatDate(market.as_of_date), run: market.run_id?.slice(0, 8) })}</p>}
+                  {market.training?.fresh_fit && <p className="mt-2 text-center text-xs leading-5 text-slate-500">{t("Trained again for this analysis. Unchanged observations can produce the same estimates.")}</p>}
                 </>
               ) : <p className="mt-6 text-slate-600">{t("A supported market estimate was not available for this stock.")}</p>}
             </section>
 
-            <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-              <article className="surface-panel report-section" id="section-market-check">
+            <section className={`grid gap-8 ${activeOutput ? "" : "lg:grid-cols-[0.9fr_1.1fr]"}`} data-output-group="market-report" hidden={!visible.market && !visible.report}>
+              <article className="surface-panel report-section" id="section-market-check" data-output-section="market" hidden={!visible.market}>
                 <p className="eyebrow !text-slate-500">{t("Unusual movement check")}</p>
-                <h2 className="mt-3 text-3xl font-semibold text-slate-950">{market?.anomaly?.detected ? t("An unusual deviation was detected") : t("No unusual deviation at the latest check")}</h2>
+                <h2 className="mt-3 text-3xl font-semibold text-slate-950">{t(anomalyHeading(market))}</h2>
                 {market?.anomaly ? (
                   <>
                     <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -344,6 +370,17 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
                       <div className="rounded-[20px] bg-slate-100 p-4"><p className="text-xs text-slate-500">{t("Anomaly score / threshold")}</p><p className="mt-2 text-xl font-semibold text-slate-950">{market.anomaly.liquidity_aware_score} / {market.anomaly.threshold}</p></div>
                     </div>
                     <p className="mt-6 text-sm leading-7 text-slate-600">{String(market.anomaly.explanation || "").replace(/the model's/gi, "the expected").replace(/model/gi, "analysis")}</p>
+                    {Number.isFinite(market.anomaly.volume) && (
+                      <details className="mt-5 rounded-2xl bg-slate-50 p-4 text-sm leading-7 text-slate-700">
+                        <summary className="cursor-pointer font-semibold">{t("How this deviation was calculated")}</summary>
+                        <p className="mt-3">{t("Deviation")} ≈ {market.anomaly.actual_price_lkr.toFixed(4)} − {market.anomaly.expected_price_lkr.toFixed(4)} = {market.anomaly.signed_deviation_lkr.toFixed(4)} LKR ({formatPercent(market.anomaly.signed_deviation_pct)})</p>
+                        <p>{t("Absolute deviation")} = {formatMoney(market.anomaly.absolute_deviation_lkr)}</p>
+                        <p>{t("Scaled volume")} = {market.anomaly.volume.toLocaleString(locale)} / 1,000,000 = {market.anomaly.volume_scaled.toFixed(6)}</p>
+                        <p>{t("Anomaly score")} ≈ {market.anomaly.absolute_deviation_lkr} / ({market.anomaly.volume_scaled.toFixed(6)} + {market.anomaly.epsilon}) ≈ {market.anomaly.liquidity_aware_score}</p>
+                        <p>{t("Calibrated threshold")} = {market.anomaly.threshold}</p>
+                        {!market.anomaly.score_reliable && <p className="text-amber-800">{t("Trading volume is too limited to treat this score as reliable confirmation.")}</p>}
+                      </details>
+                    )}
                     {deviationHistory?.observations > 0 && (
                       <div className="mt-6 border-t border-slate-200 pt-6">
                         <div className="flex flex-wrap items-end justify-between gap-3">
@@ -376,7 +413,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
                 ) : <p className="mt-5 text-slate-600">{t("This check was unavailable.")}</p>}
               </article>
 
-              <article className="surface-panel report-section" id="section-report">
+              <article className="surface-panel report-section" id="section-report" data-output-section="report" hidden={!visible.report}>
                 <p className="eyebrow !text-slate-500">{t("What the company report says")}</p>
                 <h2 className="mt-3 text-3xl font-semibold text-slate-950">{reportSummary ? t("Verified report takeaways") : t("Report evidence needs review")}</h2>
                 {reportSummary ? (
@@ -394,13 +431,13 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
               </article>
             </section>
 
-            <section className="surface-panel report-section" id="section-news">
-              <p className="eyebrow !text-slate-500">{t("News sentiment and external-market risk")}</p>
-              <h2 className="mt-3 text-3xl font-semibold text-slate-950">{t("Relevant events and wider risk conditions")}</h2>
+            <section className="surface-panel report-section" id="section-news" data-output-group="news-risk" hidden={!visible.news && !visible.risk}>
+              <p className="eyebrow !text-slate-500">{t(activeOutput === "news" ? "News & sentiment" : activeOutput === "risk" ? "External-market risk" : "News sentiment and external-market risk")}</p>
+              <h2 className="mt-3 text-3xl font-semibold text-slate-950">{t(activeOutput === "news" ? "News & sentiment" : activeOutput === "risk" ? "External-market risk" : "Relevant events and wider risk conditions")}</h2>
               <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">{t("News sentiment identifies relevant events. External-market indicators provide separate risk context. Neither proves that an event or indicator caused the stock price to move.")}</p>
 
-              <div className="mt-7 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-                <div className="grid gap-3" id="section-news-articles">
+              <div className={`mt-7 grid gap-6 ${activeOutput ? "" : "lg:grid-cols-[1.15fr_0.85fr]"}`}>
+                <div className="grid gap-3" id="section-news-articles" data-output-section="news" hidden={!visible.news}>
                   {news.length ? news.map((article) => (
                     <a className="interactive-card rounded-[22px] border border-slate-200 bg-slate-50 p-5" href={article.url} key={`${article.title}-${article.publishedAt}`} rel="noreferrer" target="_blank">
                       <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500"><span>{article.source}</span><span>{formatDate(article.publishedAt)}</span></div>
@@ -410,7 +447,8 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
                   )) : <p className="rounded-[22px] bg-slate-50 p-5 text-slate-600">{t("No dated relevant articles were collected during this run.")}</p>}
                 </div>
 
-                <div className="grid content-start gap-3" id="section-risk">
+                <div className="grid content-start gap-3" id="section-risk" data-output-section="risk" hidden={!visible.risk}>
+                  {!factors.length && <p className="rounded-[22px] bg-slate-50 p-5 text-slate-600">{t("This check was unavailable.")}</p>}
                   {factors.map((factor) => (
                     <article className="rounded-[22px] bg-slate-950 p-5 text-white" key={factor.key}>
                       <div className="flex items-start justify-between gap-4">
@@ -433,7 +471,7 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
             </section>
 
             {unified && (
-              <section className="market-hero p-6 md:p-9" id="section-overall">
+              <section className="market-hero p-6 md:p-9" id="section-overall" data-output-section="overall" hidden={!visible.overall}>
                 <div className="mb-7 flex flex-wrap items-start justify-between gap-4">
                   <div>
                     <p className="eyebrow !text-blue-100">{t("Overall insight")}</p>
@@ -449,6 +487,14 @@ function InsightPreviewPage({ analysisId: providedAnalysisId = "" }) {
                   <div><p className="eyebrow !text-blue-100">{t("What could change the picture")}</p>{unified.what_could_change_the_picture?.map((item) => <p className="mt-4 text-sm leading-7 text-slate-200" key={item}>{item}</p>)}</div>
                 </div>
                 <div className="mt-8 border-t border-white/10 pt-6"><p className="text-sm leading-7 text-slate-300">{unified.uncertainty}</p><p className="mt-4 font-semibold text-amber-200">{unified.non_advisory_note}</p></div>
+              </section>
+            )}
+
+            {!unified && (
+              <section className="surface-panel report-section" id="section-overall" data-output-section="overall" hidden={!visible.overall}>
+                <p className="eyebrow !text-slate-500">{t("Overall insight")}</p>
+                <h2 className="mt-3 text-3xl font-semibold text-slate-950">{t("Complete stock insight")}</h2>
+                <p className="mt-5 text-sm leading-7 text-slate-600">{t("This check was unavailable.")}</p>
               </section>
             )}
 

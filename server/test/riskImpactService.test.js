@@ -66,21 +66,25 @@ test("runs the risk adapter with the prepared evidence", async () => {
   assert.equal(result.risk_level, "MEDIUM");
 });
 
-test("does not invent a risk category for a stock outside the trained BIL and JKH scope", async () => {
+test("new securities supply their own full-symbol history for fresh fitting, never another company's classification", async () => {
+  const ownRows = rows.map((row) => ({ ...row, symbol: "HHL.X0000" }));
   const StockModel = {
     find() {
-      return { sort: () => ({ limit: () => ({ lean: async () => rows }) }) };
+      return { sort: () => ({ limit: () => ({ lean: async () => ownRows }), lean: async () => ownRows }) };
     },
   };
   await assert.rejects(() => assessRiskImpact(
-    { symbol: "HHL.N0000", marketRiskContext },
+    { symbol: "HHL.X0000", marketRiskContext },
     {
       StockModel,
-      executeRisk: async () => ({
+      executeRisk: async (features, { history }) => {
+        assert.equal(features.stock, "HHL.X0000");
+        assert.equal(history, ownRows);
+        return ({
         status: "unavailable",
         code: "RISK_STOCK_NOT_SUPPORTED",
         message: "The evaluated CSE risk model was not trained for HHL.",
-      }),
+      }); },
     }
   ), /not trained for HHL/);
 });

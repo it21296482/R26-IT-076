@@ -7,8 +7,14 @@ import pytest
 from component1_research import (
     add_anomaly_columns, apply_causal_anomaly_thresholds, engineer_features,
     relative_sequence_features, DEFAULT_FEATURE_COLUMNS,
+    validate_market_history, normalize_stock_code, symbol_from_code,
 )
 from horizon_forecast import candidate_paths, calibrated_horizon_forecast, choose_candidate
+
+
+def test_share_classes_keep_their_exact_output_identity():
+    assert symbol_from_code(normalize_stock_code("COMB.N0000")) == "COMB.N0000"
+    assert symbol_from_code(normalize_stock_code("COMB.X0000")) == "COMB.X0000"
 
 
 def history(n=1000, kind="flat"):
@@ -100,6 +106,48 @@ def test_bad_history_is_rejected():
     raw.loc[10, "date"] = raw.date.iloc[9]
     with pytest.raises(ValueError, match="Duplicate"):
         calibrated_horizon_forecast(raw, 120)
+
+
+def test_invalid_stored_prices_are_excluded_before_training_without_filling():
+    raw = history(kind="random")
+    raw.loc[700, ["close", "low"]] = 0
+    raw.loc[701, "volume"] = -1
+    raw.loc[702, "high"] = np.inf
+    raw.loc[703, "close"] = np.nan
+    raw.loc[704, "volume"] = 0
+    clean = validate_market_history(raw)
+    assert len(clean) == 996
+    assert clean.attrs["input_quality"]["excluded_rows"] == 4
+    assert clean.loc[clean.date.eq(raw.date.iloc[704]), "volume"].iloc[0] == 0
+    assert not clean.date.isin(raw.date.iloc[700:704]).any()
+    pd.testing.assert_series_equal(clean.close, raw.drop(index=[700, 701, 702, 703]).close.reset_index(drop=True))
+    forecast = calibrated_horizon_forecast(clean, 120)
+    assert len(forecast) == 120
+    assert np.isfinite(forecast.ensemble_predicted_close).all()
+
+
+def test_cleaning_does_not_remove_genuine_price_shocks():
+    raw = history(kind="random")
+    raw.loc[700, ["open", "high", "low", "close"]] *= 0.5
+    clean = validate_market_history(raw)
+    assert len(clean) == len(raw)
+    assert clean.close.iloc[700] == raw.close.iloc[700]
+
+
+def test_recent_observation_gaps_are_disclosed_without_inventing_sessions():
+    raw = history(kind="random")
+    raw.loc[950:, "date"] += pd.Timedelta(days=30)
+    clean = validate_market_history(raw)
+    assert len(clean) == len(raw)
+    assert len(clean.attrs["input_quality"]["recent_long_gaps"]) == 1
+    assert clean.attrs["input_quality"]["recent_long_gaps"][0]["calendar_days"] > 7
+
+
+def test_insufficient_clean_history_fails_explicitly():
+    raw = history(300)
+    raw.loc[10, "close"] = 0
+    with pytest.raises(ValueError, match="300 valid"):
+        validate_market_history(raw)
 
 
 def test_recent_shock_widens_quiet_period_intervals():

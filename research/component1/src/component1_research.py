@@ -1,5 +1,10 @@
 from __future__ import annotations
 
+# Component 1 reading guide (search these function names in VS Code):
+# ResearchConfig -> validate_market_history -> engineer_features -> create_sequences
+# -> train_selected_price_model -> add_anomaly_columns -> calibrate_final_anomaly_logic
+# -> apply_causal_anomaly_thresholds -> compute_shap_explanations -> run_research_pipeline.
+# Horizon selection lives in learned_horizon.py; result exports are at the end here.
 import json
 import math
 import random
@@ -37,11 +42,18 @@ from torch.utils.data import DataLoader, TensorDataset
 from pandas.tseries.offsets import BDay
 
 try:
+    from .runtime_progress import report_progress
+except ImportError:
+    from runtime_progress import report_progress
+
+try:
     import shap
 except Exception:  # pragma: no cover - handled via fallback path
     shap = None
 
 
+# Retrospective research annotations, not independently verified anomaly labels.
+# A price movement inside an event window does not prove that event caused it.
 EVENT_WINDOWS = [
     {
         "name": "Post Easter attacks repricing",
@@ -203,37 +215,46 @@ NOVELTY_STATEMENT = (
 
 @dataclass
 class ResearchConfig:
+    # These are training settings, not learned weights. Weights are created in
+    # memory when the pipeline runs; saving CSV/JSON results does not save a model.
     stock_code: str = "JKH"
     data_dir: str = "data"
     artifact_dir: str = "artifacts/component1"
-    lookback: int = 20
-    test_fraction: float = 0.2
-    val_fraction: float = 0.1
-    epochs: int = 18
-    batch_size: int = 32
-    hidden_size: int = 32
-    num_layers: int = 2
-    dropout: float = 0.15
-    learning_rate: float = 1e-3
-    weight_decay: float = 1e-5
-    random_seed: int = 42
+    lookback: int = 20  # Past trading observations used to predict one closing price.
+    test_fraction: float = 0.2  # Latest 20% checks performance after model selection.
+    val_fraction: float = 0.1  # Middle 10% tunes settings; earlier rows train the LSTM.
+    epochs: int = 18  # Maximum training passes; early stopping can finish sooner.
+    batch_size: int = 32  # Number of sequences processed per training batch.
+    hidden_size: int = 32  # Size of the LSTM's internal learned representation.
+    num_layers: int = 2  # Number of stacked LSTM layers.
+    dropout: float = 0.15  # Regularisation between layers to reduce overfitting.
+    learning_rate: float = 1e-3  # Default update size; log-return mode compares candidates below.
+    weight_decay: float = 1e-5  # Penalises large weights during optimisation.
+    random_seed: int = 42  # Helps reproduce fits on unchanged data and settings.
+    # Starting quantile, not a permanent threshold: validation selects cutoffs,
+    # and past-only rolling scores can adapt the applied threshold later.
     anomaly_quantile: float = 0.95
-    liquidity_epsilon: float = 1e-6
-    volume_scale: float = 1_000_000.0
+    liquidity_epsilon: float = 1e-6  # Keeps the score denominator above zero.
+    volume_scale: float = 1_000_000.0  # Express share volume in millions for scoring.
+    # Explanation stability compares the top three factors across 60-session
+    # windows, moving the window forward by 20 observations each time.
     top_k_explanation: int = 3
     esi_top_k: int = 3
     esi_window: int = 60
     esi_step: int = 20
     isolation_forest_contamination: float = 0.05
+    # Candidate score percentiles searched during validation, not on test labels.
     anomaly_search_min_quantile: float = 0.60
     anomaly_search_max_quantile: float = 0.995
     anomaly_search_grid_size: int = 60
     prediction_band_quantile: float = 0.95
     structural_gap_quantile: float = 0.90
-    forecast_horizon_days: int = 60
+    forecast_horizon_days: int = 60  # Trading-session steps; the app overrides this to 120.
+    # Retained forecast/baseline diagnostics. The learned-horizon forecast uses
+    # its own residual-calibrated ranges, not this z-value alone.
     forecast_interval_z: float = 1.96
     recent_anomaly_window: int = 60
-    surrogate_estimators: int = 300
+    surrogate_estimators: int = 300  # Trees explaining anomaly scores, not LSTM internals.
     walk_forward_folds: int = 3
     low_volume_relative_threshold: float = 0.50
     thin_trading_relative_threshold: float = 0.25
@@ -242,17 +263,18 @@ class ResearchConfig:
     selective_direction_threshold_candidates: tuple[float, ...] = (0.55, 0.60, 0.65, 0.70)
     selective_direction_min_coverage: float = 0.25
     forecast_weight_epsilon: float = 1e-6
+    # Optional scenario/research diagnostics are not verified event-causal prices.
     target_price: float | None = None
     shock_pressure_quantile: float = 0.90
     shock_max_penalty_pct: float = 0.15
     shock_penalty_strength: float = 0.10
     shock_reliability_min_score: float = 5.0
-    max_rows: int | None = None
+    max_rows: int | None = None  # None keeps all valid rows before chronological splitting.
     verbose: bool = False
-    price_model_mode: str = "log_return"
-    forecast_strategy: str = "horizon_calibrated"
-    adaptive_anomaly_window: int = 252
-    learning_rate_candidates: tuple[float, ...] = (1e-3, 3e-4)
+    price_model_mode: str = "log_return"  # Learn relative price changes, rather than raw levels.
+    forecast_strategy: str = "learned_horizon"  # Select a separate candidate for each horizon.
+    adaptive_anomaly_window: int = 252  # Rolling past-score window for threshold adaptation.
+    learning_rate_candidates: tuple[float, ...] = (1e-3, 3e-4)  # Choose by validation price MAE.
 
 
 def set_random_seed(seed: int) -> None:
@@ -285,11 +307,59 @@ def load_stock_history(stock_code: str, data_dir: str | Path = "data") -> pd.Dat
     if not path.exists():
         raise FileNotFoundError(f"Historical CSV not found for {stock_code}: {path}")
 
-    df = pd.read_csv(path, parse_dates=["date"])
-    df["date"] = pd.to_datetime(df["date"], errors="coerce")
-    df = df.dropna(subset=["date"]).sort_values("date").reset_index(drop=True)
+    df = pd.read_csv(path)
+    df = validate_market_history(df)
     df["stock_code"] = normalize_stock_code(stock_code)
     return df
+
+
+def validate_market_history(history: pd.DataFrame) -> pd.DataFrame:
+    """Exclude invalid observations before any return, training or calibration.
+
+    Do not invent replacement prices or remove genuine price shocks. A zero
+    trading volume is valid, but a zero share price is not a market observation.
+    """
+    # Data cleaning must happen before features and calibration: a bad zero price
+    # would create a fake extreme return and could distort the warning threshold.
+    df = history.copy()
+    required = {"date", "open", "high", "low", "close", "volume"}
+    missing = required.difference(df.columns)
+    if missing:
+        raise ValueError(f"Historical input is missing: {', '.join(sorted(missing))}")
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+    numeric = ["open", "high", "low", "close", "volume"]
+    for column in numeric:
+        df[column] = pd.to_numeric(df[column], errors="coerce")
+    valid = (
+        df["date"].notna()
+        & np.isfinite(df[numeric]).all(axis=1)
+        & df[["open", "high", "low", "close"]].gt(0).all(axis=1)
+        & df["volume"].ge(0)
+        & df["high"].ge(df[["open", "close", "low"]].max(axis=1))
+        & df["low"].le(df[["open", "close", "high"]].min(axis=1))
+    )
+    excluded = df.loc[~valid]
+    clean = df.loc[valid].sort_values("date").reset_index(drop=True)
+    if clean["date"].duplicated().any():
+        raise ValueError("Duplicate trading dates must be resolved before market analysis.")
+    if len(clean) < 300:
+        raise ValueError("At least 300 valid historical trading sessions are required.")
+    clean.attrs["input_quality"] = {
+        "received_rows": int(len(df)),
+        "used_rows": int(len(clean)),
+        "excluded_rows": int(len(excluded)),
+        "excluded_dates": [date.date().isoformat() if pd.notna(date) else "invalid date"
+                           for date in excluded["date"]],
+        "policy": "Exclude invalid OHLCV observations; no replacement prices or filled sessions.",
+    }
+    recent = clean.tail(252)
+    gap_days = recent["date"].diff().dt.days
+    clean.attrs["input_quality"]["recent_long_gaps"] = [
+        {"previous_date": clean.loc[index-1, "date"].date().isoformat(),
+         "next_date": clean.loc[index, "date"].date().isoformat(), "calendar_days": int(days)}
+        for index, days in gap_days.items() if pd.notna(days) and days > 7
+    ]
+    return clean
 
 
 def detect_data_source(raw_df: pd.DataFrame) -> str:
@@ -391,6 +461,8 @@ def build_data_audit(raw_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def engineer_features(raw_df: pd.DataFrame) -> pd.DataFrame:
+    # Convert daily observations into descriptions of price direction, variability
+    # and trading activity. These are model inputs, not investment recommendations.
     df = raw_df.copy()
     df = df.sort_values("date").reset_index(drop=True)
 
@@ -537,6 +609,8 @@ def split_indices(n_obs: int, test_fraction: float, val_fraction: float) -> tupl
     return train_end, val_end
 
 
+# Each input contains the previous lookback rows, excluding the target row.
+# This stops the expected-price model from seeing the close it must predict.
 def create_sequences(
     model_df: pd.DataFrame,
     feature_columns: list[str],
@@ -624,6 +698,8 @@ def train_lstm_model(
         X_val = relative_sequence_features(X_val)
 
     feature_scaler = StandardScaler()
+    # Learn scaling from training data only; validation/test rows must not change
+    # the means and standard deviations used to assess later predictive accuracy.
     feature_scaler.fit(X_train.reshape(-1, X_train.shape[-1]))
 
     target_scaler = StandardScaler()
@@ -700,6 +776,11 @@ def train_lstm_model(
         val_loss = float(np.mean(val_losses)) if val_losses else math.nan
         history["train_loss"].append(train_loss)
         history["val_loss"].append(val_loss)
+        report_progress("sequence_training", getattr(config, "_progress_start", 15)
+                        + getattr(config, "_progress_span", 30) * (_epoch + 1) / config.epochs,
+                        epoch=_epoch + 1, epochs=config.epochs,
+                        training_pass=getattr(config, "_progress_pass", 1),
+                        train_loss=train_loss, validation_loss=val_loss)
 
         if val_loss < best_val:
             best_val = val_loss
@@ -771,12 +852,19 @@ def compute_prediction_metrics(actual: np.ndarray, predicted: np.ndarray) -> dic
 def train_selected_price_model(X_train: np.ndarray, y_train: np.ndarray,
                                X_val: np.ndarray, y_val: np.ndarray,
                                config: ResearchConfig):
+    # Fit a new LSTM for each learning rate and keep the lowest validation MAE.
+    # Test observations do not choose the learning rate. The returned model and
+    # fitted scalers remain Python objects; this function writes no checkpoint.
     rates = config.learning_rate_candidates if config.price_model_mode == "log_return" else (config.learning_rate,)
     if not rates or any(rate <= 0 for rate in rates):
         raise ValueError("Learning-rate candidates must be nonempty and positive.")
     best, best_mae, search = None, math.inf, []
-    for rate in rates:
-        fitted = train_lstm_model(X_train, y_train, X_val, y_val, replace(config, learning_rate=rate))
+    for index, rate in enumerate(rates):
+        candidate_config = replace(config, learning_rate=rate)
+        candidate_config._progress_start = 15 + 30 * index / len(rates)
+        candidate_config._progress_span = 30 / len(rates)
+        candidate_config._progress_pass = index + 1
+        fitted = train_lstm_model(X_train, y_train, X_val, y_val, candidate_config)
         model, features, target, history = fitted
         prediction = predict_lstm(model, X_val, features, target)
         mae = float(mean_absolute_error(y_val, prediction))
@@ -1679,11 +1767,17 @@ def add_anomaly_columns(
     )
     out["predicted_price"] = pd.to_numeric(out["predicted_price"], errors="coerce").astype(float)
     out["actual_price"] = pd.to_numeric(out["actual_price"], errors="coerce").astype(float)
+    # Signed deviation says above/below expectation; absolute deviation measures
+    # the size regardless of direction. Neither establishes fundamental fair value.
     out["signed_residual"] = out["actual_price"] - out["predicted_price"]
     out["deviation"] = (out["actual_price"] - out["predicted_price"]).abs()
     out["downside_gap"] = (out["predicted_price"] - out["actual_price"]).clip(lower=0.0)
     out["upside_gap"] = (out["actual_price"] - out["predicted_price"]).clip(lower=0.0)
     out["volume_scaled"] = pd.to_numeric(out["volume"], errors="coerce").fillna(0.0) / volume_scale
+    # Score = |actual - expected| / (volume in millions + epsilon).
+    # Example only: a LKR 2 gap with 2 million shares gives about 1, not 100% risk.
+    # Lower volume increases this score for the same gap; zero-volume scores are
+    # not reliable confirmations and are excluded from the liquidity flag below.
     out["liquidity_aware_anomaly_score"] = out["deviation"] / (out["volume_scaled"] + epsilon)
     out["market_confirmed_score"] = out["deviation"] * np.log1p(out["volume_scaled"].clip(lower=0.0))
     if "rolling_volume_median_20" in out.columns:
@@ -1727,6 +1821,8 @@ def add_anomaly_columns(
     out["downside_band_signal"] = out["downside_gap_ratio"] >= prediction_band_threshold
     out["upside_band_signal"] = out["upside_gap_ratio"] >= prediction_band_threshold
     out["prediction_band_anomaly_flag"] = out["downside_band_signal"] | out["upside_band_signal"]
+    # Two independent checks are combined with OR: a reliable liquidity-score
+    # warning OR a sufficiently large prediction-band breach can flag a movement.
     out["final_anomaly_detected"] = (
         out["liquidity_anomaly_flag"] | out["prediction_band_anomaly_flag"]
     )
@@ -1756,6 +1852,9 @@ def calibrate_prediction_bands(
     val_results: pd.DataFrame,
     config: ResearchConfig,
 ) -> dict[str, float]:
+    # Calibrate daily anomaly bands from validation prediction errors, not from
+    # the future test outcomes. Wider ordinary misses require wider warning bands.
+    # These daily anomaly bands differ from the multi-month forecast intervals.
     residuals = (val_results["actual_price"] - val_results["predicted_price"]).astype(float)
     abs_residual = residuals.abs()
     downside_gap = (val_results["predicted_price"] - val_results["actual_price"]).clip(lower=0.0)
@@ -1798,6 +1897,9 @@ def calibrate_final_anomaly_logic(
     val_results: pd.DataFrame,
     config: ResearchConfig,
 ) -> dict[str, Any]:
+    # Search volume-adjusted score and prediction-band cutoffs together. Candidate
+    # pairs are ranked against validation proxy labels, prioritising F0.5/precision.
+    # A saved numeric cutoff describes that run; it is not universal for every stock.
     train_liquidity_scores = train_results.loc[~train_results["zero_volume_flag"], "liquidity_aware_anomaly_score"].astype(float).to_numpy()
     val_valid_scores = val_results.loc[~val_results["zero_volume_flag"], "liquidity_aware_anomaly_score"].astype(float).to_numpy()
     train_liquidity_scores = train_liquidity_scores[np.isfinite(train_liquidity_scores)]
@@ -1966,6 +2068,9 @@ def apply_causal_anomaly_thresholds(reference: pd.DataFrame, evaluation: pd.Data
     band_percentile = float(np.clip(band_percentile, 0.95, 0.995))
     combined = pd.concat([reference, evaluation], ignore_index=True)
     scores = combined.liquidity_aware_anomaly_score.where(~combined.zero_volume_flag)
+    # shift(1) is essential: today's warning cutoff may use yesterday's score,
+    # but never today's own score or a later one. At least 60 past observations
+    # are needed; otherwise the previously calibrated cutoff remains the fallback.
     local_liquidity = scores.shift(1).rolling(window, min_periods=60).quantile(percentile)
     local_band = combined.prediction_band_severity.shift(1).rolling(window, min_periods=60).quantile(band_percentile)
     start = len(reference)
@@ -2898,6 +3003,12 @@ def generate_three_month_forecast(
 ) -> pd.DataFrame:
     if config.forecast_strategy == "legacy":
         return generate_legacy_forecast(raw_df, reference_results, config, residual_std, forecast_weights, conformal_q80, conformal_q95)
+    if config.forecast_strategy == "learned_horizon":
+        try:
+            from .learned_horizon import learned_horizon_forecast
+        except ImportError:
+            from learned_horizon import learned_horizon_forecast
+        return learned_horizon_forecast(raw_df, config.forecast_horizon_days)
     # Kept under the old function name so notebooks and the application stay compatible.
     try:
         from .horizon_forecast import calibrated_horizon_forecast
@@ -2931,9 +3042,14 @@ def compute_shap_explanations(
     test_features: pd.DataFrame,
     config: ResearchConfig,
 ) -> dict[str, Any]:
+    # Explain the fitted Random Forest surrogate's anomaly-score estimate, not
+    # the LSTM's internal gates or a causal effect of news/war on share prices.
+    # The caller trains this surrogate against the calculated anomaly scores.
     latest_row = test_features.iloc[-1]
     feature_columns = list(train_features.columns)
 
+    # When SHAP is unavailable, label the alternative as feature importance;
+    # the fallback must not be presented as a computed SHAP explanation.
     if shap is None:
         local_df = _fallback_local_contributions(model, latest_row, train_features, feature_columns)
         top_factors = local_df.head(config.top_k_explanation)
@@ -2982,6 +3098,9 @@ def compute_shap_explanations(
             cur = set(rolling_top_features[idx])
             window_overlap_scores.append(len(prev & cur) / max(1, config.esi_top_k))
 
+    # ESI measures overlap of the top-ranked factors between adjacent windows.
+    # Example: two shared factors out of top three gives 2/3, about 0.67.
+    # Stability measures consistency, not forecast accuracy or proof of causation.
     latest_esi = float(window_overlap_scores[-1]) if window_overlap_scores else float("nan")
     mean_esi = float(np.mean(window_overlap_scores)) if window_overlap_scores else float("nan")
     min_esi = float(np.min(window_overlap_scores)) if window_overlap_scores else float("nan")
@@ -3096,13 +3215,19 @@ def build_simple_explanation(top_factors: list[dict[str, Any]], anomaly_detected
 
 
 def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
+    # Main research workflow: audit history, construct past-only sequences,
+    # train and validate, calibrate anomaly checks, evaluate later observations,
+    # explain the scores and build horizon forecasts. The app calls this afresh;
+    # existing notebooks/artifact files are not silently reused as new predictions.
     set_random_seed(config.random_seed)
 
     raw_df = load_stock_history(config.stock_code, config.data_dir)
+    report_progress("validating_history", 5, rows=len(raw_df))
     audit_df = build_data_audit(raw_df)
     data_quality_summary = build_data_quality_summary(raw_df)
     data_source_note = build_data_source_note(raw_df)
     engineered_df = engineer_features(raw_df)
+    report_progress("building_features", 10)
     model_df = prepare_model_frame(
         engineered_df,
         feature_columns=DEFAULT_FEATURE_COLUMNS,
@@ -3164,6 +3289,7 @@ def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
         epsilon=config.liquidity_epsilon,
     )
 
+    report_progress("anomaly_calibration", 50)
     prediction_band_selection = calibrate_prediction_bands(
         train_results=train_results,
         val_results=val_results,
@@ -3531,6 +3657,7 @@ def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
         random_state=config.random_seed,
         min_samples_leaf=5,
     )
+    report_progress("explanations", 65)
     explain_model.fit(explain_train[EXPLAIN_FEATURE_COLUMNS], explain_target)
     explanation = compute_shap_explanations(
         model=explain_model,
@@ -3703,7 +3830,7 @@ def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
     )
     output_payload = {
         "model_upgrade": {
-            "version": "2.0",
+            "version": "4.0" if config.forecast_strategy == "learned_horizon" else "2.0",
             "price_model_mode": config.price_model_mode,
             "validation_return_blend": float(getattr(model, "return_blend", 1.0)),
             "selected_learning_rate": float(model.selected_learning_rate),
@@ -4041,6 +4168,8 @@ def run_research_pipeline(config: ResearchConfig) -> dict[str, Any]:
 
 
 def save_research_artifacts(results: dict[str, Any], artifact_dir: str | Path | None = None) -> dict[str, Path]:
+    # Save research evidence (predictions, metrics, thresholds and explanations).
+    # This does NOT serialise LSTM weights, fitted scalers or forecast estimators.
     config = results["config"]
     stock_code = normalize_stock_code(config["stock_code"])
     base_dir = Path(artifact_dir or config["artifact_dir"])

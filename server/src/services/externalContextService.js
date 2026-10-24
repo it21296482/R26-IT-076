@@ -18,6 +18,7 @@ const EVENT_GROUPS = {
   commodities: ["oil", "fuel", "gold", "commodity"],
   policy_and_trade: ["imf", "budget", "tax", "exports", "imports", "trade"],
   geopolitical: ["war", "sanctions", "geopolitical", "conflict"],
+  disaster_recovery: ["ditwah", "cyclone", "flood", "landslide", "disaster", "reconstruction"],
 };
 const FACTORS = [
   { key: "gold", label: "Gold", symbol: "GC=F", unit: "USD per troy ounce" },
@@ -209,6 +210,23 @@ const deduplicateNews = (articles) => {
     unique.set(key, article);
   }
   return [...unique.values()].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+};
+
+const balancedNewsSelection = (results, limit = 30) => {
+  const feeds = results.filter((result) => result.status === "fulfilled")
+    .map((result) => deduplicateNews(result.value));
+  const chosen = [], seen = new Set();
+  for (let index = 0; feeds.some((feed) => index < feed.length) && chosen.length < limit; index++) {
+    for (const feed of feeds) {
+      const article = feed[index];
+      if (!article) continue;
+      const key = normalize(article.title);
+      if (!key || seen.has(key)) continue;
+      seen.add(key); chosen.push(article);
+      if (chosen.length === limit) break;
+    }
+  }
+  return chosen;
 };
 
 const newsCoverageStatus = (results, articleCount) => {
@@ -454,18 +472,11 @@ const collectNewsSentiment = async ({ symbol, companyName }) => {
     { scope: "company", query: `\"${companyName}\" OR \"${shortSymbol}\" Sri Lanka stock when:90d` },
     { scope: "market", query: `(\"Colombo Stock Exchange\" OR \"Sri Lanka economy\") (inflation OR interest OR rupee OR IMF OR oil OR gold OR war) when:45d` },
     { scope: "global", query: `(Iran OR \"Middle East\" OR geopolitical OR war) (oil OR markets OR \"Sri Lanka\") when:45d` },
+    { scope: "market", query: `(Ditwah OR cyclone OR flooding OR reconstruction) \"Sri Lanka\" (business OR tourism OR transport OR agriculture OR recovery) when:180d` },
   ];
-  const newsResults = await Promise.allSettled([
-    fetchNewsFeed({ ...queries[0], companyName }),
-    fetchNewsFeed({ ...queries[1], companyName }),
-    fetchNewsFeed({ ...queries[2], companyName }),
-  ]);
+  const newsResults = await Promise.allSettled(queries.map((query) => fetchNewsFeed({ ...query, companyName })));
   const warnings = [];
-  const articles = [];
-  for (const result of newsResults) {
-    if (result.status === "fulfilled") articles.push(...result.value);
-  }
-  const uniqueArticles = deduplicateNews(articles).slice(0, 30);
+  const uniqueArticles = balancedNewsSelection(newsResults);
   const newsCoverage = newsCoverageStatus(newsResults, uniqueArticles.length);
   if (newsCoverage.warning) warnings.push(newsCoverage.warning);
   const sentimentCounts = { positive: 0, neutral: 0, negative: 0 };
@@ -545,4 +556,5 @@ module.exports = {
   classifyMarketComparison,
   fetchText,
   newsCoverageStatus,
+  balancedNewsSelection,
 };

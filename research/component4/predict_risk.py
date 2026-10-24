@@ -78,10 +78,13 @@ def _driver(feature: str, impact: float) -> dict[str, Any]:
     }
 
 
-def predict(payload: dict[str, Any]) -> dict[str, Any]:
-    model = joblib.load(MODEL_PATH)
-    encoder = joblib.load(ENCODER_PATH)
-    metadata = json.loads(METADATA_PATH.read_text(encoding="utf-8"))
+def predict(payload: dict[str, Any], bundle=None) -> dict[str, Any]:
+    if bundle is None:
+        model = joblib.load(MODEL_PATH)
+        encoder = joblib.load(ENCODER_PATH)
+        metadata = json.loads(METADATA_PATH.read_text(encoding="utf-8"))
+    else:
+        model, encoder, metadata = bundle
     stock = str(payload.get("stock") or "").upper()
     supported = {str(item) for item in encoder.classes_}
     if stock not in supported:
@@ -192,9 +195,19 @@ def predict(payload: dict[str, Any]) -> dict[str, Any]:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Assess stock risk from prepared market inputs.")
     parser.add_argument("--input", required=True, type=Path)
+    parser.add_argument("--history-csv", type=Path)
     args = parser.parse_args()
     try:
-        result = predict(json.loads(args.input.read_text(encoding="utf-8")))
+        payload = json.loads(args.input.read_text(encoding="utf-8"))
+        bundle = None
+        if args.history_csv:
+            from train_stock_on_demand import fit_stock
+            bundle = fit_stock(pd.read_csv(args.history_csv), str(payload["stock"]))
+        result = predict(payload, bundle)
+        if bundle:
+            result["training"] = bundle[2]
+            if bundle[2]["test_metrics"]["macro_f1"] <= bundle[2]["majority_baseline_macro_f1"]:
+                result["warnings"] = ["This stock's risk reading did not improve on its simple comparison in the historical check; treat it cautiously."]
     except Exception as error:  # noqa: BLE001
         result = {"status": "failed", "code": "RISK_EXECUTION_FAILED", "message": str(error)}
     print(json.dumps(result, ensure_ascii=False))
