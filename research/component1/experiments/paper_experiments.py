@@ -44,7 +44,7 @@ import component1_research as cr  # noqa: E402
 
 sys.path.insert(0, str(HERE))
 
-OUT = ROOT / "artifacts" / "paper_v2"
+OUT = ROOT / "artifacts" / "paper_v3_verified"
 EPISODES = [
     # Anchors documented in contemporaneous reports; windows follow the
     # pipeline's EVENT_WINDOWS. Detection is scored only inside them.
@@ -97,8 +97,12 @@ def robust_scale(past: pd.Series, window: int, min_periods: int) -> tuple[pd.Ser
     """Past-only location and scale. MAD is floored by the mean absolute deviation
     so tick-constrained stocks (many exactly-zero returns) keep a usable scale."""
     med = past.rolling(window, min_periods=min_periods).median()
-    mad = 1.4826 * (past - med).abs().rolling(window, min_periods=min_periods).median()
-    mean_ad = 1.2533 * (past - past.rolling(window, min_periods=min_periods).mean()).abs().rolling(window, min_periods=min_periods).mean()
+    # Centre every member of a window on THAT window's location. A second
+    # rolling average of differently centred deviations is not its MAD/MeanAD.
+    mad = 1.4826 * past.rolling(window, min_periods=min_periods).apply(
+        lambda x: np.nanmedian(np.abs(x - np.nanmedian(x))), raw=True)
+    mean_ad = 1.2533 * past.rolling(window, min_periods=min_periods).apply(
+        lambda x: np.nanmean(np.abs(x - np.nanmean(x))), raw=True)
     return med, np.maximum(np.maximum(mad, mean_ad), 1e-6)
 
 
@@ -152,6 +156,9 @@ def block_bootstrap_ci(y: np.ndarray, p: np.ndarray, metric: str = "f1", reps: i
                        block: int = BOOT_BLOCK, seed: int = SEED) -> tuple[float, float]:
     rng = np.random.default_rng(seed)
     n = len(y)
+    if n == 0:
+        return float("nan"), float("nan")
+    block = min(block, n)
     starts_max = max(1, n - block + 1)
     vals = []
     for _ in range(reps):
@@ -373,7 +380,8 @@ def experiment_b(code: str, wf: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFram
         row["outside_days"] = int(outside.sum())
         rows.append(row)
     summary = pd.DataFrame(rows)
-    wf = wf.assign(cusum_plus=cp, cusum_minus=cm, cusum_alarm=a, ewma=ew,
+    wf = wf.assign(cusum_plus=cp, cusum_minus=cm,
+                   cusum_alarm=alarms["Pattern: two-sided CUSUM"], ewma=ew,
                    daily_alarm=alarms["Daily: proposed score OR band"])
     return summary, wf, pd.DataFrame([{"stock": code, **{k: v for k, v in thresholds.items()}, "cusum_k": CUSUM_K}])
 
@@ -424,7 +432,8 @@ def diebold_mariano(e1: np.ndarray, e2: np.ndarray, power: int = 1, lags: int | 
     gamma = [np.dot(dc[k:], dc[:n - k]) / n for k in range(lags + 1)]
     var = gamma[0] + 2 * sum((1 - k / (lags + 1)) * gamma[k] for k in range(1, lags + 1))
     stat = d.mean() / math.sqrt(var / n)
-    # Harvey-Leybourne-Newbold small-sample correction with h = 1 per day-ahead step proxy
+    # Exploratory HAC loss-difference statistic. No HLN correction is applied.
+    # A single-origin multi-step path is not a sequence of one-day forecasts.
     p = 2 * (1 - stats.t.cdf(abs(stat), df=n - 1))
     return float(stat), float(p)
 

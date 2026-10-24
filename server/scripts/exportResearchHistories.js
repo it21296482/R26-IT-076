@@ -41,6 +41,18 @@ const main = async () => {
   try { previous = JSON.parse(await fs.readFile(manifestPath, "utf8")).results || []; } catch { /* first run */ }
   const done = new Map(previous.filter((r) => r.status === "exported").map((r) => [r.symbol, r]));
   const results = [...done.values()];
+  let manifestWrites = Promise.resolve();
+  const saveManifest = () => {
+    const contents = JSON.stringify({ until, capturedAt: new Date().toISOString(),
+      directoryComplete: directory.complete, listings: companies.length, results }, null, 2);
+    // Workers must not write different snapshots into the same file concurrently.
+    manifestWrites = manifestWrites.then(async () => {
+      const temporary = manifestPath + ".pending";
+      await fs.writeFile(temporary, contents);
+      await fs.rename(temporary, manifestPath);
+    });
+    return manifestWrites;
+  };
   // "today" = the day after the cut-off, so the plan keeps sessions up to and including --until.
   const today = new Date(Date.parse(`${until}T00:00:00Z`) + 86400000).toISOString().slice(0, 10);
   let cursor = 0;
@@ -66,12 +78,12 @@ const main = async () => {
       }
       results.push(row);
       console.log(`${results.length}/${companies.length} ${company.symbol}: ${row.status === "exported" ? `${row.rows} rows ${row.first}..${row.last}` : row.reason}`);
-      await fs.writeFile(manifestPath, JSON.stringify({ until, capturedAt: new Date().toISOString(),
-        directoryComplete: directory.complete, listings: companies.length, results }, null, 2));
+      await saveManifest();
       await sleep(400); // be polite to public sources
     }
   };
   await Promise.all(Array.from({ length: concurrency }, worker));
+  await saveManifest();
   const exported = results.filter((r) => r.status === "exported").length;
   console.log(`\nExported ${exported}/${companies.length}. Manifest: ${manifestPath}`);
   console.log("Next: cd ../research/component1 && python experiments/paper_experiments.py --stocks ALL --data-dir data/actuals_all --resume");

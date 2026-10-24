@@ -47,6 +47,17 @@ def paired(x: np.ndarray, y: np.ndarray) -> dict:
     return out
 
 
+def holm_adjust(values: list[float]) -> list[float]:
+    """Holm adjustment in sorted order, preserving monotonicity."""
+    result = np.full(len(values), np.nan)
+    valid = [i for i, value in enumerate(values) if np.isfinite(value)]
+    running = 0.0
+    for rank, index in enumerate(sorted(valid, key=lambda i: values[i])):
+        running = max(running, min(1.0, (len(valid) - rank) * values[index]))
+        result[index] = running
+    return result.tolist()
+
+
 def main() -> None:
     folder = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "responses"
     sessions = load(folder)
@@ -75,12 +86,11 @@ def main() -> None:
     tests = {}
     for m in ["score", "interp_score", "confidence", "understood", "useful", "easy", "seconds", "not_sure"]:
         tests[m] = paired(wide[(m, "system")].to_numpy(float), wide[(m, "chart")].to_numpy(float))
-    ps = [tests[m].get("p", np.nan) for m in ["confidence", "understood", "useful", "easy", "seconds", "not_sure"]]
-    holm_order = np.argsort(ps)
-    for rank, i in enumerate(holm_order):  # Holm over secondary outcomes only
-        m = ["confidence", "understood", "useful", "easy", "seconds", "not_sure"][i]
+    secondary = ["interp_score", "confidence", "understood", "useful", "easy"]
+    adjusted = holm_adjust([tests[m].get("p", np.nan) for m in secondary])
+    for m, corrected in zip(secondary, adjusted):
         if "p" in tests[m]:
-            tests[m]["p_holm"] = float(min(1.0, (len(ps) - rank) * tests[m]["p"]))
+            tests[m]["p_holm"] = corrected
     res["tests"] = tests
     # carry-over check: system-first vs chart-first difference in chart-only scores
     first = df[df["order"] == 1].set_index("participant")["condition"]
