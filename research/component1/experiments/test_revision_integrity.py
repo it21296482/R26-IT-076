@@ -1,10 +1,12 @@
 """Small analytical regression tests; no network or participant sessions."""
 import importlib.util
+import json
 import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import pytest
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
@@ -57,3 +59,40 @@ def test_holm_is_monotonic_and_handles_missing_values():
     result = study.holm_adjust([.02, .01, .015, np.nan])
     assert np.allclose(result[:3], [.03, .03, .03])
     assert np.isnan(result[3])
+
+
+def test_package_completion_requires_every_export(tmp_path, monkeypatch):
+    import package_v3_results as package
+    manifest = tmp_path / "export_manifest.json"
+    manifest.write_text(json.dumps({"directoryComplete": True, "listings": 3,
+                                  "results": [
+                                      {"symbol": "JKH.N0000", "status": "exported"},
+                                      {"symbol": "A.N0000", "status": "exported"},
+                                      {"symbol": "B.N0000", "status": "exported"}]}))
+    monkeypatch.setattr(package, "MANIFEST", manifest)
+    monkeypatch.setattr(package, "RESULTS", tmp_path)
+    log = tmp_path / "run_log_heldout.csv"
+    pd.DataFrame([{"stock": "A_N0000", "status": "done"}]).to_csv(log, index=False)
+    assert not package.execution_status()[0]
+    pd.DataFrame([{"stock": "A_N0000", "status": "done"},
+                  {"stock": "B_N0000", "status": "failed"}]).to_csv(log, index=False)
+    assert package.execution_status()[0]
+    manifest.write_text(manifest.read_text().replace('"directoryComplete": true',
+                                                     '"directoryComplete": false'))
+    assert not package.execution_status()[0]
+
+
+def test_package_rejects_duplicate_or_unexpected_records(tmp_path, monkeypatch):
+    import package_v3_results as package
+    manifest = tmp_path / "export_manifest.json"
+    manifest.write_text(json.dumps({"directoryComplete": True, "listings": 1,
+                                  "results": [{"symbol": "A.N0000", "status": "exported"}]}))
+    monkeypatch.setattr(package, "MANIFEST", manifest)
+    monkeypatch.setattr(package, "RESULTS", tmp_path)
+    log = tmp_path / "run_log_heldout.csv"
+    pd.DataFrame([{"stock": "A_N0000", "status": "done"}] * 2).to_csv(log, index=False)
+    with pytest.raises(ValueError, match="Duplicate"):
+        package.execution_status()
+    pd.DataFrame([{"stock": "B_N0000", "status": "done"}]).to_csv(log, index=False)
+    with pytest.raises(ValueError, match="outside"):
+        package.execution_status()

@@ -1,0 +1,3 @@
+cohort,stocks,share_persistence_selected,median_mae_ratio,share_beats_persistence
+development,2,0.5,1.0009163504149368,0.0
+held-out,173,0.2254335260115607,0.9999999300182056,0.20809248554913296

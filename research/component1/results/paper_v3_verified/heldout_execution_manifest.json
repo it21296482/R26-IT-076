@@ -1,0 +1,14 @@
+{
+  "started_at": "2026-10-24T14:20:14.758899+00:00",
+  "script_sha256": {
+    "paper_experiments.py": "2b52b714de39abb17fcf15fa53acbca5d057f3d165d2d8c0c9e5e467a53983ce",
+    "pattern_rules.py": "4175d381d7325bde1d9555064334a5987e7c903d66814fd91cf2594b8e7a1809",
+    "run_heldout_queue.py": "23e7f0f7a3a1fd1a989414f93dc78a3c5054259beced426726080d502e9c49f4"
+  },
+  "workers": 4,
+  "development_excluded": [
+    "JKH",
+    "BIL"
+  ],
+  "design": "All available exports, unchanged eligibility and statistics."
+}

@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-10-24T16:17:15.328251+00:00",
+  "execution_complete": true,
+  "listings": 302,
+  "exported": 253,
+  "heldout_queue_tasks": 251,
+  "heldout_completed": 173,
+  "heldout_failed": 27,
+  "heldout_excluded": 51,
+  "participant_results": "not supplied; study remains future work",
+  "omissions": [
+    "raw vendor OHLCV histories",
+    "participant records",
+    "model weights"
+  ]
+}

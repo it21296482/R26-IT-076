@@ -1,0 +1,22 @@
+{
+  "rules": {
+    "version": "1.2",
+    "calibration_start": "2016-01-01",
+    "calibration_end": "2018-12-31",
+    "quantiles": {
+      "zsum_low": 0.05,
+      "zsum_high": 0.95,
+      "open": 0.75,
+      "scale": 0.95,
+      "conc": 0.95,
+      "maxz": 0.95
+    },
+    "min_prior_sessions_for_scale": 60,
+    "calibration_step": "max(1, L // 10)",
+    "null_window_lengths": [
+      20,
+      60
+    ]
+  },
+  "sha256": "2d904f4adc828338278f092390f41b04da165c7924fba58ba56273cf7a879b60"
+}

@@ -1,0 +1,9 @@
+cohort,window,stocks,any_label_rate,median_price_change_pct,rate_shock-dominated,rate_persistent drift down,rate_persistent drift up,rate_volatility burst,null_any_rate,binom_p_vs_null,inference_status
+development,Case 2026 (unlabelled),2,0.0,-12.86986807118291,0.0,0.0,0.0,0.0,0.0867391304347826,,descriptive_only_shared_events_and_different_window_lengths
+development,E1 Easter attacks,2,1.0,-11.01973685193225,0.0,0.0,0.0,1.0,0.0867391304347826,,descriptive_only_shared_events_and_different_window_lengths
+development,E2 COVID-19 closure,2,1.0,-40.8540916947331,0.0,0.5,0.0,0.5,0.0867391304347826,,descriptive_only_shared_events_and_different_window_lengths
+development,E3 Sovereign crisis,2,0.5,-31.694893959241746,0.0,0.0,0.0,0.5,0.0867391304347826,,descriptive_only_shared_events_and_different_window_lengths
+held-out,Case 2026 (unlabelled),173,0.08670520231213873,-11.392405063291145,0.023121387283236993,0.04046242774566474,0.005780346820809248,0.03468208092485549,0.18492167113426172,,descriptive_only_shared_events_and_different_window_lengths
+held-out,E1 Easter attacks,173,0.30057803468208094,-7.857143862751537,0.028901734104046242,0.19653179190751446,0.0,0.11560693641618497,0.18492167113426172,,descriptive_only_shared_events_and_different_window_lengths
+held-out,E2 COVID-19 closure,173,0.791907514450867,-15.27777910232544,0.028901734104046242,0.49710982658959535,0.0,0.6242774566473989,0.18492167113426172,,descriptive_only_shared_events_and_different_window_lengths
+held-out,E3 Sovereign crisis,173,0.8208092485549133,-31.707317073170728,0.15606936416184972,0.4046242774566474,0.05202312138728324,0.653179190751445,0.18492167113426172,,descriptive_only_shared_events_and_different_window_lengths

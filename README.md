@@ -24,6 +24,16 @@ future paths without treating them as guaranteed targets.
 
 Implementation and research: `research/component1/`.
 
+Completed market-component evaluation: [aggregate tables and run logs](research/component1/results/paper_v3_verified/).
+The frozen evaluation attempted 200 eligible held-out securities: 173 completed,
+27 failed the fixed pattern-calibration requirements, and none remain pending.
+JKH and BIL are the separate development stocks. Per-security summary metrics
+are available in the [completed results ZIP](research/component1/releases/Component1_V3_Completed_Results_R26-IT-076.zip);
+the [research code and results ZIP](research/component1/releases/Component1_Research_Code_and_Results_R26-IT-076.zip)
+also contains the current experiment source and blank study materials. Raw
+vendor histories and participant responses are not included. These are offline
+research experiments, not a claim that every research extension is deployed.
+
 ### Component 2: Financial report understanding
 
 Checks the company and reporting period of the uploaded quarterly or annual

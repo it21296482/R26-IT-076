@@ -34,6 +34,18 @@ The source project is `output/ieee-component1-paper-v3/`. Its generated
 No participant numbers are generated. The study remains planned until genuine
 approved participant evidence exists.
 
+Package the requested aggregate statistics, per-security summary metrics, exact
+failure reasons, run logs and source manifest only after all queue tasks finish:
+
+```bash
+python3 research/component1/experiments/package_v3_results.py --wait
+```
+
+This writes `output/Component1_V3_Completed_Results_R26-IT-076.zip` with a
+completion receipt and SHA-256 checksums. Terminal failures remain failures;
+the package never relaxes the frozen rules or invents replacement results.
+Raw vendor histories, participant data and model weights are not included.
+
 ## Order matters (pre-registration)
 
 1. **Commit before running anything new.** Commit `experiments/pattern_rules.py` (pattern rules v1.2, SHA-256 `2d904f4a…`), `research/user_study/` and this README, and push. The commit date shows the rules and the study plan were fixed before the held-out results and participants existed. Do not edit `FROZEN_RULES` afterwards.
@@ -53,7 +65,8 @@ approved participant evidence exists.
    python experiments/paper_experiments.py --stocks ALL --data-dir data/actuals_all --resume
    ```
 
-   About 2–3 minutes per stock on a 2-core laptop (11 walk-forward LSTM refits each). To use more cores, run shards in separate terminals:
+   Each eligible stock requires 11 walk-forward LSTM refits; duration depends
+   on history length and hardware. To use more cores, run shards in separate terminals:
 
    ```bash
    python experiments/paper_experiments.py --stocks ALL --data-dir data/actuals_all --resume --shard 1/4
@@ -75,11 +88,13 @@ approved participant evidence exists.
    python experiments/aggregate_results.py
    ```
 
-   Copy `artifacts/paper_v2/aggregate/tables_generated.tex` next to the paper's `main.tex`. Statistics are in `aggregate/*.csv` (`agg_paired_tests.csv` has the Wilcoxon tests with Holm-adjusted p).
+   Generated tables are in `artifacts/paper_v3_verified/aggregate/tables_generated.tex`.
+   Statistics are in `aggregate/*.csv` (`agg_paired_tests.csv` has exploratory
+   Wilcoxon comparisons with Holm-adjusted p-values).
 
 ## Experiments
 
-| ID | What | Output (per stock in `artifacts/paper_v2/per_stock/<CODE>/`) |
+| ID | What | Output (per stock in `artifacts/paper_v3_verified/per_stock/<CODE>/`) |
 |---|---|---|
 | A | Daily detection on past-only labels, validation-tuned ablations, block-bootstrap F1 CIs | `exp_a_detector_ablation.csv`, `exp_a_run_metadata.csv` |
 | B | Walk-forward detection of documented CSE episodes at an equal 2% alarm budget | `exp_b_episode_detection.csv`, `walk_forward_residuals.csv` |

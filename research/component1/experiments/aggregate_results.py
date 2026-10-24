@@ -1,6 +1,6 @@
 """Cross-stock aggregation for the multi-stock Component 1 evaluation.
 
-    python experiments/aggregate_results.py [--out artifacts/paper_v2]
+    python experiments/aggregate_results.py [--out artifacts/paper_v3_verified]
 
 Reads <out>/per_stock/<CODE>/*.csv and writes <out>/aggregate/:
   inclusion.csv                  listing -> exported -> eligible -> evaluated counts
@@ -251,18 +251,18 @@ Detector & Det.\,\% & E1/E2/E3\,\% & Delay & FA/100 [IQR] \\
 \caption{Deviation-Pattern Labels on Held-Out Stocks (Rules Frozen on 2016--2018)}
 \label{tab:ms_patterns}
 \centering\footnotesize\setlength{\tabcolsep}{2.2pt}
-\begin{tabular}{@{}lrrrrrr@{}}
+\begin{tabular}{@{}lrrrrr@{}}
 \toprule
-Window & Any\,\% & Shock & Drift$\downarrow$ & Drift$\uparrow$ & Burst & $p$ \\
+Window & Any\,\% & Shock & Drift$\downarrow$ & Drift$\uparrow$ & Burst \\
 \midrule""")
             for _, r_ in h.iterrows():
                 tex.append(f"{r_.window} & {100 * r_.any_label_rate:.0f} & {100 * r_['rate_shock-dominated']:.0f} & "
                            f"{100 * r_['rate_persistent drift down']:.0f} & {100 * r_['rate_persistent drift up']:.0f} & "
-                           f"{100 * r_['rate_volatility burst']:.0f} & {r_.binom_p_vs_null:.1g} \\\\")
+                           f"{100 * r_['rate_volatility burst']:.0f} \\\\")
             null_txt = f"{100 * h['null_any_rate'].iloc[0]:.1f}"
             tex.append(r"\bottomrule" + "\n" + r"\end{tabular}" + "\n" + r"\vspace{2pt}" + "\n" +
                        r"\parbox{\columnwidth}{\scriptsize Percent of stocks receiving each label. Out-of-episode windows received any label at a rate of "
-                       + null_txt + r"\%; $p$: one-sided binomial test of the episode rate against that rate.}" + "\n" + r"\end{table}" + "\n")
+                       + null_txt + r"\%. Frequencies are descriptive; shared events and differing window lengths do not support an independent-binomial test.}" + "\n" + r"\end{table}" + "\n")
 
     # ---------------- tests
     if tests:
