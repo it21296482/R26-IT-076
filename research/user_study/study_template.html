@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSE Comprehension Study</title>
+<style>
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --ink:#15202b; --ink2:#4a5866; --muted:#7a8794; --line:#dde3ea;
+  --accent:#235A8C; --accent-ink:#ffffff; --series:#235A8C; --gap:#BF6619; --flag:#15202b; --warn:#8a5a00; --warn-bg:#fff6e0;
+  --font:"Noto Sans","Noto Sans Sinhala","Iskoola Pota","Sinhala Sangam MN","Noto Sans Tamil","Nirmala UI","Latha","Tamil Sangam MN",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11161c; --surface:#1a2129; --ink:#e8edf2; --ink2:#b4c0cc; --muted:#8693a0; --line:#2c3642;
+    --accent:#6fa8dc; --accent-ink:#0b1117; --series:#6fa8dc; --gap:#e39a57; --flag:#e8edf2; --warn:#f2c26b; --warn-bg:#2b2414;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11161c; --surface:#1a2129; --ink:#e8edf2; --ink2:#b4c0cc; --muted:#8693a0; --line:#2c3642;
+  --accent:#6fa8dc; --accent-ink:#0b1117; --series:#6fa8dc; --gap:#e39a57; --flag:#e8edf2; --warn:#f2c26b; --warn-bg:#2b2414;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.55}
+main{max-width:860px;margin:0 auto;padding:28px 16px 64px}
+h1{font-size:1.6rem;margin:0 0 6px;font-weight:650;letter-spacing:-.01em}
+h2{font-size:1.2rem;margin:28px 0 10px;font-weight:650}
+.meta{color:var(--muted);font-size:.9rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:16px 0}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+button{font:inherit;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 18px;cursor:pointer}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.lang{font-size:1.25rem;padding:18px 26px;min-width:180px}
+input[type=text],textarea{font:inherit;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:12px 0}
+.stat{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.stat .k{color:var(--muted);font-size:.85rem}
+.stat .v{font-size:1.35rem;font-weight:650;font-variant-numeric:tabular-nums}
+svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:18px;flex-wrap:wrap;color:var(--ink2);font-size:.88rem;margin-top:6px}
+.legend span::before{content:"";display:inline-block;width:18px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle;background:currentColor}
+.legend .lp{color:var(--series)} .legend .lg{color:var(--gap)} .legend .lf::before{width:8px;height:8px;border-radius:50%;background:var(--flag)}
+.explain p{margin:0 0 10px}
+.q{border-top:1px solid var(--line);padding:16px 0}
+.q:first-of-type{border-top:0}
+.q .t{font-weight:600;margin-bottom:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:7px 10px;border-radius:8px;cursor:pointer}
+.opt:hover{background:var(--bg)}
+.opt input{margin-top:5px;accent-color:var(--accent)}
+.scale{display:flex;gap:8px;flex-wrap:wrap}
+.scale label{border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:.92rem}
+.scale input{accent-color:var(--accent);margin-right:6px}
+.err{color:var(--warn);background:var(--warn-bg);padding:8px 12px;border-radius:8px;display:none;margin-top:10px}
+.small{font-size:.85rem;color:var(--muted)}
+table{border-collapse:collapse;font-size:.88rem}
+td,th{border-bottom:1px solid var(--line);padding:4px 10px;text-align:left}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+const STIM = /*__STIMULI__*/null;
+const TEXT = /*__TEXT__*/null;
+const KEY = /*__KEY__*/null;
+const VERSION = "study-1.0";
+const STORE = "cse_study_sessions_v1";
+// Latin square: group = (participant number - 1) mod 4.
+const GROUPS = [
+  [{c:"P", cond:"chart"},  {c:"Q", cond:"system"}],
+  [{c:"P", cond:"system"}, {c:"Q", cond:"chart"}],
+  [{c:"Q", cond:"chart"},  {c:"P", cond:"system"}],
+  [{c:"Q", cond:"system"}, {c:"P", cond:"chart"}],
+];
+const STOCK_CODE = {P:"JKH", Q:"BIL"};
+const app = document.getElementById("app");
+let S = null; // current session
+let L = TEXT.en;
+
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = (tpl, v) => tpl.replace(/\{(\w+)\}/g, (_, k) => v[k] ?? "");
+const loadAll = () => { try { return JSON.parse(localStorage.getItem(STORE) || "[]"); } catch { return []; } };
+const saveAll = (rows) => { try { localStorage.setItem(STORE, JSON.stringify(rows)); return true; } catch { return false; } };
+const download = (name, text, type="application/json") => {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], {type}));
+  a.download = name; document.body.appendChild(a); a.click(); a.remove();
+};
+const toTop = () => window.scrollTo(0, 0);
+
+// ------------------------------------------------------------------ researcher screen
+function researcher() {
+  const rows = loadAll();
+  app.innerHTML = `
+    <h1>Researcher setup</h1>
+    <p class="meta">${esc(VERSION)} · ${rows.length} completed session(s) stored in this browser</p>
+    <div class="card">
+      <label for="pid"><b>Participant ID</b> (P01, P02, …). Group is assigned from the number.</label>
+      <div class="row" style="margin-top:8px"><input id="pid" type="text" placeholder="P01" style="max-width:200px">
+      <span id="grp" class="meta"></span></div>
+      <div class="row" style="margin-top:14px"><button class="primary" id="go" disabled>Start session</button></div>
+    </div>
+    <div class="card">
+      <b>Export</b>
+      <p class="small">Each session is also downloaded as its own JSON file when it ends. Copy all files to <code>research/user_study/responses/</code> before running the analysis.</p>
+      <div class="row"><button id="csv">Download all (CSV)</button><button id="json">Download all (JSON)</button></div>
+      ${rows.length ? `<table style="margin-top:12px"><tr><th>ID</th><th>Group</th><th>Lang</th><th>Finished</th></tr>
+        ${rows.map(r => `<tr><td>${esc(r.participant_id)}</td><td>${r.group}</td><td>${esc(r.language)}</td><td>${esc(r.finished_at.slice(0,16).replace("T"," "))}</td></tr>`).join("")}</table>` : ""}
+    </div>`;
+  const pid = document.getElementById("pid"), go = document.getElementById("go"), grp = document.getElementById("grp");
+  pid.addEventListener("input", () => {
+    const m = pid.value.trim().toUpperCase().match(/^P(\d{1,3})$/);
+    const used = rows.some(r => r.participant_id === pid.value.trim().toUpperCase());
+    go.disabled = !m || used;
+    grp.textContent = !m ? "Use the form P01" : used ? "This ID already has a stored session" : `Group ${(parseInt(m[1]) - 1) % 4 + 1}: ${GROUPS[(parseInt(m[1]) - 1) % 4].map(x => `Company ${x.c} – ${x.cond}`).join(", then ")}`;
+  });
+  go.onclick = () => {
+    const id = pid.value.trim().toUpperCase();
+    const g = (parseInt(id.slice(1)) - 1) % 4;
+    S = {participant_id:id, group:g + 1, version:VERSION, started_at:new Date().toISOString(), parts:[], language:null};
+    chooseLanguage();
+  };
+  document.getElementById("json").onclick = () => download(`study_all_${Date.now()}.json`, JSON.stringify(loadAll(), null, 2));
+  document.getElementById("csv").onclick = () => download(`study_all_${Date.now()}.csv`, toCsv(loadAll()), "text/csv");
+}
+
+function toCsv(rows) {
+  const head = ["participant_id","group","language","order","company","stock","condition","q1","q2","q3","q4","q5","score","confidence","lik1","lik2","lik3","seconds","pref","age","bought","knowledge"];
+  const out = [head.join(",")];
+  for (const r of rows) for (const p of r.parts) out.push([r.participant_id, r.group, r.language, p.order, p.company, p.stock, p.condition,
+    ...p.answers, p.score, p.confidence, ...p.likert, p.seconds, r.final.pref, r.final.age, r.final.bought, r.final.knowledge].join(","));
+  return out.join("\n") + "\n";
+}
+
+// ------------------------------------------------------------------ participant flow
+function chooseLanguage() {
+  app.innerHTML = `<h1>${esc(TEXT.en.choose_lang)} · ${esc(TEXT.si.choose_lang)} · ${esc(TEXT.ta.choose_lang)}</h1>
+    <div class="row" style="margin-top:24px">${["en","si","ta"].map(k => `<button class="lang" data-l="${k}">${esc(TEXT[k].lang_name)}</button>`).join("")}</div>`;
+  app.querySelectorAll("button.lang").forEach(b => b.onclick = () => { S.language = b.dataset.l; L = TEXT[S.language]; document.documentElement.lang = S.language; consent(); });
+  toTop();
+}
+
+function consent() {
+  app.innerHTML = `<h1>${esc(L.title)}</h1><div class="card"><h2 style="margin-top:0">${esc(L.consent_title)}</h2>
+    <p>${esc(L.consent)}</p>
+    <label class="opt"><input type="checkbox" id="ok"><span>${esc(L.consent_check)}</span></label>
+    <div class="row" style="margin-top:12px"><button class="primary" id="go" disabled>${esc(L.start)}</button></div></div>`;
+  const ok = document.getElementById("ok"), go = document.getElementById("go");
+  ok.onchange = () => go.disabled = !ok.checked;
+  go.onclick = () => { S.consent_at = new Date().toISOString(); part(0); };
+  toTop();
+}
+
+function priceChart(s) {
+  const W = 800, H = 260, m = {l:54, r:16, t:14, b:30};
+  const xs = s.close.map((_, i) => m.l + i * (W - m.l - m.r) / (s.close.length - 1));
+  const lo = Math.min(...s.close), hi = Math.max(...s.close), pad = (hi - lo) * .12 || 1;
+  const y = (v) => m.t + (hi + pad - v) * (H - m.t - m.b) / (hi - lo + 2 * pad);
+  const ticks = niceTicks(lo - pad, hi + pad, 5);
+  const xi = [0, Math.floor(s.close.length / 2), s.close.length - 1];
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(L.legend_price)}">
+    ${ticks.map(t => `<line x1="${m.l}" x2="${W - m.r}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)" stroke-width="1"/>
+      <text x="${m.l - 8}" y="${y(t) + 4}" text-anchor="end" font-size="12" fill="var(--muted)">${t.toFixed(2)}</text>`).join("")}
+    <polyline fill="none" stroke="var(--series)" stroke-width="2.2" stroke-linejoin="round" points="${s.close.map((v, i) => `${xs[i]},${y(v)}`).join(" ")}"/>
+    ${xi.map(i => `<text x="${xs[i]}" y="${H - 8}" text-anchor="${i === 0 ? "start" : i === s.close.length - 1 ? "end" : "middle"}" font-size="12" fill="var(--muted)">${s.dates[i]}</text>`).join("")}
+  </svg>`;
+}
+
+function gapChart(s) {
+  const W = 800, H = 200, m = {l:54, r:16, t:14, b:30};
+  const xs = s.cum.map((_, i) => m.l + i * (W - m.l - m.r) / (s.cum.length - 1));
+  const lo = Math.min(0, ...s.cum), hi = Math.max(0, ...s.cum), pad = Math.max((hi - lo) * .15, 2);
+  const y = (v) => m.t + (hi + pad - v) * (H - m.t - m.b) / (hi - lo + 2 * pad);
+  const ticks = niceTicks(lo - pad, hi + pad, 4);
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(L.legend_gap)}">
+    ${ticks.map(t => `<line x1="${m.l}" x2="${W - m.r}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)" stroke-width="1"/>
+      <text x="${m.l - 8}" y="${y(t) + 4}" text-anchor="end" font-size="12" fill="var(--muted)">${t}%</text>`).join("")}
+    <line x1="${m.l}" x2="${W - m.r}" y1="${y(0)}" y2="${y(0)}" stroke="var(--muted)" stroke-width="1.2"/>
+    <polyline fill="none" stroke="var(--gap)" stroke-width="2.2" stroke-linejoin="round" points="${s.cum.map((v, i) => `${xs[i]},${y(v)}`).join(" ")}"/>
+    ${s.alarm.map((a, i) => a ? `<circle cx="${xs[i]}" cy="${y(s.cum[i])}" r="5" fill="var(--flag)" stroke="var(--surface)" stroke-width="2"/>` : "").join("")}
+  </svg>`;
+}
+
+function niceTicks(lo, hi, n) {
+  const span = hi - lo, step0 = span / n, mag = Math.pow(10, Math.floor(Math.log10(step0)));
+  const step = [1, 2, 2.5, 5, 10].map(f => f * mag).find(s => s >= step0);
+  const out = []; for (let t = Math.ceil(lo / step) * step; t <= hi + 1e-9; t += step) out.push(+t.toFixed(6));
+  return out;
+}
+
+function explanation(s) {
+  const T = L.sys, v = {...s, laststatus: s.last_alarm ? T.last_yes : T.last_no};
+  return [s.kind === "drift" ? T.what_drift : T.what_close, T.unusual, s.kind === "drift" ? T.pattern_drift : T.pattern_close, T.future, T.note]
+    .map(t => `<p>${esc(fmt(t, v))}</p>`).join("");
+}
+
+function radio(name, opts) {
+  return opts.map((o, i) => `<label class="opt"><input type="radio" name="${name}" value="${i}"><span>${esc(o)}</span></label>`).join("");
+}
+function scale(name, opts) {
+  return `<div class="scale">${opts.map((o, i) => `<label><input type="radio" name="${name}" value="${i + 1}">${esc(o)}</label>`).join("")}</div>`;
+}
+
+function part(k) {
+  const spec = GROUPS[S.group - 1][k], s = STIM[spec.c], sys = spec.cond === "system";
+  const t0 = performance.now();
+  app.innerHTML = `
+    <p class="meta">${esc(fmt(L.part, {i: k + 1}))}</p>
+    <h1>${esc(L.company)} ${spec.c} · ${esc(sys ? L.view_system : L.view_chart)}</h1>
+    <p class="meta">${esc(L.period)}</p>
+    <p>${esc(L.instr)}</p>
+    <div class="card">
+      <div class="stats">
+        <div class="stat"><div class="k">${esc(L.latest)}</div><div class="v">LKR ${s.end.toFixed(2)}</div></div>
+        <div class="stat"><div class="k">${esc(L.change)}</div><div class="v">${s.chg > 0 ? "+" : ""}${s.chg.toFixed(1)}%</div></div>
+      </div>
+      ${priceChart(s)}
+      <div class="legend"><span class="lp">${esc(L.legend_price)}</span></div>
+      ${sys ? `${gapChart(s)}<div class="legend"><span class="lg">${esc(L.legend_gap)}</span><span class="lf">${esc(L.legend_alarm)}</span></div>` : ""}
+    </div>
+    ${sys ? `<div class="card explain"><h2 style="margin-top:0">${esc(L.explain_title)}</h2>${explanation(s)}</div>` : ""}
+    <div class="card"><h2 style="margin-top:0">${esc(L.questions)}</h2>
+      ${L.q.map((q, i) => `<div class="q"><div class="t">${i + 1}. ${esc(q[0])}</div>${radio("q" + i, q[1])}</div>`).join("")}
+      <div class="q"><div class="t">${esc(L.confidence)}</div>${scale("conf", L.conf)}</div>
+      <div class="q"><div class="t">${esc(L.agree)}</div>
+        ${L.lik.map((t, i) => `<p style="margin:10px 0 6px">${esc(t)}</p>${scale("lik" + i, L.likert)}`).join("")}</div>
+      <div class="err" id="err">${esc(L.answer_all)}</div>
+      <div class="row" style="margin-top:14px"><button class="primary" id="next">${esc(L.next)}</button></div>
+    </div>`;
+  toTop();
+  document.getElementById("next").onclick = () => {
+    const val = (n) => { const e = app.querySelector(`input[name="${n}"]:checked`); return e ? parseInt(e.value) : null; };
+    const answers = L.q.map((_, i) => val("q" + i)), conf = val("conf"), lik = L.lik.map((_, i) => val("lik" + i));
+    if ([...answers, conf, ...lik].some(x => x === null)) { document.getElementById("err").style.display = "block"; return; }
+    const key = KEY[spec.c], correct = answers.map((a, i) => a === key["q" + (i + 1)]);
+    S.parts.push({order:k + 1, company:spec.c, stock:STOCK_CODE[spec.c], condition:spec.cond, answers,
+      correct, score:correct.filter(Boolean).length, confidence:conf, likert:lik, seconds:Math.round((performance.now() - t0) / 1000)});
+    k === 0 ? part(1) : finalQs();
+  };
+}
+
+function finalQs() {
+  app.innerHTML = `<h1>${esc(L.final_title)}</h1><div class="card">
+    <div class="q"><div class="t">${esc(L.pref)}</div>${radio("pref", L.pref_opts)}</div>
+    <div class="q"><div class="t">${esc(L.age)}</div>${radio("age", L.age_opts)}</div>
+    <div class="q"><div class="t">${esc(L.bought)}</div>${radio("bought", L.yesno)}</div>
+    <div class="q"><div class="t">${esc(L.knowledge)}</div>${scale("know", L.know_opts)}</div>
+    <div class="q"><div class="t">${esc(L.comment)}</div><textarea id="cm" rows="3"></textarea></div>
+    <div class="err" id="err">${esc(L.answer_all)}</div>
+    <div class="row" style="margin-top:14px"><button class="primary" id="fin">${esc(L.finish)}</button></div></div>`;
+  toTop();
+  document.getElementById("fin").onclick = () => {
+    const val = (n) => { const e = app.querySelector(`input[name="${n}"]:checked`); return e ? parseInt(e.value) : null; };
+    const f = {pref:val("pref"), age:val("age"), bought:val("bought"), knowledge:val("know"), comment:document.getElementById("cm").value.trim()};
+    if ([f.pref, f.age, f.bought, f.knowledge].some(x => x === null)) { document.getElementById("err").style.display = "block"; return; }
+    S.final = f; S.finished_at = new Date().toISOString();
+    const rows = loadAll(); rows.push(S);
+    const stored = saveAll(rows);
+    download(`${S.participant_id}_${S.finished_at.slice(0, 10)}.json`, JSON.stringify(S, null, 2));
+    done(stored);
+  };
+}
+
+function done(stored) {
+  app.innerHTML = `<div class="card" style="margin-top:40px"><h1>${esc(L.done)}</h1><p>${esc(L.debrief)}</p>
+    ${stored ? "" : `<p class="err" style="display:block">Browser storage unavailable: keep the downloaded JSON file.</p>`}
+    <div class="row" style="margin-top:20px"><button id="back">Researcher: next participant</button></div></div>`;
+  document.getElementById("back").onclick = () => { S = null; L = TEXT.en; document.documentElement.lang = "en"; researcher(); };
+  toTop();
+}
+
+researcher();
+</script>
+</body>
+</html>

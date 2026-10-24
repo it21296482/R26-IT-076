@@ -1,0 +1,2 @@
+stock,sequences,train,validation,test,test_start,test_end,validation_positives,test_positives,return_blend,learning_rate,test_mae_model,test_mae_persistence,liquidity_threshold,band_threshold
+BIL,3245,2272,324,649,2023-12-11,2026-08-28,3,12,0.0,0.001,0.10308167894007796,0.10308170803522657,0.1437174842727303,1.7500014629853806

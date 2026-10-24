@@ -1,0 +1,7 @@
+stock,detector,threshold,calibration_alarm_rate,E1_detected,E1_delay_days,E1_alarm_days,E1_trading_days,E2_detected,E2_delay_days,E2_alarm_days,E2_trading_days,E3_detected,E3_delay_days,E3_alarm_days,E3_trading_days,episodes_detected,false_alarms_per_100_days,outside_days
+BIL,Daily: return Z-score,2.038478824733147,0.018957345971563982,True,0.0,2,13,True,2.0,2,9,True,4,14,90,3,3.721488595438175,1666
+BIL,Daily: volume-scaled score,4.730347629703163,0.017377567140600316,False,,0,13,False,,0,9,True,1,7,90,1,1.3805522208883554,1666
+BIL,Daily: robust residual z,2.5282023151565913,0.017377567140600316,True,0.0,2,13,True,2.0,2,9,True,4,14,90,3,3.0012004801920766,1666
+BIL,Daily: proposed score OR band,,0.018957345971563982,True,1.0,1,13,True,2.0,2,9,True,6,11,90,3,2.100840336134454,1666
+BIL,Pattern: two-sided CUSUM,2.3,0.018957345971563982,True,0.0,3,13,True,2.0,2,9,True,4,16,90,3,3.6614645858343335,1666
+BIL,Pattern: EWMA residual,0.7833775606998832,0.020537124802527645,False,,0,13,True,0.0,6,9,True,4,22,90,2,4.141656662665065,1666

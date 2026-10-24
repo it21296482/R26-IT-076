@@ -1,0 +1,2 @@
+stock,sequences,train,validation,test,test_start,test_end,validation_positives,test_positives,return_blend,learning_rate,test_mae_model,test_mae_persistence,liquidity_threshold,band_threshold
+JKH,3315,2321,331,663,2023-11-14,2026-08-28,43,12,0.25,0.001,0.19175784080816072,0.19140741714684667,0.5900999486931513,1.721713658824742
