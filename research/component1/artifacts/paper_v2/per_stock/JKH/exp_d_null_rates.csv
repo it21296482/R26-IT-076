@@ -1,0 +1,3 @@
+stock,window_length,windows,rate_any,rate_shock_dominated,rate_persistent_drift_down,rate_persistent_drift_up,rate_volatility_burst,rules_sha256
+JKH,20,80,0.075,0.0125,0.0375,0.0125,0.05,2d904f4adc828338278f092390f41b04da165c7924fba58ba56273cf7a879b60
+JKH,60,25,0.16,0.0,0.0,0.0,0.16,2d904f4adc828338278f092390f41b04da165c7924fba58ba56273cf7a879b60

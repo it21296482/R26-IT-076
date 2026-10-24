@@ -1,0 +1,2 @@
+stock,Daily: return Z-score,Daily: volume-scaled score,Daily: robust residual z,Daily: proposed score OR band,Pattern: two-sided CUSUM,Pattern: EWMA residual,cusum_k
+BIL,2.038478824733147,4.730347629703163,2.5282023151565913,,2.3,0.7833775606998832,0.5

@@ -1,0 +1,7 @@
+stock,detector,threshold,calibration_alarm_rate,E1_detected,E1_delay_days,E1_alarm_days,E1_trading_days,E2_detected,E2_delay_days,E2_alarm_days,E2_trading_days,E3_detected,E3_delay_days,E3_alarm_days,E3_trading_days,episodes_detected,false_alarms_per_100_days,outside_days
+JKH,Daily: return Z-score,2.7332408987070718,0.019635343618513323,True,0,2,13,True,0.0,4,9,True,6,6,72,3,2.054380664652568,1655
+JKH,Daily: volume-scaled score,5.081603263735808,0.016830294530154277,True,3,1,13,False,,0,9,True,6,14,72,2,1.3293051359516617,1655
+JKH,Daily: robust residual z,3.2963612778358424,0.016830294530154277,True,0,2,13,True,0.0,6,9,True,6,8,72,3,1.812688821752266,1655
+JKH,Daily: proposed score OR band,,0.016830294530154277,True,0,1,13,True,0.0,4,9,True,6,11,72,3,1.812688821752266,1655
+JKH,Pattern: two-sided CUSUM,3.9000000000000004,0.019635343618513323,True,0,3,13,True,0.0,5,9,True,6,7,72,3,2.4773413897280965,1655
+JKH,Pattern: EWMA residual,0.9722785661580694,0.021037868162692847,True,1,2,13,True,0.0,8,9,True,11,7,72,3,3.2024169184290034,1655

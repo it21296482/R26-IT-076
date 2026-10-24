@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSE Comprehension Study</title>
+<style>
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --ink:#15202b; --ink2:#4a5866; --muted:#7a8794; --line:#dde3ea;
+  --accent:#235A8C; --accent-ink:#ffffff; --series:#235A8C; --gap:#BF6619; --flag:#15202b; --warn:#8a5a00; --warn-bg:#fff6e0;
+  --font:"Noto Sans","Noto Sans Sinhala","Iskoola Pota","Sinhala Sangam MN","Noto Sans Tamil","Nirmala UI","Latha","Tamil Sangam MN",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11161c; --surface:#1a2129; --ink:#e8edf2; --ink2:#b4c0cc; --muted:#8693a0; --line:#2c3642;
+    --accent:#6fa8dc; --accent-ink:#0b1117; --series:#6fa8dc; --gap:#e39a57; --flag:#e8edf2; --warn:#f2c26b; --warn-bg:#2b2414;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11161c; --surface:#1a2129; --ink:#e8edf2; --ink2:#b4c0cc; --muted:#8693a0; --line:#2c3642;
+  --accent:#6fa8dc; --accent-ink:#0b1117; --series:#6fa8dc; --gap:#e39a57; --flag:#e8edf2; --warn:#f2c26b; --warn-bg:#2b2414;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.55}
+main{max-width:860px;margin:0 auto;padding:28px 16px 64px}
+h1{font-size:1.6rem;margin:0 0 6px;font-weight:650;letter-spacing:-.01em}
+h2{font-size:1.2rem;margin:28px 0 10px;font-weight:650}
+.meta{color:var(--muted);font-size:.9rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:16px 0}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+button{font:inherit;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 18px;cursor:pointer}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.lang{font-size:1.25rem;padding:18px 26px;min-width:180px}
+input[type=text],textarea{font:inherit;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:12px 0}
+.stat{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.stat .k{color:var(--muted);font-size:.85rem}
+.stat .v{font-size:1.35rem;font-weight:650;font-variant-numeric:tabular-nums}
+svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:18px;flex-wrap:wrap;color:var(--ink2);font-size:.88rem;margin-top:6px}
+.legend span::before{content:"";display:inline-block;width:18px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle;background:currentColor}
+.legend .lp{color:var(--series)} .legend .lg{color:var(--gap)} .legend .lf::before{width:8px;height:8px;border-radius:50%;background:var(--flag)}
+.explain p{margin:0 0 10px}
+.q{border-top:1px solid var(--line);padding:16px 0}
+.q:first-of-type{border-top:0}
+.q .t{font-weight:600;margin-bottom:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:7px 10px;border-radius:8px;cursor:pointer}
+.opt:hover{background:var(--bg)}
+.opt input{margin-top:5px;accent-color:var(--accent)}
+.scale{display:flex;gap:8px;flex-wrap:wrap}
+.scale label{border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:.92rem}
+.scale input{accent-color:var(--accent);margin-right:6px}
+.err{color:var(--warn);background:var(--warn-bg);padding:8px 12px;border-radius:8px;display:none;margin-top:10px}
+.small{font-size:.85rem;color:var(--muted)}
+table{border-collapse:collapse;font-size:.88rem}
+td,th{border-bottom:1px solid var(--line);padding:4px 10px;text-align:left}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+const STIM = {"P": {"days": 76, "dates": ["2026-05-08", "2026-05-11", "2026-05-12", "2026-05-13", "2026-05-14", "2026-05-15", "2026-05-18", "2026-05-19", "2026-05-20", "2026-05-21", "2026-05-22", "2026-05-25", "2026-05-26", "2026-05-27", "2026-05-29", "2026-06-01", "2026-06-02", "2026-06-03", "2026-06-04", "2026-06-05", "2026-06-08", "2026-06-09", "2026-06-10", "2026-06-11", "2026-06-12", "2026-06-15", "2026-06-16", "2026-06-17", "2026-06-18", "2026-06-19", "2026-06-22", "2026-06-23", "2026-06-24", "2026-06-25", "2026-06-26", "2026-06-30", "2026-07-01", "2026-07-02", "2026-07-03", "2026-07-06", "2026-07-07", "2026-07-08", "2026-07-09", "2026-07-10", "2026-07-13", "2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17", "2026-07-20", "2026-07-21", "2026-07-22", "2026-07-23", "2026-07-24", "2026-07-27", "2026-07-28", "2026-07-30", "2026-07-31", "2026-08-03", "2026-08-04", "2026-08-05", "2026-08-06", "2026-08-07", "2026-08-10", "2026-08-11", "2026-08-12", "2026-08-13", "2026-08-14", "2026-08-17", "2026-08-18", "2026-08-19", "2026-08-20", "2026-08-21", "2026-08-24", "2026-08-25", "2026-08-28"], "close": [20.6, 20.5, 20.7, 20.6, 20.8, 20.7, 20.3, 20.4, 19.9, 20.0, 20.2, 20.4, 20.4, 20.2, 20.2, 20.0, 20.1, 20.1, 19.9, 20.0, 19.9, 19.8, 19.8, 19.7, 20.0, 20.5, 20.5, 20.4, 20.5, 20.4, 20.3, 20.2, 20.2, 20.6, 20.5, 20.3, 20.3, 20.4, 20.2, 20.2, 20.1, 20.0, 19.8, 20.0, 20.0, 19.9, 20.0, 20.0, 20.0, 19.8, 19.8, 19.7, 19.7, 19.7, 19.9, 20.0, 19.8, 20.0, 20.0, 19.9, 20.1, 20.1, 20.2, 20.0, 20.0, 20.0, 19.9, 20.1, 20.1, 20.0, 19.9, 19.9, 19.8, 19.9, 19.9, 19.9], "cum": [-0.6, -1.09, 0.01, -0.5, 0.55, -0.04, -1.98, -1.27, -3.52, -2.81, -1.66, -0.64, -0.68, -1.68, -1.6, -2.52, -1.9, -1.83, -2.75, -2.14, -2.59, -3.01, -2.91, -3.32, -1.74, 0.66, 0.46, -0.19, 0.23, -0.34, -0.82, -1.2, -1.04, 1.09, 0.48, -0.54, -0.4, 0.25, -0.67, -0.48, -0.82, -1.16, -2.0, -0.83, -0.75, -1.19, -0.59, -0.57, -0.55, -1.53, -1.47, -1.9, -1.78, -1.68, -0.6, -0.14, -1.22, -0.17, -0.23, -0.8, 0.15, 0.01, 0.36, -0.77, -0.78, -0.74, -1.19, -0.05, -0.1, -0.62, -1.04, -0.86, -1.17, -0.45, -0.35, -0.27], "alarm": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "start": 20.7, "end": 19.9, "chg": -3.9, "cum_end": -0.3, "alarms": 0, "last": "28 Aug 2026", "last_alarm": false, "open_share": 46, "kind": "close"}, "Q": {"days": 76, "dates": ["2026-05-08", "2026-05-11", "2026-05-12", "2026-05-13", "2026-05-14", "2026-05-15", "2026-05-18", "2026-05-19", "2026-05-20", "2026-05-21", "2026-05-22", "2026-05-25", "2026-05-26", "2026-05-27", "2026-05-29", "2026-06-01", "2026-06-02", "2026-06-03", "2026-06-04", "2026-06-05", "2026-06-08", "2026-06-09", "2026-06-10", "2026-06-11", "2026-06-12", "2026-06-15", "2026-06-16", "2026-06-17", "2026-06-18", "2026-06-19", "2026-06-22", "2026-06-23", "2026-06-24", "2026-06-25", "2026-06-26", "2026-06-30", "2026-07-01", "2026-07-02", "2026-07-03", "2026-07-06", "2026-07-07", "2026-07-08", "2026-07-09", "2026-07-10", "2026-07-13", "2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17", "2026-07-20", "2026-07-21", "2026-07-22", "2026-07-23", "2026-07-24", "2026-07-27", "2026-07-28", "2026-07-30", "2026-07-31", "2026-08-03", "2026-08-04", "2026-08-05", "2026-08-06", "2026-08-07", "2026-08-10", "2026-08-11", "2026-08-12", "2026-08-13", "2026-08-14", "2026-08-17", "2026-08-18", "2026-08-19", "2026-08-20", "2026-08-21", "2026-08-24", "2026-08-25", "2026-08-28"], "close": [6.5, 6.3, 6.3, 6.3, 6.2, 6.3, 6.1, 6.1, 5.9, 6.1, 6.1, 6.2, 6.0, 6.0, 6.0, 6.0, 5.9, 5.8, 5.8, 5.8, 5.7, 5.8, 5.7, 5.6, 5.7, 5.8, 5.9, 5.9, 5.8, 5.7, 5.8, 5.7, 5.8, 5.8, 5.7, 5.7, 5.6, 5.7, 5.6, 5.7, 5.7, 5.6, 5.4, 5.4, 5.4, 5.3, 5.3, 5.4, 5.3, 5.3, 5.3, 5.4, 5.3, 5.2, 5.4, 5.3, 5.2, 5.3, 5.1, 5.2, 5.3, 5.2, 5.1, 5.1, 5.2, 5.1, 5.1, 5.2, 5.2, 5.2, 5.1, 5.0, 5.1, 5.1, 5.0, 5.0], "cum": [1.56, -1.56, -1.56, -1.56, -3.13, -1.56, -4.69, -4.69, -7.81, -4.69, -4.69, -3.13, -6.25, -6.25, -6.25, -6.25, -7.81, -9.37, -9.37, -9.37, -10.94, -9.37, -10.94, -12.5, -10.94, -9.37, -7.81, -7.81, -9.37, -10.94, -9.37, -10.94, -9.37, -9.37, -10.94, -10.94, -12.5, -10.94, -12.5, -10.94, -10.94, -12.5, -15.62, -15.62, -15.62, -17.19, -17.19, -15.62, -17.19, -17.19, -17.19, -15.62, -17.19, -18.75, -15.62, -17.19, -18.75, -17.19, -20.31, -18.75, -17.19, -18.75, -20.31, -20.31, -18.75, -20.31, -20.31, -18.75, -18.75, -18.75, -20.31, -21.88, -20.31, -20.31, -21.88, -21.88], "alarm": [0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "start": 6.4, "end": 5.0, "chg": -21.9, "cum_end": -21.9, "alarms": 7, "last": "28 Aug 2026", "last_alarm": false, "open_share": 84, "kind": "drift"}};
+const TEXT = {"en": {"lang_name": "English", "title": "Understanding a stock: a short study", "choose_lang": "Choose your language", "consent_title": "Before you start", "consent": "This study takes about 15 minutes. You will look at information about two companies listed on the Colombo Stock Exchange and answer short questions. This is not a test of you. We record your answers and how long you take, but not your name. You can stop at any time without giving a reason. Nothing here is investment advice.", "consent_check": "I am 18 or older, I have read the above, and I agree to take part.", "start": "Start", "next": "Next", "finish": "Finish", "company": "Company", "part": "Part {i} of 2", "view_chart": "Price chart", "view_system": "Price chart with the system's explanation", "instr": "Look at the information for as long as you like, then answer the questions below it. You can scroll back up while answering.", "period": "8 May – 28 Aug 2026 (76 trading days). Prices in LKR.", "legend_price": "Closing price (LKR)", "legend_gap": "Accumulated gap from expected price (%)", "legend_alarm": "Unusual-movement flag", "latest": "Latest price", "change": "Change over the period", "explain_title": "What the system says", "questions": "Questions", "answer_all": "Please answer every question to continue.", "q": [["About how much did the price change over the period?", ["Rose about 20%", "Changed by less than 5%", "Fell about 20%", "Fell about 40%", "Not sure"]], ["Compared with its own usual pattern, how did the stock behave?", ["Stayed close to its usual pattern", "Drifted steadily below its usual pattern", "One sudden crash, then recovered", "Moved above its usual pattern", "Not sure"]], ["If the latest day shows no unusual movement, does that mean the stock has no ongoing problem?", ["Yes", "No – a slow decline can continue without any single unusual day", "Not sure"]], ["Which statement about future prices is correct?", ["A forecast line shows where the price will be", "Future prices are uncertain; in testing, assuming the price stays the same was more accurate than the model's forecast", "The price cannot fall below the lower range", "Not sure"]], ["Does this information tell you to buy or sell the stock?", ["Yes, buy", "Yes, sell", "No – it gives evidence, not buy or sell advice", "Not sure"]]], "confidence": "How confident are you in your answers for this company?", "conf": ["1 Not at all", "2", "3", "4", "5 Very"], "agree": "How much do you agree?", "likert": ["1 Strongly disagree", "2", "3", "4", "5", "6", "7 Strongly agree"], "lik": ["I understood what happened to this stock during the period.", "This information would help me decide whether to look into this stock further.", "The information was easy to understand."], "final_title": "Last few questions", "pref": "Which presentation helped you understand a stock better?", "pref_opts": ["Chart only", "Chart with the system's explanation", "No difference"], "age": "Your age group", "age_opts": ["18–24", "25–34", "35–44", "45–54", "55+"], "bought": "Have you ever bought shares?", "yesno": ["Yes", "No"], "knowledge": "How would you rate your knowledge of the stock market?", "know_opts": ["1 None", "2", "3", "4", "5 Expert"], "comment": "Any comments? (optional)", "done": "Thank you! Please hand the laptop back to the researcher.", "debrief": "Company P was John Keells Holdings PLC (JKH) and Company Q was Browns Investments PLC (BIL).", "sys": {"what_close": "What happened: The price moved from LKR {start} to LKR {end} ({chg}%) over 76 trading days. It stayed close to its expected price: the accumulated gap was {cum_end}%.", "what_drift": "What happened: The price fell from LKR {start} to LKR {end} ({chg}%) over 76 trading days. It drifted below its expected price in small steps: the accumulated gap reached {cum_end}%.", "unusual": "Unusual movement: {alarms} of 76 days were flagged as unusual. The latest day ({last}) was {laststatus}.", "last_no": "not unusual", "last_yes": "unusual", "pattern_close": "Pattern: No persistent drift, sudden shock or burst of volatility stood out.", "pattern_drift": "Pattern: A slow, continuing decline. No single sharp day explains the fall, so daily flags alone would understate it.", "future": "Future prices: Treat any forecast as an uncertain range, not a target. In testing on this market, assuming the price stays the same was more accurate than the model's forecast.", "note": "Please note: This is evidence to help you understand the stock, not advice to buy or sell. A calm day does not mean there is no ongoing problem."}}, "si": {"lang_name": "සිංහල", "title": "කොටසක් තේරුම් ගැනීම: කෙටි අධ්‍යයනයක්", "choose_lang": "ඔබේ භාෂාව තෝරන්න", "consent_title": "ආරම්භ කිරීමට පෙර", "consent": "මෙම අධ්‍යයනයට විනාඩි 15ක් පමණ ගත වේ. කොළඹ කොටස් හුවමාරුවේ ලැයිස්තුගත සමාගම් දෙකක් පිළිබඳ තොරතුරු බලා කෙටි ප්‍රශ්නවලට පිළිතුරු දීමට ඔබට සිදු වේ. මෙය ඔබව පරීක්ෂා කිරීමක් නොවේ. අපි ඔබේ පිළිතුරු සහ ගත වන කාලය සටහන් කරන නමුත් ඔබේ නම සටහන් නොකරමු. කිසිදු හේතුවක් නොදක්වා ඕනෑම වේලාවක නතර කිරීමට ඔබට හැකිය. මෙහි ඇති කිසිවක් ආයෝජන උපදෙස් නොවේ.", "consent_check": "මගේ වයස අවුරුදු 18 හෝ ඊට වැඩි ය; මම ඉහත කරුණු කියවා ඇති අතර සහභාගී වීමට එකඟ වෙමි.", "start": "ආරම්භ කරන්න", "next": "ඊළඟ", "finish": "අවසන් කරන්න", "company": "සමාගම", "part": "කොටස {i} / 2", "view_chart": "මිල ප්‍රස්තාරය", "view_system": "පද්ධතියේ පැහැදිලි කිරීම සමඟ මිල ප්‍රස්තාරය", "instr": "තොරතුරු ඔබට අවශ්‍ය තරම් වේලාවක් බලා, ඊට පහළින් ඇති ප්‍රශ්නවලට පිළිතුරු දෙන්න. පිළිතුරු දෙන අතරතුර ඔබට නැවත ඉහළට යා හැකිය.", "period": "2026 මැයි 8 – අගෝස්තු 28 (වෙළඳ දින 76). මිල ගණන් රුපියල්වලින්.", "legend_price": "වසා දැමීමේ මිල (රු.)", "legend_gap": "අපේක්ෂිත මිලෙන් එකතු වූ පරතරය (%)", "legend_alarm": "අසාමාන්‍ය චලන සලකුණ", "latest": "නවතම මිල", "change": "කාල සීමාව තුළ වෙනස", "explain_title": "පද්ධතිය පවසන දේ", "questions": "ප්‍රශ්න", "answer_all": "ඉදිරියට යාමට කරුණාකර සියලු ප්‍රශ්නවලට පිළිතුරු දෙන්න.", "q": [["කාල සීමාව තුළ මිල ආසන්න වශයෙන් කොපමණ වෙනස් වූයේද?", ["20% පමණ ඉහළ ගියේය", "5% ට වඩා අඩුවෙන් වෙනස් විය", "20% පමණ පහළ ගියේය", "40% පමණ පහළ ගියේය", "විශ්වාස නැත"]], ["එහි සාමාන්‍ය රටාවට සාපේක්ෂව කොටස හැසිරුණේ කෙසේද?", ["එහි සාමාන්‍ය රටාවට ආසන්නව පැවතුණි", "එහි සාමාන්‍ය රටාවට වඩා ක්‍රමයෙන් පහළට ගියේය", "එක්වරම තියුණු ලෙස පහත වැටී, පසුව යථා තත්ත්වයට පත් විය", "එහි සාමාන්‍ය රටාවට වඩා ඉහළ ගියේය", "විශ්වාස නැත"]], ["නවතම දිනයේ අසාමාන්‍ය චලනයක් නොපෙන්වයි නම්, එයින් අදහස් වන්නේ කොටසට කිසිදු දිගුකාලීන ගැටලුවක් නොමැති බවද?", ["ඔව්", "නැත – කිසිදු අසාමාන්‍ය දිනයක් නොමැතිව වුවද සෙමින් පහත වැටීමක් දිගටම සිදු විය හැකිය", "විශ්වාස නැත"]], ["අනාගත මිල ගණන් පිළිබඳ නිවැරදි ප්‍රකාශය කුමක්ද?", ["පුරෝකථන රේඛාව මිල කොතැනට යයිදැයි පෙන්වයි", "අනාගත මිල අවිනිශ්චිතයි; පරීක්ෂණවලදී, මිල නොවෙනස්ව පවතී යැයි උපකල්පනය කිරීම ආකෘතියේ පුරෝකථනයට වඩා නිවැරදි විය", "මිල පහළ පරාසයට වඩා අඩු විය නොහැක", "විශ්වාස නැත"]], ["මෙම තොරතුරු ඔබට කොටස මිලදී ගැනීමට හෝ විකිණීමට කියනවාද?", ["ඔව්, මිලදී ගන්න", "ඔව්, විකුණන්න", "නැත – එය සාක්ෂි ලබා දෙයි, මිලදී ගැනීමේ හෝ විකිණීමේ උපදෙස් නොවේ", "විශ්වාස නැත"]]], "confidence": "මෙම සමාගම සඳහා ඔබේ පිළිතුරු ගැන ඔබට කොතරම් විශ්වාසද?", "conf": ["1 කිසිසේත් නැත", "2", "3", "4", "5 ඉතා විශ්වාසයි"], "agree": "ඔබ කොතරම් එකඟද?", "likert": ["1 දැඩි ලෙස එකඟ නොවේ", "2", "3", "4", "5", "6", "7 දැඩි ලෙස එකඟ වේ"], "lik": ["මෙම කාලය තුළ මෙම කොටසට සිදු වූ දේ මට තේරුණා.", "මෙම කොටස ගැන තවදුරටත් සොයා බැලිය යුතුද යන්න තීරණය කිරීමට මෙම තොරතුරු මට උපකාරී වේ.", "තොරතුරු තේරුම් ගැනීමට පහසු විය."], "final_title": "අවසාන ප්‍රශ්න කිහිපය", "pref": "කොටසක් වඩා හොඳින් තේරුම් ගැනීමට ඔබට උපකාරී වූයේ කුමන ඉදිරිපත් කිරීමද?", "pref_opts": ["ප්‍රස්තාරය පමණක්", "පද්ධතියේ පැහැදිලි කිරීම සමඟ ප්‍රස්තාරය", "වෙනසක් නැත"], "age": "ඔබේ වයස් කාණ්ඩය", "age_opts": ["18–24", "25–34", "35–44", "45–54", "55+"], "bought": "ඔබ කවදා හෝ කොටස් මිලදී ගෙන තිබේද?", "yesno": ["ඔව්", "නැත"], "knowledge": "කොටස් වෙළඳපොළ පිළිබඳ ඔබේ දැනුම ඔබ ඇගයීමට ලක් කරන්නේ කෙසේද?", "know_opts": ["1 කිසිවක් නැත", "2", "3", "4", "5 විශේෂඥ"], "comment": "අදහස් තිබේද? (අත්‍යවශ්‍ය නොවේ)", "done": "ස්තූතියි! කරුණාකර ලැප්ටොප් පරිගණකය පර්යේෂකයාට නැවත ලබා දෙන්න.", "debrief": "සමාගම P යනු John Keells Holdings PLC (JKH) වන අතර සමාගම Q යනු Browns Investments PLC (BIL) වේ.", "sys": {"what_close": "සිදු වූ දේ: වෙළඳ දින 76ක් තුළ මිල රු. {start} සිට රු. {end} දක්වා ({chg}%) වෙනස් විය. එය අපේක්ෂිත මිලට ආසන්නව පැවතුණි: එකතු වූ පරතරය {cum_end}% විය.", "what_drift": "සිදු වූ දේ: වෙළඳ දින 76ක් තුළ මිල රු. {start} සිට රු. {end} දක්වා ({chg}%) පහත වැටුණි. එය කුඩා පියවරෙන් අපේක්ෂිත මිලට වඩා පහළට ගියේය: එකතු වූ පරතරය {cum_end}% දක්වා ළඟා විය.", "unusual": "අසාමාන්‍ය චලනය: දින 76න් දින {alarms}ක් අසාමාන්‍ය ලෙස සලකුණු කෙරිණි. නවතම දිනය ({last}) {laststatus}.", "last_no": "අසාමාන්‍ය නොවීය", "last_yes": "අසාමාන්‍ය විය", "pattern_close": "රටාව: දිගටම පවතින පහත වැටීමක්, හදිසි කම්පනයක් හෝ අස්ථාවරත්වයේ ඉහළ යාමක් කැපී පෙනුණේ නැත.", "pattern_drift": "රටාව: සෙමින්, දිගටම සිදු වන පහත වැටීමකි. කිසිදු තනි තියුණු දිනයක් මෙම වැටීම පැහැදිලි නොකරයි, එබැවින් දෛනික සලකුණු පමණක් එය අඩුවෙන් පෙන්වයි.", "future": "අනාගත මිල: ඕනෑම පුරෝකථනයක් ඉලක්කයක් ලෙස නොව අවිනිශ්චිත පරාසයක් ලෙස සලකන්න. මෙම වෙළඳපොළේ පරීක්ෂණවලදී, මිල නොවෙනස්ව පවතී යැයි උපකල්පනය කිරීම ආකෘතියේ පුරෝකථනයට වඩා නිවැරදි විය.", "note": "සැලකිය යුතුයි: මෙය කොටස තේරුම් ගැනීමට උපකාරී වන සාක්ෂියකි, මිලදී ගැනීමට හෝ විකිණීමට උපදෙස් නොවේ. සන්සුන් දිනයක් යනු දිගටම පවතින ගැටලුවක් නොමැති බව නොවේ."}}, "ta": {"lang_name": "தமிழ்", "title": "ஒரு பங்கைப் புரிந்துகொள்ளுதல்: சிறு ஆய்வு", "choose_lang": "உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்", "consent_title": "தொடங்குவதற்கு முன்", "consent": "இந்த ஆய்வுக்கு சுமார் 15 நிமிடங்கள் ஆகும். கொழும்பு பங்குச் சந்தையில் பட்டியலிடப்பட்ட இரண்டு நிறுவனங்கள் பற்றிய தகவல்களைப் பார்த்து சிறு கேள்விகளுக்குப் பதிலளிப்பீர்கள். இது உங்களைச் சோதிப்பதற்கானது அல்ல. உங்கள் பதில்களையும் எடுத்துக்கொள்ளும் நேரத்தையும் பதிவு செய்கிறோம், ஆனால் உங்கள் பெயரைப் பதிவு செய்வதில்லை. எந்தக் காரணமும் கூறாமல் எந்த நேரத்திலும் நிறுத்தலாம். இங்குள்ள எதுவும் முதலீட்டு ஆலோசனை அல்ல.", "consent_check": "எனக்கு 18 வயது அல்லது அதற்கு மேல்; மேலே உள்ளதைப் படித்தேன்; பங்கேற்க ஒப்புக்கொள்கிறேன்.", "start": "தொடங்கு", "next": "அடுத்து", "finish": "முடி", "company": "நிறுவனம்", "part": "பகுதி {i} / 2", "view_chart": "விலை வரைபடம்", "view_system": "அமைப்பின் விளக்கத்துடன் விலை வரைபடம்", "instr": "தகவல்களை நீங்கள் விரும்பும் வரை பாருங்கள், பின்னர் அதன் கீழே உள்ள கேள்விகளுக்குப் பதிலளியுங்கள். பதிலளிக்கும்போது மீண்டும் மேலே செல்லலாம்.", "period": "8 மே – 28 ஆகஸ்ட் 2026 (76 வர்த்தக நாட்கள்). விலைகள் இலங்கை ரூபாயில்.", "legend_price": "இறுதி விலை (ரூ.)", "legend_gap": "எதிர்பார்க்கப்பட்ட விலையிலிருந்து திரண்ட இடைவெளி (%)", "legend_alarm": "அசாதாரண நகர்வுக் குறி", "latest": "சமீபத்திய விலை", "change": "காலப்பகுதியில் மாற்றம்", "explain_title": "அமைப்பு கூறுவது", "questions": "கேள்விகள்", "answer_all": "தொடர, தயவுசெய்து எல்லாக் கேள்விகளுக்கும் பதிலளிக்கவும்.", "q": [["காலப்பகுதியில் விலை ஏறத்தாழ எவ்வளவு மாறியது?", ["சுமார் 20% உயர்ந்தது", "5% க்கும் குறைவாக மாறியது", "சுமார் 20% குறைந்தது", "சுமார் 40% குறைந்தது", "உறுதியாகத் தெரியவில்லை"]], ["அதன் வழக்கமான போக்குடன் ஒப்பிடுகையில் பங்கு எவ்வாறு நடந்துகொண்டது?", ["அதன் வழக்கமான போக்குக்கு அருகிலேயே இருந்தது", "அதன் வழக்கமான போக்கை விட படிப்படியாகக் கீழே சென்றது", "திடீரென்று கடுமையாக வீழ்ந்து, பின்னர் மீண்டது", "அதன் வழக்கமான போக்கை விட மேலே சென்றது", "உறுதியாகத் தெரியவில்லை"]], ["சமீபத்திய நாளில் அசாதாரண நகர்வு எதுவும் இல்லையென்றால், பங்குக்குத் தொடர்ந்து வரும் பிரச்சினை எதுவும் இல்லை என்று அர்த்தமா?", ["ஆம்", "இல்லை – எந்த ஒரு நாளும் அசாதாரணமாக இல்லாமலேயே மெதுவான வீழ்ச்சி தொடரலாம்", "உறுதியாகத் தெரியவில்லை"]], ["எதிர்கால விலைகள் பற்றிய சரியான கூற்று எது?", ["முன்னறிவிப்புக் கோடு விலை எங்கே செல்லும் என்பதைக் காட்டுகிறது", "எதிர்கால விலைகள் நிச்சயமற்றவை; சோதனைகளில், விலை மாறாமல் இருக்கும் என்று கருதுவது மாதிரியின் முன்னறிவிப்பை விடத் துல்லியமாக இருந்தது", "விலை குறைந்த வரம்புக்குக் கீழே செல்ல முடியாது", "உறுதியாகத் தெரியவில்லை"]], ["இந்தத் தகவல் பங்கை வாங்கவோ விற்கவோ சொல்கிறதா?", ["ஆம், வாங்கவும்", "ஆம், விற்கவும்", "இல்லை – இது சான்றுகளைத் தருகிறது, வாங்க அல்லது விற்க ஆலோசனை அல்ல", "உறுதியாகத் தெரியவில்லை"]]], "confidence": "இந்த நிறுவனம் தொடர்பான உங்கள் பதில்களில் எவ்வளவு நம்பிக்கை உள்ளது?", "conf": ["1 சிறிதும் இல்லை", "2", "3", "4", "5 மிக அதிகம்"], "agree": "நீங்கள் எவ்வளவு உடன்படுகிறீர்கள்?", "likert": ["1 முற்றிலும் உடன்படவில்லை", "2", "3", "4", "5", "6", "7 முற்றிலும் உடன்படுகிறேன்"], "lik": ["இந்தக் காலப்பகுதியில் இந்தப் பங்குக்கு என்ன நடந்தது என்பதைப் புரிந்துகொண்டேன்.", "இந்தப் பங்கை மேலும் ஆராய வேண்டுமா என்பதைத் தீர்மானிக்க இந்தத் தகவல் உதவும்.", "தகவல் புரிந்துகொள்ள எளிதாக இருந்தது."], "final_title": "இறுதிக் கேள்விகள் சில", "pref": "ஒரு பங்கை நன்றாகப் புரிந்துகொள்ள எந்த முறை உங்களுக்கு உதவியது?", "pref_opts": ["வரைபடம் மட்டும்", "அமைப்பின் விளக்கத்துடன் வரைபடம்", "வேறுபாடு இல்லை"], "age": "உங்கள் வயதுப் பிரிவு", "age_opts": ["18–24", "25–34", "35–44", "45–54", "55+"], "bought": "நீங்கள் எப்போதாவது பங்குகளை வாங்கியுள்ளீர்களா?", "yesno": ["ஆம்", "இல்லை"], "knowledge": "பங்குச் சந்தை பற்றிய உங்கள் அறிவை எவ்வாறு மதிப்பிடுவீர்கள்?", "know_opts": ["1 எதுவும் இல்லை", "2", "3", "4", "5 நிபுணர்"], "comment": "ஏதேனும் கருத்துகள்? (விருப்பத்தேர்வு)", "done": "நன்றி! தயவுசெய்து மடிக்கணினியை ஆய்வாளரிடம் திருப்பிக் கொடுக்கவும்.", "debrief": "நிறுவனம் P என்பது John Keells Holdings PLC (JKH), நிறுவனம் Q என்பது Browns Investments PLC (BIL).", "sys": {"what_close": "என்ன நடந்தது: 76 வர்த்தக நாட்களில் விலை ரூ. {start} இலிருந்து ரூ. {end} ஆக ({chg}%) மாறியது. அது எதிர்பார்க்கப்பட்ட விலைக்கு அருகிலேயே இருந்தது: திரண்ட இடைவெளி {cum_end}%.", "what_drift": "என்ன நடந்தது: 76 வர்த்தக நாட்களில் விலை ரூ. {start} இலிருந்து ரூ. {end} ஆக ({chg}%) வீழ்ந்தது. அது சிறு படிகளாக எதிர்பார்க்கப்பட்ட விலைக்குக் கீழே சென்றது: திரண்ட இடைவெளி {cum_end}% ஐ எட்டியது.", "unusual": "அசாதாரண நகர்வு: 76 நாட்களில் {alarms} நாட்கள் அசாதாரணமானவை எனக் குறிக்கப்பட்டன. சமீபத்திய நாள் ({last}) {laststatus}.", "last_no": "அசாதாரணமானது அல்ல", "last_yes": "அசாதாரணமானது", "pattern_close": "போக்கு: தொடர்ச்சியான சரிவு, திடீர் அதிர்ச்சி அல்லது ஏற்ற இறக்க அதிகரிப்பு எதுவும் தனித்துத் தெரியவில்லை.", "pattern_drift": "போக்கு: மெதுவான, தொடர்ந்து நிகழும் வீழ்ச்சி. எந்த ஒரு கடுமையான நாளும் இந்த வீழ்ச்சியை விளக்கவில்லை; எனவே தினசரிக் குறிகள் மட்டும் அதைக் குறைத்துக் காட்டும்.", "future": "எதிர்கால விலைகள்: எந்த முன்னறிவிப்பையும் இலக்காக அல்ல, நிச்சயமற்ற வரம்பாகக் கருதுங்கள். இந்தச் சந்தையில் நடத்திய சோதனைகளில், விலை மாறாமல் இருக்கும் என்று கருதுவது மாதிரியின் முன்னறிவிப்பை விடத் துல்லியமாக இருந்தது.", "note": "கவனிக்கவும்: இது பங்கைப் புரிந்துகொள்ள உதவும் சான்று, வாங்க அல்லது விற்க ஆலோசனை அல்ல. அமைதியான ஒரு நாள் தொடர்ந்து வரும் பிரச்சினை இல்லை என்று அர்த்தமல்ல."}}};
+const KEY = {"P": {"q1": 1, "q2": 0, "q3": 1, "q4": 1, "q5": 2}, "Q": {"q1": 2, "q2": 1, "q3": 1, "q4": 1, "q5": 2}};
+const VERSION = "study-1.0";
+const STORE = "cse_study_sessions_v1";
+// Latin square: group = (participant number - 1) mod 4.
+const GROUPS = [
+  [{c:"P", cond:"chart"},  {c:"Q", cond:"system"}],
+  [{c:"P", cond:"system"}, {c:"Q", cond:"chart"}],
+  [{c:"Q", cond:"chart"},  {c:"P", cond:"system"}],
+  [{c:"Q", cond:"system"}, {c:"P", cond:"chart"}],
+];
+const STOCK_CODE = {P:"JKH", Q:"BIL"};
+const app = document.getElementById("app");
+let S = null; // current session
+let L = TEXT.en;
+
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = (tpl, v) => tpl.replace(/\{(\w+)\}/g, (_, k) => v[k] ?? "");
+const loadAll = () => { try { return JSON.parse(localStorage.getItem(STORE) || "[]"); } catch { return []; } };
+const saveAll = (rows) => { try { localStorage.setItem(STORE, JSON.stringify(rows)); return true; } catch { return false; } };
+const download = (name, text, type="application/json") => {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], {type}));
+  a.download = name; document.body.appendChild(a); a.click(); a.remove();
+};
+const toTop = () => window.scrollTo(0, 0);
+
+// ------------------------------------------------------------------ researcher screen
+function researcher() {
+  const rows = loadAll();
+  app.innerHTML = `
+    <h1>Researcher setup</h1>
+    <p class="meta">${esc(VERSION)} · ${rows.length} completed session(s) stored in this browser</p>
+    <div class="card">
+      <label for="pid"><b>Participant ID</b> (P01, P02, …). Group is assigned from the number.</label>
+      <div class="row" style="margin-top:8px"><input id="pid" type="text" placeholder="P01" style="max-width:200px">
+      <span id="grp" class="meta"></span></div>
+      <div class="row" style="margin-top:14px"><button class="primary" id="go" disabled>Start session</button></div>
+    </div>
+    <div class="card">
+      <b>Export</b>
+      <p class="small">Each session is also downloaded as its own JSON file when it ends. Copy all files to <code>research/user_study/responses/</code> before running the analysis.</p>
+      <div class="row"><button id="csv">Download all (CSV)</button><button id="json">Download all (JSON)</button></div>
+      ${rows.length ? `<table style="margin-top:12px"><tr><th>ID</th><th>Group</th><th>Lang</th><th>Finished</th></tr>
+        ${rows.map(r => `<tr><td>${esc(r.participant_id)}</td><td>${r.group}</td><td>${esc(r.language)}</td><td>${esc(r.finished_at.slice(0,16).replace("T"," "))}</td></tr>`).join("")}</table>` : ""}
+    </div>`;
+  const pid = document.getElementById("pid"), go = document.getElementById("go"), grp = document.getElementById("grp");
+  pid.addEventListener("input", () => {
+    const m = pid.value.trim().toUpperCase().match(/^P(\d{1,3})$/);
+    const used = rows.some(r => r.participant_id === pid.value.trim().toUpperCase());
+    go.disabled = !m || used;
+    grp.textContent = !m ? "Use the form P01" : used ? "This ID already has a stored session" : `Group ${(parseInt(m[1]) - 1) % 4 + 1}: ${GROUPS[(parseInt(m[1]) - 1) % 4].map(x => `Company ${x.c} – ${x.cond}`).join(", then ")}`;
+  });
+  go.onclick = () => {
+    const id = pid.value.trim().toUpperCase();
+    const g = (parseInt(id.slice(1)) - 1) % 4;
+    S = {participant_id:id, group:g + 1, version:VERSION, started_at:new Date().toISOString(), parts:[], language:null};
+    chooseLanguage();
+  };
+  document.getElementById("json").onclick = () => download(`study_all_${Date.now()}.json`, JSON.stringify(loadAll(), null, 2));
+  document.getElementById("csv").onclick = () => download(`study_all_${Date.now()}.csv`, toCsv(loadAll()), "text/csv");
+}
+
+function toCsv(rows) {
+  const head = ["participant_id","group","language","order","company","stock","condition","q1","q2","q3","q4","q5","score","confidence","lik1","lik2","lik3","seconds","pref","age","bought","knowledge"];
+  const out = [head.join(",")];
+  for (const r of rows) for (const p of r.parts) out.push([r.participant_id, r.group, r.language, p.order, p.company, p.stock, p.condition,
+    ...p.answers, p.score, p.confidence, ...p.likert, p.seconds, r.final.pref, r.final.age, r.final.bought, r.final.knowledge].join(","));
+  return out.join("\n") + "\n";
+}
+
+// ------------------------------------------------------------------ participant flow
+function chooseLanguage() {
+  app.innerHTML = `<h1>${esc(TEXT.en.choose_lang)} · ${esc(TEXT.si.choose_lang)} · ${esc(TEXT.ta.choose_lang)}</h1>
+    <div class="row" style="margin-top:24px">${["en","si","ta"].map(k => `<button class="lang" data-l="${k}">${esc(TEXT[k].lang_name)}</button>`).join("")}</div>`;
+  app.querySelectorAll("button.lang").forEach(b => b.onclick = () => { S.language = b.dataset.l; L = TEXT[S.language]; document.documentElement.lang = S.language; consent(); });
+  toTop();
+}
+
+function consent() {
+  app.innerHTML = `<h1>${esc(L.title)}</h1><div class="card"><h2 style="margin-top:0">${esc(L.consent_title)}</h2>
+    <p>${esc(L.consent)}</p>
+    <label class="opt"><input type="checkbox" id="ok"><span>${esc(L.consent_check)}</span></label>
+    <div class="row" style="margin-top:12px"><button class="primary" id="go" disabled>${esc(L.start)}</button></div></div>`;
+  const ok = document.getElementById("ok"), go = document.getElementById("go");
+  ok.onchange = () => go.disabled = !ok.checked;
+  go.onclick = () => { S.consent_at = new Date().toISOString(); part(0); };
+  toTop();
+}
+
+function priceChart(s) {
+  const W = 800, H = 260, m = {l:54, r:16, t:14, b:30};
+  const xs = s.close.map((_, i) => m.l + i * (W - m.l - m.r) / (s.close.length - 1));
+  const lo = Math.min(...s.close), hi = Math.max(...s.close), pad = (hi - lo) * .12 || 1;
+  const y = (v) => m.t + (hi + pad - v) * (H - m.t - m.b) / (hi - lo + 2 * pad);
+  const ticks = niceTicks(lo - pad, hi + pad, 5);
+  const xi = [0, Math.floor(s.close.length / 2), s.close.length - 1];
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(L.legend_price)}">
+    ${ticks.map(t => `<line x1="${m.l}" x2="${W - m.r}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)" stroke-width="1"/>
+      <text x="${m.l - 8}" y="${y(t) + 4}" text-anchor="end" font-size="12" fill="var(--muted)">${t.toFixed(2)}</text>`).join("")}
+    <polyline fill="none" stroke="var(--series)" stroke-width="2.2" stroke-linejoin="round" points="${s.close.map((v, i) => `${xs[i]},${y(v)}`).join(" ")}"/>
+    ${xi.map(i => `<text x="${xs[i]}" y="${H - 8}" text-anchor="${i === 0 ? "start" : i === s.close.length - 1 ? "end" : "middle"}" font-size="12" fill="var(--muted)">${s.dates[i]}</text>`).join("")}
+  </svg>`;
+}
+
+function gapChart(s) {
+  const W = 800, H = 200, m = {l:54, r:16, t:14, b:30};
+  const xs = s.cum.map((_, i) => m.l + i * (W - m.l - m.r) / (s.cum.length - 1));
+  const lo = Math.min(0, ...s.cum), hi = Math.max(0, ...s.cum), pad = Math.max((hi - lo) * .15, 2);
+  const y = (v) => m.t + (hi + pad - v) * (H - m.t - m.b) / (hi - lo + 2 * pad);
+  const ticks = niceTicks(lo - pad, hi + pad, 4);
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(L.legend_gap)}">
+    ${ticks.map(t => `<line x1="${m.l}" x2="${W - m.r}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)" stroke-width="1"/>
+      <text x="${m.l - 8}" y="${y(t) + 4}" text-anchor="end" font-size="12" fill="var(--muted)">${t}%</text>`).join("")}
+    <line x1="${m.l}" x2="${W - m.r}" y1="${y(0)}" y2="${y(0)}" stroke="var(--muted)" stroke-width="1.2"/>
+    <polyline fill="none" stroke="var(--gap)" stroke-width="2.2" stroke-linejoin="round" points="${s.cum.map((v, i) => `${xs[i]},${y(v)}`).join(" ")}"/>
+    ${s.alarm.map((a, i) => a ? `<circle cx="${xs[i]}" cy="${y(s.cum[i])}" r="5" fill="var(--flag)" stroke="var(--surface)" stroke-width="2"/>` : "").join("")}
+  </svg>`;
+}
+
+function niceTicks(lo, hi, n) {
+  const span = hi - lo, step0 = span / n, mag = Math.pow(10, Math.floor(Math.log10(step0)));
+  const step = [1, 2, 2.5, 5, 10].map(f => f * mag).find(s => s >= step0);
+  const out = []; for (let t = Math.ceil(lo / step) * step; t <= hi + 1e-9; t += step) out.push(+t.toFixed(6));
+  return out;
+}
+
+function explanation(s) {
+  const T = L.sys, v = {...s, laststatus: s.last_alarm ? T.last_yes : T.last_no};
+  return [s.kind === "drift" ? T.what_drift : T.what_close, T.unusual, s.kind === "drift" ? T.pattern_drift : T.pattern_close, T.future, T.note]
+    .map(t => `<p>${esc(fmt(t, v))}</p>`).join("");
+}
+
+function radio(name, opts) {
+  return opts.map((o, i) => `<label class="opt"><input type="radio" name="${name}" value="${i}"><span>${esc(o)}</span></label>`).join("");
+}
+function scale(name, opts) {
+  return `<div class="scale">${opts.map((o, i) => `<label><input type="radio" name="${name}" value="${i + 1}">${esc(o)}</label>`).join("")}</div>`;
+}
+
+function part(k) {
+  const spec = GROUPS[S.group - 1][k], s = STIM[spec.c], sys = spec.cond === "system";
+  const t0 = performance.now();
+  app.innerHTML = `
+    <p class="meta">${esc(fmt(L.part, {i: k + 1}))}</p>
+    <h1>${esc(L.company)} ${spec.c} · ${esc(sys ? L.view_system : L.view_chart)}</h1>
+    <p class="meta">${esc(L.period)}</p>
+    <p>${esc(L.instr)}</p>
+    <div class="card">
+      <div class="stats">
+        <div class="stat"><div class="k">${esc(L.latest)}</div><div class="v">LKR ${s.end.toFixed(2)}</div></div>
+        <div class="stat"><div class="k">${esc(L.change)}</div><div class="v">${s.chg > 0 ? "+" : ""}${s.chg.toFixed(1)}%</div></div>
+      </div>
+      ${priceChart(s)}
+      <div class="legend"><span class="lp">${esc(L.legend_price)}</span></div>
+      ${sys ? `${gapChart(s)}<div class="legend"><span class="lg">${esc(L.legend_gap)}</span><span class="lf">${esc(L.legend_alarm)}</span></div>` : ""}
+    </div>
+    ${sys ? `<div class="card explain"><h2 style="margin-top:0">${esc(L.explain_title)}</h2>${explanation(s)}</div>` : ""}
+    <div class="card"><h2 style="margin-top:0">${esc(L.questions)}</h2>
+      ${L.q.map((q, i) => `<div class="q"><div class="t">${i + 1}. ${esc(q[0])}</div>${radio("q" + i, q[1])}</div>`).join("")}
+      <div class="q"><div class="t">${esc(L.confidence)}</div>${scale("conf", L.conf)}</div>
+      <div class="q"><div class="t">${esc(L.agree)}</div>
+        ${L.lik.map((t, i) => `<p style="margin:10px 0 6px">${esc(t)}</p>${scale("lik" + i, L.likert)}`).join("")}</div>
+      <div class="err" id="err">${esc(L.answer_all)}</div>
+      <div class="row" style="margin-top:14px"><button class="primary" id="next">${esc(L.next)}</button></div>
+    </div>`;
+  toTop();
+  document.getElementById("next").onclick = () => {
+    const val = (n) => { const e = app.querySelector(`input[name="${n}"]:checked`); return e ? parseInt(e.value) : null; };
+    const answers = L.q.map((_, i) => val("q" + i)), conf = val("conf"), lik = L.lik.map((_, i) => val("lik" + i));
+    if ([...answers, conf, ...lik].some(x => x === null)) { document.getElementById("err").style.display = "block"; return; }
+    const key = KEY[spec.c], correct = answers.map((a, i) => a === key["q" + (i + 1)]);
+    S.parts.push({order:k + 1, company:spec.c, stock:STOCK_CODE[spec.c], condition:spec.cond, answers,
+      correct, score:correct.filter(Boolean).length, confidence:conf, likert:lik, seconds:Math.round((performance.now() - t0) / 1000)});
+    k === 0 ? part(1) : finalQs();
+  };
+}
+
+function finalQs() {
+  app.innerHTML = `<h1>${esc(L.final_title)}</h1><div class="card">
+    <div class="q"><div class="t">${esc(L.pref)}</div>${radio("pref", L.pref_opts)}</div>
+    <div class="q"><div class="t">${esc(L.age)}</div>${radio("age", L.age_opts)}</div>
+    <div class="q"><div class="t">${esc(L.bought)}</div>${radio("bought", L.yesno)}</div>
+    <div class="q"><div class="t">${esc(L.knowledge)}</div>${scale("know", L.know_opts)}</div>
+    <div class="q"><div class="t">${esc(L.comment)}</div><textarea id="cm" rows="3"></textarea></div>
+    <div class="err" id="err">${esc(L.answer_all)}</div>
+    <div class="row" style="margin-top:14px"><button class="primary" id="fin">${esc(L.finish)}</button></div></div>`;
+  toTop();
+  document.getElementById("fin").onclick = () => {
+    const val = (n) => { const e = app.querySelector(`input[name="${n}"]:checked`); return e ? parseInt(e.value) : null; };
+    const f = {pref:val("pref"), age:val("age"), bought:val("bought"), knowledge:val("know"), comment:document.getElementById("cm").value.trim()};
+    if ([f.pref, f.age, f.bought, f.knowledge].some(x => x === null)) { document.getElementById("err").style.display = "block"; return; }
+    S.final = f; S.finished_at = new Date().toISOString();
+    const rows = loadAll(); rows.push(S);
+    const stored = saveAll(rows);
+    download(`${S.participant_id}_${S.finished_at.slice(0, 10)}.json`, JSON.stringify(S, null, 2));
+    done(stored);
+  };
+}
+
+function done(stored) {
+  app.innerHTML = `<div class="card" style="margin-top:40px"><h1>${esc(L.done)}</h1><p>${esc(L.debrief)}</p>
+    ${stored ? "" : `<p class="err" style="display:block">Browser storage unavailable: keep the downloaded JSON file.</p>`}
+    <div class="row" style="margin-top:20px"><button id="back">Researcher: next participant</button></div></div>`;
+  document.getElementById("back").onclick = () => { S = null; L = TEXT.en; document.documentElement.lang = "en"; researcher(); };
+  toTop();
+}
+
+researcher();
+</script>
+</body>
+</html>

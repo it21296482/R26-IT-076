@@ -1,0 +1,47 @@
+{
+  "seed": 42,
+  "episodes": [
+    {
+      "id": "E1",
+      "name": "Easter attacks",
+      "start": "2019-04-22",
+      "end": "2019-05-10"
+    },
+    {
+      "id": "E2",
+      "name": "COVID-19 closure",
+      "start": "2020-03-09",
+      "end": "2020-05-15"
+    },
+    {
+      "id": "E3",
+      "name": "Sovereign crisis",
+      "start": "2022-03-01",
+      "end": "2022-07-31"
+    }
+  ],
+  "calibration_period": [
+    "2016-01-01",
+    "2018-12-31"
+  ],
+  "evaluation_period": [
+    "2019-01-01",
+    "2026-08-28"
+  ],
+  "case_window": [
+    "2026-05-08",
+    "2026-08-28"
+  ],
+  "alarm_budget": 0.02,
+  "cusum_k": 0.5,
+  "robust_window": 252,
+  "bootstrap": {
+    "reps": 2000,
+    "block": 20
+  },
+  "pattern_rules_sha256": "2d904f4adc828338278f092390f41b04da165c7924fba58ba56273cf7a879b60",
+  "stocks_requested": [
+    "JKH",
+    "BIL"
+  ]
+}

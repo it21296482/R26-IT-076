@@ -1,0 +1,27 @@
+{
+  "stocks": {
+    "P": "JKH",
+    "Q": "BIL"
+  },
+  "window": [
+    "2026-05-08",
+    "2026-08-28"
+  ],
+  "key": {
+    "P": {
+      "q1": 1,
+      "q2": 0,
+      "q3": 1,
+      "q4": 1,
+      "q5": 2
+    },
+    "Q": {
+      "q1": 2,
+      "q2": 1,
+      "q3": 1,
+      "q4": 1,
+      "q5": 2
+    }
+  },
+  "note": "Option indices are 0-based in the order shown."
+}
