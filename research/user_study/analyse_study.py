@@ -123,7 +123,7 @@ def main() -> None:
            line("Confidence (1--5)", "confidence"), line("Understood (1--7)", "understood"),
            line("Useful (1--7)", "useful"), line("Easy (1--7)", "easy"), line("Time (s)", "seconds", "{:.0f}"),
            r"\bottomrule", r"\end{tabular}", r"\vspace{2pt}",
-           r"\parbox{\columnwidth}{\scriptsize Wilcoxon signed-rank tests; $r$: matched-pairs rank-biserial. Secondary outcomes Holm-adjusted. CI: participant bootstrap of the mean difference.}",
+           r"\parbox{\columnwidth}{\scriptsize Wilcoxon signed-rank tests; $r$: matched-pairs rank-biserial. Interpretation and ratings are Holm-adjusted; time is exploratory/unadjusted. CI: participant bootstrap of the mean difference.}",
            r"\end{table}"]
     (out / "results_table.tex").write_text("\n".join(tex))
     print(json.dumps(res, indent=2))

@@ -28,9 +28,11 @@ PROPOSED_A = "Proposed: score OR band (past-only adaptive)"
 PROPOSED_B = "Daily: proposed score OR band"
 
 
-def load(per_stock: Path, name: str) -> pd.DataFrame:
+def load(per_stock: Path, name: str, allowed: set[str] | None = None) -> pd.DataFrame:
     frames = []
     for d in sorted(per_stock.iterdir()):
+        if allowed is not None and d.name not in allowed:
+            continue
         f = d / name
         if f.exists():
             x = pd.read_csv(f)
@@ -67,7 +69,7 @@ def wilcoxon(x: pd.Series, y: pd.Series) -> tuple[int, float, float, float]:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default=str(ROOT / "artifacts" / "paper_v2"))
+    ap.add_argument("--out", default=str(ROOT / "artifacts" / "paper_v3_verified"))
     ap.add_argument("--manifest", default=str(ROOT / "data" / "actuals_all" / "export_manifest.json"))
     args = ap.parse_args()
     out = Path(args.out)
@@ -78,12 +80,23 @@ def main() -> None:
     # ---------------- inclusion flow
     logs = [pd.read_csv(p) for p in sorted(out.glob("run_log*.csv"))]
     log = pd.concat(logs).drop_duplicates("stock", keep="last") if logs else pd.DataFrame(columns=["stock", "status"])
+    completed = set(log.loc[log["status"] == "done", "stock"])
     inc = {"listings": np.nan, "exported": np.nan}
     if Path(args.manifest).exists():
         m = json.loads(Path(args.manifest).read_text())
         inc["listings"] = m.get("listings")
         inc["exported"] = sum(r["status"] == "exported" for r in m["results"])
-    inc["eligible"] = int((log["status"] != "excluded").sum())
+    inc["eligible_processed"] = int((log["status"] != "excluded").sum())
+    audit_path = out / "source_inclusion_audit.csv"
+    if audit_path.exists():
+        audit = pd.read_csv(audit_path)
+        inc["eligible"] = int(audit["eligible"].sum())
+        expected = {s.replace(".", "_") for s in audit.loc[audit.status == "exported", "symbol"]}
+        logged = {s if "_" in s else s + "_N0000" for s in log["stock"]}
+        inc["execution_complete"] = expected.issubset(logged)
+    else:
+        inc["eligible"] = inc["eligible_processed"]
+        inc["execution_complete"] = False
     inc["evaluated"] = int((log["status"] == "done").sum())
     inc["failed"] = int((log["status"] == "failed").sum())
     excl = log[log["status"] == "excluded"]["reason"].str.extract(r"^(only|history starts|history ends|traded)")[0].value_counts().to_dict() if "reason" in log else {}
@@ -93,7 +106,7 @@ def main() -> None:
     tex = []
 
     # ---------------- Exp A: daily detection
-    a = load(per, "exp_a_detector_ablation.csv")
+    a = load(per, "exp_a_detector_ablation.csv", completed)
     if not a.empty:
         a["cohort"] = a["stock"].map(cohort)
         rows = []
@@ -141,7 +154,7 @@ Detector & Prec. & Rec. & F1 & Median F1 [IQR] \\
                        r" held-out stocks; median F1 over stocks with at least one test positive.}" + "\n" + r"\end{table}" + "\n")
 
     # ---------------- model selection (persistence frequency)
-    meta = load(per, "exp_a_run_metadata.csv")
+    meta = load(per, "exp_a_run_metadata.csv", completed)
     if not meta.empty:
         meta["cohort"] = meta["stock"].map(cohort)
         meta["mae_ratio"] = meta["test_mae_model"] / meta["test_mae_persistence"]
@@ -152,17 +165,19 @@ Detector & Prec. & Rec. & F1 & Median F1 [IQR] \\
         ms.to_csv(agg / "agg_model_selection.csv", index=False)
 
     # ---------------- Exp B: documented episodes
-    b = load(per, "exp_b_episode_detection.csv")
+    b = load(per, "exp_b_episode_detection.csv", completed)
     if not b.empty:
         b["cohort"] = b["stock"].map(cohort)
         eps = [c[:2] for c in b.columns if c.endswith("_detected") and c[0] == "E"]
         rows = []
         for (coh, det), g in b.groupby(["cohort", "detector"]):
-            det_flags = pd.concat([g[f"{e}_detected"].astype(bool) for e in eps])
-            delays = pd.concat([g[f"{e}_delay_days"] for e in eps]).dropna()
+            available = {e: g[f"{e}_trading_days"] > 0 for e in eps}
+            det_flags = pd.concat([g.loc[available[e], f"{e}_detected"].astype(bool) for e in eps])
+            delays = pd.concat([g.loc[available[e], f"{e}_delay_days"] for e in eps]).dropna()
             rows.append({"cohort": coh, "detector": det, "stocks": g["stock"].nunique(),
                          "stock_episodes": int(len(det_flags)), "detection_rate": float(det_flags.mean()),
-                         **{f"{e}_rate": float(g[f"{e}_detected"].astype(bool).mean()) for e in eps},
+                         "unobserved_stock_episodes": int(sum((~available[e]).sum() for e in eps)),
+                         **{f"{e}_rate": float(g.loc[available[e], f"{e}_detected"].astype(bool).mean()) for e in eps},
                          "median_delay": float(delays.median()) if len(delays) else np.nan,
                          "median_fa_per_100": float(g["false_alarms_per_100_days"].median()),
                          "q1_fa": float(g["false_alarms_per_100_days"].quantile(.25)),
@@ -203,14 +218,17 @@ Detector & Det.\,\% & E1/E2/E3\,\% & Delay & FA/100 [IQR] \\
                        + "\n" + r"\end{table}" + "\n")
 
     # ---------------- Exp D: pattern enrichment
-    p = load(per, "exp_d_pattern_profiles.csv")
-    n = load(per, "exp_d_null_rates.csv")
+    p = load(per, "exp_d_pattern_profiles.csv", completed)
+    n = load(per, "exp_d_null_rates.csv", completed)
     if not p.empty and not n.empty:
         p["cohort"] = p["stock"].map(cohort)
         n["cohort"] = n["stock"].map(cohort)
         labs = ["shock-dominated", "persistent drift down", "persistent drift up", "volatility burst"]
         rows = []
         for (coh, win), g in p.groupby(["cohort", "window"]):
+            g = g[(g["trading_days"] > 0) & ~g["pattern"].isin(["no data"])]
+            if g.empty:
+                continue
             row = {"cohort": coh, "window": win, "stocks": g["stock"].nunique(),
                    "any_label_rate": float((g["pattern"] != "none").mean()),
                    "median_price_change_pct": float(g["price_change_pct"].median())}
@@ -220,7 +238,10 @@ Detector & Det.\,\% & E1/E2/E3\,\% & Delay & FA/100 [IQR] \\
             null_any = float(null["rate_any"].mean()) if len(null) else np.nan
             k, m = int((g["pattern"] != "none").sum()), int(len(g))
             row["null_any_rate"] = null_any
-            row["binom_p_vs_null"] = float(stats.binomtest(k, m, min(max(null_any, 1e-6), 1 - 1e-6), alternative="greater").pvalue) if m and np.isfinite(null_any) else np.nan
+            # Shared episodes and mismatched window lengths do not provide
+            # independent, identically distributed Bernoulli trials.
+            row["binom_p_vs_null"] = np.nan
+            row["inference_status"] = "descriptive_only_shared_events_and_different_window_lengths"
             rows.append(row)
         dp = pd.DataFrame(rows)
         dp.to_csv(agg / "agg_pattern_enrichment.csv", index=False)

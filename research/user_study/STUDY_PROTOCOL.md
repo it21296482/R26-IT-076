@@ -28,7 +28,7 @@ Stimuli are real data for 8 May–28 Aug 2026: Company P = John Keells Holdings 
 
 ## 3. Participants
 
-- **Target n = 20** (minimum 16, five per group). With a within-subjects design, n = 16 gives about 80% power to detect a large effect (dz ≈ 0.75) at α = 0.05, two-sided. This study cannot detect small effects; report it as a pilot-scale evaluation.
+- **Target n = 20** (five per group; minimum 16 means four per group). This is a pilot target, not a verified Wilcoxon power calculation. Document the final sample-size justification before recruitment, and do not interpret a non-significant small study as evidence of equivalence.
 - **Inclusion:** aged 18+, able to read English, Sinhala or Tamil, and consents.
 - **Recruitment:** aim for at least half with no share-buying experience (the system's target users). Record but do not exclude finance students or professionals.
 - **Not eligible:** members of the project team.
@@ -92,7 +92,7 @@ Run `python research/user_study/analyse_study.py`.
 
 | Date | Change | Reason |
 |---|---|---|
-| | | |
+| 24 October 2026, before any supplied participant data | Correct the Holm adjustment and include interpretation in the secondary family; clarify pilot sample size | Align analysis with declared outcomes; remove an unsupported power statement. No recruitment or ethics approval is implied. |
 
 ## Withdrawals
 

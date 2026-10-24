@@ -1,0 +1,17 @@
+\begin{table}[!t]
+\caption{Development-Stock Test-Set Surrogate Fidelity and Attribution Shares}
+\label{tab:explain}
+\centering\footnotesize
+\setlength{\tabcolsep}{2.7pt}
+\begin{tabular}{@{}llrrlr@{}}
+\toprule
+Stock & Target & $R^2$ & $\rho$ & Factors (\%) & ESI \\
+\midrule
+JKH & log(1+score) & 0.83 & 0.90 & Volume ratio 59.6; Return 31.2 & 1.00 \\
+JKH & Band severity & 0.89 & 0.98 & Return 72.8; Range 13.7 & 0.98 \\
+BIL & log(1+score) & -3.08 & 0.87 & Return 42.2; Volume ratio 35.7 & 1.00 \\
+BIL & Band severity & 0.90 & 0.89 & Return 67.3; ATR(14) 18.4 & 1.00 \\
+\bottomrule
+\end{tabular}
+\parbox{\columnwidth}{\scriptsize Volume score target is log(1+min(score, $10^6$)). Shares average absolute Tree-SHAP magnitudes over test rows; they are not causal effects.}
+\end{table}

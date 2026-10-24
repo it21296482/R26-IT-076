@@ -14,3 +14,7 @@ assets.zip
 .venv/
 output/*
 !output/academic-website-R26_IT_076/
+research/component1/data/actuals_all/
+research/component1/artifacts/paper_v3_verified/
+research/user_study/responses/
+research/user_study/results/

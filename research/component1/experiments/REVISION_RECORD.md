@@ -36,6 +36,9 @@ The supplied binomial pattern test pools different window lengths and treats
 market-linked stock cases as independent. It is exploratory, not confirmatory
 evidence of pattern enrichment. Cross-stock signed-rank tests also need caution
 because securities share dates, companies and market-wide events.
+The verified aggregate therefore omits the binomial p-value, includes only
+finished stock runs, and reports missing-observation periods separately rather
+than treating them as detector misses or positive pattern labels.
 
 The 57 matched forecast dates belong to one preserved multi-step origin, not 57
 independent one-day forecast origins. HAC loss-difference p-values must not be

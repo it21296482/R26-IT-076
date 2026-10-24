@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-10-24T14:56:19.130112+00:00",
+  "listings": 302,
+  "source_attempts": 302,
+  "exported": 253,
+  "eligible_including_development": 202,
+  "heldout_eligible": 200,
+  "heldout_completed": 74,
+  "heldout_failed": 6,
+  "heldout_pending": 120,
+  "batch_finished": false,
+  "participant_results_supplied": false,
+  "frozen_code_commit": "0ae9f9b",
+  "queue_commit": "0965ec9",
+  "software_versions": {
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scipy": "1.16.3",
+    "sklearn": "1.6.1",
+    "torch": "2.11.0"
+  }
+}

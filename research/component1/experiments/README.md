@@ -2,6 +2,38 @@
 
 All commands run on your own machine (the export needs internet access to CSE and TradingView).
 
+## Verified completion workflow
+
+The supplied package is preserved in commit `936ee04`. Additional scale,
+CUSUM-export and analysis corrections are documented in `REVISION_RECORD.md`
+and committed before this checkout's held-out run. Its results now go to
+`artifacts/paper_v3_verified/`; the supplied `paper_v2/` remains unchanged.
+The original commands below describe the incoming kit, not a claim that all its
+statistics or participant recruitment were already completed.
+
+The read-only all-listing source audit has been run. To resume the bounded
+held-out queue from the repository root:
+
+```bash
+python3 research/component1/experiments/run_heldout_queue.py --workers 4
+```
+
+Do not start a second queue while the first is running. Completed/excluded/
+failed stocks are retained in the run log. Do not launch two exporters writing
+the same manifest at once.
+
+Rebuild the evidence-checked six-page paper, or wait for the queue to finish:
+
+```bash
+python3 research/component1/experiments/complete_v3_paper.py
+python3 research/component1/experiments/complete_v3_paper.py --watch
+```
+
+The source project is `output/ieee-component1-paper-v3/`. Its generated
+`completion_receipt.json` explicitly states whether the full batch finished.
+No participant numbers are generated. The study remains planned until genuine
+approved participant evidence exists.
+
 ## Order matters (pre-registration)
 
 1. **Commit before running anything new.** Commit `experiments/pattern_rules.py` (pattern rules v1.2, SHA-256 `2d904f4a…`), `research/user_study/` and this README, and push. The commit date shows the rules and the study plan were fixed before the held-out results and participants existed. Do not edit `FROZEN_RULES` afterwards.

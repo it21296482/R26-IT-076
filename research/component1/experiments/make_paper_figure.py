@@ -9,7 +9,7 @@ import matplotlib.ticker
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "artifacts" / "paper_v2"
+OUT = ROOT / "artifacts" / "paper_v3_verified"
 dest = Path(sys.argv[1]) if len(sys.argv) > 1 else OUT / "fig_pattern_monitor.pdf"
 colors = {"JKH": "#235A8C", "BIL": "#BF6619"}
 windows = [("E2 COVID-19 (9 Mar-15 May 2020)", "2020-03-09", "2020-05-15"),

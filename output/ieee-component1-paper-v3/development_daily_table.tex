@@ -1,0 +1,29 @@
+\begin{table}[!t]
+\caption{Reproduced Development-Stock Daily Detection (12 Proxy Positives Each)}
+\label{tab:ablation}
+\centering\footnotesize
+\setlength{\tabcolsep}{2.7pt}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Detector & TP/FP & Pr. & Re. & F1 & 95\% CI \\
+\midrule
+\multicolumn{6}{l}{\textit{JKH (663 test sessions)}}\\
+Adaptive score OR band & 9/30 & 0.231 & 0.750 & 0.353 & 0.15--0.54 \\
+Volume score only & 0/23 & 0.000 & 0.000 & 0.000 & 0.00--0.00 \\
+Band only & 5/2 & 0.714 & 0.417 & 0.526 & 0.00--0.86 \\
+Unscaled $|D_t|$ & 5/2 & 0.714 & 0.417 & 0.526 & 0.00--0.86 \\
+Robust $|z_t|$ & 11/5 & 0.688 & 0.917 & 0.786 & 0.59--0.91 \\
+Return Z-score & 4/1 & 0.800 & 0.333 & 0.471 & 0.00--0.79 \\
+Isolation Forest & 8/14 & 0.364 & 0.667 & 0.471 & 0.21--0.72 \\
+\multicolumn{6}{l}{\textit{BIL (649 test sessions)}}\\
+Adaptive score OR band & 9/163 & 0.052 & 0.750 & 0.098 & 0.04--0.18 \\
+Volume score only & 3/166 & 0.018 & 0.250 & 0.033 & 0.00--0.08 \\
+Band only & 1/0 & 1.000 & 0.083 & 0.154 & 0.00--0.44 \\
+Unscaled $|D_t|$ & 1/0 & 1.000 & 0.083 & 0.154 & 0.00--0.44 \\
+Robust $|z_t|$ & 3/0 & 1.000 & 0.250 & 0.400 & 0.00--0.67 \\
+Return Z-score & 1/0 & 1.000 & 0.083 & 0.154 & 0.00--0.44 \\
+Isolation Forest & 0/0 & 0.000 & 0.000 & 0.000 & 0.00--0.00 \\
+\bottomrule
+\end{tabular}
+
+\end{table}
